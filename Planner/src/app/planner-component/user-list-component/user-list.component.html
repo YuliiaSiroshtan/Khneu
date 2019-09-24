@@ -1,0 +1,45 @@
+<div class="col"  *ngIf="!isEdit">
+  <div class="profile-content">
+    <div class="content-wrapper">
+      <div class="form-group">
+        <p class="login-box-msg">Користувачі</p>
+        <hr />
+        <div class="col table-height">
+          <p-table #dt [value]="userList" [paginator]="true" [rows]="10" [globalFilterFields]="['fullName','email']">
+            <ng-template pTemplate="caption">
+              <div class="table-header-content">
+                <i class="fa fa-search header-i"></i>
+                <input type="text" pInputText size="50" placeholder="Введiть ПIБ або поштову скриньку" (input)="dt.filterGlobal($event.target.value, 'contains')">
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                  <th>ПIБ</th>
+                  <th>Електронна адреса</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-userListItem>
+                <tr>
+                  <td>{{userListItem.fullName}}</td>
+                  <td>{{userListItem.email}}</td>
+                  <td><button class="btn btn-primary btn-block btn-flat"  (click)="toggleEditUser(userListItem.applicationUserId)">Редагувати</button></td>
+                  <td><button class="btn btn-primary btn-block btn-flat" (click)="confirmActivate(userListItem)"> {{userListItem.isActive?'Активувати':'Деактивувати'}}</button></td>
+
+                </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<add-update-user *ngIf="isEdit" [applicationUserId]="applicationUserId"></add-update-user>
+<p-confirmDialog [autoZIndex]="false" icon="pi pi-exclamation-triangle" width="425" #cd>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" label="Ні" (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Так" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
+

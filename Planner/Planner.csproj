@@ -1,0 +1,134 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\app\account-component\account-login.component.ts" />
+    <None Remove="src\app\account-component\account.modeule.ts" />
+    <None Remove="src\app\account-component\shared\services\account-data.service.ts" />
+    <None Remove="src\app\planner-component\app-dashboard-component\app.dashboard.component.ts" />
+    <None Remove="src\app\common\app-header-component\app-header.component.ts" />
+    <None Remove="src\app\common\app-sidenav-component\app-sidenav.component.ts" />
+    <None Remove="src\app\common\common.modeule.ts" />
+    <None Remove="src\app\planner-component\distribution-component\day-entry-component\day-entry.component.ts" />
+    <None Remove="src\app\planner-component\distribution-component\distribution.component.ts" />
+    <None Remove="src\app\planner-component\distribution-component\shared\models\day-distribution.model.ts" />
+    <None Remove="src\app\planner-component\distribution-component\shared\models\day-entry-model.ts" />
+    <None Remove="src\app\planner-component\distribution-component\shared\models\des.model.ts" />
+    <None Remove="src\app\planner-component\distribution-component\shared\models\distribution-filter.model.ts" />
+    <None Remove="src\app\planner-component\distribution-component\shared\services\distribution-data.service.ts" />
+    <None Remove="src\app\planner-component\home-component\home.component.ts" />
+    <None Remove="src\app\planner-component\home-component\home.modeule.ts" />
+    <None Remove="src\app\planner-component\home-component\shared\models\user-profile.model.ts" />
+    <None Remove="src\app\planner-component\home-component\shared\services\home-data.service.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\plan-management-component\plan.management.component.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\plan-methodical-work-component\plan.methodical.work.component.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\plan-scientific-work-component\plan.scientific.work.component.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\shared\models\indiv-plan-field-value.model.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\shared\models\indiv-plan-field.model.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\shared\models\training-job.model.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\shared\service\indiv-plan-data.service.ts" />
+    <None Remove="src\app\planner-component\indiv-plan-component\training-job-component\training.job.component.ts" />
+    <None Remove="src\app\planner-component\ndr-component\shared\models\ndr.model.ts" />
+    <None Remove="src\app\planner-component\ndr-component\shared\service\ndr-data.service.ts" />
+    <None Remove="src\app\planner-component\planner.module.ts" />
+    <None Remove="src\app\planner-component\ndr-component\ndr.component.ts" />
+    <None Remove="src\app\planner-component\publication-component\publication.component.ts" />
+    <None Remove="src\app\planner-component\publication-component\shared\models\nmdb.model.ts" />
+    <None Remove="src\app\planner-component\publication-component\shared\models\publication.model.ts" />
+    <None Remove="src\app\planner-component\publication-component\shared\service\publication-data.service.ts" />
+    <None Remove="src\app\planner-component\report-component\report.component.ts" />
+    <None Remove="src\app\planner-component\report-component\shared\models\report.model.ts" />
+    <None Remove="src\app\planner-component\report-component\shared\service\report-data.service.ts" />
+    <None Remove="src\app\planner-component\shared\components\add-update-user-component\add-update-user.component.ts" />
+    <None Remove="src\app\planner-component\user-list-component\shared\service\user-list-data.service.ts" />
+    <None Remove="src\app\planner-component\user-list-component\user-list.component.ts" />
+    <None Remove="src\app\shared\components\authentication-component.ts" />
+    <None Remove="src\app\shared\components\token-interceptor.service.ts" />
+    <None Remove="src\app\shared\constants\constants.ts" />
+    <None Remove="src\app\shared\directive\confirm-equal.validator.ts" />
+    <None Remove="src\app\shared\guard\auth-guard.ts" />
+    <None Remove="src\app\shared\models\login.model.ts" />
+    <None Remove="src\app\shared\models\user-info.model.ts" />
+    <None Remove="src\app\shared\pipe\safe-pipe .ts" />
+    <None Remove="src\app\shared\shared.module.ts" />
+    <None Remove="src\app\shared\validators\letter-validator.ts" />
+    <None Remove="src\app\shared\validators\password-state.matcher.ts" />
+    <None Remove="src\app\shared\validators\url-validator.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Planner.Common\Planner.Common.csproj" />
+    <ProjectReference Include="..\Planner.DependencyInjection\Planner.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\account-component\account-login-component\account-login.component.ts" />
+    <TypeScriptCompile Include="src\app\account-component\account.module.ts" />
+    <TypeScriptCompile Include="src\app\account-component\shared\services\account-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\app-dashboard-component\app.dashboard.component.ts" />
+    <TypeScriptCompile Include="src\app\common\app-header-component\app-header.component.ts" />
+    <TypeScriptCompile Include="src\app\common\app-sidenav-component\app-sidenav.component.ts" />
+    <TypeScriptCompile Include="src\app\common\common.module.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\day-entry-component\day-entry.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\distribution.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\shared\models\day-distribution.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\shared\models\day-entry-model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\shared\models\des.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\shared\models\distribution-filter.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\distribution-component\shared\services\distribution-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\home-component\home.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\home-component\shared\models\user-profile.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\plan-management-component\plan.management.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\plan-methodical-work-component\plan.methodical.work.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\plan-scientific-work-component\plan.scientific.work.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\shared\models\indiv-plan-field-value.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\shared\models\indiv-plan-field.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\shared\models\training-job.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\shared\service\indiv-plan-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\indiv-plan-component\training-job-component\training.job.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\ndr-component\shared\models\ndr.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\ndr-component\shared\service\ndr-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\planner.module.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\ndr-component\ndr.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\publication-component\publication.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\publication-component\shared\models\nmdb.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\publication-component\shared\models\publication.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\publication-component\shared\service\publication-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\report-component\report.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\report-component\shared\models\report.model.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\report-component\shared\service\report-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\shared\service\user-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\shared\components\add-update-user-component\add-update-user.component.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\user-list-component\shared\service\user-list-data.service.ts" />
+    <TypeScriptCompile Include="src\app\planner-component\user-list-component\user-list.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\authentication-component.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\token-interceptor.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\constants\constants.ts" />
+    <TypeScriptCompile Include="src\app\shared\directive\confirm-equal.validator.ts" />
+    <TypeScriptCompile Include="src\app\shared\guard\auth-guard.ts" />
+    <TypeScriptCompile Include="src\app\account-component\shared\models\login.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\user-info.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipe\safe-pipe .ts" />
+    <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="src\app\shared\validators\letter-validator.ts" />
+    <TypeScriptCompile Include="src\app\shared\validators\url-validator.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="src\app\planner-component\home-component\shared\services\" />
+    <Folder Include="src\app\planner-component\shared\models\" />
+    <Folder Include="src\reports\" />
+    <Folder Include="wwwroot\images\profileImages\" />
+  </ItemGroup>
+
+</Project>

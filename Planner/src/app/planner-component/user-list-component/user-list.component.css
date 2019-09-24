@@ -1,0 +1,26 @@
+.profile-content {
+  margin-top: 2%;
+  font-family: verdana;
+  font-size: 16px;
+}
+
+.login-box-msg {
+  text-align: center;
+}
+
+.table-height {
+  min-height: 340px;
+}
+
+.table-header-content {
+  text-align: right;
+}
+
+.header-i {
+  margin: 4px 4px 0 0;
+}
+
+.header-input {
+  width: auto;
+}
+

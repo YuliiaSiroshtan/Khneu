@@ -1,0 +1,192 @@
+<p-toast key="success" position="top-center"></p-toast>
+<p-toast key="error" position="top-center"></p-toast>
+<div class="col" *ngIf="!this.isLoaded">
+  <div class="profile-content">
+    <p-tabView>
+      <p-tabPanel header="Звіт за півріччя">
+        <div class="content-wrapper">
+          <form [formGroup]="departmentReportForm">
+            <div class="content-wrapper">
+              <div class="col">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-2 form-group">
+                      <h5 class="h5-style">Кафедра</h5>
+                      <p-dropdown [options]="DepartmentIds" placeholder="Оберіть кафедру" formControlName="DepartmentId"></p-dropdown>
+                    </div>
+
+                    <div class="col-md-2 datepicker-margin-bottom">
+                      <h5 class="h5-style">Проміжок часу</h5>
+                      <p-calendar id="DateRange" formControlName="DateRange" [(ngModel)]="DateRange" selectionMode="range" [showIcon]="true"></p-calendar>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <button type="submit" class="btn btn-primary btn-margin">Показати</button>
+                      <button type="submit" class="btn btn-primary btn-margin">Друк</button>
+                    </div>
+                  </div>
+
+                  <div class="table-margin-top">
+                    <p-table #dt [value]="Publication" [paginator]="true" [rows]="10">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th>№</th>
+                          <th>Автори</th>
+                          <th>Назва роботи</th>
+                          <th>Тип видання</th>
+                          <th>Назва видання, дата видання (ЧЧ.ММ.РР)</th>
+                          <th>Обсяг, ум.- друк. арк., усього</th>
+                          <th>Обсяг, ум.- друк. арк., частка кафедри</th>
+                          <th>За кордонне видання</th>
+                          <th>НМБД</th>
+                          <th>Кількість цитувань у виданнях, що входять до НМБД Scopus/Google Scolar</th>
+                          <th>Імпакт-фактор видання, тільки з НМБД</th>
+                          <th>За якою НДР виконано</th>
+                          <th>Назва кафедри</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body">
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            Евсеев Сергей Петрович
+                            <br>
+                            Щербаков Александр Всеволодович
+                          </td>
+                          <td>Назва</td>
+                          <td>Монографія</td>
+                          <td>текст</td>
+                          <td>12</td>
+                          <td>12</td>
+                          <td>Нi</td>
+                          <td>Index Copernicus</td>
+                          <td>2</td>
+                          <td>2</td>
+                          <td>За індивідуальним планом викладача</td>
+                          <td>Кафедра інформаційних систем</td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Звіт за кафедрою">
+        <div class="content-wrapper">
+          <form [formGroup]="halfYearDepartmentReportForm">
+            <div class="col">
+              <div class="content-wrapper">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-2 form-group">
+                      <h5 class="h5-style">Кафедра</h5>
+                      <p-dropdown [options]="DepartmentIds" placeholder="Оберіть кафедру" formControlName="DepartmentId"></p-dropdown>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                      <h5 class="h5-style">Рік</h5>
+                      <p-dropdown [options]="Years" placeholder="Оберіть рік" formControlName="Year"></p-dropdown>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                      <h5 class="h5-style">Півріччя</h5>
+                      <p-dropdown [options]="Halfs" placeholder="Оберіть півріччя" formControlName="Half"></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <button type="submit" class="btn btn-primary btn-margin">Показати</button>
+                      <button type="submit" class="btn btn-primary btn-margin">Друк</button>
+                    </div>
+                  </div>
+                  <div class="table-margin-top">
+                    <p-table #dt [value]="Publication" [paginator]="true" [rows]="10">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th>Відповідальні підрозділи</th>
+                          <th>Види робіт</th>
+                          <th>Результат, який очікується (показники діяльності кафедри)</th>
+                          <th>Планові значення</th>
+                          <th>Фактичні значення</th>
+                          <th>Відсоток виконання</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body">
+                        <tr>
+                          <th rowspan="10">НДС</th>
+                          <th rowspan="10">Науково-видавнича</th>
+                          <td>Видання монографій (кількість):</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td> у вітчизняний виданнях</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td> у зарубіжних виданнях</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>ВСЬОГО ПУБЛІКАЦІЙ: в тому числі:</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>наукові публікаціі в Scopus (кількість):</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>публікацій (статі, тези), у виданнях, що входять до міжнародних науково- метричних баз даних (кількість):</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>наукові публікації у зарубіжних виданнях (кількість).</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>статті у фахових видання (кількість):</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>публікація наукових статей іноземною мовою (кількість):</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <td>тези доповідей (кількість).</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>1</td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+.profile-content {
+  padding: 20px;
+  background: #ffffff;
+}
+
+a, .item {
+  display: inline-block;
+  background-color: #424a5d;
+  color: #FFFFFF;
+  font-family: Verdana;
+  font-size: 16px;
+  width: 109%;
+  height: 100%;
+  margin-left: -5%;
+}
+
+.profile-userpic {
+  float: none;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+  background-color: #424a5d;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.profile-logo {
+  content: url('../../../images/hneu-user.png');
+  width: 90px;
+}
+
+.new-usr-img {
+  content: url('../../../images/hneu-new-user.png');
+  width: 17px;
+  margin-right: 2%;
+}
+
+.students-img {
+  content: url('../../../images/hneu-students.png');
+  width: 21px;
+  margin-right: 2%;
+}
+
+.teacher-img {
+  content: url('../../../images/hneu-teacher.png');
+  width: 19px;
+  margin-right: 2%;
+}
+
+.teachers-img {
+  content: url('../../../images/hneu-teachers.png');
+  width: 21px;
+  margin-right: 2%;
+}
+
+.users-img {
+  content: url('../../../images/hneu-users.png');
+  width: 21px;
+  margin-right: 2%;
+}
+
+.file-img {
+  content: url('../../../images/hneu-file.png');
+  width: 20px;
+  margin-right: 2%;
+}
+
+.noHover {
+  pointer-events: none;
+}
+
+.container-margin {
+  margin-top: -1%;
+}
+
+body {
+  background-color: #424a5d;
+}
+
+.profile-usertitle {
+  text-align: center;
+  font-family: Verdana;
+  font-size: 16px;
+  background-color: #424a5d;
+  color: #FFFFFF;
+}

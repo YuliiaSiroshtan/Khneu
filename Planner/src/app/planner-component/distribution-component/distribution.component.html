@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <p-dropdown [options]="years" [(ngModel)]="filter.year"></p-dropdown>
+    <p-dropdown [options]="semesters" [(ngModel)]="filter.semester"></p-dropdown>
+  </div>
+  <div>
+    <button class="btn btn-primary btn-block btn-flat" (click)="getDayEntry()">Показати навантаження</button>
+  </div>
+  
+
+  <p-tabView [activeIndex]="index">
+    <p-tabPanel header="Денна форма навантаження">
+     <day-entry [dayEntry]="dayEntry"></day-entry>
+    </p-tabPanel>
+    <p-tabPanel header="Заочна форма навантаження">
+      Content 2
+    </p-tabPanel>
+  </p-tabView>
+</div>
+
+

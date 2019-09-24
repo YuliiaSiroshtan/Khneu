@@ -1,0 +1,40 @@
+<p-toast key="error" position="top-center"></p-toast>
+<div class="hold-transition login-page">
+  <div class="header-widget">
+    <div class="site-logo">
+      <a href="http://www.hneu.edu.ua/" title="Харківский  національний економічний університет імені Семена Кузнеця" rel="home">
+        <img class="background-logo">
+      </a>
+      <div class="login-logo">
+        <p title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧІВ ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ ІМЕНІ СЕМЕНА КУЗНЕЦЯ">
+          ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧІВ ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ ІМЕНІ СЕМЕНА КУЗНЕЦЯ
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="userform" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="container body-content">
+      <label for="usr" class="form-label">Авторизуйтеся для подальшої роботи</label>
+      <div class="form-group">
+        <input type="text" pInputText placeholder="Електронна адреса" class="form-control" formControlName="email" [(ngModel)]="loginModel.email">
+        <p-message severity="error" [text]="getErrorMessage('email')"
+                   *ngIf="!this.userform.controls['email'].valid && this.userform.controls['email'].dirty"></p-message>
+
+      </div>
+      <div class="form-group">
+        <input type="password" pInputText placeholder="Пароль" class="form-control" formControlName="password" [(ngModel)]="loginModel.password">
+        <p-message severity="error" [text]="getErrorMessage('password')"
+                   *ngIf="!this.userform.controls['password'].valid && this.userform.controls['password'].dirty"></p-message>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="cdRememberMe">
+          <label for="cdRememberMe" class="checkbox-label">Запам'ятати мене</label>
+        </label>
+        <button type="submit" class="btn btn-primary form-btn">Увійти</button>
+      </div>
+    </div>
+  </form>
+</div>
+

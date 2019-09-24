@@ -1,0 +1,21 @@
+
+<div class="container container-margin">
+  <div class="list-group">
+    <a routerLink="/home" class="item list-group-item list-group-item-action noHover">
+      <div class="profile-userpic">
+        <img class="profile-logo img-responsive" alt="">
+      </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name" *ngIf="userProfile">
+          {{userProfile.firstName}} {{userProfile.lastName}}
+        </div>
+      </div>
+    </a>
+    <a routerLink="/user" class="item list-group-item list-group-item-action"><i class="new-usr-img"></i>Нові користувачі</a>
+    <a routerLink="/user-list" class="item list-group-item list-group-item-action"><i class="users-img"></i>Користувачі</a>
+    <a routerLink="/ndr" class="item list-group-item list-group-item-action"><i class="students-img"></i>Результати НДР студентів</a>
+    <a routerLink="/distribution" class="item list-group-item list-group-item-action"><i class="teachers-img"></i>Розподілення навантаження по кафедрі</a>
+    <a routerLink="/home" class="item list-group-item list-group-item-action"><i class="teacher-img"></i>Навантаження на викладача</a>
+    <a routerLink="/upload-distribution" class="item list-group-item list-group-item-action"><i class="file-img"></i>Файл навантаження</a>
+  </div>
+</div>

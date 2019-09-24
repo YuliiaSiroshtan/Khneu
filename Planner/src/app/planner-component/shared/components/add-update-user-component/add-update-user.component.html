@@ -1,0 +1,99 @@
+<p-toast key="success" position="top-center"></p-toast>
+<p-toast key="error" position="top-center"></p-toast>
+<div class="col" *ngIf="!this.isLoaded">
+  <div class="profile-content">
+    <form [formGroup]="userform" (ngSubmit)="updateUser(userform.value)">
+      <div class="content-wrapper">
+        <div class="form-group">
+          <p class="login-box-msg">Реєстрація нового користувача</p>
+          <hr />
+          <div class="col">
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Електронна адреса" class="form-control" formControlName="email">
+              <p-message severity="error" [text]="getErrorMessage('email')"
+                         *ngIf="!this.userform.controls['email'].valid && this.userform.controls['email'].dirty"></p-message>
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Ім'я" class="form-control" formControlName="firstName">
+              <p-message severity="error" [text]="getErrorMessage('firstName')"
+                         *ngIf="!this.userform.controls['firstName'].valid && this.userform.controls['firstName'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Прізвище" class="form-control" formControlName="lastName">
+              <p-message severity="error" [text]="getErrorMessage('lastName')"
+                         *ngIf="!this.userform.controls['lastName'].valid && this.userform.controls['lastName'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="По-батькові" class="form-control" formControlName="thirdName">
+              <p-message severity="error" [text]="getErrorMessage('thirdName')"
+                         *ngIf="!this.userform.controls['thirdName'].valid && this.userform.controls['thirdName'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group" *ngIf="!this.userProfile">
+              <input type="text" pInputText placeholder="Пароль" class="form-control" (change)="checkConfirmPassword()" formControlName="password">
+              <p-message severity="error" [text]="getErrorMessage('password')"
+                         *ngIf="!this.userform.controls['password'].valid && this.userform.controls['password'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group" *ngIf="!this.userProfile">
+              <input (change)="checkConfirmPassword()" type="text" pInputText placeholder="Підтвердити пароль" class="form-control" formControlName="confirmPassword">
+              <p-message severity="error" [text]="getErrorMessage('confirmPassword')"
+                         *ngIf="!this.userform.controls['confirmPassword'].valid && this.userform.controls['confirmPassword'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Профіль у Google Scholar" class="form-control" formControlName="scholarLink">
+              <p-message severity="error" [text]="getErrorMessage('scholarLink')"
+                         *ngIf="!this.userform.controls['scholarLink'].valid && this.userform.controls['scholarLink'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Профіль у ORCID" class="form-control" formControlName="orcidLink">
+              <p-message severity="error" [text]="getErrorMessage('orcidLink')"
+                         *ngIf="!this.userform.controls['orcidLink'].valid && this.userform.controls['orcidLink'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <p-dropdown [options]="academicTitles" placeholder="Оберіть ступінь" formControlName="academicTitle"></p-dropdown>
+            </div>
+
+            <div class="form-group">
+              <p-dropdown [options]="degrees" placeholder="Оберіть звання" formControlName="degree"></p-dropdown>
+            </div>
+
+            <div class="form-group">
+              <p-dropdown [options]="positions" placeholder="Оберіть посаду" formControlName="position"></p-dropdown>
+            </div>
+
+            <div class="form-group">
+              <p-dropdown [options]="roles" formControlName="roleName" placeholder="Оберіть роль користувача" required></p-dropdown>
+
+              <p-message severity="error" [text]="getErrorMessage('role')"
+                         *ngIf="!this.userform.controls['roleName'].valid && this.userform.controls['roleName'].dirty"></p-message>
+
+            </div>
+
+            <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="myUploader($event)"></p-fileUpload>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="button-margin">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Підтвердити</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/Planner/dist
+/Planner/tmp
+/Planner/out-tsc
+/Planner/wwwroot
+
+# dependencies
+/Planner/node_modules
+/Planner/package-lock.json
+
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vs
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+/Planner/npm-debug.log
+/Planner/yarn-error.log
+/Planner/testem.log
+/Planner/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+/Planner/bin
+/Planner/obj
+
+/Planner.ServiceInterfaces/bin
+/Planner.ServiceInterfaces/obj
+
+/Planner.BusinessLogic/bin
+/Planner.BusinessLogic/obj
+
+/Planner.Common/bin
+/Planner.Common/obj
+
+/Planner.Data/bin
+/Planner.Data/obj
+
+/Planner.DependencyInjection/bin
+/Planner.DependencyInjection/obj
+
+/Planner.Entities/bin
+/Planner.Entities/obj
+
+/Planner.RepositoryInterfaces/bin
+/Planner.RepositoryInterfaces/obj
