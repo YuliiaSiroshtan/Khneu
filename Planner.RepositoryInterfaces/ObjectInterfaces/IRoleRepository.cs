@@ -1,12 +1,10 @@
 ﻿using Planner.Entities.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.ObjectInterfaces
 {
     public interface IRoleRepository
     {
-        Role GetRoleByName(String roleName);
+        Task<Role> GetRoleByName(string roleName);
     }
 }

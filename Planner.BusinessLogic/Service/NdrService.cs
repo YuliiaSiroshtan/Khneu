@@ -4,14 +4,15 @@ using Planner.RepositoryInterfaces.UoW;
 using Planner.ServiceInterfaces.DTO;
 using Planner.ServiceInterfaces.Interfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service
 {
     public class NdrService : INdrService
     {
-        private IUnitOfWork _uow;
+        private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
-        private ISecurityService _securityService;
+        private readonly ISecurityService _securityService;
 
         public NdrService(IUnitOfWork uow, IMapper mapper, ISecurityService securityService)
         {
@@ -20,17 +21,18 @@ namespace Planner.BusinessLogic.Service
             _securityService = securityService;
         }
 
-        public bool AddNdr(NdrDTO ndrDTO)
+        public async Task<bool> AddNdr(NdrDTO ndrDTO)
         {
-            NDR ndr = _mapper.Map<NDR>(ndrDTO);
+            var ndr = _mapper.Map<NDR>(ndrDTO);
             _uow.NdrRepository.AddNdr(ndr);
 
-            return _uow.SaveChanges() >= 0;
+            return await _uow.SaveChanges() >= 0;
         }
 
-        public IEnumerable<NdrListDTO> GetUserNdr(string userName)
+        public async Task<IEnumerable<NdrListDTO>> GetUserNdr(string userName)
         {
-            IEnumerable<NDR> ndrs = _uow.NdrRepository.GetUserNdr(userName);
+            var ndrs = _uow.NdrRepository.GetUserNdr(userName);
+
             return _mapper.Map<IEnumerable<NdrListDTO>>(ndrs);
         }
     }

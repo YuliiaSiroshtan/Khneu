@@ -1,16 +1,15 @@
 ﻿using Planner.ServiceInterfaces.DTO;
 using Planner.ServiceInterfaces.DTO.Publication;
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Planner.ServiceInterfaces.Interfaces
 {
     public interface IPublicationService
     {
-        IEnumerable<NmbdDTO> GetAllNmbds();
-        //void UodatePublication(Publication);
-        Boolean UpdatePublication(PublicationAddEditDTO publicationDTO, String userName);
-        IEnumerable<PublicationDTO> GetPublications();
-        PublicationDTO GetPublicationById(String id);
+        Task<IEnumerable<NmbdDTO>> GetAllNmbds();
+        Task<bool> UpdatePublication(PublicationAddEditDTO publicationDTO, string userName);
+        Task<IEnumerable<PublicationDTO>> GetPublications();
+        Task<PublicationDTO> GetPublicationById(string id);
     }
 }

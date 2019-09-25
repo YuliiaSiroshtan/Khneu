@@ -1,82 +1,71 @@
 ﻿using AutoMapper;
+using Planner.Entities.Domain;
 using Planner.RepositoryInterfaces.UoW;
+using Planner.ServiceInterfaces.DTO;
+using Planner.ServiceInterfaces.DTO.Publication;
 using Planner.ServiceInterfaces.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Planner.ServiceInterfaces.DTO;
-using Planner.Entities.Domain;
-using Planner.ServiceInterfaces.DTO.Publication;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service
 {
-    public class PublicationService: IPublicationService
+    public class PublicationService : IPublicationService
     {
-        private IUnitOfWork uow;
+        private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
 
-        public PublicationService(IUnitOfWork _uow, IMapper mapper)
+        public PublicationService(IUnitOfWork uow, IMapper mapper)
         {
-            uow = _uow;
+            _uow = uow;
             _mapper = mapper;
         }
 
-        public IEnumerable<NmbdDTO> GetAllNmbds()
+        public async Task<IEnumerable<NmbdDTO>> GetAllNmbds()
         {
-            IEnumerable<NmbdDTO> nmbds = _mapper.Map<IEnumerable<NmbdDTO>>( uow.NMBDRepository.GetAllNMBD());
+            var nmbds = _mapper.Map<IEnumerable<NmbdDTO>>(await _uow.NMBDRepository.GetAllNMBD());
+
             return nmbds;
         }
 
-        public Boolean UpdatePublication(PublicationAddEditDTO publicationDTO, String userName)
+        public async Task<bool> UpdatePublication(PublicationAddEditDTO publicationDTO, string userName)
         {
-            ApplicationUser user = uow.UserRepository.GetByUserName(userName);
-            //NMBD nmbd = uow.NMBDRepository.GetById(publicationDTO.NMBDId);
+            var user = await _uow.UserRepository.GetByUserName(userName);
+
             Publication existingPublication = null;
-            Publication publication = _mapper.Map<Publication>(publicationDTO);
-            if (!String.IsNullOrEmpty(publicationDTO.PublicationId))
+            var publication = _mapper.Map<Publication>(publicationDTO);
+
+            if (!string.IsNullOrEmpty(publicationDTO.PublicationId))
             {
-                existingPublication = uow.PublicationRepositpry.GetById(publicationDTO.PublicationId);
+                existingPublication = await _uow.PublicationRepository.GetById(publicationDTO.PublicationId);
                 publication.PublicationId = publicationDTO.PublicationId;
             }
 
             publication.PublishedAt = publicationDTO.PublishedAt.ToUniversalTime();
             publication.IsPublished = true;
             publication.OwnerId = user.ApplicationUserId;
-            List<PublicationUser> publicationUsers = new List<PublicationUser>();
 
-            foreach (var item in publicationDTO.CollaboratorsIds)
-            {
-                publicationUsers.Add(new PublicationUser
-                {
-                    ApplicationUserId = item,
-                    PageQuantity = publicationDTO.Pages / publicationDTO.CollaboratorsIds.Count
-
-                });
-            }
-
-            //PublicationNMBD publicationNMBD = new PublicationNMBD()
-            //{
-
-            //}
+            var publicationUsers = publicationDTO.CollaboratorsIds
+                .Select(item => new PublicationUser
+                { ApplicationUserId = item, PageQuantity = publicationDTO.Pages / publicationDTO.CollaboratorsIds.Count }).ToList();
 
             publication.PublicationUsers = publicationUsers;
 
+            _uow.PublicationRepository.AddUpdate(publication);
 
-
-            uow.PublicationRepositpry.AddUpdate(publication);
-            return uow.SaveChanges() >= 0;
+            return await _uow.SaveChanges() >= 0;
         }
 
-        public IEnumerable<PublicationDTO> GetPublications()
+        public async Task<IEnumerable<PublicationDTO>> GetPublications()
         {
-            IEnumerable<Publication> publications = uow.PublicationRepositpry.GetAllPublications();
+            var publications = await _uow.PublicationRepository.GetAllPublications();
 
             return _mapper.Map<IEnumerable<PublicationDTO>>(publications);
         }
-        public PublicationDTO GetPublicationById(String id)
+        public async Task<PublicationDTO> GetPublicationById(String id)
         {
-            Publication publication = uow.PublicationRepositpry.GetById(id);
+            var publication = await _uow.PublicationRepository.GetById(id);
 
             return _mapper.Map<PublicationDTO>(publication);
         }

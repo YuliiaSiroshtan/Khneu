@@ -2,47 +2,42 @@
 using Planner.Data.Repository;
 using Planner.RepositoryInterfaces.ObjectInterfaces;
 using Planner.RepositoryInterfaces.UoW;
-using System;
+using System.Threading.Tasks;
 
 namespace Planner.Data.UoW
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private AppDbContext context;
+        private readonly AppDbContext _context;
 
         public IUserRepository UserRepository { get; set; }
         public IRoleRepository RoleRepository { get; set; }
         public INdrRepository NdrRepository { get; set; }
         public INMBDRepository NMBDRepository { get; set; }
-        public IPublicationRepositpry PublicationRepositpry { get; set; }
+        public IPublicationRepository PublicationRepository { get; set; }
         public IPlanTrainingRepository PlanTrainingRepository { get; set; }
-        public IIndivPlanFieldsRepository IndivPlanFieldsRepository { get; set; }
-        public IIndivPlanFieldsValueRepository IndivPlanFieldsValueRepository { get; set; }
+        public IIndividualPlanFieldsRepository IndividualPlanFieldsRepository { get; set; }
+        public IIndividualPlanFieldsValueRepository IndividualPlanFieldsValueRepository { get; set; }
         public IDayEntryLoadRepository DayEntryLoadRepository { get; set; }
 
-        public UnitOfWork(AppDbContext _context)
+        public UnitOfWork(AppDbContext context)
         {
-            context = _context;
+            _context = context;
 
             UserRepository = new UserRepository(_context);
             RoleRepository = new RoleRepository(_context);
             NdrRepository = new NdrRepository(_context);
             NMBDRepository = new NMBDRepository(_context);
-            PublicationRepositpry = new PublicationRepositpry(_context);
+            PublicationRepository = new PublicationRepository(_context);
             PlanTrainingRepository = new PlanTrainingJobRepository(_context);
-            IndivPlanFieldsRepository = new IndivPlanFieldRepository(_context);
-            IndivPlanFieldsValueRepository = new IndivPlanFieldsValueRepository(_context);
+            IndividualPlanFieldsRepository = new IndividualPlanFieldRepository(_context);
+            IndividualPlanFieldsValueRepository = new IndividualPlanFieldsValueRepository(_context);
             DayEntryLoadRepository = new DayEntryLoadRepository(_context);
         }
 
-        public Int32 SaveChanges()
-        {
-            return context.SaveChanges();
-        }
+        public async Task<int> SaveChanges() => await _context.SaveChangesAsync();
 
-        public void Dispose()
-        {
-            context.Dispose();
-        }
+        public void Dispose() => _context.Dispose();
+
     }
 }

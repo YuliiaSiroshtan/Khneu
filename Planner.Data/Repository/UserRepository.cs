@@ -3,44 +3,33 @@ using Planner.Data.BaseRepository;
 using Planner.Data.Context;
 using Planner.Entities.Domain;
 using Planner.RepositoryInterfaces.ObjectInterfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Planner.Data.Repository
 {
     public class UserRepository : BaseRepository<ApplicationUser>, IUserRepository
     {
-        public UserRepository(AppDbContext _context) : base(_context)
+        public UserRepository(AppDbContext context) : base(context)
         {
         }
 
-        public ApplicationUser GetByUserName(string userName)
-        {
-            return Query.AsNoTracking()
-                        .Include(s => s.Role).FirstOrDefault(s => s.Email == userName);
-        }
+        public async Task<ApplicationUser> GetByUserName(string userName) => await Query.AsNoTracking()
+                .Include(s => s.Role).FirstOrDefaultAsync(s => s.Email == userName);
 
-        public ApplicationUser GetByUserId(string userId) =>
-            Query
-                .Include(s => s.Role).FirstOrDefault(s => s.ApplicationUserId == userId);
+        public async Task<ApplicationUser> GetByUserId(string userId) => await Query
+                .Include(s => s.Role).FirstOrDefaultAsync(s => s.ApplicationUserId == userId);
 
 
-        public ApplicationUser GetUser(string userName, string password)
-        {
-            return Query
-                        .Include(s => s.Role).FirstOrDefault(s => s.Email == userName && s.PasswordHash == password && s.IsActive);
-        }
+        public async Task<ApplicationUser> GetUser(string userName, string password) => await Query
+                .Include(s => s.Role)
+                .FirstOrDefaultAsync(s => s.Email == userName && s.PasswordHash == password && s.IsActive);
 
-        public IEnumerable<ApplicationUser> GetUsers()
-        {
-            return Query.OrderBy(s=> s.LastName).ThenBy(x=> x.FirstName).ToList();
-        }
+        public async Task<IEnumerable<ApplicationUser>> GetUsers() => await Query.OrderBy(s => s.LastName)
+            .ThenBy(x => x.FirstName).ToListAsync();
 
-        public void UpdateUser(ApplicationUser user)
-        {
-            InsertOrUpdateGraph(user);
-        }
+        public void UpdateUser(ApplicationUser user) => InsertOrUpdateGraph(user);
+
     }
 }

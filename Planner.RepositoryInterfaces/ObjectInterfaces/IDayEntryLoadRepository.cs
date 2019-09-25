@@ -1,12 +1,11 @@
 ﻿using Planner.Entities.Domain;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.ObjectInterfaces
 {
     public interface IDayEntryLoadRepository
     {
-        IEnumerable<DayEntryLoad> GetBySemester(Int32 semester, Int32 year);
+        Task<IEnumerable<DayEntryLoad>> GetBySemester(int semester, int year);
     }
 }

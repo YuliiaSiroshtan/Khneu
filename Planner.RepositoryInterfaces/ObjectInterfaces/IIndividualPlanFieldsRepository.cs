@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.ObjectInterfaces
 {
-    public interface INMBDRepository
+    public interface IIndividualPlanFieldsRepository
     {
-        Task<IEnumerable<NMBD>> GetAllNMBD();
-        Task<NMBD> GetById(string id);
+        Task<IEnumerable<IndivPlanFields>> GetIndivPlanField(string indPlanTypeId);
     }
 }

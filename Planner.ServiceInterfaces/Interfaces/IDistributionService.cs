@@ -1,11 +1,11 @@
 ﻿using Planner.ServiceInterfaces.DTO.Distribution;
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Planner.ServiceInterfaces.Interfaces
 {
     public interface IDistributionService
     {
-        IEnumerable<DayEntryDTO> GetDayEntry(Int32 semester, Int32 year);
+        IEnumerable<DayEntryDTO> GetDayEntry(int semester, int year);
     }
 }

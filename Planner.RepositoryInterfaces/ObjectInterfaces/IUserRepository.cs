@@ -1,16 +1,15 @@
 ﻿using Planner.Entities.Domain;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.ObjectInterfaces
 {
     public interface IUserRepository
     {
-        ApplicationUser GetByUserName(String userName);
-        ApplicationUser GetUser(String userName, String password);
-        IEnumerable<ApplicationUser> GetUsers();
-        ApplicationUser GetByUserId(String userId);
+        Task<ApplicationUser> GetByUserName(string userName);
+        Task<ApplicationUser>  GetUser(string userName, string password);
+        Task<IEnumerable<ApplicationUser>> GetUsers();
+        Task<ApplicationUser> GetByUserId(string userId);
         void UpdateUser(ApplicationUser user);
     }
 }

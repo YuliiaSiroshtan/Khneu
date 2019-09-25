@@ -1,4 +1,5 @@
-﻿using Planner.Data.BaseRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using Planner.Data.BaseRepository;
 using Planner.Data.Context;
 using Planner.Entities.Domain;
 using Planner.RepositoryInterfaces.ObjectInterfaces;
@@ -9,18 +10,16 @@ namespace Planner.Data.Repository
 {
     public class PlanTrainingJobRepository : BaseRepository<PlanTrainingJob>, IPlanTrainingRepository
     {
-        public PlanTrainingJobRepository(AppDbContext _context) : base(_context)
+        public PlanTrainingJobRepository(AppDbContext context) : base(context)
         {
         }
 
-        public void UpdateTrainingJob(PlanTrainingJob trainingJob)
-        {
-            InsertOrUpdateGraph(trainingJob);
-        }
+        public void UpdateTrainingJob(PlanTrainingJob trainingJob)=> InsertOrUpdateGraph(trainingJob);
+
 
         public IEnumerable<PlanTrainingJob> GetTrainingJob(string userName)
         {
-            yield return Query.Where(s => s.ApplicationUser.Email == userName).FirstOrDefault();
+            yield return  Query.FirstOrDefault(s => s.ApplicationUser.Email == userName);
         }
     }
 }

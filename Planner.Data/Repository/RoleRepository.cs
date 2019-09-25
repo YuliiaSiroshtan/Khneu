@@ -1,23 +1,19 @@
-﻿using Planner.Data.BaseRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using Planner.Data.BaseRepository;
+using Planner.Data.Context;
 using Planner.Entities.Domain;
 using Planner.RepositoryInterfaces.ObjectInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Planner.Data.Context;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Planner.Data.Repository
 {
     public class RoleRepository : BaseRepository<Role>, IRoleRepository
     {
-        public RoleRepository(AppDbContext _context) : base(_context)
+        public RoleRepository(AppDbContext context) : base(context)
         {
         }
 
-        public Role GetRoleByName(String roleName)
-        {
-            return Query.FirstOrDefault(s => s.Name == roleName);
-        }
+        public async Task<Role> GetRoleByName(string roleName) => await Query
+            .FirstOrDefaultAsync(s => s.Name == roleName);
     }
 }

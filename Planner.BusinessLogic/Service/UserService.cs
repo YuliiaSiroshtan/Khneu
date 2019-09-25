@@ -3,75 +3,78 @@ using Planner.Entities.Domain;
 using Planner.RepositoryInterfaces.UoW;
 using Planner.ServiceInterfaces.DTO;
 using Planner.ServiceInterfaces.Interfaces;
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service
 {
     public class UserService : IUserService
     {
-        private IUnitOfWork uow;
+        private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
-        private ISecurityService _securityService;
+        private readonly ISecurityService _securityService;
 
-        public UserService(IUnitOfWork _uow, IMapper mapper, ISecurityService securityService)
+        public UserService(IUnitOfWork uow, IMapper mapper, ISecurityService securityService)
         {
-            uow = _uow;
+            _uow = uow;
             _mapper = mapper;
             _securityService = securityService;
         }
 
-        public UserDTO GetUser(String email)
+        public async Task<UserDTO> GetUser(string email)
         {
-            ApplicationUser user = uow.UserRepository.GetByUserName(email);
+            var user = await _uow.UserRepository.GetByUserName(email);
+
             return _mapper.Map<UserDTO>(user);
         }
 
-        public UserDTO GetUserById(String userId)
+        public async Task<UserDTO> GetUserById(string userId)
         {
-            ApplicationUser user = uow.UserRepository.GetByUserId(userId);
+            var user = await _uow.UserRepository.GetByUserId(userId);
+
             return _mapper.Map<UserDTO>(user);
         }
 
-        public IEnumerable<UserListItemDTO> GetAllUsers()
+        public async Task<IEnumerable<UserListItemDTO>> GetAllUsers()
         {
-            IEnumerable<ApplicationUser> users = uow.UserRepository.GetUsers();
+            var users = await _uow.UserRepository.GetUsers();
+
             return _mapper.Map<IEnumerable<UserListItemDTO>>(users);
         }
 
-        public Boolean ChangeUserStatus(String userId)
+        public async Task<bool> ChangeUserStatus(string userId)
         {
-            ApplicationUser user = uow.UserRepository.GetByUserId(userId);
+            var user = await _uow.UserRepository.GetByUserId(userId);
             user.IsActive = !user.IsActive;
-            uow.UserRepository.UpdateUser(user);
+            _uow.UserRepository.UpdateUser(user);
 
-            return uow.SaveChanges() >= 0;
+            return await _uow.SaveChanges() >= 0;
         }
 
-        public Boolean AddOrUpdateUser(UserDTO userDTO)
+        public async Task<bool> AddOrUpdateUser(UserDTO userDTO)
         {
-            ApplicationUser user = _mapper.Map<ApplicationUser>(userDTO);
-            ApplicationUser existingUser;
-            if (!String.IsNullOrEmpty(userDTO.ApplicationUserId)) {
-                existingUser = uow.UserRepository.GetByUserName(userDTO.Email);
+            var user = _mapper.Map<ApplicationUser>(userDTO);
+            if (!string.IsNullOrEmpty(userDTO.ApplicationUserId))
+            {
+                var existingUser = await _uow.UserRepository.GetByUserName(userDTO.Email);
                 user.PasswordHash = existingUser.PasswordHash;
                 user.IsActive = user.IsActive;
             }
             else
             {
-                user.PasswordHash = _securityService.GetSha256Hash(userDTO.Password);
+                user.PasswordHash =  _securityService.GetSha256Hash(userDTO.Password);
                 user.IsActive = true;
             }
 
-            Role role = uow.RoleRepository.GetRoleByName(userDTO.RoleName);
+            var role = await _uow.RoleRepository.GetRoleByName(userDTO.RoleName);
             if (role != null)
             {
                 user.Role = role;
             }
 
-            uow.UserRepository.UpdateUser(user);
+            _uow.UserRepository.UpdateUser(user);
 
-            return uow.SaveChanges() >= 0;
+            return await _uow.SaveChanges() >= 0;
         }
 
     }

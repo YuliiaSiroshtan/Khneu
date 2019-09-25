@@ -1,87 +1,95 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Planner.DependencyInjection.ViewModels.User;
 using Planner.ServiceInterfaces.DTO;
 using Planner.ServiceInterfaces.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Planner.Controllers
 {
   [Route("api/Account")]
   public class AccountController : GenericController
   {
-    IHostingEnvironment hostingEnvironment;
-    public AccountController(IServiceFactory _serviceFactory, IMapper mapper, IHostingEnvironment _hostingEnvironment) : base(_serviceFactory, mapper)
+    private readonly IHostingEnvironment _hostingEnvironment;
+
+    public AccountController(IServiceFactory serviceFactory,
+      IMapper mapper,
+      IHostingEnvironment hostingEnvironment) : base(serviceFactory, mapper)
     {
-      hostingEnvironment = _hostingEnvironment;
+      _hostingEnvironment = hostingEnvironment;
     }
 
     [HttpGet]
     [Route("GetUserInfo")]
-    public IActionResult GetUserInfo()
+    public async Task<IActionResult> GetUserInfo()
     {
-      UserDTO user = serviceFactory.UserService.GetUser(UserInfo().UserName);
-      UserInfoViewModel userInfo = _mapper.Map<UserInfoViewModel>(user);
+      var user = await ServiceFactory.UserService.GetUser(UserInfo().UserName);
+      var userInfo = Mapper.Map<UserInfoViewModel>(user);
+
       return Ok(userInfo);
     }
 
     [HttpGet]
     [Route("GetUser")]
-    public IActionResult GetUser(String userId)
+    public async Task<IActionResult> GetUser(string userId)
     {
-      UserDTO user = serviceFactory.UserService.GetUserById(userId);
-      UserInfoViewModel userInfo = _mapper.Map<UserInfoViewModel>(user);
+      var user = await ServiceFactory.UserService.GetUserById(userId);
+      var userInfo = Mapper.Map<UserInfoViewModel>(user);
+
       return Ok(userInfo);
     }
 
 
     [HttpPost]
     [Route("UpdateUser")]
-    public IActionResult UpdateUser([FromBody] UserInfoViewModel registerUserDTO)
+    public async Task<IActionResult> UpdateUser([FromBody] UserInfoViewModel registerUserDTO)
     {
-      Boolean result = serviceFactory.UserService.AddOrUpdateUser(_mapper.Map<UserDTO>(registerUserDTO));
+      var result = await ServiceFactory.UserService.AddOrUpdateUser(Mapper.Map<UserDTO>(registerUserDTO));
+
       return Ok(result);
     }
 
     [HttpGet]
     [Route("GetAllUsers")]
-    public IActionResult GetAllUsers()
+    public async Task<IActionResult> GetAllUsers()
     {
-      IEnumerable<UserListItemDTO> users = serviceFactory.UserService.GetAllUsers();
-      IEnumerable<UserListItemViewModel> userModel = _mapper.Map<IEnumerable<UserListItemViewModel>>(users);
+      var users = await ServiceFactory.UserService.GetAllUsers();
+      var userModel = Mapper.Map<IEnumerable<UserListItemViewModel>>(users);
+
       return Ok(userModel);
     }
 
 
     [HttpPost, DisableRequestSizeLimit]
-    public ActionResult UploadFile()
+    public IActionResult UploadFile()
     {
-      String fileName = "";
-      IFormFile file = Request.Form.Files[0];
-      String path = Path.Combine(hostingEnvironment.WebRootPath, "images", "profileImages");
+      var fileName = "";
+      var file = Request.Form.Files[0];
+      var path = Path.Combine(_hostingEnvironment.WebRootPath, "images", "profileImages");
 
-      if (file.Length > 0)
+      if (file.Length <= 0) return Json(fileName);
+
+      fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+      var fullPath = Path.Combine(path, fileName);
+
+      using (var stream = new FileStream(fullPath, FileMode.Create))
       {
-        fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-        string fullPath = Path.Combine(path, fileName);
-        using (var stream = new FileStream(fullPath, FileMode.Create))
-        {
-          file.CopyTo(stream);
-        }
+        file.CopyTo(stream);
       }
+
       return Json(fileName);
     }
 
     [HttpPost]
     [Route("ChangeUserStatus")]
-    public IActionResult ChangeUserStatus([FromBody] String userId)
+    public async Task<IActionResult> ChangeUserStatus([FromBody] string userId)
     {
-      Boolean result = serviceFactory.UserService.ChangeUserStatus(userId);
+      var result = await ServiceFactory.UserService.ChangeUserStatus(userId);
+
       return Ok(result);
     }
 

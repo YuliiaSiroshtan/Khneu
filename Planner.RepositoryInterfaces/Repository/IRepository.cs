@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.Repository
 {
@@ -8,8 +7,8 @@ namespace Planner.RepositoryInterfaces.Repository
     {
         void Remove(T item);
         void InsertOrUpdateGraph(T item);
-        T GetById(Object id);
-        IEnumerable<T> GetAll();
-        Int32 SaveChanges();
+        Task<T> GetById(object id);
+        Task<IEnumerable<T>> GetAll();
+        Task<int> SaveChanges();
     }
 }

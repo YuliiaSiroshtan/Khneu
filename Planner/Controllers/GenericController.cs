@@ -11,12 +11,12 @@ namespace Planner.Controllers
 {
   public class GenericController : Controller
   {
-    public readonly IServiceFactory serviceFactory;
-    public readonly IMapper _mapper;
-    public GenericController(IServiceFactory _serviceFactory, IMapper mapper)
+    protected readonly IServiceFactory ServiceFactory;
+    protected readonly IMapper Mapper;
+    public GenericController(IServiceFactory serviceFactory, IMapper mapper)
     {
-      serviceFactory = _serviceFactory;
-      _mapper = mapper;
+      ServiceFactory = serviceFactory;
+      Mapper = mapper;
     }
 
 
@@ -31,8 +31,9 @@ namespace Planner.Controllers
 
     private ClaimsPrincipal GetClaims()
     {
-      AuthenticationHeaderValue authenticationHeaderValue = AuthenticationHeaderValue.Parse(Request.Headers[HeaderNames.Authorization]);
-      ClaimsPrincipal claims = serviceFactory.TokenService.GetClaims(authenticationHeaderValue.Parameter);
+      var authenticationHeaderValue = AuthenticationHeaderValue.Parse(Request.Headers[HeaderNames.Authorization]);
+      var claims = ServiceFactory.TokenService.GetClaims(authenticationHeaderValue.Parameter);
+
       return claims;
     }
   }

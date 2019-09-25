@@ -1,5 +1,6 @@
 ﻿using Planner.RepositoryInterfaces.ObjectInterfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.UoW
 {
@@ -9,11 +10,12 @@ namespace Planner.RepositoryInterfaces.UoW
         IRoleRepository RoleRepository { get; set; }
         INdrRepository NdrRepository { get; set; }
         INMBDRepository NMBDRepository { get; set; }
-        IPublicationRepositpry PublicationRepositpry { get; set; }
+        IPublicationRepository PublicationRepository { get; set; }
         IPlanTrainingRepository PlanTrainingRepository { get; set; }
-        IIndivPlanFieldsRepository IndivPlanFieldsRepository { get; set; }
-        IIndivPlanFieldsValueRepository IndivPlanFieldsValueRepository { get; set; }
+        IIndividualPlanFieldsRepository IndividualPlanFieldsRepository { get; set; }
+        IIndividualPlanFieldsValueRepository IndividualPlanFieldsValueRepository { get; set; }
         IDayEntryLoadRepository DayEntryLoadRepository { get; set; }
-        Int32 SaveChanges();
+
+        Task<int> SaveChanges();
     }
 }

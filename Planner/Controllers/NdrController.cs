@@ -5,32 +5,35 @@ using Planner.DependencyInjection.ViewModels.User;
 using Planner.ServiceInterfaces.DTO;
 using Planner.ServiceInterfaces.Interfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Planner.Controllers
 {
   [Route("api/Ndr")]
   public class NdrController : GenericController
   {
-    IHostingEnvironment hostingEnvironment;
-    public NdrController(IServiceFactory _serviceFactory, IMapper mapper, IHostingEnvironment _hostingEnvironment) : base(_serviceFactory, mapper)
+    private readonly IHostingEnvironment _hostingEnvironment;
+    public NdrController(IServiceFactory serviceFactory, IMapper mapper, IHostingEnvironment hostingEnvironment) : base(serviceFactory, mapper)
     {
-      hostingEnvironment = _hostingEnvironment;
+      _hostingEnvironment = hostingEnvironment;
     }
 
     [HttpPost]
     [Route("AddNdr")]
-    public IActionResult AddNdr([FromBody] NdrViewModel registerNdrDTO)
+    public async Task<IActionResult> AddNdr([FromBody] NdrViewModel registerNdrDTO)
     {
-      bool result = serviceFactory.NdrService.AddNdr(_mapper.Map<NdrDTO>(registerNdrDTO));
+      var result = await ServiceFactory.NdrService.AddNdr(Mapper.Map<NdrDTO>(registerNdrDTO));
+
       return Ok(result);
     }
 
     [HttpGet]
     [Route("GetUserNdr")]
-    public IActionResult GetUserNdr()
+    public async Task<IActionResult> GetUserNdr()
     {
-      IEnumerable<NdrListDTO> ndrs = serviceFactory.NdrService.GetUserNdr(UserInfo().UserName);
-      IEnumerable<NdrListViewModel> ndrModel = _mapper.Map<IEnumerable<NdrListViewModel>>(ndrs);
+      var ndrs = await ServiceFactory.NdrService.GetUserNdr(UserInfo().UserName);
+      var ndrModel = Mapper.Map<IEnumerable<NdrListViewModel>>(ndrs);
+
       return Ok(ndrModel);
     }
   }

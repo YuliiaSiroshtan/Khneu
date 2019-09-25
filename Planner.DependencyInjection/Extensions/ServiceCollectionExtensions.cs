@@ -26,10 +26,10 @@ namespace Planner.DependencyInjection.Extensions
             services.AddSingleton<IDayEntryLoadRepository, DayEntryLoadRepository>();
             services.AddSingleton<INMBDRepository, NMBDRepository>();
             services.AddSingleton<IRoleRepository, RoleRepository>();
-            services.AddSingleton<IIndivPlanFieldsRepository, IndivPlanFieldRepository>();
-            services.AddSingleton<IIndivPlanFieldsValueRepository, IndivPlanFieldsValueRepository>();
+            services.AddSingleton<IIndividualPlanFieldsRepository, IndividualPlanFieldRepository>();
+            services.AddSingleton<IIndividualPlanFieldsValueRepository, IndividualPlanFieldsValueRepository>();
             
-            services.AddSingleton<IPublicationRepositpry, PublicationRepositpry>();
+            services.AddSingleton<IPublicationRepository, PublicationRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IServiceFactory, ServiceFactory>();

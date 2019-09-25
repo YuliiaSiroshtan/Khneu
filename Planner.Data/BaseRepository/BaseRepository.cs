@@ -1,57 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Planner.Data.Context;
 using Planner.RepositoryInterfaces.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Planner.Data.BaseRepository
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {
-        public AppDbContext context;
-        private DbSet<T> entities;
+        private readonly AppDbContext _context;
+        private readonly DbSet<T> _entities;
 
-        public BaseRepository(AppDbContext _context)
+        protected BaseRepository(AppDbContext context)
         {
-            context = _context;
-            entities = context.Set<T>();
+            _context = context;
+            _entities = _context.Set<T>();
         }
 
-        public T GetById(object id)
-        {
-            return entities.Find(id);
-        }
+        public async Task<T> GetById(object id) => await _entities.FindAsync(id);
 
-        public IQueryable<T> Query
-        {
-            get
-            {
-                return entities;
-            }
-        }
+        protected IQueryable<T> Query => _entities;
 
-        public void InsertOrUpdateGraph(T item)
-        {
-            context.Update(item);
-        }
+        public void InsertOrUpdateGraph(T item) => _context.Update(item);
 
-        public void Remove(T item)
-        {
-            context.Remove(item);
-        }
+        public void Remove(T item) => _context.Remove(item);
 
-        public IEnumerable<T> GetAll()
-        {
-            return entities.ToList();
-        }
+        public async Task<IEnumerable<T>> GetAll() => await _entities.ToListAsync();
 
-        public Int32 SaveChanges()
-        {
-            return context.SaveChanges();
-        }
-
-
+        public async Task<int> SaveChanges() => await _context.SaveChangesAsync();
     }
 }
