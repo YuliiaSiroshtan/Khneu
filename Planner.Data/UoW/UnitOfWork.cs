@@ -37,7 +37,6 @@ namespace Planner.Data.UoW
 
         public async Task<int> SaveChanges() => await _context.SaveChangesAsync();
 
-        public void Dispose() => _context.Dispose();
-
+        public ValueTask DisposeAsync() => _context.DisposeAsync();
     }
 }

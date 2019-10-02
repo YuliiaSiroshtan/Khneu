@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.UoW
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IAsyncDisposable
     {
         IUserRepository UserRepository { get; set; }
         IRoleRepository RoleRepository { get; set; }

@@ -20,14 +20,13 @@ namespace Planner.Controllers
   public class PublicationController : GenericController
   {
 
-    private readonly IHostingEnvironment _hostingEnvironment;
+    private readonly IWebHostEnvironment _hostingEnvironment;
     public PublicationController(IServiceFactory serviceFactory,
       IMapper mapper,
-      IHostingEnvironment hostingEnvironment) : base(serviceFactory, mapper)
+      IWebHostEnvironment hostingEnvironment) : base(serviceFactory, mapper)
     {
       _hostingEnvironment = hostingEnvironment;
     }
-
 
     [HttpGet]
     [Route("GetNMBDs")]
@@ -91,13 +90,13 @@ namespace Planner.Controllers
 
         message.IsBodyHtml = false;
 
-        using (var client = new SmtpClient("smtp.gmail.com"))
+        using var client = new SmtpClient("smtp.gmail.com")
         {
-          client.Port = 587;
-          client.Credentials = new NetworkCredential("deniskovalenko96@gmail.com", "rjdfktyrj24912696");
-          client.EnableSsl = true;
-          client.Send(message);
-        }
+          Port = 587,
+          Credentials = new NetworkCredential("deniskovalenko96@gmail.com", "rjdfktyrj24912696"),
+          EnableSsl = true
+        };
+        client.Send(message);
       }
 
       return Ok(true);

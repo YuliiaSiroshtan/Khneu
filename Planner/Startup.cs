@@ -8,11 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Planner.Common.Constants;
 using Planner.DependencyInjection.Extensions;
-using System;
 using System.IO;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Planner.Data.Context;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using static System.Int32;
 
 namespace Planner
 {
@@ -27,13 +28,6 @@ namespace Planner
     // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
     {
-
-      //// получаем строку подключения из файла конфигурации
-      //string connection = Configuration.GetConnectionString("DefaultConnection");
-      //// добавляем контекст в качестве сервиса в приложение
-      //services.AddDbContext<AppDbContext>(options =>
-      //  options.UseSqlServer(connection));
-
 
       services.RegisterServices(Configuration);
 
@@ -62,22 +56,38 @@ namespace Planner
                 };
               });
 
+      services.AddMvc(option=> { option.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-      services.AddMvc();
       services.Configure<FormOptions>(x =>
       {
-        x.ValueLengthLimit = Int32.MaxValue;
-        x.MultipartBodyLengthLimit = Int32.MaxValue;
+        x.ValueLengthLimit = MaxValue;
+        x.MultipartBodyLengthLimit = MaxValue;
+      });
+
+      // Register the Swagger generator, defining 1 or more Swagger documents
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Planner", Version = "v1" });
       });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
       }
+
+      // Enable middleware to serve generated Swagger as a JSON endpoint.
+      app.UseSwagger();
+
+      // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+      // specifying the Swagger JSON endpoint.
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner V1");
+      });
 
       app.UseDefaultFiles();
       app.UseStaticFiles();

@@ -14,11 +14,11 @@ namespace Planner.Controllers
   [Route("api/Account")]
   public class AccountController : GenericController
   {
-    private readonly IHostingEnvironment _hostingEnvironment;
+    private readonly IWebHostEnvironment _hostingEnvironment;
 
     public AccountController(IServiceFactory serviceFactory,
       IMapper mapper,
-      IHostingEnvironment hostingEnvironment) : base(serviceFactory, mapper)
+      IWebHostEnvironment hostingEnvironment) : base(serviceFactory, mapper)
     {
       _hostingEnvironment = hostingEnvironment;
     }

@@ -11,7 +11,7 @@ namespace Planner.Data.Repository
 {
     public class DayEntryLoadRepository : BaseRepository<DayEntryLoad>, IDayEntryLoadRepository
     {
-        public DayEntryLoadRepository(AppDbContext _context) : base(_context)
+        public DayEntryLoadRepository(AppDbContext context) : base(context)
         {
         }
 

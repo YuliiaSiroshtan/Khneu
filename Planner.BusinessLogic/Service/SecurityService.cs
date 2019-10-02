@@ -9,13 +9,11 @@ namespace Planner.BusinessLogic.Service
     {
         public string GetSha256Hash(string input)
         {
-            using (var hashAlgorithm = new SHA256CryptoServiceProvider())
-            {
-                var byteValue = Encoding.UTF8.GetBytes(input);
-                var byteHash = hashAlgorithm.ComputeHash(byteValue);
+            using var hashAlgorithm = new SHA256CryptoServiceProvider();
+            var byteValue = Encoding.UTF8.GetBytes(input);
+            var byteHash = hashAlgorithm.ComputeHash(byteValue);
 
-                return Convert.ToBase64String(byteHash);
-            }
+            return Convert.ToBase64String(byteHash);
         }
     }
 }

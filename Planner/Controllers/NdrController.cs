@@ -12,10 +12,8 @@ namespace Planner.Controllers
   [Route("api/Ndr")]
   public class NdrController : GenericController
   {
-    private readonly IHostingEnvironment _hostingEnvironment;
-    public NdrController(IServiceFactory serviceFactory, IMapper mapper, IHostingEnvironment hostingEnvironment) : base(serviceFactory, mapper)
+    public NdrController(IServiceFactory serviceFactory, IMapper mapper) : base(serviceFactory, mapper)
     {
-      _hostingEnvironment = hostingEnvironment;
     }
 
     [HttpPost]
@@ -29,9 +27,9 @@ namespace Planner.Controllers
 
     [HttpGet]
     [Route("GetUserNdr")]
-    public async Task<IActionResult> GetUserNdr()
+    public IActionResult GetUserNdr()
     {
-      var ndrs = await ServiceFactory.NdrService.GetUserNdr(UserInfo().UserName);
+      var ndrs = ServiceFactory.NdrService.GetUserNdr(UserInfo().UserName);
       var ndrModel = Mapper.Map<IEnumerable<NdrListViewModel>>(ndrs);
 
       return Ok(ndrModel);

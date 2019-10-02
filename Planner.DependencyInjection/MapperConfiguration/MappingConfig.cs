@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Planner.Common.Enums;
 using Planner.DependencyInjection.ViewModels.IndividualPlan;
 using Planner.DependencyInjection.ViewModels.Publication;
 using Planner.DependencyInjection.ViewModels.User;
@@ -10,10 +9,7 @@ using Planner.ServiceInterfaces.DTO.Distribution;
 using Planner.ServiceInterfaces.DTO.IndividualPlan;
 using Planner.ServiceInterfaces.DTO.Publication;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace Planner.DependencyInjection.MapperConfiguration
 {
@@ -119,29 +115,6 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<PublicationAddEditViewModel, PublicationAddEditDTO>();
             //.ForMember(s => s.UserName, x => x.MapFrom(z => z.Email));
             #endregion
-        }
-    }
-
-    public static class MapperHelper
-    {
-        //public static TSourceMember CustomMapFrom<TSourceMember>(Expression<Func<TSource, TSourceMember>> sourceMember)
-        //{
-
-        //}
-
-        public static IMappingExpression<TSource, TDestination> NewIgnore<TSource, TDestination>(
-    this IMappingExpression<TSource, TDestination> map,
-    Expression<Func<TDestination, object>> selector)
-        {
-            map.ForMember(selector, config => config.Ignore());
-            return map;
-        }
-
-        public static TDest MapTo<TDest>(this object src)
-        {
-            //map.ForMember(selector, config => config.Ignore());
-            return (TDest)AutoMapper.Mapper.Map(src, src.GetType(), typeof(TDest));
-            //return (TDest)AutoMapper.Mapper.Map(src, src.GetType(), typeof(TDest));
         }
     }
 }

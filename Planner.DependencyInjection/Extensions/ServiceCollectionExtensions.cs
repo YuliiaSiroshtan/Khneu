@@ -17,9 +17,10 @@ namespace Planner.DependencyInjection.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration Configuration)
+        public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConfigurationExtensions.GetConnectionString(Configuration, "DefaultConnection"), x => x.MigrationsAssembly("Planner.Data")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration
+                .GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Planner.Data")));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<INdrRepository, NdrRepository>();
@@ -38,11 +39,9 @@ namespace Planner.DependencyInjection.Extensions
             services.AddTransient<INdrService, NdrService>();
             services.AddTransient<IPublicationService, PublicationService>();
             services.AddTransient<IIndividualPlanService, IndividualPlanService>();
-            
 
-            services.AddAutoMapper(null, AppDomain.CurrentDomain.GetAssemblies());
 
-            return services;
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }

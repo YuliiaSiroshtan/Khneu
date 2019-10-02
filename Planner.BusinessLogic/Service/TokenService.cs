@@ -34,12 +34,13 @@ namespace Planner.BusinessLogic.Service
             var securityPassword = _securityService.GetSha256Hash(password);
             var user = await _uow.UserRepository.GetUser(userName, securityPassword);
 
-            if(user == null)
+            if (user == null)
             {
                 result.Error = "Invalid username or password";
                 return result;
             }
-            if(!user.IsActive)
+
+            if (!user.IsActive)
             {
                 result.Error = "Користувач деактивованний!";
                 return result;
@@ -51,16 +52,17 @@ namespace Planner.BusinessLogic.Service
                 new Claim(ClaimTypes.Role, user.Role.Name)
             };
 
-            var claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            var claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
 
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtConst.SECURITY_KEY));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
-                                            issuer: JwtConst.ISSUER,
-                                            audience: JwtConst.AUDIENCE,
-                                            claims: claims,
-                                            expires: DateTime.Now.AddMinutes(30),
-                                            signingCredentials: creds);
+                issuer: JwtConst.ISSUER,
+                audience: JwtConst.AUDIENCE,
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds);
 
             var tokenEncd = new JwtSecurityTokenHandler().WriteToken(token);
 

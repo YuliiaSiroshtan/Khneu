@@ -12,8 +12,8 @@ namespace Planner.Controllers
   [Route("api/IndividualPlan")]
   public class IndividualPlanController : GenericController
   {
-    private readonly IHostingEnvironment _hostingEnvironment;
-    public IndividualPlanController(IServiceFactory serviceFactory, IMapper mapper, IHostingEnvironment hostingEnvironment) : base(serviceFactory, mapper)
+    private readonly IWebHostEnvironment _hostingEnvironment;
+    public IndividualPlanController(IServiceFactory serviceFactory, IMapper mapper, IWebHostEnvironment hostingEnvironment) : base(serviceFactory, mapper)
     {
       _hostingEnvironment = hostingEnvironment;
     }

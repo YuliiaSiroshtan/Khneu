@@ -14,10 +14,10 @@ namespace Planner.Data.Repository
         {
         }
 
-        public void UpdateTrainingJob(PlanTrainingJob trainingJob)=> InsertOrUpdateGraph(trainingJob);
+        public void UpdateTrainingJob(PlanTrainingJob trainingJob) => InsertOrUpdateGraph(trainingJob);
 
 
-        public IEnumerable<PlanTrainingJob> GetTrainingJob(string userName)
+        public  IEnumerable<PlanTrainingJob> GetTrainingJob(string userName)
         {
             yield return  Query.FirstOrDefault(s => s.ApplicationUser.Email == userName);
         }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,12 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Interactive.Async">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.interactive.async\3.1.1\lib\netstandard1.3\System.Interactive.Async.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

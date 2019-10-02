@@ -29,7 +29,7 @@ namespace Planner.BusinessLogic.Service
             return await _uow.SaveChanges() >= 0;
         }
 
-        public async Task<IEnumerable<NdrListDTO>> GetUserNdr(string userName)
+        public IEnumerable<NdrListDTO> GetUserNdr(string userName)
         {
             var ndrs = _uow.NdrRepository.GetUserNdr(userName);
 

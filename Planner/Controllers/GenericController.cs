@@ -19,16 +19,17 @@ namespace Planner.Controllers
       Mapper = mapper;
     }
 
-
+    [NonAction]
     public UserClaimsViewModel UserInfo()
     {
       return new UserClaimsViewModel
       {
         UserName = GetClaims().Identity.Name,
-        UserRole = GetClaims().Claims.Where(c => c.Type == ClaimTypes.Role).FirstOrDefault().Value
+        UserRole = GetClaims().Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value
       };
     }
 
+    [NonAction]
     private ClaimsPrincipal GetClaims()
     {
       var authenticationHeaderValue = AuthenticationHeaderValue.Parse(Request.Headers[HeaderNames.Authorization]);

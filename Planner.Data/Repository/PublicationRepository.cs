@@ -20,8 +20,6 @@ namespace Planner.Data.Repository
 
         public void AddUpdate(Publication publication) => InsertOrUpdateGraph(publication);
 
-
-
         public async Task<IEnumerable<Publication>> GetAllPublications() =>
             await Query.Include(s => s.PublicationUsers)
                 .ThenInclude(c => c.User).ToListAsync();
