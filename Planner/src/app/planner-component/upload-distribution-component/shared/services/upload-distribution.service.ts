@@ -3,7 +3,7 @@ import { HttpClient, HttpRequest } from "@angular/common/http";
 
 @Injectable()
 export class UploadDistributionService {
-    constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
     uploadFile(formData: FormData) {
         const uploadReq = new HttpRequest('POST',

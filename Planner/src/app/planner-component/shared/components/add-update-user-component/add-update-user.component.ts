@@ -23,6 +23,7 @@ import { HttpEventType } from "@angular/common/http";
 export class AddUpdateUserComponent implements OnInit {
     @Input() applicationUserId: string;
     userProfile: UserProfileModel;
+    fileToUpload: File;
     //@Output() back = new EventEmitter();
 
     userform: FormGroup;
@@ -53,6 +54,13 @@ export class AddUpdateUserComponent implements OnInit {
         this.buidForms();
         
     }
+
+    handleFileInput(file: FileList) {
+        this.fileToUpload = file.item(0);
+    
+        console.log('file + add update-user');
+        console.log(this.fileToUpload);
+      }
 
     getUser() {
         this.isLoaded = true;
