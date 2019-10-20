@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
-import { LoginModel } from "src/app/account-component/shared/models/login.model";
 import { AuthenticationService } from "src/app/shared/components/authentication-component";
 import { Router } from "@angular/router";
 import { MessageService } from "primeng/components/common/messageservice";
-import { Input } from "@angular/core";
-import { Output } from "@angular/core";
-import { EventEmitter } from "events";
 import { ValidateLetter } from "src/app/shared/validators/letter-validator";
-import { ValidateURL } from "src/app/shared/validators/url-validator";
-import { ApplicationConstants } from "src/app/shared/constants/constants";
-import { HttpEventType } from "@angular/common/http";
 import { NDRDataService } from "src/app/planner-component/ndr-component/shared/service/ndr-data.service";
 import { NDR } from "src/app/planner-component/ndr-component/shared/models/ndr.model";
 
@@ -27,18 +20,17 @@ export class NDRComponent implements OnInit {
 
   NDRForm: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService,
-    private NDRDataService: NDRDataService,
-    private router: Router,
-    private messageService: MessageService,
-    private fb: FormBuilder) {
+  constructor(
+    private _NDRDataService: NDRDataService,
+    private _messageService: MessageService,
+    private _fb: FormBuilder) {
   }
 
   ngOnInit() {
       this.NDRInfo = new NDR();
       this.getUserNdr();
 
-    this.NDRForm = this.fb.group({
+    this.NDRForm = this._fb.group({
       'fullName': new FormControl(this.NDRInfo.fullName, Validators.compose(
         [Validators.required,
         Validators.maxLength(250),
@@ -90,19 +82,19 @@ export class NDRComponent implements OnInit {
 
     let tempNDR = <NDR>this.NDRForm.value;
 
-    this.NDRDataService.addNDR(tempNDR).subscribe(data => {
+    this._NDRDataService.addNDR(tempNDR).subscribe(data => {
       if (data) {
           this.NDRForm.reset();
           this.getUserNdr();
-          this.messageService.add({ key: 'success', severity: 'success', summary: '', detail: 'НДР студента успішно додано' });
+          this._messageService.add({ key: 'success', severity: 'success', summary: '', detail: 'НДР студента успішно додано' });
       } else {
-        this.messageService.add({ key: 'error', severity: 'error', summary: '', detail: '' });
+        this._messageService.add({ key: 'error', severity: 'error', summary: '', detail: '' });
       }
     });
   }
 
   getUserNdr() {
-    this.NDRDataService.getUserNdr().subscribe((result: NDR[]) => {
+    this._NDRDataService.getUserNdr().subscribe((result: NDR[]) => {
       if (result) {
         this.NDR = result;
       }

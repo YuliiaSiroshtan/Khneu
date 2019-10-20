@@ -17,16 +17,16 @@ export class AccountLoginComponent implements OnInit {
   submitted: boolean;
 
 
-  constructor(private fb: FormBuilder,
-    private authenticationService: AuthenticationService,
-    private router: Router,
-    private messageService: MessageService
+  constructor(private _fb: FormBuilder,
+    private _authenticationService: AuthenticationService,
+    private _router: Router,
+    private _messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.loginModel = new LoginModel();
 
-    this.userform = this.fb.group({
+    this.userform = this._fb.group({
       'email': new FormControl('', Validators.compose([Validators.required, Validators.email])),
       'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)])),
     });
@@ -47,15 +47,15 @@ export class AccountLoginComponent implements OnInit {
   public onSubmit() {
       if (this.userform.invalid) return;
 
-    this.authenticationService.isAuthenticated(this.loginModel).subscribe((res) => {
+    this._authenticationService.isAuthenticated(this.loginModel).subscribe((res) => {
       if (res.jwtToken) {
         setTimeout(() => {
-          this.router.navigate(['/home']);
+          this._router.navigate(['/home']);
         }, 200);
       } else if (res.error) {
-        this.messageService.add({ key: 'error', severity: 'error', summary: '', detail: res.error });
+        this._messageService.add({ key: 'error', severity: 'error', summary: '', detail: res.error });
       } else {
-        this.messageService.add({ key: 'error', severity: 'error', summary: '', detail: 'Некоректний логін чи пароль' });
+        this._messageService.add({ key: 'error', severity: 'error', summary: '', detail: 'Некоректний логін чи пароль' });
       }
     });
   }

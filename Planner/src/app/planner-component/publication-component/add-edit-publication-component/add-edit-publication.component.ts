@@ -2,16 +2,13 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { PublicationAddEditModel } from "src/app/planner-component/publication-component/shared/models/publication-add-edit.model";
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
-import { AuthenticationService } from "src/app/shared/components/authentication-component";
 import { PublicationDataService } from "src/app/planner-component/publication-component/shared/service/publication-data.service";
-import { Router } from "@angular/router";
 import { MessageService } from "primeng/components/common/messageservice";
 import { ValidateLetter } from "src/app/shared/validators/letter-validator";
 import { ApplicationConstants } from "src/app/shared/constants/constants";
 import { SelectItem } from "primeng/components/common/selectitem";
 import { HttpEventType } from "@angular/common/http";
 import { NmbdModel } from "src/app/planner-component/publication-component/shared/models/nmdb.model";
-import { debounce } from "rxjs/operators";
 
 @Component({
   selector: 'add-edit-publication',
@@ -40,9 +37,8 @@ export class AddEditPublicationComponent implements OnInit {
   //Publication: Publication[] = [];
   publicationForm: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(
     private publicationDataService: PublicationDataService,
-    private router: Router,
     private messageService: MessageService,
     private fb: FormBuilder) {
   }

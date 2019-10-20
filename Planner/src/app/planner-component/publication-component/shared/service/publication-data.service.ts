@@ -1,12 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { HttpHeaders, HttpResponse } from "@angular/common/http";
-import { map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { Publication } from "src/app/planner-component/publication-component/shared/models/publication.model";
-import { UserInfo } from "src/app/shared/models/user-info.model";
 import { HttpRequest } from "@angular/common/http";
-import { HttpEventType, HttpParams } from "@angular/common/http";
+import { HttpParams } from "@angular/common/http";
 import { PublicationAddEditModel } from "src/app/planner-component/publication-component/shared/models/publication-add-edit.model";
 
 @Injectable()
