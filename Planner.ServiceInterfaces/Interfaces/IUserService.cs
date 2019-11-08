@@ -1,15 +1,23 @@
-﻿using Planner.ServiceInterfaces.DTO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Planner.Entities.DTO.AppUserDto;
 
 namespace Planner.ServiceInterfaces.Interfaces
 {
     public interface IUserService
     {
-        Task<UserDTO> GetUser(string email);
-        Task<UserDTO> GetUserById(string userId);
-        Task<bool> AddOrUpdateUser(UserDTO userDTO);
-        Task<IEnumerable<UserListItemDTO>> GetAllUsers();
-        Task<bool> ChangeUserStatus(string userId);
+        Task<IEnumerable<UserDto>> GetUsers();
+
+        Task DeleteUser(int id);
+
+        Task<UserDto> GetUserById(int id);
+
+        Task<UserDto> GetUserByLogin(string login);
+
+        Task<UserDto> GetUserByLoginAndPassword(string login, string password);
+
+        Task UpdateUser(UserDto userDto);
+
+        Task InsertUser(UserDto userDto);
     }
 }

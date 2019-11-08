@@ -1,15 +1,23 @@
-﻿using Planner.Entities.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Planner.Entities.Domain.AppUser;
 
 namespace Planner.RepositoryInterfaces.ObjectInterfaces
 {
     public interface IUserRepository
     {
-        Task<ApplicationUser> GetByUserName(string userName);
-        Task<ApplicationUser>  GetUser(string userName, string password);
-        Task<IEnumerable<ApplicationUser>> GetUsers();
-        Task<ApplicationUser> GetByUserId(string userId);
-        void UpdateUser(ApplicationUser user);
+        Task<IEnumerable<User>> GetUsers();
+
+        Task DeleteUser(int id);
+
+        Task<User> GetUserById(int id);
+
+        Task<User> GetUserByLogin(string login);
+
+        Task<User> GetUserByLoginAndPassword(string login, string password);
+
+        Task UpdateUser(User user);
+
+        Task<int> InsertUser(User user);
     }
 }

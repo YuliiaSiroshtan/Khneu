@@ -1,18 +1,20 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using Planner.DependencyInjection.ViewModels.User;
 using Planner.ServiceInterfaces.Interfaces;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
+using Planner.PresentationLayer.ViewModels;
 
 namespace Planner.Controllers
 {
   public class GenericController : Controller
   {
     protected readonly IServiceFactory ServiceFactory;
+
     protected readonly IMapper Mapper;
+
     public GenericController(IServiceFactory serviceFactory, IMapper mapper)
     {
       ServiceFactory = serviceFactory;
@@ -20,12 +22,12 @@ namespace Planner.Controllers
     }
 
     [NonAction]
-    public UserClaimsViewModel UserInfo()
+    protected UserClaimsViewModel UserInfo()
     {
       return new UserClaimsViewModel
       {
-        UserName = GetClaims().Identity.Name,
-        UserRole = GetClaims().Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value
+        Login = GetClaims().Identity.Name,
+        Role = GetClaims().Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value
       };
     }
 

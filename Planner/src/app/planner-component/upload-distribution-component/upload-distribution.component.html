@@ -1,4 +1,11 @@
 <h3>Оберіть файл, що містить вхідне навантаження кафедри.</h3>
-<div>
-  <p-fileUpload name="filePath" customUpload="true" (uploadHandler)="uploadFile($event)" placeholder="Завантажити файл навантаження"></p-fileUpload>
+
+<!--<div>
+  <p-fileUpload #file type="file" (change)="upload(file.files)" name="filePath" customUpload="true" (uploadHandler)="upload($event)" placeholder="Завантажити файл навантаження"></p-fileUpload>
+</div>-->
+
+<div class="custom-file">
+  <input #file type="file" class="custom-file-input"
+         (change)="upload(file.files)" accept=".xlsx">
+  <label class="custom-file-label">Завантажити файл навантаження</label>
 </div>

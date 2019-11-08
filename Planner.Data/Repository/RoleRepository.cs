@@ -1,19 +1,27 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Planner.Data.BaseRepository;
-using Planner.Data.Context;
-using Planner.Entities.Domain;
-using Planner.RepositoryInterfaces.ObjectInterfaces;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Planner.Data.GenericRepository;
+using Planner.Entities.Domain.AppUser;
+using Planner.RepositoryInterfaces.ObjectInterfaces;
 
 namespace Planner.Data.Repository
 {
-    public class RoleRepository : BaseRepository<Role>, IRoleRepository
+    public class RoleRepository :GenericRepository<Role>, IRoleRepository
     {
-        public RoleRepository(AppDbContext context) : base(context)
+        public RoleRepository(string connectionString, string tableName) : base(connectionString, tableName)
         {
         }
 
-        public async Task<Role> GetRoleByName(string roleName) => await Query
-            .FirstOrDefaultAsync(s => s.Name == roleName);
+        public async Task<IEnumerable<Role>> GetRoles() => await GetEntities();
+
+        public async Task DeleteRole(int id) => await DeleteEntity(id);
+
+        public async Task<Role> GetRoleById(int id) => await GetEntityById(id);
+
+        public async Task<Role> GetRoleByName(string name) => await GetEntityByName(name);
+
+        public async Task UpdateRole(Role role) => await Update(role);
+
+        public async Task<int> InsertRole(Role role) => await Insert(role);
     }
 }

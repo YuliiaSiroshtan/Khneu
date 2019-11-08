@@ -1,0 +1,5 @@
+C:\Users\LSK\source\repos\Planner\Planner.ExcelParser\bin\Debug\Planner.ExcelParser.dll
+C:\Users\LSK\source\repos\Planner\Planner.ExcelParser\bin\Debug\Planner.ExcelParser.pdb
+C:\Users\LSK\source\repos\Planner\Planner.ExcelParser\obj\Debug\Planner.ExcelParser.csprojAssemblyReference.cache
+C:\Users\LSK\source\repos\Planner\Planner.ExcelParser\obj\Debug\Planner.ExcelParser.dll
+C:\Users\LSK\source\repos\Planner\Planner.ExcelParser\obj\Debug\Planner.ExcelParser.pdb

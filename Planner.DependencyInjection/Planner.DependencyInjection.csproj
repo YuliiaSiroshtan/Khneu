@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Planner.BusinessLogic\Planner.BusinessLogic.csproj" />
     <ProjectReference Include="..\Planner.Data\Planner.Data.csproj" />
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
+    <ProjectReference Include="..\Planner.PresentationLayer\Planner.PresentationLayer.csproj" />
     <ProjectReference Include="..\Planner.RepositoryInterfaces\Planner.RepositoryInterfaces.csproj" />
     <ProjectReference Include="..\Planner.ServiceInterfaces\Planner.ServiceInterfaces.csproj" />
   </ItemGroup>

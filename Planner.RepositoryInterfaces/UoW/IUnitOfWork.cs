@@ -1,21 +1,23 @@
 ﻿using Planner.RepositoryInterfaces.ObjectInterfaces;
-using System;
-using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.UoW
 {
-    public interface IUnitOfWork : IAsyncDisposable
+    public interface IUnitOfWork
     {
-        IUserRepository UserRepository { get; set; }
-        IRoleRepository RoleRepository { get; set; }
-        INdrRepository NdrRepository { get; set; }
-        INMBDRepository NMBDRepository { get; set; }
-        IPublicationRepository PublicationRepository { get; set; }
-        IPlanTrainingRepository PlanTrainingRepository { get; set; }
-        IIndividualPlanFieldsRepository IndividualPlanFieldsRepository { get; set; }
-        IIndividualPlanFieldsValueRepository IndividualPlanFieldsValueRepository { get; set; }
-        IDayEntryLoadRepository DayEntryLoadRepository { get; set; }
-
-        Task<int> SaveChanges();
+        IUserRepository UserRepository { get; }
+        IEntryLoadsPropertyRepository EntryLoadsPropertyRepository { get; }
+        IFullTimeEntryLoadRepository FullTimeEntryLoadRepository { get; }
+        IFirstSemesterRepository FirstSemesterRepository { get; }
+        ISecondSemesterRepository SecondSemesterRepository { get; }
+        IFacultyRepository FacultyRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
+        IDisciplineRepository DisciplineRepository { get; }
+        ISelectedDisciplineRepository SelectedDisciplineRepository { get; }
+        IRateRepository RateRepository { get; }
+        IRoleRepository RoleRepository { get; }
+        IConstituentSessionRepository ConstituentSessionRepository { get; }
+        IExaminationSessionRepository ExaminationSessionRepository { get; }
+        IPartTimeEntryLoadRepository PartTimeEntryLoadRepository { get; }
+        IPartTimeDisciplineRepository PartTimeDisciplineRepository { get; }
     }
 }

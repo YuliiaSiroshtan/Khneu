@@ -15,1509 +15,730 @@ namespace Planner.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Planner.Entities.Domain.ApplicationUser", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.Discipline", b =>
                 {
-                    b.Property<string>("ApplicationUserId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AcademicTitleId");
+                    b.Property<string>("AmountOfHours")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("AccessFailedCount");
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("BasicOrCompatible");
+                    b.Property<string>("ECTS")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DegreeId");
+                    b.Property<int?>("FirstSemesterId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Document");
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName");
+                    b.Property<int?>("SecondSemesterId")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsActive");
+                    b.Property<string>("WeeksInFirstSemester")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("WeeksInSecondSemester")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTime?>("LockoutEndDateUtc");
-
-                    b.Property<string>("OrcidLink");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<int?>("PositionId");
-
-                    b.Property<string>("ProfilePicture");
-
-                    b.Property<int>("RoleId");
-
-                    b.Property<string>("ScheduleId");
-
-                    b.Property<string>("ScholarLink");
-
-                    b.Property<string>("ThirdName");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("ApplicationUserId");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("ScheduleId");
-
-                    b.ToTable("ApplicationUser");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Course", b =>
-                {
-                    b.Property<string>("CourseId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Literal");
-
-                    b.HasKey("CourseId");
-
-                    b.ToTable("Course");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.DayEntryLoad", b =>
-                {
-                    b.Property<string>("DayEntryLoadId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CipherOfGroups");
-
-                    b.Property<double>("CipherOfThreads");
-
-                    b.Property<string>("ConflatedThreads");
-
-                    b.Property<double>("CountOfCredits");
-
-                    b.Property<double>("CountOfHours");
-
-                    b.Property<string>("CourseId");
-
-                    b.Property<string>("DepartmentCipher");
-
-                    b.Property<string>("DepartmentId");
-
-                    b.Property<string>("EducationDegree");
-
-                    b.Property<double>("FS_CountOfWeeks");
-
-                    b.Property<double>("FSemCoefficient");
-
-                    b.Property<string>("F_CourseProjects");
-
-                    b.Property<string>("F_Evaluation");
-
-                    b.Property<string>("F_Exams");
-
-                    b.Property<double>("F_IndividualWork");
-
-                    b.Property<double>("F_Labs");
-
-                    b.Property<double>("F_Lectures");
-
-                    b.Property<double>("F_Practical");
-
-                    b.Property<double>("F_Total");
-
-                    b.Property<double>("F_TotalHour");
-
-                    b.Property<string>("FacultyName");
-
-                    b.Property<double>("HoursPerCredit");
-
-                    b.Property<double>("KR_KP_DR");
-
-                    b.Property<string>("Language");
-
-                    b.Property<string>("LoadingListId");
-
-                    b.Property<string>("Note");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("QuantityOfDek");
-
-                    b.Property<double>("QuantityOfForeigners");
-
-                    b.Property<double>("QuantityOfGroupsCritOne");
-
-                    b.Property<double>("QuantityOfGroupsCritTwo");
-
-                    b.Property<double>("QuantityOfStudents");
-
-                    b.Property<double>("QuantityOfThreads");
-
-                    b.Property<double>("RealQuantityOfGroups");
-
-                    b.Property<double>("SS_CountOfWeeks");
-
-                    b.Property<double>("SSemCoefficient");
-
-                    b.Property<string>("S_CourseProjects");
-
-                    b.Property<string>("S_Evaluation");
-
-                    b.Property<string>("S_Exams");
-
-                    b.Property<double>("S_IndividualWork");
-
-                    b.Property<double>("S_Labs");
-
-                    b.Property<double>("S_Lectures");
-
-                    b.Property<double>("S_Practical");
-
-                    b.Property<double>("S_Total");
-
-                    b.Property<double>("S_TotalHour");
-
-                    b.Property<string>("SpecializeId");
-
-                    b.Property<string>("SpecialtyId");
-
-                    b.Property<string>("SubjectId");
-
-                    b.HasKey("DayEntryLoadId");
-
-                    b.HasIndex("CourseId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("LoadingListId");
+                    b.HasIndex("FirstSemesterId");
 
-                    b.HasIndex("SpecializeId");
+                    b.HasIndex("SecondSemesterId");
 
-                    b.HasIndex("SpecialtyId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("DayEntryLoad");
+                    b.ToTable("Disciplines");
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.DaySemester", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.FirstSemester", b =>
                 {
-                    b.Property<string>("DaySemesterId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Active");
+                    b.Property<string>("CourseWork")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ConsultForExam");
+                    b.Property<string>("Credit")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ConsultInSemester");
+                    b.Property<string>("Exam")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ControlEvaluation");
+                    b.Property<string>("Hours")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ControlExam");
+                    b.Property<string>("HoursAll")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DayEntryLoadId");
+                    b.Property<string>("IndividualWork")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Dek");
+                    b.Property<string>("Laboratory")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("EnglishBonus");
+                    b.Property<string>("Lectures")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("KR_KP");
+                    b.Property<string>("Practical")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Lab");
+                    b.HasKey("Id");
 
-                    b.Property<double>("Lecture");
-
-                    b.Property<double>("ManagedDiploma");
-
-                    b.Property<double>("Other");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("PracticePreparation");
-
-                    b.Property<byte>("Semester");
-
-                    b.Property<double>("StateExam");
-
-                    b.Property<double>("Total");
-
-                    b.Property<double>("VerifyingOfTests");
-
-                    b.HasKey("DaySemesterId");
-
-                    b.HasIndex("DayEntryLoadId");
-
-                    b.ToTable("DaySemester");
+                    b.ToTable("FirstSemesters");
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.DayTeachLoad", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.SecondSemester", b =>
                 {
-                    b.Property<string>("DayTeachLoadId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Active");
+                    b.Property<string>("CourseWork")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("Credit")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("CalcWorks");
+                    b.Property<string>("Exam")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ConsultForExam");
+                    b.Property<string>("Hours")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("ConsultInSemester");
+                    b.Property<string>("HoursAll")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Course");
+                    b.Property<string>("IndividualWork")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("CourseProjects");
+                    b.Property<string>("Laboratory")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DayEntryLoadId");
+                    b.Property<string>("Lectures")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Dek");
+                    b.Property<string>("Practical")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Evaluation");
+                    b.HasKey("Id");
 
-                    b.Property<double>("Lab");
-
-                    b.Property<double>("Lecture");
-
-                    b.Property<double>("ManagedDiploma");
-
-                    b.Property<double>("OralExam");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("Protection");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<string>("Specialty");
-
-                    b.Property<string>("SubjectId");
-
-                    b.Property<double>("Total");
-
-                    b.Property<double>("VerifyingOfTest");
-
-                    b.Property<double>("VerifyingOfWrittenWorks");
-
-                    b.Property<double>("WrittenExam");
-
-                    b.Property<double>("WrittenWork");
-
-                    b.HasKey("DayTeachLoadId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("DayEntryLoadId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("DayTeachLoad");
+                    b.ToTable("SecondSemesters");
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.DDataStorage", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.SelectedDiscipline", b =>
                 {
-                    b.Property<string>("DDataStorageId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("CActive");
+                    b.HasKey("Id");
 
-                    b.Property<double>("CCheckOfTests");
-
-                    b.Property<double>("CConsultForExam");
-
-                    b.Property<double>("CConsultInSem");
-
-                    b.Property<double>("CDek");
-
-                    b.Property<double>("CEval");
-
-                    b.Property<double>("CExam");
-
-                    b.Property<double>("CKR_KP");
-
-                    b.Property<double>("CLab");
-
-                    b.Property<double>("CLecture");
-
-                    b.Property<double>("CManagedDiploma");
-
-                    b.Property<double>("COther");
-
-                    b.Property<double>("CPractice");
-
-                    b.Property<double>("CPracticePreparation");
-
-                    b.Property<double>("CStateExam");
-
-                    b.Property<double>("CTotal");
-
-                    b.Property<string>("CipherOfGroup");
-
-                    b.Property<double>("CountOfStud");
-
-                    b.Property<string>("Course");
-
-                    b.Property<string>("CourseProjects");
-
-                    b.Property<string>("EduDegree");
-
-                    b.Property<string>("Eval");
-
-                    b.Property<string>("Exam");
-
-                    b.Property<string>("Faculty");
-
-                    b.Property<double>("IndWork");
-
-                    b.Property<double>("Lab");
-
-                    b.Property<double>("Lecture");
-
-                    b.Property<string>("LoadingListId");
-
-                    b.Property<int>("N");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("QuanOfGroupCritOne");
-
-                    b.Property<string>("QuanOfGroupCritTwo");
-
-                    b.Property<double>("QuanOfThread");
-
-                    b.Property<double>("RealQuanGr");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<string>("Specialize");
-
-                    b.Property<string>("Specialty");
-
-                    b.Property<string>("Subject");
-
-                    b.Property<double>("Total");
-
-                    b.Property<double>("TotalHour");
-
-                    b.HasKey("DDataStorageId");
-
-                    b.HasIndex("LoadingListId");
-
-                    b.ToTable("DDataStorage");
+                    b.ToTable("SelectedDisciplines");
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.Department", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.Department", b =>
                 {
-                    b.Property<string>("DepartmentId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Code");
+                    b.Property<string>("Classification")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FacultyId");
+                    b.Property<string>("CodeDepartment")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name");
+                    b.Property<int?>("FacultyId")
+                        .HasColumnType("int");
 
-                    b.HasKey("DepartmentId");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("FacultyId");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Classification = "вип",
+                            CodeDepartment = "обк",
+                            Name = "Обліку і бізнес-консалтингу"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Classification = "вип",
+                            CodeDepartment = "мбеа",
+                            Name = "Міжнародного бізнесу та економічного аналізу"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Classification = "заг",
+                            CodeDepartment = "вмем",
+                            Name = "Вищої математики та економіко-математичних методів"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Classification = "заг",
+                            CodeDepartment = "фп",
+                            Name = "Філософії та політології"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Classification = "вип",
+                            CodeDepartment = "ф",
+                            Name = "Фінансів"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Classification = "вип",
+                            CodeDepartment = "бсфп",
+                            Name = "Банківської справи і фінансових послуг"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Classification = "вип",
+                            CodeDepartment = "мсо",
+                            Name = "Митної справи та оподаткування"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Classification = "вип",
+                            CodeDepartment = "мле",
+                            Name = "Менеджменту, логістики та економіки"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Classification = "вип",
+                            CodeDepartment = "мб",
+                            Name = "Менеджменту та бізнесу"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Classification = "вип",
+                            CodeDepartment = "ем",
+                            Name = "Економіки і маркетингу"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Classification = "вип",
+                            CodeDepartment = "іс",
+                            Name = "Інформаційних систем"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Classification = "вип",
+                            CodeDepartment = "ксіт",
+                            Name = "Комп’ютерних систем і технологій"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Classification = "вип",
+                            CodeDepartment = "ек",
+                            Name = "Економічної кібернетики"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Classification = "заг",
+                            CodeDepartment = "ікт",
+                            Name = "Інформатики та комп’ютерної техніки"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Classification = "заг",
+                            CodeDepartment = "птебжд",
+                            Name = "Природоохоронних технологій, екології та безпеки життєдіяльності"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Classification = "вип",
+                            CodeDepartment = "кіт",
+                            Name = "Кібербезпеки та інформаційних технологій"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Classification = "вип",
+                            CodeDepartment = "сеп",
+                            Name = "Статистики і економічного прогнозування"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Classification = "вип",
+                            CodeDepartment = "есн",
+                            Name = "Економіки та соціальних наук"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Classification = "вип",
+                            CodeDepartment = "епм",
+                            Name = "Економіки підприємства та менеджменту"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Classification = "вип",
+                            CodeDepartment = "пре",
+                            Name = "Правового регулювання економіки"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Classification = "вип",
+                            CodeDepartment = "дупаре",
+                            Name = "Державного управління, публічного адміністрування та регіональної економіки"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Classification = "вип",
+                            CodeDepartment = "етеп",
+                            Name = "Економічної теорії та економічної політики"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Classification = "вип",
+                            CodeDepartment = "уск",
+                            Name = "Управління соціальними комунікаціями"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Classification = "вип",
+                            CodeDepartment = "мемзед",
+                            Name = "Міжнародної економіки та менеджменту ЗЕД"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Classification = "вип",
+                            CodeDepartment = "т",
+                            Name = "Туризму"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Classification = "вип",
+                            CodeDepartment = "піфп",
+                            Name = "Педагогіки, іноземної філології та перекладу"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Classification = "заг",
+                            CodeDepartment = "умпіг",
+                            Name = "Українознавства і мовної підготовки іноземних громадян"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Classification = "заг",
+                            CodeDepartment = "фвс",
+                            Name = "Фізичного виховання та спорту"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Classification = "заг",
+                            CodeDepartment = "іммк",
+                            Name = "Іноземних мов та міжкультурної комунікації"
+                        });
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.DepartmentUser", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.EntryLoad", b =>
                 {
-                    b.Property<string>("DepartmentUserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("DepartmentId");
-
-                    b.Property<string>("RateId");
-
-                    b.HasKey("DepartmentUserId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("RateId");
-
-                    b.ToTable("DepartmentUser");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.EDataStorage", b =>
-                {
-                    b.Property<string>("EDataStorageId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("CActive");
-
-                    b.Property<double>("CConsultForExam");
-
-                    b.Property<double>("CConsultInSem");
-
-                    b.Property<double>("CCourseProject");
-
-                    b.Property<double>("CDek");
-
-                    b.Property<double>("CEval");
-
-                    b.Property<double>("CLab");
-
-                    b.Property<double>("CLecture");
-
-                    b.Property<double>("CManagedDiploma");
-
-                    b.Property<double>("COralExam");
-
-                    b.Property<double>("CPractice");
-
-                    b.Property<double>("CProtection");
-
-                    b.Property<double>("CTotal");
-
-                    b.Property<double>("CVerifyingOfWrWork");
-
-                    b.Property<double>("CVerifyingTest");
-
-                    b.Property<double>("CommonTime");
-
-                    b.Property<double>("Course");
-
-                    b.Property<string>("Eval");
-
-                    b.Property<string>("Exam");
-
-                    b.Property<string>("Extramural");
-
-                    b.Property<double>("IndWork");
-
-                    b.Property<double>("Lab");
-
-                    b.Property<double>("Lecture");
-
-                    b.Property<string>("LoadingListId");
-
-                    b.Property<int>("N");
-
-                    b.Property<double>("NormKR_KP");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("QuanOfStud");
-
-                    b.Property<double>("QuanOfThread");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<string>("Specialty");
-
-                    b.Property<string>("Subject");
-
-                    b.Property<double>("Test");
-
-                    b.HasKey("EDataStorageId");
-
-                    b.HasIndex("LoadingListId");
-
-                    b.ToTable("EDataStorage");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExternalCollaborator", b =>
-                {
-                    b.Property<string>("ExternalCollaboratorId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("ExternalCollaboratorId");
-
-                    b.ToTable("ExternalCollaborator");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExtramuralEntryLoad", b =>
-                {
-                    b.Property<string>("ExtramuralEntryLoadId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("CommonTime");
-
-                    b.Property<double>("Course");
-
-                    b.Property<double>("Credits");
-
-                    b.Property<string>("DepartmentCipher");
-
-                    b.Property<string>("DepartmentId");
-
-                    b.Property<string>("Extramural");
-
-                    b.Property<string>("F_Evaluation");
-
-                    b.Property<string>("F_Exam");
-
-                    b.Property<double>("F_IndividualWork");
-
-                    b.Property<string>("F_KR");
-
-                    b.Property<double>("F_Lab");
-
-                    b.Property<double>("F_Lecture");
-
-                    b.Property<double>("F_LimitOnProjects");
-
-                    b.Property<double>("F_Practical");
-
-                    b.Property<double>("F_Test");
-
-                    b.Property<string>("LoadingListId");
-
-                    b.Property<string>("MajorSpecialty");
-
-                    b.Property<double>("NumOfThread");
-
-                    b.Property<double>("QuantityOfGroups");
-
-                    b.Property<double>("QuantityOfStudents");
-
-                    b.Property<double>("QuantityOfThreads");
-
-                    b.Property<string>("S_Evaluation");
-
-                    b.Property<string>("S_Exam");
-
-                    b.Property<double>("S_IndividualWork");
-
-                    b.Property<string>("S_KR");
-
-                    b.Property<double>("S_Lab");
-
-                    b.Property<double>("S_Lecture");
-
-                    b.Property<double>("S_LimitOnProjects");
-
-                    b.Property<double>("S_Practical");
-
-                    b.Property<double>("S_Test");
-
-                    b.Property<string>("SpecialtyId");
-
-                    b.Property<string>("SubjectId");
-
-                    b.HasKey("ExtramuralEntryLoadId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("LoadingListId");
-
-                    b.HasIndex("SpecialtyId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("ExtramuralEntryLoad");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExtramuralSemester", b =>
-                {
-                    b.Property<string>("ExtramuralSemesterId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("Active");
-
-                    b.Property<double>("CalcWorks");
-
-                    b.Property<double>("ConsultForExam");
-
-                    b.Property<double>("ConsultInSemester");
-
-                    b.Property<double>("CourseProjects");
-
-                    b.Property<double>("Dek");
-
-                    b.Property<double>("Evaluation");
-
-                    b.Property<string>("ExtramuralEntryLoadId");
-
-                    b.Property<double>("Lab");
-
-                    b.Property<double>("Lecture");
-
-                    b.Property<double>("ManagedDiploma");
-
-                    b.Property<double>("OralExam");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("Protection");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<double>("Total");
-
-                    b.Property<double>("VerifyingOfTest");
-
-                    b.Property<double>("VerifyingOfWrittenWorks");
-
-                    b.Property<double>("WrittenExam");
-
-                    b.Property<double>("WrittenWork");
-
-                    b.HasKey("ExtramuralSemesterId");
-
-                    b.HasIndex("ExtramuralEntryLoadId");
-
-                    b.ToTable("ExtramuralSemester");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExtramuralTeachLoad", b =>
-                {
-                    b.Property<string>("ExtramuralTeachLoadId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("Active");
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<double>("CalcWorks");
-
-                    b.Property<double>("ConsultForExam");
-
-                    b.Property<double>("ConsultInSemester");
-
-                    b.Property<double>("Course");
-
-                    b.Property<double>("CourseProjects");
-
-                    b.Property<double>("Dek");
-
-                    b.Property<double>("Evaluation");
-
-                    b.Property<string>("ExtramuralEntryLoadId");
-
-                    b.Property<double>("Lab");
-
-                    b.Property<double>("Lecture");
-
-                    b.Property<double>("ManagedDiploma");
-
-                    b.Property<double>("OralExam");
-
-                    b.Property<double>("Practice");
-
-                    b.Property<double>("Protection");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<string>("Specialty");
-
-                    b.Property<string>("SubjectId");
-
-                    b.Property<double>("Total");
-
-                    b.Property<double>("VerifyingOfTest");
-
-                    b.Property<double>("VerifyingOfWrittenWorks");
-
-                    b.Property<double>("WrittenExam");
-
-                    b.Property<double>("WrittenWork");
-
-                    b.HasKey("ExtramuralTeachLoadId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ExtramuralEntryLoadId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("ExtramuralTeachLoad");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Faculty", b =>
-                {
-                    b.Property<string>("FacultyId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("ShortName");
-
-                    b.HasKey("FacultyId");
-
-                    b.ToTable("Faculty");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.IndivPlanFields", b =>
-                {
-                    b.Property<string>("IndivPlanFieldsId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("DisplayName");
-
-                    b.Property<string>("IndPlanTypeId");
-
-                    b.Property<string>("SchemaName");
-
-                    b.Property<string>("Suffix");
-
-                    b.Property<string>("TabName");
-
-                    b.HasKey("IndivPlanFieldsId");
-
-                    b.HasIndex("IndPlanTypeId");
-
-                    b.ToTable("IndivPlanFields");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.IndivPlanFieldsValue", b =>
-                {
-                    b.Property<string>("IndivPlanFieldsValueId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("PlannedValue");
-
-                    b.Property<string>("Result");
-
-                    b.Property<string>("SchemaName");
-
-                    b.HasKey("IndivPlanFieldsValueId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("IndivPlanFieldsValue");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.IndPlanType", b =>
-                {
-                    b.Property<string>("IndPlanTypeId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("IndPlanTypeId");
-
-                    b.ToTable("IndPlanType");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.LoadingList", b =>
-                {
-                    b.Property<string>("LoadingListId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Comment");
-
-                    b.Property<string>("DepartmentId");
-
-                    b.Property<int>("Year");
-
-                    b.HasKey("LoadingListId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("LoadingList");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.NDR", b =>
-                {
-                    b.Property<string>("NDRId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Awards");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<string>("Level");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Place");
-
-                    b.Property<string>("Step");
-
-                    b.Property<string>("StudentName");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("NDRId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("NDR");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.NMBD", b =>
-                {
-                    b.Property<string>("NMBDId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("NMBDId");
-
-                    b.ToTable("NMBD");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanChange", b =>
-                {
-                    b.Property<string>("PlanChangeId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ActualVolume");
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Base");
-
-                    b.Property<string>("Changes");
-
-                    b.Property<int>("PlannedVolume");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<string>("Signature");
-
-                    b.Property<string>("TypesfJobs");
-
-                    b.HasKey("PlanChangeId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("PlanChange");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanConclusion", b =>
-                {
-                    b.Property<string>("PlanConclusionId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Content");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<string>("Signature");
-
-                    b.HasKey("PlanConclusionId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("PlanConclusion");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanManagment", b =>
-                {
-                    b.Property<string>("PlanManagmentId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ActualVolume");
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Content");
-
-                    b.Property<int>("DurationTime");
-
-                    b.Property<int>("OrderNumber");
-
-                    b.Property<int>("PlannedVolume");
-
-                    b.Property<string>("Result");
-
-                    b.HasKey("PlanManagmentId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("PlanManagment");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanMethodicalWork", b =>
-                {
-                    b.Property<string>("PlanMethodicalWorkId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ActualVolume");
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("Content");
-
-                    b.Property<int>("DurationTime");
-
-                    b.Property<int>("OrderNumber");
-
-                    b.Property<int>("PlannedVolume");
-
-                    b.Property<string>("Result");
-
-                    b.HasKey("PlanMethodicalWorkId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("PlanMethodicalWork");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanRemark", b =>
-                {
-                    b.Property<string>("PlanRemarkId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<string>("Remark");
-
-                    b.Property<string>("Signature");
-
-                    b.HasKey("PlanRemarkId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("PlanRemark");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanTrainingJob", b =>
-                {
-                    b.Property<string>("PlanTrainingJobId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<int>("CountStudent");
-
-                    b.Property<int>("Course");
-
-                    b.Property<string>("DSD");
-
-                    b.Property<int>("DoneCGS");
-
-                    b.Property<int>("DoneCheckControl");
-
-                    b.Property<int>("DoneCheckLectureControl");
-
-                    b.Property<int>("DoneConsultation");
-
-                    b.Property<int>("DoneCoursework");
-
-                    b.Property<int>("DoneDEK");
-
-                    b.Property<int>("DoneDiploma");
-
-                    b.Property<int>("DoneEAT");
-
-                    b.Property<int>("DoneExamConsultation");
-
-                    b.Property<int>("DoneIndividual");
-
-                    b.Property<int>("DoneLaboratory");
-
-                    b.Property<int>("DoneLectures");
-
-                    b.Property<int>("DoneOffsetting");
-
-                    b.Property<int>("DonePostgraduates");
-
-                    b.Property<int>("DonePract");
-
-                    b.Property<int>("DoneSemestrExam");
-
-                    b.Property<int>("DoneSeminar");
-
-                    b.Property<int>("DoneStateExam");
-
-                    b.Property<int>("DoneTrainingPract");
-
-                    b.Property<string>("EducationForm");
-
-                    b.Property<string>("GroupCode");
-
-                    b.Property<int>("OrderNumber");
-
-                    b.Property<int>("PlannedCGS");
-
-                    b.Property<int>("PlannedCheckControl");
-
-                    b.Property<int>("PlannedCheckLectureControl");
-
-                    b.Property<int>("PlannedConsultation");
-
-                    b.Property<int>("PlannedCoursework");
-
-                    b.Property<int>("PlannedDEK");
-
-                    b.Property<int>("PlannedDiploma");
-
-                    b.Property<int>("PlannedEAT");
-
-                    b.Property<int>("PlannedExamConsultation");
-
-                    b.Property<int>("PlannedIndividual");
-
-                    b.Property<int>("PlannedLaboratory");
-
-                    b.Property<int>("PlannedLectures");
-
-                    b.Property<int>("PlannedOffsetting");
-
-                    b.Property<int>("PlannedPostgraduates");
-
-                    b.Property<int>("PlannedPract");
-
-                    b.Property<int>("PlannedSemestrExam");
-
-                    b.Property<int>("PlannedSeminar");
-
-                    b.Property<int>("PlannedStateExam");
-
-                    b.Property<int>("PlannedTrainingPract");
-
-                    b.Property<string>("Subject");
-
-                    b.HasKey("PlanTrainingJobId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("PlanTrainingJob");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Publication", b =>
-                {
-                    b.Property<string>("PublicationId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CitationNumberNMBD");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("FilePath");
-
-                    b.Property<double>("ImpactFactorNMBD");
-
-                    b.Property<bool>("IsOverseas");
-
-                    b.Property<bool>("IsPublished");
-
-                    b.Property<string>("NMBDId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Output");
-
-                    b.Property<string>("OwnerId");
-
-                    b.Property<double?>("Pages");
-
-                    b.Property<int>("PublicationTypeId");
-
-                    b.Property<DateTime?>("PublishedAt");
-
-                    b.Property<int>("ResearchDoneTypeId");
-
-                    b.Property<int>("StoringTypeId");
-
-                    b.HasKey("PublicationId");
-
-                    b.HasIndex("NMBDId");
-
-                    b.ToTable("Publication");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PublicationUser", b =>
-                {
-                    b.Property<string>("PublicationUserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<string>("ExternalCollaboratorId");
-
-                    b.Property<double>("PageQuantity");
-
-                    b.Property<string>("PublicationId");
-
-                    b.HasKey("PublicationUserId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ExternalCollaboratorId");
-
-                    b.HasIndex("PublicationId");
-
-                    b.ToTable("PublicationUser");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Rate", b =>
-                {
-                    b.Property<string>("RateId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("Value");
-
-                    b.HasKey("RateId");
-
-                    b.ToTable("Rate");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Role", b =>
-                {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AmountOfForeignersStudents")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AmountOfStudents")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AmountOfStudentsStreams")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConnectingOfStudentStreams")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Course")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DisciplineId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EducationalDegree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FacultyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GroupCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberOfGroups")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberOfSubGroups")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RealNumberOfGroups")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specialization")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specialty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("EntryLoads");
+                });
+
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.EntryLoadsProperty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateTimeUpload")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HoursPerRate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntryLoadsProperties");
+                });
+
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.Faculty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CodeFaculty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Faculties");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CodeFaculty = "кімб",
+                            Name = "Факультет консалтингу і міжнародного бізнесу"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CodeFaculty = "фф",
+                            Name = "Фінансовий факультет"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CodeFaculty = "мім",
+                            Name = "Фікультет менеджменту і маркетингу"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CodeFaculty = "еі",
+                            Name = "Факультет економічної інформатики"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CodeFaculty = "еп",
+                            Name = "Факультет економіки і права"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CodeFaculty = "мев",
+                            Name = "Факультет міжнародних економічних відносин"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CodeFaculty = "піг",
+                            Name = "Факультет підготовки іноземних громадян"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CodeFaculty = "асп",
+                            Name = "Аспірвнтура"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CodeFaculty = "всі",
+                            Name = "Додаткові предмети та майнори"
+                        });
+                });
+
+            modelBuilder.Entity("Planner.Entities.Domain.AppUser.IndividualPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("IndividualPlans");
+                });
+
+            modelBuilder.Entity("Planner.Entities.Domain.AppUser.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnName("Name")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoleId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Завідувач наукового секотору"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Викладач"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Голова навчальної частини"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Завідувач кафедри"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Адміністратор"
+                        });
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.Schedule", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppUser.User", b =>
                 {
-                    b.Property<string>("ScheduleId")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApiId");
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("DepartmentId");
+                    b.Property<int>("HoursPerRate")
+                        .HasColumnType("int");
 
-                    b.Property<string>("UserName");
+                    b.Property<string>("ImageSource")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ScheduleId");
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Schedule");
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            HoursPerRate = 0,
+                            Login = "admin@gmail.com",
+                            Name = "Админ",
+                            Password = "T15oO9/ZYIoPbzifVCRgRAZ+MQfamV9vb4nWBde0xts=",
+                            Rate = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            HoursPerRate = 0,
+                            Login = "prepod@gmail.com",
+                            Name = "Препод",
+                            Password = "T15oO9/ZYIoPbzifVCRgRAZ+MQfamV9vb4nWBde0xts=",
+                            Rate = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HoursPerRate = 0,
+                            Login = "uchebn@gmail.com",
+                            Name = "Начальник учебной части",
+                            Password = "T15oO9/ZYIoPbzifVCRgRAZ+MQfamV9vb4nWBde0xts=",
+                            Rate = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            HoursPerRate = 0,
+                            Login = "caf@gmail.com",
+                            Name = "Зав кафедры",
+                            Password = "T15oO9/ZYIoPbzifVCRgRAZ+MQfamV9vb4nWBde0xts=",
+                            Rate = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            HoursPerRate = 0,
+                            Login = "centr@gmail.com",
+                            Name = "Зав научного центра",
+                            Password = "T15oO9/ZYIoPbzifVCRgRAZ+MQfamV9vb4nWBde0xts=",
+                            Rate = 0
+                        });
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.ScientificPublishing", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.Discipline", b =>
                 {
-                    b.Property<string>("ScientificPublishingId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Abstracts");
-
-                    b.Property<int>("AllPublications");
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<int>("ArticlesInProfessionalPublications");
-
-                    b.Property<int>("ArticlesThesesInNmbd");
-
-                    b.Property<int>("Monographs");
-
-                    b.Property<int>("MonographsForeignJournals");
-
-                    b.Property<int>("MonographsNationalPublications");
-
-                    b.Property<int>("ScientificArticlesInForeignLanguages");
-
-                    b.Property<int>("ScientificPublicationsInForeignJournals");
-
-                    b.Property<int>("ScientificPublicationsInScopus");
-
-                    b.Property<int>("Year");
-
-                    b.HasKey("ScientificPublishingId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("ScientificPublishing");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Specialize", b =>
-                {
-                    b.Property<string>("SpecializeId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Cipher");
-
-                    b.HasKey("SpecializeId");
-
-                    b.ToTable("Specialize");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Specialty", b =>
-                {
-                    b.Property<string>("SpecialtyId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code");
-
-                    b.Property<string>("Description");
-
-                    b.HasKey("SpecialtyId");
-
-                    b.ToTable("Specialty");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Subject", b =>
-                {
-                    b.Property<string>("SubjectId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("SubjectId");
-
-                    b.ToTable("Subject");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ApplicationUser", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Planner.Entities.Domain.Schedule", "Schedule")
-                        .WithMany("Users")
-                        .HasForeignKey("ScheduleId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.DayEntryLoad", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.Course", "Course")
-                        .WithMany("DayEntryLoads")
-                        .HasForeignKey("CourseId");
-
-                    b.HasOne("Planner.Entities.Domain.Department", "Department")
-                        .WithMany("DayEntryLoads")
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.Department", "Department")
+                        .WithMany()
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("Planner.Entities.Domain.LoadingList", "LoadingList")
-                        .WithMany("DayEntryLoads")
-                        .HasForeignKey("LoadingListId");
-
-                    b.HasOne("Planner.Entities.Domain.Specialize", "Specialize")
-                        .WithMany("DayEntryLoads")
-                        .HasForeignKey("SpecializeId");
-
-                    b.HasOne("Planner.Entities.Domain.Specialty", "Specialty")
-                        .WithMany("DayEntryLoads")
-                        .HasForeignKey("SpecialtyId");
-
-                    b.HasOne("Planner.Entities.Domain.Subject", "Subject")
-                        .WithMany("DayEntryLoads")
-                        .HasForeignKey("SubjectId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.DaySemester", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.DayEntryLoad", "DayEntryLoad")
-                        .WithMany("DaySemesters")
-                        .HasForeignKey("DayEntryLoadId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.DayTeachLoad", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("DayTeachLoad")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Planner.Entities.Domain.DayEntryLoad", "DayEntryLoad")
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.FirstSemester", "FirstSemester")
                         .WithMany()
-                        .HasForeignKey("DayEntryLoadId");
+                        .HasForeignKey("FirstSemesterId");
 
-                    b.HasOne("Planner.Entities.Domain.Subject", "Subject")
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.SecondSemester", "SecondSemester")
                         .WithMany()
-                        .HasForeignKey("SubjectId");
+                        .HasForeignKey("SecondSemesterId");
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.DDataStorage", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.Department", b =>
                 {
-                    b.HasOne("Planner.Entities.Domain.LoadingList", "LoadingList")
-                        .WithMany("DDataStorages")
-                        .HasForeignKey("LoadingListId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Department", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.Faculty", "Faculty")
-                        .WithMany("Departments")
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.Faculty", "Faculty")
+                        .WithMany()
                         .HasForeignKey("FacultyId");
                 });
 
-            modelBuilder.Entity("Planner.Entities.Domain.DepartmentUser", b =>
+            modelBuilder.Entity("Planner.Entities.Domain.AppEntryLoad.EntryLoad", b =>
                 {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "Userrtment")
-                        .WithMany("DepartmentUsers")
-                        .HasForeignKey("ApplicationUserId");
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.AppDiscipline.Discipline", "Discipline")
+                        .WithMany()
+                        .HasForeignKey("DisciplineId");
 
-                    b.HasOne("Planner.Entities.Domain.Department", "Department")
-                        .WithMany("DepartmentUsers")
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId");
+                });
+
+            modelBuilder.Entity("Planner.Entities.Domain.AppUser.IndividualPlan", b =>
+                {
+                    b.HasOne("Planner.Entities.Domain.AppUser.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Planner.Entities.Domain.AppUser.User", b =>
+                {
+                    b.HasOne("Planner.Entities.Domain.AppEntryLoad.Department", null)
+                        .WithMany("Users")
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("Planner.Entities.Domain.Rate", "Rate")
-                        .WithMany("DepartmentUsers")
-                        .HasForeignKey("RateId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.EDataStorage", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.LoadingList", "LoadingList")
-                        .WithMany("EDataStorages")
-                        .HasForeignKey("LoadingListId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExtramuralEntryLoad", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.Department", "Department")
-                        .WithMany("ExtramuralEntryLoads")
-                        .HasForeignKey("DepartmentId");
-
-                    b.HasOne("Planner.Entities.Domain.LoadingList", "LoadingList")
-                        .WithMany("ExtramuralEntryLoads")
-                        .HasForeignKey("LoadingListId");
-
-                    b.HasOne("Planner.Entities.Domain.Specialty", "Specialty")
+                    b.HasOne("Planner.Entities.Domain.AppUser.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("SpecialtyId");
-
-                    b.HasOne("Planner.Entities.Domain.Subject", "Subject")
-                        .WithMany("ExtramuralEntryLoads")
-                        .HasForeignKey("SubjectId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExtramuralSemester", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ExtramuralEntryLoad", "ExtramuralEntryLoad")
-                        .WithMany("ExtramuralSemesters")
-                        .HasForeignKey("ExtramuralEntryLoadId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ExtramuralTeachLoad", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("ExtramuralTeachLoad")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Planner.Entities.Domain.ExtramuralEntryLoad", "ExtramuralEntryLoad")
-                        .WithMany()
-                        .HasForeignKey("ExtramuralEntryLoadId");
-
-                    b.HasOne("Planner.Entities.Domain.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.IndivPlanFields", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.IndPlanType", "IndPlanType")
-                        .WithMany("IndivPlanFields")
-                        .HasForeignKey("IndPlanTypeId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.IndivPlanFieldsValue", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("IndivPlanFieldsValues")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.LoadingList", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.Department", "Department")
-                        .WithMany("LoadingList")
-                        .HasForeignKey("DepartmentId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.NDR", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "User")
-                        .WithMany("NDRs")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanChange", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("PlanChange")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanConclusion", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("PlanConclusion")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanManagment", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("PlanManagment")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanMethodicalWork", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("PlanMethodicalWork")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanRemark", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("PlanRemark")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PlanTrainingJob", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "ApplicationUser")
-                        .WithMany("PlanTrainingJob")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Publication", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.NMBD", "NMBD")
-                        .WithMany("Publications")
-                        .HasForeignKey("NMBDId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.PublicationUser", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "User")
-                        .WithMany("PublicationUser")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Planner.Entities.Domain.ExternalCollaborator", "Collaborator")
-                        .WithMany()
-                        .HasForeignKey("ExternalCollaboratorId");
-
-                    b.HasOne("Planner.Entities.Domain.Publication", "Publication")
-                        .WithMany("PublicationUsers")
-                        .HasForeignKey("PublicationId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.Schedule", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.Department", "Department")
-                        .WithMany("Schedules")
-                        .HasForeignKey("DepartmentId");
-                });
-
-            modelBuilder.Entity("Planner.Entities.Domain.ScientificPublishing", b =>
-                {
-                    b.HasOne("Planner.Entities.Domain.ApplicationUser", "User")
-                        .WithMany("ScientificPublishings")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("RoleId");
                 });
 #pragma warning restore 612, 618
         }

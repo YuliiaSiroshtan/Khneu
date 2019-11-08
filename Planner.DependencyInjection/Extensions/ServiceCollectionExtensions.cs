@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Text;
 using Planner.Data.Context;
 using Planner.RepositoryInterfaces.UoW;
 using Planner.RepositoryInterfaces.ObjectInterfaces;
@@ -21,25 +19,44 @@ namespace Planner.DependencyInjection.Extensions
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration
                 .GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Planner.Data")));
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>(provider => new UnitOfWork(configuration
+                .GetConnectionString("DefaultConnection")));
+
             services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<INdrRepository, NdrRepository>();
-            services.AddSingleton<IDayEntryLoadRepository, DayEntryLoadRepository>();
-            services.AddSingleton<INMBDRepository, NMBDRepository>();
+            services.AddSingleton<IFullTimeEntryLoadRepository, FullTimeEntryLoadRepository>();
+            services.AddSingleton<IEntryLoadsPropertyRepository, EntryLoadsPropertyRepository>();
+            services.AddSingleton<IFirstSemesterRepository, FirstSemesterRepository>();
+            services.AddSingleton<ISecondSemesterRepository, SecondSemesterRepository>();
+            services.AddSingleton<IFacultyRepository, FacultyRepository>(); 
+            services.AddSingleton<IDepartmentRepository, DepartmentRepository>();
+            services.AddSingleton<IDisciplineRepository, DisciplineRepository>();
+            services.AddSingleton<ISelectedDisciplineRepository, SelectedDisciplineRepository>();
+            services.AddSingleton<IRateRepository, RateRepository>();
             services.AddSingleton<IRoleRepository, RoleRepository>();
-            services.AddSingleton<IIndividualPlanFieldsRepository, IndividualPlanFieldRepository>();
-            services.AddSingleton<IIndividualPlanFieldsValueRepository, IndividualPlanFieldsValueRepository>();
-            
-            services.AddSingleton<IPublicationRepository, PublicationRepository>();
+            services.AddSingleton<IPartTimeDisciplineRepository, PartTimeDisciplineRepository>();
+            services.AddSingleton<IConstituentSessionRepository, ConstituentSessionRepository>();
+            services.AddSingleton<IExaminationSessionRepository, ExaminationSessionRepository>();
+            services.AddSingleton<IPartTimeEntryLoadRepository, PartTimeEntryLoadRepository>();
+
+            services.AddTransient<IServiceFactory, ServiceFactory>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITokenService, TokenService>();
-            services.AddTransient<IServiceFactory, ServiceFactory>();
-            services.AddTransient<IDistributionService, DistributionService>();
             services.AddTransient<ISecurityService, SecurityService>();
-            services.AddTransient<INdrService, NdrService>();
-            services.AddTransient<IPublicationService, PublicationService>();
-            services.AddTransient<IIndividualPlanService, IndividualPlanService>();
-
+            services.AddTransient<IFullTimeEntryLoadService, FullTimeEntryLoadService>();
+            services.AddTransient<IEntryLoadsPropertyService, EntryLoadsPropertyService>();
+            services.AddTransient<IFirstSemesterService, FirstSemesterService>();
+            services.AddTransient<ISecondSemesterService, SecondSemesterService>();
+            services.AddTransient<IFacultyService, FacultyService>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
+            services.AddTransient<IDisciplineService, DisciplineService>();
+            services.AddTransient<ISelectedDisciplineService, SelectedDisciplineService>();
+            services.AddTransient<IRateService, RateService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IPartTimeDisciplineService, PartTimeDisciplineService>();
+            services.AddTransient<IPartTimeEntryLoadService, PartTimeEntryLoadService>();
+            services.AddTransient<IConstituentSessionService, ConstituentSessionService>();
+            services.AddTransient<IExaminationSessionService, ExaminationSessionService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

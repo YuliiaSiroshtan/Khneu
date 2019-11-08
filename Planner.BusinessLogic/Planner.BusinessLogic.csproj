@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Planner.Common\Planner.Common.csproj" />
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
     <ProjectReference Include="..\Planner.RepositoryInterfaces\Planner.RepositoryInterfaces.csproj" />
     <ProjectReference Include="..\Planner.ServiceInterfaces\Planner.ServiceInterfaces.csproj" />

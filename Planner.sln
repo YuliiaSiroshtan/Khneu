@@ -1,23 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner", "Planner\Planner.csproj", "{5137BAC3-D831-4DBA-A8F3-747DED0EF721}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.Entities", "Planner.Entities\Planner.Entities.csproj", "{EE9794F0-9E2D-4DD1-9C41-069536D68ADC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.RepositoryInterfaces", "Planner.RepositoryInterfaces\Planner.RepositoryInterfaces.csproj", "{754951FC-C9E4-4473-A258-FDDDF8EAB327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.RepositoryInterfaces", "Planner.RepositoryInterfaces\Planner.RepositoryInterfaces.csproj", "{754951FC-C9E4-4473-A258-FDDDF8EAB327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.Data", "Planner.Data\Planner.Data.csproj", "{285C42C3-5B9E-4ED4-BAEB-F972AA704EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.Data", "Planner.Data\Planner.Data.csproj", "{285C42C3-5B9E-4ED4-BAEB-F972AA704EC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.ServiceInterfaces", "Planner.ServiceInterfaces\Planner.ServiceInterfaces.csproj", "{899AB83C-3150-43F2-8618-FD50BF67730D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.ServiceInterfaces", "Planner.ServiceInterfaces\Planner.ServiceInterfaces.csproj", "{899AB83C-3150-43F2-8618-FD50BF67730D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.BusinessLogic", "Planner.BusinessLogic\Planner.BusinessLogic.csproj", "{BCF00490-2588-4459-803D-2A4C455B823C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.BusinessLogic", "Planner.BusinessLogic\Planner.BusinessLogic.csproj", "{BCF00490-2588-4459-803D-2A4C455B823C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.Common", "Planner.Common\Planner.Common.csproj", "{BA56FF0A-3ED4-47FD-A153-DEDD8634E22B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.DependencyInjection", "Planner.DependencyInjection\Planner.DependencyInjection.csproj", "{6905A843-1BDB-4A00-BF21-793A101B87E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.DependencyInjection", "Planner.DependencyInjection\Planner.DependencyInjection.csproj", "{6905A843-1BDB-4A00-BF21-793A101B87E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.ExcelParser", "Planner.ExcelParser\Planner.ExcelParser.csproj", "{790931E3-FA76-4E7A-BD4F-7D01B5DA3ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.PresentationLayer", "Planner.PresentationLayer\Planner.PresentationLayer.csproj", "{1829F041-B950-4E0C-A1FD-C88F82412849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,14 +51,18 @@ Global
 		{BCF00490-2588-4459-803D-2A4C455B823C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF00490-2588-4459-803D-2A4C455B823C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF00490-2588-4459-803D-2A4C455B823C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA56FF0A-3ED4-47FD-A153-DEDD8634E22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA56FF0A-3ED4-47FD-A153-DEDD8634E22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA56FF0A-3ED4-47FD-A153-DEDD8634E22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA56FF0A-3ED4-47FD-A153-DEDD8634E22B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6905A843-1BDB-4A00-BF21-793A101B87E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6905A843-1BDB-4A00-BF21-793A101B87E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6905A843-1BDB-4A00-BF21-793A101B87E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6905A843-1BDB-4A00-BF21-793A101B87E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{790931E3-FA76-4E7A-BD4F-7D01B5DA3ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{790931E3-FA76-4E7A-BD4F-7D01B5DA3ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{790931E3-FA76-4E7A-BD4F-7D01B5DA3ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{790931E3-FA76-4E7A-BD4F-7D01B5DA3ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1829F041-B950-4E0C-A1FD-C88F82412849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1829F041-B950-4E0C-A1FD-C88F82412849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1829F041-B950-4E0C-A1FD-C88F82412849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1829F041-B950-4E0C-A1FD-C88F82412849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

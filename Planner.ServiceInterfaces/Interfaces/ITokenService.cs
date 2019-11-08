@@ -1,12 +1,13 @@
-﻿using Planner.ServiceInterfaces.DTO.JWT;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using Planner.Entities.JWT;
 
 namespace Planner.ServiceInterfaces.Interfaces
 {
     public interface ITokenService
     {
-        Task<JwtResult> CreatejwtSecurityToken(string userName, string password);
+        Task<JwtResult> CreateJwtSecurityToken(string userName, string password);
+
         ClaimsPrincipal GetClaims(string token);
     }
 }

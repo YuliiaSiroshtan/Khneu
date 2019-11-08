@@ -5,10 +5,17 @@ namespace Planner.RepositoryInterfaces.Repository
 {
     public interface IRepository<T> where T : class
     {
-        void Remove(T item);
-        void InsertOrUpdateGraph(T item);
-        Task<T> GetById(object id);
-        Task<IEnumerable<T>> GetAll();
-        Task<int> SaveChanges();
+        Task<IEnumerable<T>> GetEntities();
+
+        Task DeleteEntity(int id);
+
+        Task<T> GetEntityById(int id);
+
+        Task<T> GetEntityByName(string name);
+
+        Task Update(T entity);
+
+        Task<int> Insert(T entity);
+
     }
 }

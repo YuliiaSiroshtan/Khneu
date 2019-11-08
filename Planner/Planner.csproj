@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="src\app\account-component\account-login.component.ts" />
     <None Remove="src\app\account-component\account.modeule.ts" />
     <None Remove="src\app\account-component\shared\services\account-data.service.ts" />
@@ -63,13 +70,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Planner.Common\Planner.Common.csproj" />
     <ProjectReference Include="..\Planner.DependencyInjection\Planner.DependencyInjection.csproj" />
   </ItemGroup>
 
@@ -130,7 +140,6 @@
     <Folder Include="src\app\planner-component\home-component\shared\services\" />
     <Folder Include="src\app\planner-component\shared\models\" />
     <Folder Include="src\reports\" />
-    <Folder Include="wwwroot\images\profileImages\" />
   </ItemGroup>
 
 </Project>

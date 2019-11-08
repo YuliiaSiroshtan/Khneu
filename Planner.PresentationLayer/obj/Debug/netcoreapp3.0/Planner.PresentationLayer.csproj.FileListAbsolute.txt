@@ -1,0 +1,14 @@
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Planner.PresentationLayer.deps.json
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Planner.PresentationLayer.dll
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Planner.PresentationLayer.pdb
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\obj\Debug\netcoreapp3.0\Planner.PresentationLayer.csprojAssemblyReference.cache
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\obj\Debug\netcoreapp3.0\Planner.PresentationLayer.AssemblyInfoInputs.cache
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\obj\Debug\netcoreapp3.0\Planner.PresentationLayer.AssemblyInfo.cs
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\obj\Debug\netcoreapp3.0\Planner.PresentationLayer.dll
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\obj\Debug\netcoreapp3.0\Planner.PresentationLayer.pdb
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\System.IO.Pipelines.dll
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.xml
+C:\Users\LSK\source\repos\Planner\Planner.PresentationLayer\obj\Debug\netcoreapp3.0\Planner.PresentationLayer.csproj.CopyComplete

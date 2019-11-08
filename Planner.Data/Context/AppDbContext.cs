@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Planner.Data.Configuration;
-using Planner.Entities.Domain;
+using Planner.Entities.Domain.AppEntryLoad;
+using Planner.Entities.Domain.AppEntryLoad.FullTime;
+using Planner.Entities.Domain.AppEntryLoad.PartTime;
+using Planner.Entities.Domain.AppUser;
 
 namespace Planner.Data.Context
 {
@@ -8,50 +11,57 @@ namespace Planner.Data.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> context) : base(context) { }
 
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<Role> Role { get; set; }
-        public DbSet<Course> Course { get; set; }
-        public DbSet<DDataStorage> DDataStorage { get; set; }
-        public DbSet<DayEntryLoad> DayEntryLoad { get; set; }
-        public DbSet<DaySemester> DaySemester { get; set; }
-        public DbSet<DayTeachLoad> DayTeachLoad { get; set; }
-        public DbSet<Department> Department { get; set; }
-        public DbSet<DepartmentUser> DepartmentUser { get; set; }
-        public DbSet<EDataStorage> EDataStorage { get; set; }
-        public DbSet<ExternalCollaborator> ExternalCollaborator { get; set; }
-        public DbSet<ExtramuralEntryLoad> ExtramuralEntryLoad { get; set; }
-        public DbSet<ExtramuralSemester> ExtramuralSemester { get; set; }
-        public DbSet<ExtramuralTeachLoad> ExtramuralTeachLoad { get; set; }
-        public DbSet<Faculty> Faculty { get; set; }
-        public DbSet<IndPlanType> IndPlanType { get; set; }
-        public DbSet<IndivPlanFields> IndivPlanFields { get; set; }
-        public DbSet<IndivPlanFieldsValue> IndivPlanFieldsValue { get; set; }
-        public DbSet<LoadingList> LoadingList { get; set; }
-        public DbSet<NDR> NDR { get; set; }
-        public DbSet<NMBD> NMBD { get; set; }
-        public DbSet<PlanChange> PlanChange { get; set; }
-        public DbSet<PlanConclusion> PlanConclusion { get; set; }
-        public DbSet<PlanManagment> PlanManagment { get; set; }
-        public DbSet<PlanMethodicalWork> PlanMethodicalWork { get; set; }
-        public DbSet<PlanRemark> PlanRemark { get; set; }
-        public DbSet<PlanTrainingJob> PlanTrainingJob { get; set; }
-        public DbSet<Publication> Publication { get; set; }
-        //public DbSet<PublicationNMBD> PublicationNMBD { get; set; }
-        public DbSet<PublicationUser> PublicationUser { get; set; }
-        public DbSet<Rate> Rate { get; set; }
-        public DbSet<Schedule> Schedule { get; set; }
-        public DbSet<ScientificPublishing> ScientificPublishing { get; set; }
-        public DbSet<Specialize> Specialize { get; set; }
-        public DbSet<Specialty> Specialty { get; set; }
-        public DbSet<Subject> Subject { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Rate> Rates { get; set; }
+
+        public DbSet<IndividualPlan> IndividualPlans { get; set; }
+
+        public DbSet<FullTimeEntryLoad> FullTimeEntryLoads { get; set; }
+
+        public DbSet<PartTimeEntryLoad> PartTimeEntryLoads { get; set; }
+
+        public DbSet<EntryLoadsProperty> EntryLoadsProperties { get; set; }
+
+        public DbSet<Faculty> Faculties { get; set; }
+
+        public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Discipline> Disciplines { get; set; }
+
+        public DbSet<PartTimeDiscipline> PartTimeDisciplines { get; set; }
+
+        public DbSet<SelectedDiscipline> SelectedDisciplines { get; set; }
+
+        public DbSet<FirstSemester> FirstSemesters { get; set; }
+
+        public DbSet<SecondSemester> SecondSemesters { get; set; }
+
+        public DbSet<ConstituentSession> ConstituentSessions { get; set; }
+
+        public DbSet<ExaminationSession> ExaminationSessions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
+
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            //modelBuilder.ApplyConfiguration(new PublicationNMBDConfiguration());
+            modelBuilder.ApplyConfiguration(new FacultyConfiguration());
+            modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
+
+            modelBuilder.Entity<User>().Ignore(c => c.Departments);
+            modelBuilder.Entity<User>().Ignore(c => c.IndividualPlans);
+
+            modelBuilder.Entity<Role>().Ignore(c => c.Users);
+
+            modelBuilder.Entity<Faculty>().Ignore(c => c.Departments);
+
+            modelBuilder.Entity<Department>().Ignore(c => c.Disciplines);
+            modelBuilder.Entity<Department>().Ignore(c => c.DisciplinesInGraduateSchool);
         }
     }
 }

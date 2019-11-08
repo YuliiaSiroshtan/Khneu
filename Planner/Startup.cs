@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Planner.Common.Constants;
 using Planner.DependencyInjection.Extensions;
 using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Planner.Entities.JWT;
 using static System.Int32;
 
 namespace Planner
@@ -39,24 +39,24 @@ namespace Planner
                 options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                  // укзывает, будет ли валидироваться издатель при валидации токена
                   ValidateIssuer = true,
-                  // строка, представляющая издателя
+
                   ValidIssuer = JwtConst.ISSUER,
-                  // будет ли валидироваться потребитель токена
+
                   ValidateAudience = true,
-                  //// установка потребителя токена
+
                   ValidAudience = JwtConst.AUDIENCE,
-                  // будет ли валидироваться время существования
-                  //ValidateLifetime = true,
-                  // установка ключа безопасности
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtConst.SECURITY_KEY)),
-                  // валидация ключа безопасности
+
+                  ValidateLifetime = true,
+
                   ValidateIssuerSigningKey = true,
+
+                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtConst.KEY)),
+
                 };
               });
 
-      services.AddMvc(option=> { option.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+      services.AddMvc(option => { option.EnableEndpointRouting = false; }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
       services.Configure<FormOptions>(x =>
       {

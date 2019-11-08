@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using Planner.Entities.Domain;
-using Planner.RepositoryInterfaces.UoW;
-using Planner.ServiceInterfaces.DTO;
-using Planner.ServiceInterfaces.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Planner.Entities.Domain.AppUser;
+using Planner.Entities.DTO.AppUserDto;
+using Planner.RepositoryInterfaces.UoW;
+using Planner.ServiceInterfaces.Interfaces;
 
 namespace Planner.BusinessLogic.Service
 {
@@ -12,70 +12,58 @@ namespace Planner.BusinessLogic.Service
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
-        private readonly ISecurityService _securityService;
 
-        public UserService(IUnitOfWork uow, IMapper mapper, ISecurityService securityService)
+        public UserService(IUnitOfWork uow, IMapper mapper)
         {
             _uow = uow;
             _mapper = mapper;
-            _securityService = securityService;
         }
 
-        public async Task<UserDTO> GetUser(string email)
-        {
-            var user = await _uow.UserRepository.GetByUserName(email);
-
-            return _mapper.Map<UserDTO>(user);
-        }
-
-        public async Task<UserDTO> GetUserById(string userId)
-        {
-            var user = await _uow.UserRepository.GetByUserId(userId);
-
-            return _mapper.Map<UserDTO>(user);
-        }
-
-        public async Task<IEnumerable<UserListItemDTO>> GetAllUsers()
+        public async Task<IEnumerable<UserDto>> GetUsers()
         {
             var users = await _uow.UserRepository.GetUsers();
 
-            return _mapper.Map<IEnumerable<UserListItemDTO>>(users);
+            return _mapper.Map<IEnumerable<UserDto>>(users);
         }
 
-        public async Task<bool> ChangeUserStatus(string userId)
+        public async Task DeleteUser(int id)
         {
-            var user = await _uow.UserRepository.GetByUserId(userId);
-            user.IsActive = !user.IsActive;
-            _uow.UserRepository.UpdateUser(user);
-
-            return await _uow.SaveChanges() >= 0;
+            await _uow.UserRepository.DeleteUser(id);
         }
 
-        public async Task<bool> AddOrUpdateUser(UserDTO userDTO)
+        public async Task<UserDto> GetUserById(int id)
         {
-            var user = _mapper.Map<ApplicationUser>(userDTO);
-            if (!string.IsNullOrEmpty(userDTO.ApplicationUserId))
-            {
-                var existingUser = await _uow.UserRepository.GetByUserName(userDTO.Email);
-                user.PasswordHash = existingUser.PasswordHash;
-                user.IsActive = user.IsActive;
-            }
-            else
-            {
-                user.PasswordHash =  _securityService.GetSha256Hash(userDTO.Password);
-                user.IsActive = true;
-            }
+            var user = await _uow.UserRepository.GetUserById(id);
 
-            var role = await _uow.RoleRepository.GetRoleByName(userDTO.RoleName);
-            if (role != null)
-            {
-                user.Role = role;
-            }
-
-            _uow.UserRepository.UpdateUser(user);
-
-            return await _uow.SaveChanges() >= 0;
+            return _mapper.Map<UserDto>(user);
         }
 
+        public async Task<UserDto> GetUserByLogin(string login)
+        {
+            var user = await _uow.UserRepository.GetUserByLogin(login);
+
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task<UserDto> GetUserByLoginAndPassword(string login, string password)
+        {
+            var user = await _uow.UserRepository.GetUserByLoginAndPassword(login, password);
+
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task UpdateUser(UserDto userDto)
+        {
+            var user= _mapper.Map<User>(userDto);
+
+            await _uow.UserRepository.UpdateUser(user);
+        }
+
+        public async Task InsertUser(UserDto userDto)
+        {
+            var user = _mapper.Map<User>(userDto);
+
+            await _uow.UserRepository.InsertUser(user);
+        }
     }
 }
