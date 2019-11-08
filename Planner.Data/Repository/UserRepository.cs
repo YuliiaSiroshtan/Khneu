@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Planner.Data.GenericRepository;
@@ -172,10 +174,119 @@ namespace Planner.Data.Repository
 
         public async Task UpdateUser(User user)
         {
-            //todo сделать репозиторий для вставки вібраніх дисциплин и для рейтов пользователя в отношения многие ко многим.
             await Update(user);
+
+            await DeleteUserDepartment(user.Id);
+            await DeleteUserSelectedDiscipline(user.Id);
+            await DeleteRateUser(user.Id);
+
+            if (user.Departments.Count > 0)
+            {
+                await InsertUserDepartment(user);
+            }
+
+            if (user.SelectedDisciplines.Count > 0)
+            {
+                await InsertUserSelectedDiscipline(user);
+            }
+
+            if (user.Rates.Count > 0)
+            {
+                await InsertRateUser(user);
+            }
         }
 
         public async Task<int> InsertUser(User user) => await Insert(user);
+
+        #region private methods
+
+        #region InsertEntity
+
+        private async Task InsertUserSelectedDiscipline(User user)
+        {
+            using var connection = await OpenConnection();
+
+            var query = new StringBuilder("INSERT INTO CategoryGame ([UserId], [SelectedDisciplineId]) VALUES ");
+
+            foreach (var selectedDiscipline in user.SelectedDisciplines)
+            {
+                query.Append("(").Append(user.Id).Append(",").Append(selectedDiscipline.Id).Append(")").Append(",");
+            }
+
+            query.Remove(query.Length - 1, 1);
+
+            await connection.ExecuteAsync(query.ToString());
+        }
+
+        private async Task InsertUserDepartment(User user)
+        {
+            using var connection = await OpenConnection();
+
+            var query = new StringBuilder("INSERT INTO UserDepartment ([UserId], [DepartmentId]) VALUES ");
+
+            foreach (var department in user.Departments)
+            {
+                query.Append("(").Append(user.Id).Append(",").Append(department.Id).Append(")").Append(",");
+            }
+
+            query.Remove(query.Length - 1, 1);
+
+            await connection.ExecuteAsync(query.ToString());
+        }
+
+        private async Task InsertRateUser(User user)
+        {
+            using var connection = await OpenConnection();
+
+            var query = new StringBuilder("INSERT INTO RateUser ([RateId], [UserId]) VALUES ");
+
+            foreach (var rate in user.Rates)
+            {
+                query.Append("(").Append(rate.Id).Append(",").Append(user.Id).Append(")").Append(",");
+            }
+
+            query.Remove(query.Length - 1, 1);
+
+            await connection.ExecuteAsync(query.ToString());
+        }
+
+        #endregion
+
+        #region DeleteEntity
+
+        private async Task DeleteUserSelectedDiscipline(int id)
+        {
+            using var connection = await OpenConnection();
+
+            const string query = "DELETE FROM UserSelectedDiscipline " +
+                                 "WHERE UserId = @UserId";
+
+            await connection.ExecuteAsync(query, new { UserId = id });
+        }
+
+        private async Task DeleteUserDepartment(int id)
+        {
+            using var connection = await OpenConnection();
+
+            const string query = "DELETE FROM UserDepartment " +
+                                 "WHERE UserId = @UserId";
+
+            await connection.ExecuteAsync(query, new { UserId = id });
+        }
+
+        private async Task DeleteRateUser(int id)
+        {
+            using var connection = await OpenConnection();
+
+            const string query = "DELETE FROM RateUser " +
+                                 "WHERE UserId = @UserId";
+
+            await connection.ExecuteAsync(query, new { UserId = id });
+        }
+
+        #endregion
+
+        #endregion
+
     }
 }
