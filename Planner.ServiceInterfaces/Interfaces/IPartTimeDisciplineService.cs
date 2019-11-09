@@ -8,6 +8,8 @@ namespace Planner.ServiceInterfaces.Interfaces
     {
         Task<IEnumerable<PartTimeDisciplineDto>> GetPartTimeDisciplines();
 
+        Task<IEnumerable<PartTimeDisciplineDto>> GetPartTimeDisciplinesByDepartmentId(int id);
+
         Task DeletePartTimeDiscipline(int id);
 
         Task<PartTimeDisciplineDto> GetPartTimeDisciplineById(int id);

@@ -7,6 +7,8 @@ namespace Planner.ServiceInterfaces.Interfaces
     public interface IDisciplineService
     {
         Task<IEnumerable<DisciplineDto>> GetDisciplines();
+        
+        Task<IEnumerable<DisciplineDto>> GetDisciplinesByDepartmentId(int id);
 
         Task DeleteDiscipline(int id);
 

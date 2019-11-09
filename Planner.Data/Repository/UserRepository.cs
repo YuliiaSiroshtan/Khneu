@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,10 +105,6 @@ namespace Planner.Data.Repository
             }).SingleOrDefault();
         }
 
-        private static void Temp()
-        {
-            return;
-        }
         public async Task<User> GetUserByLogin(string login)
         {
             using var connection = await OpenConnection();

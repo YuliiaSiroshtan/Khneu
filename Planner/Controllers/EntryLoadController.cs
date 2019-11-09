@@ -108,8 +108,6 @@ namespace Planner.Controllers
 
         if (fileInfo.File.Length > 0)
         {
-          var typeFile = "." + fileInfo.File.ContentType.Split('/')[1];
-          fileName += typeFile;
           var fullPath = Path.Combine(path, fileName);
 
           await using var stream = new FileStream(fullPath, FileMode.Create);

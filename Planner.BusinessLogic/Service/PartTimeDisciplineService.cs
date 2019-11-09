@@ -26,6 +26,13 @@ namespace Planner.BusinessLogic.Service
             return _mapper.Map<IEnumerable<PartTimeDisciplineDto>>(partTimeDisciplines);
         }
 
+        public async Task<IEnumerable<PartTimeDisciplineDto>> GetPartTimeDisciplinesByDepartmentId(int id)
+        {
+            var partTimeDisciplines = await _uow.PartTimeDisciplineRepository.GetPartTimeDisciplinesByDepartmentId(id);
+
+            return _mapper.Map<IEnumerable<PartTimeDisciplineDto>>(partTimeDisciplines);
+        }
+
         public async Task DeletePartTimeDiscipline(int id)
         {
             await _uow.PartTimeDisciplineRepository.DeletePartTimeDiscipline(id);

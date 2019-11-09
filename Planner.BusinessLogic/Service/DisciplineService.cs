@@ -26,6 +26,13 @@ namespace Planner.BusinessLogic.Service
             return _mapper.Map<IEnumerable<DisciplineDto>>(disciplines);
         }
 
+        public async Task<IEnumerable<DisciplineDto>> GetDisciplinesByDepartmentId(int id)
+        {
+            var disciplines = await _uow.DisciplineRepository.GetDisciplinesByDepartmentId(id);
+
+            return _mapper.Map<IEnumerable<DisciplineDto>>(disciplines);
+        }
+
         public async Task DeleteDiscipline(int id)
         {
             await _uow.DisciplineRepository.DeleteDiscipline(id);

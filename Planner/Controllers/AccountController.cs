@@ -3,8 +3,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Planner.ServiceInterfaces.Interfaces;
-using System.IO;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Planner.Entities.DTO.AppUserDto;
 using Planner.PresentationLayer.ViewModels;
@@ -51,55 +49,12 @@ namespace Planner.Controllers
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> UpdateUser(UserViewModel userViewModel)
+    public async Task<IActionResult> UpdateUser([FromBody] UserViewModel userViewModel)
     {
       var user = Mapper.Map<UserDto>(userViewModel);
       await ServiceFactory.UserService.UpdateUser(user);
 
       return Ok(userViewModel);
-    }
-
-    [HttpPost, DisableRequestSizeLimit]
-    public async Task<IActionResult> UploadFile()
-    {
-      const string folderName = "Images";
-      var path = string.Empty;
-
-      try
-      {
-        var file = Request.Form.Files[0];
-        var newPath = Path.Combine(_hostingEnvironment.WebRootPath, folderName);
-
-        if (!Directory.Exists(newPath))
-        {
-          Directory.CreateDirectory(newPath);
-        }
-
-        if (file.Length > 0)
-        {
-          var typeFile = file.ContentType.Split('/')[1];
-          var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).Name
-                           .TrimStart('"').Replace('"', '.') + typeFile;
-          var fullPath = Path.Combine(newPath, fileName);
-
-          if (System.IO.File.Exists(fullPath))
-          {
-            System.IO.File.Delete(fullPath);
-          }
-
-          await using var stream = new FileStream(fullPath, FileMode.Create);
-          await file.CopyToAsync(stream);
-          path = $"/{folderName}/{fileName}";
-
-          return Json(path);
-        }
-      }
-      catch (System.Exception ex)
-      {
-        return BadRequest(ex.Message);
-      }
-
-      return Json(path);
     }
   }
 }

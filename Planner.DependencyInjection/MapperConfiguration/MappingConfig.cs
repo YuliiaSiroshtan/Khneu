@@ -86,6 +86,12 @@ namespace Planner.DependencyInjection.MapperConfiguration
                 .ForMember(x => x.DepartmentName, y => y.MapFrom(z => z.Department.Name));
 
             CreateMap<EntryLoadsPropertyDto, EntryLoadsPropertyViewModel>();
+            CreateMap<FirstSemesterDto, FirstSemesterViewModel>();
+            CreateMap<SecondSemesterDto, SecondSemesterViewModel>();
+            CreateMap<DisciplineDto, FullTimeDisciplinesViewModel>();
+            CreateMap<PartTimeDisciplineDto, PartTimeDisciplineViewModel>();
+            CreateMap<ConstituentSessionDto, ConstituentSessionViewModel>();
+            CreateMap<ExaminationSessionDto, ExaminationSessionViewModel>();
 
             #endregion
 
@@ -101,10 +107,14 @@ namespace Planner.DependencyInjection.MapperConfiguration
                 /*.ForMember(x => x.Faculty.Name, y => y.MapFrom(z => z.FacultyName))*/;
 
             CreateMap<RateViewModel, RateDto>();
-
             CreateMap<SelectedDisciplinesViewModel, SelectedDisciplineDto>();
-
             CreateMap<EntryLoadsPropertyViewModel, EntryLoadsPropertyDto>();
+            CreateMap<FirstSemesterViewModel, FirstSemesterDto>();
+            CreateMap<SecondSemesterViewModel, SecondSemesterDto>();
+            CreateMap<FullTimeDisciplinesViewModel, DisciplineDto>();
+            CreateMap<PartTimeDisciplineViewModel, PartTimeDisciplineDto>();
+            CreateMap<ConstituentSessionViewModel, ConstituentSessionDto>();
+            CreateMap<ExaminationSessionViewModel, ExaminationSessionDto>();
 
             #endregion
         }
