@@ -31,7 +31,7 @@ namespace Planner.Entities.Domain.AppEntryLoad.PartTime
         public string NumberOfExaminationSession { get; set; }
 
         public int? PartTimeDisciplineId { get; set; }
-        
+
         [Description("Ignore")]
         public PartTimeDiscipline PartTimeDiscipline { get; set; }
     }

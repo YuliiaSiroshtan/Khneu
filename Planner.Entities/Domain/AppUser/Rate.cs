@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Planner.Entities.Domain.AppEntryLoad;
+using System.Collections.Generic;
 using System.ComponentModel;
-using Planner.Entities.Domain.AppEntryLoad.FullTime;
+using Planner.Entities.Domain.UniversityUnits;
 
 namespace Planner.Entities.Domain.AppUser
 {

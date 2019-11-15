@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Planner.Entities.JWT;
-using static System.Int32;
 
 namespace Planner
 {
@@ -60,8 +59,8 @@ namespace Planner
 
       services.Configure<FormOptions>(x =>
       {
-        x.ValueLengthLimit = MaxValue;
-        x.MultipartBodyLengthLimit = MaxValue;
+        x.ValueLengthLimit = int.MaxValue;
+        x.MultipartBodyLengthLimit = int.MaxValue;
       });
 
       // Register the Swagger generator, defining 1 or more Swagger documents

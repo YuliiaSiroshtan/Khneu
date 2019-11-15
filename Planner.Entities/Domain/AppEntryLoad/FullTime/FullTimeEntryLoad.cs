@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Planner.Entities.Domain.UniversityUnits;
 
 namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 {
@@ -37,10 +38,10 @@ namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 
         public string Notes { get; set; }
 
-        public int? DisciplineId { get; set; }
+        public int? FullTimeDisciplineId { get; set; }
 
         [Description("Ignore")]
-        public Discipline Discipline { get; set; }
+        public FullTimeDiscipline FullTimeDiscipline { get; set; }
 
     }
 }

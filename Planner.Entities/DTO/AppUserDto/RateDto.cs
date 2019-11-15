@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using Planner.Entities.Domain.AppUser;
+﻿using Planner.Entities.Domain.AppUser;
+using System.Collections.Generic;
+using Planner.Entities.DTO.UniversityUnits;
 
 namespace Planner.Entities.DTO.AppUserDto
 {

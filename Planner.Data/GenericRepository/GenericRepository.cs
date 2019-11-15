@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Planner.RepositoryInterfaces.Repository;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Data.SqlClient;
-using Planner.RepositoryInterfaces.Repository;
 
 namespace Planner.Data.GenericRepository
 {

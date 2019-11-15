@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Planner.Entities.Domain.AppSelectedDiscipline;
+using Planner.Entities.Domain.UniversityUnits;
+using System.Collections.Generic;
 using System.ComponentModel;
-using Planner.Entities.Domain.AppEntryLoad;
-using Planner.Entities.Domain.AppEntryLoad.FullTime;
 
 namespace Planner.Entities.Domain.AppUser
 {
     public class User
     {
         public int Id { get; set; }
+
+        public string LdapId { get; set; }
 
         #region TempData
 

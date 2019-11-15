@@ -1,5 +1,13 @@
-﻿using Planner.Data.Repository;
-using Planner.RepositoryInterfaces.ObjectInterfaces;
+﻿using Planner.Data.Repository.AppDiscipline;
+using Planner.Data.Repository.AppEntryLoad;
+using Planner.Data.Repository.AppSelectedDiscipline;
+using Planner.Data.Repository.AppUser;
+using Planner.Data.Repository.UniversityUnits;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppDiscipline;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppSelectedDiscipline;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppUser;
+using Planner.RepositoryInterfaces.ObjectInterfaces.UniversityUnits;
 using Planner.RepositoryInterfaces.UoW;
 
 namespace Planner.Data.UoW
@@ -15,7 +23,7 @@ namespace Planner.Data.UoW
             SecondSemesterRepository = new SecondSemesterRepository(connectionString, "SecondSemesters");
             FacultyRepository = new FacultyRepository(connectionString, "Faculties");
             DepartmentRepository = new DepartmentRepository(connectionString, "Departments");
-            DisciplineRepository = new DisciplineRepository(connectionString, "Disciplines");
+            FullTimeDisciplineRepository = new FullTimeDisciplineRepository(connectionString, "FullTimeDisciplines");
             SelectedDisciplineRepository = new SelectedDisciplineRepository(connectionString, "SelectedDisciplines");
             RateRepository = new RateRepository(connectionString, "Rates");
             RoleRepository = new RoleRepository(connectionString, "Roles");
@@ -32,7 +40,7 @@ namespace Planner.Data.UoW
         public ISecondSemesterRepository SecondSemesterRepository { get; }
         public IFacultyRepository FacultyRepository { get; }
         public IDepartmentRepository DepartmentRepository { get; }
-        public IDisciplineRepository DisciplineRepository { get; }
+        public IFullTimeDisciplineRepository FullTimeDisciplineRepository { get; }
         public ISelectedDisciplineRepository SelectedDisciplineRepository { get; }
         public IRateRepository RateRepository { get; }
         public IRoleRepository RoleRepository { get; }

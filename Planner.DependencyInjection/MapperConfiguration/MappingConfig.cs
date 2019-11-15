@@ -1,12 +1,18 @@
-﻿using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.Domain.AppEntryLoad.FullTime;
 using Planner.Entities.Domain.AppEntryLoad.PartTime;
+using Planner.Entities.Domain.AppSelectedDiscipline;
 using Planner.Entities.Domain.AppUser;
-using Planner.Entities.DTO;
+using Planner.Entities.Domain.UniversityUnits;
+using Planner.Entities.DTO.AppEntryLoadDto;
+using Planner.Entities.DTO.AppEntryLoadDto.FullTime;
+using Planner.Entities.DTO.AppEntryLoadDto.PartTime;
+using Planner.Entities.DTO.AppSelectedDisciplineDto;
 using Planner.Entities.DTO.AppUserDto;
+using Planner.Entities.DTO.UniversityUnits;
 using Planner.PresentationLayer.ViewModels;
+using System.Linq;
 
 namespace Planner.DependencyInjection.MapperConfiguration
 {
@@ -25,11 +31,11 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<FacultyDto, Faculty>();
             CreateMap<EntryLoadsPropertyDto, EntryLoadsProperty>();
             CreateMap<FullTimeEntryLoadDto, FullTimeEntryLoad>()
-                .ForMember(x => x.DisciplineId, y => y.MapFrom(z => z.Discipline.Id))
+                .ForMember(x => x.FullTimeDisciplineId, y => y.MapFrom(z => z.FullTimeDiscipline.Id))
                 .ForMember(x => x.FacultyId, y => y.MapFrom(z => z.Faculty.Id));
             CreateMap<PartTimeEntryLoadDto, PartTimeEntryLoad>()
                 .ForMember(x => x.PartTimeDisciplineId, y => y.MapFrom(z => z.PartTimeDiscipline.Id));
-            CreateMap<DisciplineDto, Discipline>()
+            CreateMap<FullTimeDisciplineDto, FullTimeDiscipline>()
                 .ForMember(x => x.FirstSemesterId, y => y.MapFrom(z => z.FirstSemester.Id))
                 .ForMember(x => x.SecondSemesterId, y => y.MapFrom(z => z.SecondSemester.Id))
                 .ForMember(x => x.DepartmentId, y => y.MapFrom(z => z.Department.Id));
@@ -44,6 +50,15 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<IndividualPlanDto, IndividualPlan>();
             CreateMap<SelectedDisciplineDto, SelectedDiscipline>()
                 .ForMember(x => x.DepartmentId, y => y.MapFrom(z => z.Department.Id));
+            CreateMap<LectureDto, Lecture>()
+                .ForMember(x => x.SelectedDisciplineId, y => y.MapFrom(z => z.SelectedDiscipline.Id))
+                .ForMember(x => x.UserId, y => y.MapFrom(z => z.User.Id));
+            CreateMap<LaboratoryDto, Laboratory>()
+                .ForMember(x => x.SelectedDisciplineId, y => y.MapFrom(z => z.SelectedDiscipline.Id))
+                .ForMember(x => x.UserId, y => y.MapFrom(z => z.User.Id));
+            CreateMap<PracticalDto, Practical>()
+                .ForMember(x => x.SelectedDisciplineId, y => y.MapFrom(z => z.SelectedDiscipline.Id))
+                .ForMember(x => x.UserId, y => y.MapFrom(z => z.User.Id));
 
             #endregion
 
@@ -57,7 +72,7 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<EntryLoadsProperty, EntryLoadsPropertyDto>();
             CreateMap<FullTimeEntryLoad, FullTimeEntryLoadDto>();
             CreateMap<PartTimeEntryLoad, PartTimeEntryLoadDto>();
-            CreateMap<Discipline, DisciplineDto>();
+            CreateMap<FullTimeDiscipline, FullTimeDisciplineDto>();
             CreateMap<PartTimeDiscipline, PartTimeDisciplineDto>();
             CreateMap<FirstSemester, FirstSemesterDto>();
             CreateMap<SecondSemester, SecondSemesterDto>();
@@ -65,6 +80,9 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<ExaminationSession, ExaminationSessionDto>();
             CreateMap<IndividualPlan, IndividualPlanDto>();
             CreateMap<SelectedDiscipline, SelectedDisciplineDto>();
+            CreateMap<Lecture, LectureDto>();
+            CreateMap<Laboratory, LaboratoryDto>();
+            CreateMap<Practical, PracticalDto>();
 
             #endregion
 
@@ -83,38 +101,48 @@ namespace Planner.DependencyInjection.MapperConfiguration
                 .ForMember(x => x.DepartmentName, y => y.MapFrom(z => z.Department.Name));
 
             CreateMap<SelectedDisciplineDto, SelectedDisciplinesViewModel>()
-                .ForMember(x => x.DepartmentName, y => y.MapFrom(z => z.Department.Name));
+                .ForMember(x => x.DepartmentName, y => y.MapFrom(z => z.Department.Name))
+                .ForMember(x => x.Lectures, y => y.MapFrom(z => z.Lectures.ToArray()))
+                .ForMember(x => x.Laboratories, y => y.MapFrom(z => z.Laboratories.ToArray()))
+                .ForMember(x => x.Practicals, y => y.MapFrom(z => z.Practicals.ToArray()));
 
             CreateMap<EntryLoadsPropertyDto, EntryLoadsPropertyViewModel>();
             CreateMap<FirstSemesterDto, FirstSemesterViewModel>();
             CreateMap<SecondSemesterDto, SecondSemesterViewModel>();
-            CreateMap<DisciplineDto, FullTimeDisciplinesViewModel>();
+            CreateMap<FullTimeDisciplineDto, FullTimeDisciplinesViewModel>();
             CreateMap<PartTimeDisciplineDto, PartTimeDisciplineViewModel>();
             CreateMap<ConstituentSessionDto, ConstituentSessionViewModel>();
             CreateMap<ExaminationSessionDto, ExaminationSessionViewModel>();
+            CreateMap<LectureDto, LectureViewModel>();
+            CreateMap<LaboratoryDto, LaboratoryViewModel>();
+            CreateMap<PracticalDto, PracticalViewModel>();
 
             #endregion
 
             #region   view model to dto
 
             CreateMap<UserViewModel, UserDto>()
-                //.ForMember(x => x.Role.Name, y => y.MapFrom(z => z.RoleName))
                 .ForMember(x => x.Departments, y => y.MapFrom(z => z.Departments.ToHashSet()))
                 .ForMember(x => x.Rates, y => y.MapFrom(z => z.Rates.ToHashSet()))
                 .ForMember(x => x.SelectedDisciplines, y => y.MapFrom(z => z.SelectedDisciplines.ToHashSet()));
 
-            CreateMap<DepartmentViewModel, DepartmentDto>()
-                /*.ForMember(x => x.Faculty.Name, y => y.MapFrom(z => z.FacultyName))*/;
+            CreateMap<DepartmentViewModel, DepartmentDto>();
 
             CreateMap<RateViewModel, RateDto>();
-            CreateMap<SelectedDisciplinesViewModel, SelectedDisciplineDto>();
+            CreateMap<SelectedDisciplinesViewModel, SelectedDisciplineDto>()
+                .ForMember(x => x.Lectures, y => y.MapFrom(z => z.Lectures.ToHashSet()))
+                .ForMember(x => x.Laboratories, y => y.MapFrom(z => z.Laboratories.ToHashSet()))
+                .ForMember(x => x.Practicals, y => y.MapFrom(z => z.Practicals.ToHashSet())); ;
             CreateMap<EntryLoadsPropertyViewModel, EntryLoadsPropertyDto>();
             CreateMap<FirstSemesterViewModel, FirstSemesterDto>();
             CreateMap<SecondSemesterViewModel, SecondSemesterDto>();
-            CreateMap<FullTimeDisciplinesViewModel, DisciplineDto>();
+            CreateMap<FullTimeDisciplinesViewModel, FullTimeDisciplineDto>();
             CreateMap<PartTimeDisciplineViewModel, PartTimeDisciplineDto>();
             CreateMap<ConstituentSessionViewModel, ConstituentSessionDto>();
             CreateMap<ExaminationSessionViewModel, ExaminationSessionDto>();
+            CreateMap<LectureViewModel, LectureDto>();
+            CreateMap<LaboratoryViewModel, LaboratoryDto>();
+            CreateMap<PracticalViewModel, PracticalDto>();
 
             #endregion
         }

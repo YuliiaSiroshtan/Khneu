@@ -1,14 +1,32 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Planner.Data.Context;
-using Planner.RepositoryInterfaces.UoW;
-using Planner.RepositoryInterfaces.ObjectInterfaces;
+using Microsoft.Extensions.DependencyInjection;
+using Planner.BusinessLogic.Service.AppDiscipline;
+using Planner.BusinessLogic.Service.AppEntryLoad;
+using Planner.BusinessLogic.Service.AppSelectedDiscipline;
+using Planner.BusinessLogic.Service.AppUser;
+using Planner.BusinessLogic.Service.ServiceFactory;
+using Planner.BusinessLogic.Service.UniversityUnits;
+using Planner.BusinessLogic.Service.Сommon;
+using Planner.Data.Repository.AppDiscipline;
+using Planner.Data.Repository.AppEntryLoad;
+using Planner.Data.Repository.AppSelectedDiscipline;
+using Planner.Data.Repository.AppUser;
+using Planner.Data.Repository.UniversityUnits;
 using Planner.Data.UoW;
-using Planner.Data.Repository;
-using Planner.ServiceInterfaces.Interfaces;
-using Planner.BusinessLogic.Service;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppDiscipline;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppSelectedDiscipline;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppUser;
+using Planner.RepositoryInterfaces.ObjectInterfaces.UniversityUnits;
+using Planner.RepositoryInterfaces.UoW;
+using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
+using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
+using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
+using Planner.ServiceInterfaces.Interfaces.AppUser;
+using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
+using Planner.ServiceInterfaces.Interfaces.UniversityUnits;
+using Planner.ServiceInterfaces.Interfaces.Сommon;
 using System;
 
 namespace Planner.DependencyInjection.Extensions
@@ -17,9 +35,6 @@ namespace Planner.DependencyInjection.Extensions
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration
-                .GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Planner.Data")));
-
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider => new UnitOfWork(configuration
                 .GetConnectionString("DefaultConnection")));
 
@@ -28,9 +43,9 @@ namespace Planner.DependencyInjection.Extensions
             services.AddSingleton<IEntryLoadsPropertyRepository, EntryLoadsPropertyRepository>();
             services.AddSingleton<IFirstSemesterRepository, FirstSemesterRepository>();
             services.AddSingleton<ISecondSemesterRepository, SecondSemesterRepository>();
-            services.AddSingleton<IFacultyRepository, FacultyRepository>(); 
+            services.AddSingleton<IFacultyRepository, FacultyRepository>();
             services.AddSingleton<IDepartmentRepository, DepartmentRepository>();
-            services.AddSingleton<IDisciplineRepository, DisciplineRepository>();
+            services.AddSingleton<IFullTimeDisciplineRepository, FullTimeDisciplineRepository>();
             services.AddSingleton<ISelectedDisciplineRepository, SelectedDisciplineRepository>();
             services.AddSingleton<IRateRepository, RateRepository>();
             services.AddSingleton<IRoleRepository, RoleRepository>();
@@ -49,7 +64,7 @@ namespace Planner.DependencyInjection.Extensions
             services.AddTransient<ISecondSemesterService, SecondSemesterService>();
             services.AddTransient<IFacultyService, FacultyService>();
             services.AddTransient<IDepartmentService, DepartmentService>();
-            services.AddTransient<IDisciplineService, DisciplineService>();
+            services.AddTransient<IFullTimeDisciplineService, FullTimeDisciplineService>();
             services.AddTransient<ISelectedDisciplineService, SelectedDisciplineService>();
             services.AddTransient<IRateService, RateService>();
             services.AddTransient<IRoleService, RoleService>();

@@ -1,4 +1,8 @@
-﻿using Planner.RepositoryInterfaces.ObjectInterfaces;
+﻿using Planner.RepositoryInterfaces.ObjectInterfaces.AppDiscipline;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppSelectedDiscipline;
+using Planner.RepositoryInterfaces.ObjectInterfaces.AppUser;
+using Planner.RepositoryInterfaces.ObjectInterfaces.UniversityUnits;
 
 namespace Planner.RepositoryInterfaces.UoW
 {
@@ -11,7 +15,7 @@ namespace Planner.RepositoryInterfaces.UoW
         ISecondSemesterRepository SecondSemesterRepository { get; }
         IFacultyRepository FacultyRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
-        IDisciplineRepository DisciplineRepository { get; }
+        IFullTimeDisciplineRepository FullTimeDisciplineRepository { get; }
         ISelectedDisciplineRepository SelectedDisciplineRepository { get; }
         IRateRepository RateRepository { get; }
         IRoleRepository RoleRepository { get; }

@@ -1,14 +1,17 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Planner.Entities.DTO.AppEntryLoadDto;
+using Planner.Entities.DTO.AppEntryLoadDto.FullTime;
+using Planner.Entities.DTO.AppEntryLoadDto.PartTime;
+using Planner.Entities.DTO.UniversityUnits;
+using Planner.PresentationLayer.ViewModels;
+using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Planner.Entities.DTO;
-using Planner.PresentationLayer.ViewModels;
-using Planner.ServiceInterfaces.Interfaces;
 
 namespace Planner.Controllers
 {
@@ -67,7 +70,6 @@ namespace Planner.Controllers
       }
 
       return Ok(entryLoadsProperty);
-
     }
 
     [HttpPost("[action]")]
@@ -108,6 +110,8 @@ namespace Planner.Controllers
 
         if (fileInfo.File.Length > 0)
         {
+          fileName += fileInfo.File.ContentType;
+
           var fullPath = Path.Combine(path, fileName);
 
           await using var stream = new FileStream(fullPath, FileMode.Create);
@@ -142,7 +146,7 @@ namespace Planner.Controllers
 
         var firstSemester = GetFirstSemesterData(firstSemesterData);
         var secondSemester = GetSecondSemesterData(secondSemesterData);
-        var discipline = GetDisciplineData(disciplineData, firstSemester, secondSemester, codeDepartmentData);
+        var discipline = GetFullTimeDisciplineData(disciplineData, firstSemester, secondSemester, codeDepartmentData);
         var entryLoad = GetFullEntryLoadData(entryLoadData, discipline);
 
         await InsertData(firstSemester, secondSemester, discipline, entryLoad);
@@ -246,7 +250,7 @@ namespace Planner.Controllers
       };
     }
 
-    private FullTimeEntryLoadDto GetFullEntryLoadData(object[,] entryLoadData, DisciplineDto discipline)
+    private FullTimeEntryLoadDto GetFullEntryLoadData(object[,] entryLoadData, FullTimeDisciplineDto fullTimeDiscipline)
     {
       return new FullTimeEntryLoadDto
       {
@@ -264,14 +268,14 @@ namespace Planner.Controllers
         AmountOfStudentsStreams = entryLoadData[1, 12]?.ToString(),
         ConnectingOfStudentStreams = entryLoadData[1, 13]?.ToString(),
         Notes = entryLoadData[1, 14]?.ToString(),
-        Discipline = discipline
+        FullTimeDiscipline = fullTimeDiscipline
       };
     }
 
-    private DisciplineDto GetDisciplineData(object[,] disciplineData, FirstSemesterDto firstSemester,
+    private FullTimeDisciplineDto GetFullTimeDisciplineData(object[,] disciplineData, FirstSemesterDto firstSemester,
       SecondSemesterDto secondSemester, object[,] codeDepartmentData)
     {
-      return new DisciplineDto
+      return new FullTimeDisciplineDto
       {
         Name = disciplineData[1, 1]?.ToString(),
         ECTS = disciplineData[1, 2]?.ToString(),
@@ -324,12 +328,12 @@ namespace Planner.Controllers
         Name = fileName,
         DateTimeUpload = DateTime.Now,
         HoursPerRate = hoursPerRate,
-        IsActive = true
+        IsActive = false
       });
     }
 
     private async Task InsertData(FirstSemesterDto firstSemester,
-      SecondSemesterDto secondSemester, DisciplineDto discipline, FullTimeEntryLoadDto fullTimeEntryLoad)
+      SecondSemesterDto secondSemester, FullTimeDisciplineDto fullTimeDiscipline, FullTimeEntryLoadDto fullTimeEntryLoad)
     {
 
       if (firstSemester.Hours != null)
@@ -342,7 +346,7 @@ namespace Planner.Controllers
         secondSemester.Id = await ServiceFactory.SecondSemester.InsertSecondSemester(secondSemester);
       }
 
-      discipline.Id = await ServiceFactory.DisciplineService.InsertDiscipline(discipline);
+      fullTimeDiscipline.Id = await ServiceFactory.FullTimeDisciplineService.InsertFullTimeDiscipline(fullTimeDiscipline);
 
       await ServiceFactory.FullTimeEntryLoadService.InsertFullTimeEntryLoad(fullTimeEntryLoad);
     }

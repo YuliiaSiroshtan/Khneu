@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ObjectInterfaces\INMBD.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using Planner.Entities.Domain.AppUser;
 
 namespace Planner.Entities.DTO.AppUserDto
 {

@@ -1,11 +1,11 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using Planner.ServiceInterfaces.Interfaces;
+using Planner.PresentationLayer.ViewModels;
+using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-using Planner.PresentationLayer.ViewModels;
 
 namespace Planner.Controllers
 {

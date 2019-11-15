@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using Planner.Entities.Domain.AppEntryLoad.FullTime;
+using Planner.Entities.Domain.UniversityUnits;
 
 namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 {

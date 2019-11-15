@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Planner.PresentationLayer.ViewModels;
-using Planner.ServiceInterfaces.Interfaces;
+using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
+using System.Threading.Tasks;
 
 namespace Planner.Controllers
 {

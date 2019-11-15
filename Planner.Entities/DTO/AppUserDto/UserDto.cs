@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
-using Planner.Entities.Domain.AppUser;
+using Planner.Entities.DTO.AppSelectedDisciplineDto;
+using Planner.Entities.DTO.UniversityUnits;
 
 namespace Planner.Entities.DTO.AppUserDto
 {
     public class UserDto
     {
         public int Id { get; set; }
+
+        public int LdapId { get; set; }
 
         #region TempData
 
