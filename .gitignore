@@ -66,3 +66,6 @@ Thumbs.db
 
 /Planner.RepositoryInterfaces/bin
 /Planner.RepositoryInterfaces/obj
+/Planner.ExcelParser/bin
+/Planner.ExcelParser/obj
+/Planner.PresentationLayer/bin
