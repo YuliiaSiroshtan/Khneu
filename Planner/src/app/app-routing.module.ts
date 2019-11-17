@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccountLoginComponent } from "src/app/account-component/account-login-component/account-login.component";
-import { HomeComponent } from "src/app/planner-component/home-component/home.component";
-import { AuthGuard } from "src/app/shared/guard/auth-guard";
-import { AddUpdateUserComponent } from "src/app/planner-component/shared/components/add-update-user-component/add-update-user.component";
-import { UserListComponent } from "src/app/planner-component/user-list-component/user-list.component";
-import { NDRComponent } from "src/app/planner-component/ndr-component/ndr.component";
-import { PublicationComponent } from "src/app/planner-component/publication-component/publication.component";
-import { AppDashboardComponent } from "src/app/planner-component/app-dashboard-component/app.dashboard.component";
-import { ReportComponent } from "src/app/planner-component/report-component/report.component";
-import { TrainingJobComponent } from "src/app/planner-component/indiv-plan-component/training-job-component/training.job.component";
-import { PlanManagementComponent } from "src/app/planner-component/indiv-plan-component/plan-management-component/plan.management.component";
-import { PlanMethodicalWorkComponent } from "src/app/planner-component/indiv-plan-component/plan-methodical-work-component/plan.methodical.work.component";
-import { PlanScientificWorkComponent } from "src/app/planner-component/indiv-plan-component/plan-scientific-work-component/plan.scientific.work.component";
-import { UploadDistributionComponent } from 'src/app/planner-component/upload-distribution-component/upload-distribution.component';
-import { DistributionComponent } from 'src/app/planner-component/distribution-component/distribution.component';
+import { LoginComponent } from './auth/login-component/login.component';
+import { AddUpdateUserComponent } from './core/components/add-update-user-component/add-update-user.component';
+import { HomeComponent } from './core/components/home-component/home.component';
+import { UserListComponent } from './core/components/user-list-component/user-list.component';
+import { NDRComponent } from './core/components/ndr-component/ndr.component';
+import { PublicationComponent } from './core/components/publication-component/publication.component';
+import { ReportComponent } from './core/components/report-component/report.component';
+import { AppDashboardComponent } from './core/components/app-dashboard-component/app.dashboard.component';
+import { TrainingJobComponent } from './core/components/training-job-component/training.job.component';
+import { PlanManagementComponent } from './core/components/plan-management-component/plan.management.component';
+import { PlanMethodicalWorkComponent } from './core/components/plan-methodical-work-component/plan.methodical.work.component';
+import { UploadDistributionComponent } from './core/components/upload-distribution-component/upload-distribution.component';
+import { PlanScientificWorkComponent } from './core/components/plan-scientific-work-component/plan.scientific.work.component';
+import { DistributionComponent } from './core/components/distribution-component/distribution.component';
+import { AuthGuard } from './shared/guard/auth-guard';
 
 const routes: Routes = [
-  { path: 'login', component: AccountLoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'user', component: AddUpdateUserComponent, canActivate: [AuthGuard] },
   { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
@@ -31,8 +32,6 @@ const routes: Routes = [
   { path: 'plan-scientific-work', component: PlanScientificWorkComponent, canActivate: [AuthGuard] },
   { path: 'upload-distribution', component: UploadDistributionComponent, canActivate: [AuthGuard] },
   { path: 'distribution', component: DistributionComponent, canActivate: [AuthGuard] },
-  { path: '', component: AccountLoginComponent },
-  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
