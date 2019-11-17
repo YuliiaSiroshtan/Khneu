@@ -7,9 +7,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { AuthenticationService } from "src/app/shared/components/authentication-component";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { TokenInterceptor } from "src/app/shared/components/token-interceptor.service";
 import { SafePipe } from "src/app/shared/pipe/safe-pipe ";
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,7 +34,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { UserDataService } from "src/app/planner-component/shared/service/user-data.service";
+import { UserDataService } from "src/app/core/services/user-data.service";
 import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
@@ -112,8 +110,6 @@ import { ListboxModule } from 'primeng/listbox';
     ],
     providers:
     [
-        { provide: AuthenticationService, useClass: AuthenticationService },
-        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
         { provide: UserDataService, useClass: UserDataService }
         //{ provide: HomeService, useClass: HomeService }
     ],

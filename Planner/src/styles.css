@@ -4,6 +4,6 @@
 @import "~primeng/resources/themes/nova-light/theme.css";
 @import "~primeng/resources/primeng.min.css";
 
-@import "app/account-component/account-login-component/account-login.component.css";
+/* @import "app/account-component/account-login-component/account-login.component.css";
 @import "app/planner-component/shared/components/add-update-user-component/add-update-user.component.css";
-@import "app/planner-component/home-component/home.component.css";
+@import "app/planner-component/home-component/home.component.css"; */
