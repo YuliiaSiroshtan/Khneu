@@ -7,6 +7,7 @@ import { UserProfileModel } from "src/app/planner-component/home-component/share
 import { UserInfo } from "src/app/shared/models/user-info.model";
 import { HttpRequest } from "@angular/common/http";
 import { HttpEventType } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 
 @Injectable()
@@ -15,11 +16,11 @@ export class UserDataService {
 
 
     updateUserInfo(user: UserProfileModel) {
-        return this.http.post('/api/Account/UpdateUser', user);
+        return this.http.post(environment.apiBaseUrl +'/api/Account/UpdateUser', user);
     }
 
     getUser(appUserId: string) {
-        return this.http.get('/api/Account/GetUser', { params: { userId: appUserId }} );
+        return this.http.get(environment.apiBaseUrl +'/api/Account/GetUser', { params: { userId: appUserId }} );
     }
 
     uploadFiles(data: File) {

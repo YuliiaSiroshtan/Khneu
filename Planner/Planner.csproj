@@ -9,7 +9,6 @@
   <ItemGroup>
     <None Remove="src\app\account-component\account-login.component.ts" />
     <None Remove="src\app\account-component\account.modeule.ts" />
-    <None Remove="src\app\account-component\shared\services\account-data.service.ts" />
     <None Remove="src\app\planner-component\app-dashboard-component\app.dashboard.component.ts" />
     <None Remove="src\app\common\app-header-component\app-header.component.ts" />
     <None Remove="src\app\common\app-sidenav-component\app-sidenav.component.ts" />
@@ -79,7 +78,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\account-component\account-login-component\account-login.component.ts" />
     <TypeScriptCompile Include="src\app\account-component\account.module.ts" />
-    <TypeScriptCompile Include="src\app\account-component\shared\services\account-data.service.ts" />
     <TypeScriptCompile Include="src\app\planner-component\app-dashboard-component\app.dashboard.component.ts" />
     <TypeScriptCompile Include="src\app\common\app-header-component\app-header.component.ts" />
     <TypeScriptCompile Include="src\app\common\app-sidenav-component\app-sidenav.component.ts" />

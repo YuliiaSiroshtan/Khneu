@@ -9,9 +9,7 @@ import { UploadDistributionService } from "./shared/services/upload-distribution
   templateUrl: './upload-distribution.component.html'
 })
 export class UploadDistributionComponent{
-  constructor(
-      private uploadService: UploadDistributionService) {
-    }
+  file: File;
 
   constructor(private _publicationDataService: PublicationDataService){
   }
@@ -22,10 +20,4 @@ export class UploadDistributionComponent{
      console.log(event);
    });
   }
-
-
-    for (let file of files)
-      formData.append(file.name, file);
-
-
 }

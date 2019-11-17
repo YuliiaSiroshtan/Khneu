@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpRequest } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class UploadDistributionService {
@@ -7,12 +8,12 @@ export class UploadDistributionService {
 
     uploadFile(formData: FormData) {
         const uploadReq = new HttpRequest('POST',
-            `api/IndividualPlan`,
+        environment.apiBaseUrl +`api/IndividualPlan`,
             formData,
             {
                 reportProgress: true,
             });
 
-        return this.http.request(uploadReq);
+        return this._http.request(uploadReq);
     }
 }

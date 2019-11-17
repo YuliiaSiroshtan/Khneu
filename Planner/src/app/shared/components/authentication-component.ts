@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable, of, Subject, forkJoin } from 'rxjs';
 import { UserInfo } from "src/app/shared/models/user-info.model";
 import { LoginModel } from "src/app/account-component/shared/models/login.model";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class AuthenticationService {
@@ -18,7 +19,7 @@ export class AuthenticationService {
         };
 
         let body = JSON.stringify(login);
-        return this.http.post('api/Token/CreateToken', body, httpOptions).pipe(map(result => {
+        return this.http.post(environment.apiBaseUrl + 'api/Token/CreateToken', body, httpOptions).pipe(map(result => {
             this.tokenResult = result;
             if (this.tokenResult && this.tokenResult.jwtToken &&  this.tokenResult.jwtToken.token) {
                 localStorage.setItem('tokenInfo', JSON.stringify(this.tokenResult.jwtToken));
