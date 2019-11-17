@@ -30,7 +30,7 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule, MatOptionModule } from "@angular/material/core";
+import { MatRippleModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from "src/app/app-routing.module";
@@ -60,15 +60,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ListboxModule } from 'primeng/listbox';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CoreRoutingModule } from './core-routing.module';
-import { AppHeaderComponent } from './components/app-header-component/app-header.component';
-import { AppSidenavComponent } from './components/app-sidenav-component/app-sidenav.component';
-import { EntryLoadService } from './services/entry-load.service';
-import { DesciplineService } from './services/descipline.service';
-import { AccountService } from './services/account.service';
-import { TeacherEntryLoadComponent } from './conteiners/teacher-entry-load/teacher-entry-load.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button'
 
 @NgModule({
   declarations: [
@@ -88,10 +79,7 @@ import {MatButtonModule} from '@angular/material/button'
     UploadDistributionComponent,
     DistributionComponent,
     DayEntryComponent,
-    HomePageComponent,
-    AppHeaderComponent,
-    AppSidenavComponent,
-    TeacherEntryLoadComponent
+    HomePageComponent
   ],
   imports: [
     CoreRoutingModule,
@@ -128,11 +116,7 @@ import {MatButtonModule} from '@angular/material/button'
     MessageModule,
     ProgressSpinnerModule,
     MatSidenavModule,
-    ListboxModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatTableModule,
-    MatButtonModule
+    ListboxModule
   ],
   exports: [
     SharedModule,
@@ -147,10 +131,7 @@ import {MatButtonModule} from '@angular/material/button'
       { provide: PublicationDataService, useClass: PublicationDataService },
       { provide: ReportDataService, useClass: ReportDataService },
       { provide: IndivPlanDataService, useClass: IndivPlanDataService },
-      { provide: DistributionDataService, useClass: DistributionDataService },
-      EntryLoadService,
-      DesciplineService,
-      AccountService
+      { provide: DistributionDataService, useClass: DistributionDataService }
     ]
 })
 export class CoreModule { }
