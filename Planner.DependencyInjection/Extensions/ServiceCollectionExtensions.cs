@@ -40,7 +40,7 @@ namespace Planner.DependencyInjection.Extensions
 
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IFullTimeEntryLoadRepository, FullTimeEntryLoadRepository>();
-            services.AddSingleton<IEntryLoadsPropertyRepository, EntryLoadsPropertyRepository>();
+            services.AddSingleton<IEntryLoadPropertyRepository, EntryLoadPropertyRepository>();
             services.AddSingleton<IFirstSemesterRepository, FirstSemesterRepository>();
             services.AddSingleton<ISecondSemesterRepository, SecondSemesterRepository>();
             services.AddSingleton<IFacultyRepository, FacultyRepository>();
@@ -55,13 +55,14 @@ namespace Planner.DependencyInjection.Extensions
             services.AddSingleton<IPartTimeEntryLoadRepository, PartTimeEntryLoadRepository>();
             services.AddSingleton<IHoursCalculationOfFirstSemesterRepository, HoursCalculationOfFirstSemesterRepository>();
             services.AddSingleton<IHoursCalculationOfSecondSemesterRepository, HoursCalculationOfSecondSemesterRepository>();
+            services.AddSingleton<IUserEntryLoadPropertyRepository, UserEntryLoadPropertyRepository>();
 
             services.AddTransient<IServiceFactory, ServiceFactory>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IFullTimeEntryLoadService, FullTimeEntryLoadService>();
-            services.AddTransient<IEntryLoadsPropertyService, EntryLoadsPropertyService>();
+            services.AddTransient<IEntryLoadPropertyService, EntryLoadPropertyService>();
             services.AddTransient<IFirstSemesterService, FirstSemesterService>();
             services.AddTransient<ISecondSemesterService, SecondSemesterService>();
             services.AddTransient<IFacultyService, FacultyService>();
@@ -76,6 +77,7 @@ namespace Planner.DependencyInjection.Extensions
             services.AddTransient<IExaminationSessionService, ExaminationSessionService>();
             services.AddTransient<IHoursCalculationOfFirstSemesterService, HoursCalculationOfFirstSemesterService>();
             services.AddTransient<IHoursCalculationOfSecondSemesterService, HoursCalculationOfSecondSemesterService>();
+            services.AddTransient<IUserEntryLoadPropertyService, UserEntryLoadPropertyService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

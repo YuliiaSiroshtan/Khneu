@@ -134,7 +134,8 @@
     <Folder Include="src\app\planner-component\home-component\shared\services\" />
     <Folder Include="src\app\planner-component\shared\models\" />
     <Folder Include="src\reports\" />
-    <Folder Include="wwwroot\EntryLoadsFiles\UsersEntryLoadsFiles\" />
+    <Folder Include="wwwroot\EntryLoadsFiles\UserIndividualPlans\" />
+    <Folder Include="wwwroot\EntryLoadsFiles\UserEntryLoadFiles\" />
   </ItemGroup>
 
 </Project>

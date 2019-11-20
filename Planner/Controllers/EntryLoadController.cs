@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Planner.Entities.DTO.AppEntryLoadDto;
 using Planner.Entities.DTO.AppEntryLoadDto.FullTime;
 using Planner.Entities.DTO.AppEntryLoadDto.PartTime;
+using Planner.Entities.DTO.AppUserDto;
 using Planner.Entities.DTO.UniversityUnits;
 using Planner.PresentationLayer.ViewModels;
 using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
@@ -35,8 +36,18 @@ namespace Planner.Controllers
     [HttpGet("[action]")]
     public async Task<IActionResult> GetEntryLoadProperties()
     {
-      var entryLoadsProperties = await ServiceFactory.EntryLoadsPropertyService.GetEntryLoadsProperties();
+      var entryLoadsProperties = await ServiceFactory.EntryLoadPropertyService.GetEntryLoadsProperties();
       var entryLoadsPropertiesViewModel = Mapper.Map<IEnumerable<EntryLoadsPropertyViewModel>>(entryLoadsProperties);
+
+      return Ok(entryLoadsPropertiesViewModel);
+    }
+
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetUserEntryLoadPropertiesByUserId(int userId)
+    {
+      var entryLoadsProperties = await ServiceFactory.UserEntryLoadPropertyService.GetUserEntryLoadPropertiesByUserId(userId);
+      var entryLoadsPropertiesViewModel = Mapper.Map<IEnumerable<UserEntryLoadsPropertyViewModel>>(entryLoadsProperties);
 
       return Ok(entryLoadsPropertiesViewModel);
     }
@@ -48,11 +59,7 @@ namespace Planner.Controllers
       var fullTimeEntryLoads = await ServiceFactory.FullTimeEntryLoadService.GetFullTimeEntryLoadsByUserId(userId);
       var partTimeEntryLoads = await ServiceFactory.PartTimeEntryLoadService.GetPartTimeEntryLoadsByUserId(userId);
 
-      var userName = await ServiceFactory.UserService.GetUserNameById(userId);
-
       var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "BaseEntryLoadFile", "base.xlsx");
-      var newPath = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "UsersEntryLoadsFiles", $"{userName + DateTime.Now.GetHashCode()}.xlsx");
-
       var excel = new ExcelApi.ExcelApi(path, 1);
 
       var rowIndex = 6;
@@ -72,31 +79,37 @@ namespace Planner.Controllers
         rowIndex++;
       }
 
-      excel.SaveCopyAs(newPath);
+      var fileName = $"{DateTime.Now.GetHashCode()}.xlsx";
+
+      await InsertUserEntryLoadsPropertyData(userId, fileName);
+      path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "UserEntryLoadFiles", fileName);
+
+      excel.SaveCopyAs(path);
 
       excel.Close();
       ExcelApi.ExcelApi.KillExcelProcesses();
 
-      return Ok();
+      return Ok(path);
     }
+
 
     [HttpPost("[action]")]
     public async Task<IActionResult> UpdateEntryLoadFile(int id)
     {
-      var entryLoadsProperties = await ServiceFactory.EntryLoadsPropertyService.GetEntryLoadsProperties();
+      var entryLoadsProperties = await ServiceFactory.EntryLoadPropertyService.GetEntryLoadsProperties();
 
       var entryLoadsProperty = await ChangeIsActiveEntryLoadsProperties(id, entryLoadsProperties);
 
       await GetFacultiesAndDepartmentsData();
-      await ServiceFactory.EntryLoadsPropertyService.RecreateTables();
+      await ServiceFactory.EntryLoadPropertyService.RecreateTables();
 
       var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", entryLoadsProperty.Name);
 
       var excel = new ExcelApi.ExcelApi(path, 1);
 
-      await ReadFullTimeData(path, excel);
+      await ReadFullTimeData(excel);
       excel.ChangeSheet(2);
-      await ReadPartTimeData(path, excel);
+      await ReadPartTimeData(excel);
 
       excel.Close();
       ExcelApi.ExcelApi.KillExcelProcesses();
@@ -108,7 +121,7 @@ namespace Planner.Controllers
     [HttpPost("[action]")]
     public async Task<IActionResult> DeleteEntryLoadFile(int id)
     {
-      var entryLoadsProperty = await ServiceFactory.EntryLoadsPropertyService.GetEntryLoadsPropertyById(id);
+      var entryLoadsProperty = await ServiceFactory.EntryLoadPropertyService.GetEntryLoadsPropertyById(id);
 
       var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", entryLoadsProperty.Name);
 
@@ -118,10 +131,42 @@ namespace Planner.Controllers
       }
 
       System.IO.File.Delete(path);
-      await ServiceFactory.EntryLoadsPropertyService.DeleteEntryLoadsProperty(id);
+      await ServiceFactory.EntryLoadPropertyService.DeleteEntryLoadsProperty(id);
 
       return Ok("Файл видалено з серверу");
 
+    }
+
+    [HttpPost("[action]")]
+    public async Task<IActionResult> DeleteUserEntryLoadFile(int id)
+    {
+      var userEntryLoadProperty = await ServiceFactory.UserEntryLoadPropertyService.GetUserEntryLoadPropertyById(id);
+
+      var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "UserEntryLoadFiles", userEntryLoadProperty.Name);
+
+      if (!System.IO.File.Exists(path))
+      {
+        return NotFound("Файл не знайдено");
+      }
+
+      System.IO.File.Delete(path);
+      await ServiceFactory.UserEntryLoadPropertyService.DeleteUserEntryLoadProperty(userEntryLoadProperty.Id);
+
+      return Ok("Файл видалено з серверу");
+
+    }
+
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> DownloadFile(int id)
+    {
+      var userEntryLoadsProperty = await ServiceFactory.UserEntryLoadPropertyService.GetUserEntryLoadPropertyById(id);
+
+      const string xlsxFileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+      var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "UserEntryLoadFiles",
+        userEntryLoadsProperty.Name);
+
+      return PhysicalFile(path, xlsxFileType, userEntryLoadsProperty.UserName);
     }
 
 
@@ -302,15 +347,15 @@ namespace Planner.Controllers
       var entryLoadsPropertyIsActive = entryLoadsProperties.Single(x => x.IsActive);
 
       entryLoadsPropertyIsActive.IsActive = false;
-      await ServiceFactory.EntryLoadsPropertyService.UpdateEntryLoadsProperty(entryLoadsPropertyIsActive);
+      await ServiceFactory.EntryLoadPropertyService.UpdateEntryLoadsProperty(entryLoadsPropertyIsActive);
 
       entryLoadsProperty.IsActive = true;
-      await ServiceFactory.EntryLoadsPropertyService.UpdateEntryLoadsProperty(entryLoadsProperty);
+      await ServiceFactory.EntryLoadPropertyService.UpdateEntryLoadsProperty(entryLoadsProperty);
 
       return entryLoadsProperty;
     }
 
-    private async Task ReadFullTimeData(string path, ExcelApi.ExcelApi excel)
+    private async Task ReadFullTimeData(ExcelApi.ExcelApi excel)
     {
       for (var i = 6; i <= excel.Count; i++)
       {
@@ -348,7 +393,7 @@ namespace Planner.Controllers
       }
     }
 
-    private async Task ReadPartTimeData(string path, ExcelApi.ExcelApi excel)
+    private async Task ReadPartTimeData(ExcelApi.ExcelApi excel)
     {
       for (var i = 6; i < excel.Count; i++)
       {
@@ -375,7 +420,7 @@ namespace Planner.Controllers
         var entryLoad = GetPartTimeEntryLoadData(entryLoadData, entryLoadHoursData, discipline,
           hoursCalculationOfFirstSemester, hoursCalculationOfSecondSemester);
 
-        if (entryLoad.Specialization == null)
+        if (entryLoad.Unit == null)
         {
           break;
         }
@@ -595,12 +640,23 @@ namespace Planner.Controllers
 
     private async Task InsertEntryLoadsPropertyData(int hoursPerRate, string fileName)
     {
-      await ServiceFactory.EntryLoadsPropertyService.InsertEntryLoadsProperty(new EntryLoadsPropertyDto
+      await ServiceFactory.EntryLoadPropertyService.InsertEntryLoadsProperty(new EntryLoadsPropertyDto
       {
         Name = fileName,
         DateTimeUpload = DateTime.Now,
         HoursPerRate = hoursPerRate,
         IsActive = false
+      });
+    }
+
+    private async Task InsertUserEntryLoadsPropertyData(int userId, string fileName)
+    {
+      await ServiceFactory.UserEntryLoadPropertyService.InsertUserEntryLoadProperty(new UserEntryLoadPropertyDto
+      {
+        Name = fileName,
+        UserId = userId,
+        UserName = await ServiceFactory.UserService.GetUserNameById(userId),
+        DateTimeUpload = DateTime.Now
       });
     }
 

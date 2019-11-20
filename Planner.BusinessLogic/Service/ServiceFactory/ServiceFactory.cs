@@ -13,7 +13,7 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
         public ServiceFactory(IUserService userService,
             ITokenService tokenService,
             ISecurityService securityService,
-            IEntryLoadsPropertyService entryLoadsPropertyService,
+            IEntryLoadPropertyService entryLoadPropertyService,
             IFullTimeEntryLoadService fullTimeEntryLoadService,
             IFirstSemesterService firstSemesterService,
             ISecondSemesterService secondSemesterService,
@@ -28,13 +28,14 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
             IPartTimeDisciplineService partTimeDisciplineService,
             IPartTimeEntryLoadService partTimeEntryLoadService,
             IHoursCalculationOfFirstSemesterService hoursCalculationOfFirstSemesterService,
-            IHoursCalculationOfSecondSemesterService hoursCalculationOfSecondSemesterService
+            IHoursCalculationOfSecondSemesterService hoursCalculationOfSecondSemesterService,
+            IUserEntryLoadPropertyService userEntryLoadPropertyService
         )
         {
             UserService = userService;
             TokenService = tokenService;
             SecurityService = securityService;
-            EntryLoadsPropertyService = entryLoadsPropertyService;
+            EntryLoadPropertyService = entryLoadPropertyService;
             FullTimeEntryLoadService = fullTimeEntryLoadService;
             FirstSemester = firstSemesterService;
             SecondSemester = secondSemesterService;
@@ -50,12 +51,13 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
             PartTimeEntryLoadService = partTimeEntryLoadService;
             HoursCalculationOfFirstSemesterService = hoursCalculationOfFirstSemesterService;
             HoursCalculationOfSecondSemesterService = hoursCalculationOfSecondSemesterService;
+            UserEntryLoadPropertyService = userEntryLoadPropertyService;
         }
 
         public IUserService UserService { get; }
         public ITokenService TokenService { get; }
         public ISecurityService SecurityService { get; }
-        public IEntryLoadsPropertyService EntryLoadsPropertyService { get; }
+        public IEntryLoadPropertyService EntryLoadPropertyService { get; }
         public IFullTimeEntryLoadService FullTimeEntryLoadService { get; }
         public IFirstSemesterService FirstSemester { get; }
         public ISecondSemesterService SecondSemester { get; }
@@ -71,5 +73,6 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
         public IPartTimeEntryLoadService PartTimeEntryLoadService { get; }
         public IHoursCalculationOfFirstSemesterService HoursCalculationOfFirstSemesterService { get; }
         public IHoursCalculationOfSecondSemesterService HoursCalculationOfSecondSemesterService { get; }
+        public IUserEntryLoadPropertyService UserEntryLoadPropertyService { get; }
     }
 }

@@ -9,7 +9,7 @@ namespace Planner.RepositoryInterfaces.UoW
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
-        IEntryLoadsPropertyRepository EntryLoadsPropertyRepository { get; }
+        IEntryLoadPropertyRepository EntryLoadPropertyRepository { get; }
         IFullTimeEntryLoadRepository FullTimeEntryLoadRepository { get; }
         IFirstSemesterRepository FirstSemesterRepository { get; }
         ISecondSemesterRepository SecondSemesterRepository { get; }
@@ -25,5 +25,6 @@ namespace Planner.RepositoryInterfaces.UoW
         IPartTimeDisciplineRepository PartTimeDisciplineRepository { get; }
         IHoursCalculationOfFirstSemesterRepository HoursCalculationOfFirstSemesterRepository { get; }
         IHoursCalculationOfSecondSemesterRepository HoursCalculationOfSecondSemesterRepository { get; }
+        IUserEntryLoadPropertyRepository UserEntryLoadPropertyRepository { get; }
     }
 }

@@ -21,8 +21,9 @@ namespace Planner.Data.Repository.AppDiscipline
             const string query = "SELECT * FROM PartTimeDisciplines d " +
                                  "FULL JOIN ConstituentSessions cs ON cs.Id = d.ConstituentSessionId " +
                                  "FULL JOIN ExaminationSessions es ON es.Id = d.ExaminationSessionId " +
-                                 "JOIN Departments dp ON dp.Id = d.DepartmentId JOIN Faculties f ON f.Id = dp.FacultyId " +
-                                 "WHERE d.DepartmentId = @id AND(cs.Id IS NULL OR es.Id IS NULL); ";
+                                 "JOIN Departments dp ON dp.Id = d.DepartmentId " +
+                                 "JOIN Faculties f ON f.Id = dp.FacultyId " +
+                                 "WHERE d.DepartmentId = @id";
 
             return await connection
                 .QueryAsync<PartTimeDiscipline, ConstituentSession, ExaminationSession, Department, Faculty, PartTimeDiscipline>

@@ -30,6 +30,7 @@ namespace Planner.DependencyInjection.MapperConfiguration
                 .ForMember(x => x.FacultyId, y => y.MapFrom(z => z.Faculty.Id));
             CreateMap<FacultyDto, Faculty>();
             CreateMap<EntryLoadsPropertyDto, EntryLoadsProperty>();
+            CreateMap<UserEntryLoadPropertyDto, UserEntryLoadProperty>();
             CreateMap<FullTimeEntryLoadDto, FullTimeEntryLoad>()
                 .ForMember(x => x.FullTimeDisciplineId, y => y.MapFrom(z => z.FullTimeDiscipline.Id))
                 .ForMember(x => x.FacultyId, y => y.MapFrom(z => z.Faculty.Id));
@@ -72,6 +73,7 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<Department, DepartmentDto>();
             CreateMap<Faculty, FacultyDto>();
             CreateMap<EntryLoadsProperty, EntryLoadsPropertyDto>();
+            CreateMap<UserEntryLoadProperty, UserEntryLoadPropertyDto>();
             CreateMap<FullTimeEntryLoad, FullTimeEntryLoadDto>();
             CreateMap<PartTimeEntryLoad, PartTimeEntryLoadDto>();
             CreateMap<FullTimeDiscipline, FullTimeDisciplineDto>();

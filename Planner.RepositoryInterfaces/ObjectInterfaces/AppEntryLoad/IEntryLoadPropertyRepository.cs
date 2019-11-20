@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad
 {
-    public interface IEntryLoadsPropertyRepository
+    public interface IEntryLoadPropertyRepository
     {
         Task<IEnumerable<EntryLoadsProperty>> GetEntryLoadsProperties();
 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Planner.Data.Repository.AppEntryLoad
 {
-    public class EntryLoadsPropertyRepository : GenericRepository<EntryLoadsProperty>, IEntryLoadsPropertyRepository
+    public class EntryLoadPropertyRepository : GenericRepository<EntryLoadsProperty>, IEntryLoadPropertyRepository
     {
-        public EntryLoadsPropertyRepository(string connectionString, string tableName) : base(connectionString, tableName)
+        public EntryLoadPropertyRepository(string connectionString, string tableName) : base(connectionString, tableName)
         {
         }
 

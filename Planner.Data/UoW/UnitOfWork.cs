@@ -17,7 +17,7 @@ namespace Planner.Data.UoW
         public UnitOfWork(string connectionString)
         {
             UserRepository = new UserRepository(connectionString, "Users");
-            EntryLoadsPropertyRepository = new EntryLoadsPropertyRepository(connectionString, "EntryLoadsProperties");
+            EntryLoadPropertyRepository = new EntryLoadPropertyRepository(connectionString, "EntryLoadsProperties");
             FullTimeEntryLoadRepository = new FullTimeEntryLoadRepository(connectionString, "FullTimeEntryLoads");
             FirstSemesterRepository = new FirstSemesterRepository(connectionString, "FirstSemesters");
             SecondSemesterRepository = new SecondSemesterRepository(connectionString, "SecondSemesters");
@@ -35,10 +35,11 @@ namespace Planner.Data.UoW
                 new HoursCalculationOfFirstSemesterRepository(connectionString, "HoursCalculationOfFirstSemesters");
             HoursCalculationOfSecondSemesterRepository =
                 new HoursCalculationOfSecondSemesterRepository(connectionString, "HoursCalculationOfSecondSemesters");
+            UserEntryLoadPropertyRepository = new UserEntryLoadPropertyRepository(connectionString, "UserEntryLoadsProperties");
         }
 
         public IUserRepository UserRepository { get; }
-        public IEntryLoadsPropertyRepository EntryLoadsPropertyRepository { get; }
+        public IEntryLoadPropertyRepository EntryLoadPropertyRepository { get; }
         public IFullTimeEntryLoadRepository FullTimeEntryLoadRepository { get; }
         public IFirstSemesterRepository FirstSemesterRepository { get; }
         public ISecondSemesterRepository SecondSemesterRepository { get; }
@@ -54,5 +55,6 @@ namespace Planner.Data.UoW
         public IPartTimeDisciplineRepository PartTimeDisciplineRepository { get; }
         public IHoursCalculationOfFirstSemesterRepository HoursCalculationOfFirstSemesterRepository { get; }
         public IHoursCalculationOfSecondSemesterRepository HoursCalculationOfSecondSemesterRepository { get; }
+        public IUserEntryLoadPropertyRepository UserEntryLoadPropertyRepository { get; }
     }
 }

@@ -12,7 +12,7 @@ namespace Planner.ServiceInterfaces.Interfaces.ServiceFactory
         IUserService UserService { get; }
         ITokenService TokenService { get; }
         ISecurityService SecurityService { get; }
-        IEntryLoadsPropertyService EntryLoadsPropertyService { get; }
+        IEntryLoadPropertyService EntryLoadPropertyService { get; }
         IFullTimeEntryLoadService FullTimeEntryLoadService { get; }
         IFirstSemesterService FirstSemester { get; }
         ISecondSemesterService SecondSemester { get; }
@@ -28,5 +28,6 @@ namespace Planner.ServiceInterfaces.Interfaces.ServiceFactory
         IPartTimeEntryLoadService PartTimeEntryLoadService { get; }
         IHoursCalculationOfFirstSemesterService HoursCalculationOfFirstSemesterService { get; }
         IHoursCalculationOfSecondSemesterService HoursCalculationOfSecondSemesterService { get; }
+        IUserEntryLoadPropertyService UserEntryLoadPropertyService { get; }
     }
 }
