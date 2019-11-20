@@ -8,11 +8,9 @@ namespace Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad
     {
         Task<IEnumerable<FullTimeEntryLoad>> GetFullTimeEntryLoads();
 
-        Task DeleteFullTimeEntryLoad(int id);
+        Task<IEnumerable<FullTimeEntryLoad>> GetFullTimeEntryLoadsByUserId(int id);
 
         Task<FullTimeEntryLoad> GetFullTimeEntryLoadById(int id);
-
-        Task UpdateFullTimeEntryLoad(FullTimeEntryLoad fullTimeEntryLoad);
 
         Task<int> InsertFullTimeEntryLoad(FullTimeEntryLoad fullTimeEntryLoad);
     }

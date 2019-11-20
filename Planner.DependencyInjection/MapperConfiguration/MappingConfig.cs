@@ -59,6 +59,8 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<PracticalDto, Practical>()
                 .ForMember(x => x.SelectedDisciplineId, y => y.MapFrom(z => z.SelectedDiscipline.Id))
                 .ForMember(x => x.UserId, y => y.MapFrom(z => z.User.Id));
+            CreateMap<HoursCalculationOfFirstSemesterDto, HoursCalculationOfFirstSemester>();
+            CreateMap<HoursCalculationOfSecondSemesterDto, HoursCalculationOfSecondSemester>();
 
             #endregion
 
@@ -83,6 +85,8 @@ namespace Planner.DependencyInjection.MapperConfiguration
             CreateMap<Lecture, LectureDto>();
             CreateMap<Laboratory, LaboratoryDto>();
             CreateMap<Practical, PracticalDto>();
+            CreateMap<HoursCalculationOfFirstSemester, HoursCalculationOfFirstSemesterDto>();
+            CreateMap<HoursCalculationOfSecondSemester, HoursCalculationOfSecondSemesterDto>();
 
             #endregion
 

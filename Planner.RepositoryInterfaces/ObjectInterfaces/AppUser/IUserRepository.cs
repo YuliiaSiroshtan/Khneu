@@ -18,6 +18,8 @@ namespace Planner.RepositoryInterfaces.ObjectInterfaces.AppUser
 
         Task<User> GetUserByLoginAndPassword(string login, string password);
 
+        Task<string> GetUserNameById(int id);
+
         Task UpdateUser(User user);
 
         Task<int> InsertUser(User user);

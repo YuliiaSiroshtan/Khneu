@@ -1,7 +1,6 @@
-﻿using Planner.Entities.Domain.AppEntryLoad;
+﻿using Planner.Entities.Domain.UniversityUnits;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Planner.Entities.Domain.UniversityUnits;
 
 namespace Planner.Entities.Domain.AppUser
 {

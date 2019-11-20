@@ -18,6 +18,7 @@ namespace Planner.BusinessLogic.Service.AppEntryLoad
             _uow = uow;
             _mapper = mapper;
         }
+
         public async Task<IEnumerable<FullTimeEntryLoadDto>> GetFullTimeEntryLoads()
         {
             var fullTimeEntryLoads = await _uow.FullTimeEntryLoadRepository.GetFullTimeEntryLoads();
@@ -25,9 +26,11 @@ namespace Planner.BusinessLogic.Service.AppEntryLoad
             return _mapper.Map<IEnumerable<FullTimeEntryLoadDto>>(fullTimeEntryLoads);
         }
 
-        public async Task DeleteFullTimeEntryLoad(int id)
+        public async Task<IEnumerable<FullTimeEntryLoadDto>> GetFullTimeEntryLoadsByUserId(int id)
         {
-            await _uow.FullTimeEntryLoadRepository.DeleteFullTimeEntryLoad(id);
+            var fullTimeEntryLoads = await _uow.FullTimeEntryLoadRepository.GetFullTimeEntryLoadsByUserId(id);
+
+            return _mapper.Map<IEnumerable<FullTimeEntryLoadDto>>(fullTimeEntryLoads);
         }
 
         public async Task<FullTimeEntryLoadDto> GetFullTimeEntryLoadById(int id)
@@ -35,13 +38,6 @@ namespace Planner.BusinessLogic.Service.AppEntryLoad
             var fullTimeEntryLoad = await _uow.FullTimeEntryLoadRepository.GetFullTimeEntryLoadById(id);
 
             return _mapper.Map<FullTimeEntryLoadDto>(fullTimeEntryLoad);
-        }
-
-        public async Task UpdateFullTimeEntryLoad(FullTimeEntryLoadDto fullTimeEntryLoadDto)
-        {
-            var fullTimeEntryLoad = _mapper.Map<FullTimeEntryLoad>(fullTimeEntryLoadDto);
-
-            await _uow.FullTimeEntryLoadRepository.UpdateFullTimeEntryLoad(fullTimeEntryLoad);
         }
 
         public async Task InsertFullTimeEntryLoad(FullTimeEntryLoadDto fullTimeEntryLoadDto)

@@ -53,6 +53,8 @@ namespace Planner.DependencyInjection.Extensions
             services.AddSingleton<IConstituentSessionRepository, ConstituentSessionRepository>();
             services.AddSingleton<IExaminationSessionRepository, ExaminationSessionRepository>();
             services.AddSingleton<IPartTimeEntryLoadRepository, PartTimeEntryLoadRepository>();
+            services.AddSingleton<IHoursCalculationOfFirstSemesterRepository, HoursCalculationOfFirstSemesterRepository>();
+            services.AddSingleton<IHoursCalculationOfSecondSemesterRepository, HoursCalculationOfSecondSemesterRepository>();
 
             services.AddTransient<IServiceFactory, ServiceFactory>();
             services.AddTransient<IUserService, UserService>();
@@ -72,6 +74,8 @@ namespace Planner.DependencyInjection.Extensions
             services.AddTransient<IPartTimeEntryLoadService, PartTimeEntryLoadService>();
             services.AddTransient<IConstituentSessionService, ConstituentSessionService>();
             services.AddTransient<IExaminationSessionService, ExaminationSessionService>();
+            services.AddTransient<IHoursCalculationOfFirstSemesterService, HoursCalculationOfFirstSemesterService>();
+            services.AddTransient<IHoursCalculationOfSecondSemesterService, HoursCalculationOfSecondSemesterService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

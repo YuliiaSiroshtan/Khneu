@@ -26,9 +26,11 @@ namespace Planner.BusinessLogic.Service.AppEntryLoad
             return _mapper.Map<IEnumerable<PartTimeEntryLoadDto>>(partTimeEntryLoads);
         }
 
-        public async Task DeletePartTimeEntryLoad(int id)
+        public async Task<IEnumerable<PartTimeEntryLoadDto>> GetPartTimeEntryLoadsByUserId(int id)
         {
-            await _uow.PartTimeEntryLoadRepository.DeletePartTimeEntryLoad(id);
+            var partTimeEntryLoads = await _uow.PartTimeEntryLoadRepository.GetPartTimeEntryLoadsByUserId(id);
+
+            return _mapper.Map<IEnumerable<PartTimeEntryLoadDto>>(partTimeEntryLoads);
         }
 
         public async Task<PartTimeEntryLoadDto> GetPartTimeEntryLoadById(int id)
@@ -36,13 +38,6 @@ namespace Planner.BusinessLogic.Service.AppEntryLoad
             var partTimeEntryLoad = await _uow.PartTimeEntryLoadRepository.GetPartTimeEntryLoadById(id);
 
             return _mapper.Map<PartTimeEntryLoadDto>(partTimeEntryLoad);
-        }
-
-        public async Task UpdatePartTimeEntryLoad(PartTimeEntryLoadDto partTimeEntryLoadDto)
-        {
-            var partTimeEntryLoad = _mapper.Map<PartTimeEntryLoad>(partTimeEntryLoadDto);
-
-            await _uow.PartTimeEntryLoadRepository.UpdatePartTimeEntryLoad(partTimeEntryLoad);
         }
 
         public async Task<int> InsertPartTimeEntryLoad(PartTimeEntryLoadDto partTimeEntryLoadDto)

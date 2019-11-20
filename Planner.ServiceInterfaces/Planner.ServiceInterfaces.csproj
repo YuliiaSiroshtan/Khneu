@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
-    <ProjectReference Include="..\Planner.ExcelParser\Planner.ExcelParser.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,11 +8,9 @@ namespace Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad
     {
         Task<IEnumerable<PartTimeEntryLoad>> GetPartTimeEntryLoads();
 
-        Task DeletePartTimeEntryLoad(int id);
+        Task<IEnumerable<PartTimeEntryLoad>> GetPartTimeEntryLoadsByUserId(int id);
 
         Task<PartTimeEntryLoad> GetPartTimeEntryLoadById(int id);
-
-        Task UpdatePartTimeEntryLoad(PartTimeEntryLoad partTimeEntryLoad);
 
         Task<int> InsertPartTimeEntryLoad(PartTimeEntryLoad partTimeEntryLoad);
     }

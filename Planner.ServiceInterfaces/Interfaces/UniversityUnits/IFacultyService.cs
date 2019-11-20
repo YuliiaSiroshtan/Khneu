@@ -8,14 +8,9 @@ namespace Planner.ServiceInterfaces.Interfaces.UniversityUnits
     {
         Task<IEnumerable<FacultyDto>> GetFaculties();
 
-        Task DeleteFaculty(int id);
-
         Task<FacultyDto> GetFacultyById(int id);
 
         Task<FacultyDto> GetFacultyByName(string name);
 
-        Task UpdateFaculty(FacultyDto facultyDto);
-
-        Task InsertFaculty(FacultyDto facultyDto);
     }
 }

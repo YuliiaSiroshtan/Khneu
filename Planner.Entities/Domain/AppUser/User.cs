@@ -11,9 +11,9 @@ namespace Planner.Entities.Domain.AppUser
 
         public string LdapId { get; set; }
 
-        #region TempData
-
         public string Name { get; set; }
+        
+        #region TempData
 
         public string Login { get; set; }
 

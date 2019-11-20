@@ -59,6 +59,9 @@ namespace Planner.BusinessLogic.Service.AppUser
             return _mapper.Map<UserDto>(user);
         }
 
+        public async Task<string> GetUserNameById(int id) 
+            => await _uow.UserRepository.GetUserNameById(id);
+
         public async Task UpdateUser(UserDto userDto)
         {
             var user = _mapper.Map<User>(userDto);

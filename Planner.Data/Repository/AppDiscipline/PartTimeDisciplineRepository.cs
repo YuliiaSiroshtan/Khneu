@@ -14,7 +14,6 @@ namespace Planner.Data.Repository.AppDiscipline
         {
         }
 
-        public async Task<IEnumerable<PartTimeDiscipline>> GetPartTimeDisciplines() => await GetEntities();
         public async Task<IEnumerable<PartTimeDiscipline>> GetPartTimeDisciplinesByDepartmentId(int id)
         {
             using var connection = await OpenConnection();
@@ -37,15 +36,6 @@ namespace Planner.Data.Repository.AppDiscipline
                     return discipline;
                 }, new { Id = id });
         }
-
-        public async Task DeletePartTimeDiscipline(int id) => await DeleteEntity(id);
-
-        public async Task<PartTimeDiscipline> GetPartTimeDisciplineById(int id) => await GetEntityById(id);
-
-        public async Task<PartTimeDiscipline> GetPartTimeDisciplineByName(string name) => await GetEntityByName(name);
-
-        public async Task UpdatePartTimeDiscipline(PartTimeDiscipline partTimeDiscipline) =>
-            await Update(partTimeDiscipline);
 
         public async Task<int> InsertPartTimeDiscipline(PartTimeDiscipline partTimeDiscipline) =>
             await Insert(partTimeDiscipline);

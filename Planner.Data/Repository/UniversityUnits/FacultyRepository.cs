@@ -12,16 +12,14 @@ namespace Planner.Data.Repository.UniversityUnits
         {
         }
 
-        public async Task<IEnumerable<Faculty>> GetFaculties() => await GetEntities();
+        public async Task<IEnumerable<Faculty>> GetFaculties() 
+            => await GetEntities();
 
-        public async Task DeleteFaculty(int id) => await DeleteEntity(id);
+        public async Task<Faculty> GetFacultyById(int id) 
+            => await GetEntityById(id);
 
-        public async Task<Faculty> GetFacultyById(int id) => await GetEntityById(id);
+        public async Task<Faculty> GetFacultyByName(string name) 
+            => await GetEntityByName(name);
 
-        public async Task<Faculty> GetFacultyByName(string name) => await GetEntityByName(name);
-
-        public async Task UpdateFaculty(Faculty faculty) => await Update(faculty);
-
-        public async Task<int> InsertFaculty(Faculty faculty) => await Insert(faculty);
     }
 }

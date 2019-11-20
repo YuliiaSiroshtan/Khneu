@@ -39,6 +39,10 @@ namespace Planner.Data.Repository.AppEntryLoad
                 "DROP CONSTRAINT [FK_FullTimeEntryLoads_FullTimeDisciplines_FullTimeDisciplineId];" +
                 "ALTER TABLE[dbo].[FullTimeEntryLoads] " +
                 "DROP CONSTRAINT[FK_FullTimeEntryLoads_Faculties_FacultyId];" +
+                "ALTER TABLE [dbo].[FullTimeEntryLoads] " +
+                "DROP CONSTRAINT [FK_FullTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId];" +
+                "ALTER TABLE [dbo].[FullTimeEntryLoads] " +
+                "DROP CONSTRAINT [FK_FullTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId];" +
                 "ALTER TABLE [dbo].[FullTimeDisciplines] " +
                 "DROP CONSTRAINT FK_FullTimeDisciplines_Departments_DepartmentId;" +
                 "ALTER TABLE[dbo].[FullTimeDisciplines] " +
@@ -49,6 +53,10 @@ namespace Planner.Data.Repository.AppEntryLoad
                 "DROP CONSTRAINT [FK_PartTimeEntryLoads_PartTimeDisciplines_PartTimeDisciplineId];" +
                 "ALTER TABLE [dbo].[PartTimeDisciplines] " +
                 "DROP CONSTRAINT [FK_PartTimeDisciplines_ConstituentSessions_ConstituentSessionId];" +
+                "ALTER TABLE [dbo].[PartTimeEntryLoads] " +
+                "DROP CONSTRAINT [FK_PartTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId];" +
+                "ALTER TABLE [dbo].[PartTimeEntryLoads] " +
+                "DROP CONSTRAINT [FK_PartTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId];" +
                 "ALTER TABLE [dbo].[PartTimeDisciplines] " +
                 "DROP CONSTRAINT [FK_PartTimeDisciplines_Departments_DepartmentId];" +
                 "ALTER TABLE [dbo].[PartTimeDisciplines] " +
@@ -62,10 +70,16 @@ namespace Planner.Data.Repository.AppEntryLoad
                                          "TRUNCATE TABLE [dbo].[PartTimeDisciplines];" +
                                          "TRUNCATE TABLE [dbo].[PartTimeEntryLoads];" +
                                          "TRUNCATE TABLE [dbo].[ConstituentSessions];" +
-                                         "TRUNCATE TABLE [dbo].[ExaminationSessions];";
+                                         "TRUNCATE TABLE [dbo].[ExaminationSessions];" +
+                                         "TRUNCATE TABLE [dbo].[HoursCalculationOfFirstSemesters];" +
+                                         "TRUNCATE TABLE [dbo].[HoursCalculationOfSecondSemesters];";
 
             const string addConstantQuery = "ALTER TABLE [dbo].[FullTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT [FK_FullTimeDisciplines_Departments_DepartmentId] FOREIGN KEY ([DepartmentId]) REFERENCES [dbo].[Departments] " +
+                                            "ALTER TABLE [dbo].[FullTimeEntryLoads] WITH NOCHECK " +
+                                            "ADD CONSTRAINT[FK_FullTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId] FOREIGN KEY([HoursCalculationOfFirstSemesterId]) REFERENCES[dbo].[HoursCalculationOfFirstSemesters]([Id]); "+
+                                            "ALTER TABLE [dbo].[FullTimeEntryLoads] WITH NOCHECK " +
+                                            "ADD CONSTRAINT[FK_FullTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId] FOREIGN KEY([HoursCalculationOfSecondSemesterId]) REFERENCES[dbo].[HoursCalculationOfSecondSemesters]([Id]); "+
                                             "ALTER TABLE [dbo].[FullTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT[FK_FullTimeDisciplines_FirstSemesters_FirstSemesterId] FOREIGN KEY([FirstSemesterId]) REFERENCES[dbo].[FirstSemesters]([Id]);" +
                                             "ALTER TABLE [dbo].[FullTimeDisciplines] WITH NOCHECK " +
@@ -78,6 +92,10 @@ namespace Planner.Data.Repository.AppEntryLoad
                                             "ADD CONSTRAINT[FK_PartTimeDisciplines_ConstituentSessions_ConstituentSessionId] FOREIGN KEY([ConstituentSessionId]) REFERENCES[dbo].[ConstituentSessions]([Id]);" +
                                             "ALTER TABLE [dbo].[PartTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT[FK_PartTimeDisciplines_Departments_DepartmentId] FOREIGN KEY([DepartmentId]) REFERENCES[dbo].[Departments]([Id]); " +
+                                            "ALTER TABLE [dbo].[PartTimeEntryLoads] WITH NOCHECK " +
+                                            "ADD CONSTRAINT[FK_PartTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId] FOREIGN KEY([HoursCalculationOfFirstSemesterId]) REFERENCES[dbo].[HoursCalculationOfFirstSemesters]([Id]); "+
+                                            "ALTER TABLE [dbo].[PartTimeEntryLoads] WITH NOCHECK " +
+                                            "ADD CONSTRAINT[FK_PartTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId] FOREIGN KEY([HoursCalculationOfSecondSemesterId]) REFERENCES[dbo].[HoursCalculationOfSecondSemesters]([Id]); "+
                                             "ALTER TABLE [dbo].[PartTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT[FK_PartTimeDisciplines_ExaminationSessions_ExaminationSessionId] FOREIGN KEY([ExaminationSessionId]) REFERENCES[dbo].[ExaminationSessions]([Id]); " +
                                             "ALTER TABLE [dbo].[PartTimeEntryLoads] WITH NOCHECK " +

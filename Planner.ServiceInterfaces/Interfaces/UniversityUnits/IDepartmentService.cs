@@ -8,15 +8,10 @@ namespace Planner.ServiceInterfaces.Interfaces.UniversityUnits
     {
         Task<IEnumerable<DepartmentDto>> GetDepartments();
 
-        Task DeleteDepartment(int id);
-
         Task<DepartmentDto> GetDepartmentById(int id);
 
         Task<DepartmentDto> GetDepartmentByName(string name);
 
-        Task UpdateDepartment(DepartmentDto departmentDto);
-
-        Task InsertDepartment(DepartmentDto departmentDto);
     }
 }
 

@@ -8,11 +8,9 @@ namespace Planner.ServiceInterfaces.Interfaces.AppEntryLoad
     {
         Task<IEnumerable<PartTimeEntryLoadDto>> GetPartTimeEntryLoads();
 
-        Task DeletePartTimeEntryLoad(int id);
+        Task<IEnumerable<PartTimeEntryLoadDto>> GetPartTimeEntryLoadsByUserId(int id);
 
         Task<PartTimeEntryLoadDto> GetPartTimeEntryLoadById(int id);
-
-        Task UpdatePartTimeEntryLoad(PartTimeEntryLoadDto partTimeEntryLoadDto);
 
         Task<int> InsertPartTimeEntryLoad(PartTimeEntryLoadDto partTimeEntryLoadDto);
     }

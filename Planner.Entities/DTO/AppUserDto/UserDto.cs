@@ -10,9 +10,9 @@ namespace Planner.Entities.DTO.AppUserDto
 
         public int LdapId { get; set; }
 
-        #region TempData
-
         public string Name { get; set; }
+
+        #region TempData
 
         public string Login { get; set; }
 

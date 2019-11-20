@@ -1,5 +1,43 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode
+
+# Rider
+.idea
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
+
 # compiled output
 /Planner/dist
 /Planner/tmp
@@ -42,7 +80,6 @@
 .DS_Store
 Thumbs.db
 
-
 /Planner/bin
 /Planner/obj
 
@@ -51,9 +88,6 @@ Thumbs.db
 
 /Planner.BusinessLogic/bin
 /Planner.BusinessLogic/obj
-
-/Planner.Common/bin
-/Planner.Common/obj
 
 /Planner.Data/bin
 /Planner.Data/obj
@@ -66,6 +100,9 @@ Thumbs.db
 
 /Planner.RepositoryInterfaces/bin
 /Planner.RepositoryInterfaces/obj
-/Planner.ExcelParser/bin
-/Planner.ExcelParser/obj
+
+/Planner.ExcelApi/bin
+/Planner.ExcelApi/obj
+
 /Planner.PresentationLayer/bin
+/Planner.PresentationLayer/obj

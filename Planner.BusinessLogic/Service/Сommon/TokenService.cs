@@ -25,7 +25,7 @@ namespace Planner.BusinessLogic.Service.Сommon
         {
             var result = new JwtResult();
 
-            var securityPassword = _securityService.GetSha256Hash(password);
+            var securityPassword = _securityService.GetSha512Hash(password);
             var user = await _uow.UserRepository.GetUserByLoginAndPassword(userName, securityPassword);
 
             if (user == null)

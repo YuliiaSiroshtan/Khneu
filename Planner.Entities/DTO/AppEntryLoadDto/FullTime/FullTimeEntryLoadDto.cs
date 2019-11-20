@@ -1,10 +1,14 @@
-﻿using Planner.Entities.DTO.UniversityUnits;
+﻿using System.ComponentModel;
+using Planner.Entities.DTO.UniversityUnits;
 
 namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
 {
     public class FullTimeEntryLoadDto
     {
+        [Description("Ignore")]
         public int Id { get; set; }
+
+        [Description("Ignore")]
         public FacultyDto Faculty { get; set; }
         public string Specialty { get; set; }
         public string Specialization { get; set; }
@@ -19,6 +23,19 @@ namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
         public string AmountOfStudentsStreams { get; set; }
         public string ConnectingOfStudentStreams { get; set; }
         public string Notes { get; set; }
+
+        [Description("Ignore")]
         public FullTimeDisciplineDto FullTimeDiscipline { get; set; }
+
+        [Description("Ignore")]
+        public HoursCalculationOfFirstSemesterDto HoursCalculationOfFirstSemester { get; set; }
+
+        [Description("Ignore")]
+        public HoursCalculationOfSecondSemesterDto HoursCalculationOfSecondSemester { get; set; }
+        public string KRKPDR { get; set; }
+        public string Practical { get; set; }
+        public string AmountOfPeopleDec { get; set; }
+        public string All { get; set; }
+        public string Active { get; set; }
     }
 }

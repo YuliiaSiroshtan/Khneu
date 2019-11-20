@@ -1,9 +1,11 @@
-﻿using Planner.Entities.DTO.UniversityUnits;
+﻿using System.ComponentModel;
+using Planner.Entities.DTO.UniversityUnits;
 
 namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
 {
     public class FullTimeDisciplineDto
     {
+        [Description("Ignore")]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -18,10 +20,13 @@ namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
 
         public string WeeksInSecondSemester { get; set; }
 
+        [Description("Ignore")]
         public FirstSemesterDto FirstSemester { get; set; }
 
+        [Description("Ignore")]
         public SecondSemesterDto SecondSemester { get; set; }
 
+        [Description("Ignore")]
         public DepartmentDto Department { get; set; }
     }
 }

@@ -26,7 +26,9 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
             IConstituentSessionService constituentSessionService,
             IExaminationSessionService examinationSessionService,
             IPartTimeDisciplineService partTimeDisciplineService,
-            IPartTimeEntryLoadService partTimeEntryLoadService
+            IPartTimeEntryLoadService partTimeEntryLoadService,
+            IHoursCalculationOfFirstSemesterService hoursCalculationOfFirstSemesterService,
+            IHoursCalculationOfSecondSemesterService hoursCalculationOfSecondSemesterService
         )
         {
             UserService = userService;
@@ -46,6 +48,8 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
             ExaminationSessionService = examinationSessionService;
             PartTimeDisciplineService = partTimeDisciplineService;
             PartTimeEntryLoadService = partTimeEntryLoadService;
+            HoursCalculationOfFirstSemesterService = hoursCalculationOfFirstSemesterService;
+            HoursCalculationOfSecondSemesterService = hoursCalculationOfSecondSemesterService;
         }
 
         public IUserService UserService { get; }
@@ -65,5 +69,7 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
         public IExaminationSessionService ExaminationSessionService { get; }
         public IPartTimeDisciplineService PartTimeDisciplineService { get; }
         public IPartTimeEntryLoadService PartTimeEntryLoadService { get; }
+        public IHoursCalculationOfFirstSemesterService HoursCalculationOfFirstSemesterService { get; }
+        public IHoursCalculationOfSecondSemesterService HoursCalculationOfSecondSemesterService { get; }
     }
 }

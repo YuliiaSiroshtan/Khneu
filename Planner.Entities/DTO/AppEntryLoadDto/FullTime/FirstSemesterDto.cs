@@ -1,7 +1,10 @@
-﻿namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
+﻿using System.ComponentModel;
+
+namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
 {
     public class FirstSemesterDto
     {
+        [Description("Ignore")]
         public int Id { get; set; }
         public string Hours { get; set; }
         public string HoursAll { get; set; }

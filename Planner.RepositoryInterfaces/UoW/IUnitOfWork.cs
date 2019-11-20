@@ -23,5 +23,7 @@ namespace Planner.RepositoryInterfaces.UoW
         IExaminationSessionRepository ExaminationSessionRepository { get; }
         IPartTimeEntryLoadRepository PartTimeEntryLoadRepository { get; }
         IPartTimeDisciplineRepository PartTimeDisciplineRepository { get; }
+        IHoursCalculationOfFirstSemesterRepository HoursCalculationOfFirstSemesterRepository { get; }
+        IHoursCalculationOfSecondSemesterRepository HoursCalculationOfSecondSemesterRepository { get; }
     }
 }

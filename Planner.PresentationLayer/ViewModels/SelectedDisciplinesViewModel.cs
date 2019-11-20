@@ -6,6 +6,10 @@
 
         public string Name { get; set; }
 
+        public string Specialization { get; set; }
+
+        public string Course { get; set; }
+
         public string ECTS { get; set; }
 
         public string AmountOfHours { get; set; }

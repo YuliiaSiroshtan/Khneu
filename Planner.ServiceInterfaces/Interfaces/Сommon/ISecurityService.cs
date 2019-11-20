@@ -2,6 +2,6 @@
 {
     public interface ISecurityService
     {
-        string GetSha256Hash(string input);
+        string GetSha512Hash(string input);
     }
 }

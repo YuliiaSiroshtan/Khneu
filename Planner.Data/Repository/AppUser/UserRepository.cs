@@ -267,6 +267,16 @@ namespace Planner.Data.Repository.AppUser
             return users.SingleOrDefault();
         }
 
+        public async Task<string> GetUserNameById(int id)
+        {
+            using var connection = await OpenConnection();
+
+            const string query = "SELECT u.Name FROM Users u " +
+                                 "WHERE u.Id = @id;";
+
+            return await connection.QuerySingleOrDefaultAsync<string>(query, new { Id = id });
+        }
+
         public async Task UpdateUser(User user)
         {
             await Update(user);

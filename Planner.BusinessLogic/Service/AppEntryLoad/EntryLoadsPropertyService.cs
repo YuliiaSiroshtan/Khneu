@@ -19,7 +19,6 @@ namespace Planner.BusinessLogic.Service.AppEntryLoad
             _mapper = mapper;
         }
 
-
         public async Task<IEnumerable<EntryLoadsPropertyDto>> GetEntryLoadsProperties()
         {
             var entryLoadsProperties = await _uow.EntryLoadsPropertyRepository.GetEntryLoadsProperties();

@@ -26,5 +26,7 @@ namespace Planner.ServiceInterfaces.Interfaces.ServiceFactory
         IExaminationSessionService ExaminationSessionService { get; }
         IPartTimeDisciplineService PartTimeDisciplineService { get; }
         IPartTimeEntryLoadService PartTimeEntryLoadService { get; }
+        IHoursCalculationOfFirstSemesterService HoursCalculationOfFirstSemesterService { get; }
+        IHoursCalculationOfSecondSemesterService HoursCalculationOfSecondSemesterService { get; }
     }
 }

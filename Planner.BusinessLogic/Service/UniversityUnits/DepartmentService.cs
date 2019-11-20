@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Planner.Entities.Domain.UniversityUnits;
 using Planner.Entities.DTO.UniversityUnits;
 using Planner.RepositoryInterfaces.UoW;
 using Planner.ServiceInterfaces.Interfaces.UniversityUnits;
@@ -26,11 +25,6 @@ namespace Planner.BusinessLogic.Service.UniversityUnits
             return _mapper.Map<IEnumerable<DepartmentDto>>(departments);
         }
 
-        public async Task DeleteDepartment(int id)
-        {
-            await _uow.DepartmentRepository.DeleteDepartment(id);
-        }
-
         public async Task<DepartmentDto> GetDepartmentById(int id)
         {
             var department = await _uow.DepartmentRepository.GetDepartmentById(id);
@@ -43,20 +37,6 @@ namespace Planner.BusinessLogic.Service.UniversityUnits
             var department = await _uow.DepartmentRepository.GetDepartmentByName(name);
 
             return _mapper.Map<DepartmentDto>(department);
-        }
-
-        public async Task UpdateDepartment(DepartmentDto departmentDto)
-        {
-            var department = _mapper.Map<Department>(departmentDto);
-
-            await _uow.DepartmentRepository.UpdateDepartment(department);
-        }
-
-        public async Task InsertDepartment(DepartmentDto departmentDto)
-        {
-            var department = _mapper.Map<Department>(departmentDto);
-
-            await _uow.DepartmentRepository.InsertDepartment(department);
         }
     }
 }

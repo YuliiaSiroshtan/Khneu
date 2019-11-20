@@ -74,6 +74,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Planner.DependencyInjection\Planner.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Planner.ExcelApi\Planner.ExcelApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -133,6 +134,7 @@
     <Folder Include="src\app\planner-component\home-component\shared\services\" />
     <Folder Include="src\app\planner-component\shared\models\" />
     <Folder Include="src\reports\" />
+    <Folder Include="wwwroot\EntryLoadsFiles\UsersEntryLoadsFiles\" />
   </ItemGroup>
 
 </Project>

@@ -8,14 +8,9 @@ namespace Planner.RepositoryInterfaces.ObjectInterfaces.UniversityUnits
     {
         Task<IEnumerable<Department>> GetDepartments();
 
-        Task DeleteDepartment(int id);
-
         Task<Department> GetDepartmentById(int id);
 
         Task<Department> GetDepartmentByName(string name);
 
-        Task UpdateDepartment(Department department);
-
-        Task<int> InsertDepartment(Department department);
     }
 }

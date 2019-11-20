@@ -19,44 +19,11 @@ namespace Planner.BusinessLogic.Service.AppDiscipline
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PartTimeDisciplineDto>> GetPartTimeDisciplines()
-        {
-            var partTimeDisciplines = await _uow.PartTimeDisciplineRepository.GetPartTimeDisciplines();
-
-            return _mapper.Map<IEnumerable<PartTimeDisciplineDto>>(partTimeDisciplines);
-        }
-
         public async Task<IEnumerable<PartTimeDisciplineDto>> GetPartTimeDisciplinesByDepartmentId(int id)
         {
             var partTimeDisciplines = await _uow.PartTimeDisciplineRepository.GetPartTimeDisciplinesByDepartmentId(id);
 
             return _mapper.Map<IEnumerable<PartTimeDisciplineDto>>(partTimeDisciplines);
-        }
-
-        public async Task DeletePartTimeDiscipline(int id)
-        {
-            await _uow.PartTimeDisciplineRepository.DeletePartTimeDiscipline(id);
-        }
-
-        public async Task<PartTimeDisciplineDto> GetPartTimeDisciplineById(int id)
-        {
-            var partTimeDiscipline = await _uow.PartTimeDisciplineRepository.GetPartTimeDisciplineById(id);
-
-            return _mapper.Map<PartTimeDisciplineDto>(partTimeDiscipline);
-        }
-
-        public async Task<PartTimeDisciplineDto> GetPartTimeDisciplineByName(string name)
-        {
-            var partTimeDiscipline = await _uow.PartTimeDisciplineRepository.GetPartTimeDisciplineByName(name);
-
-            return _mapper.Map<PartTimeDisciplineDto>(partTimeDiscipline);
-        }
-
-        public async Task UpdatePartTimeDiscipline(PartTimeDisciplineDto partTimeDisciplineDto)
-        {
-            var partTimeDiscipline = _mapper.Map<PartTimeDiscipline>(partTimeDisciplineDto);
-
-            await _uow.PartTimeDisciplineRepository.UpdatePartTimeDiscipline(partTimeDiscipline);
         }
 
         public async Task<int> InsertPartTimeDiscipline(PartTimeDisciplineDto partTimeDisciplineDto)

@@ -11,6 +11,10 @@ namespace Planner.Entities.Domain.AppSelectedDiscipline
 
         public string Name { get; }
 
+        public string Specialization { get; set; }
+
+        public string Course { get; set; }
+
         public string ECTS { get; set; }
 
         public string AmountOfHours { get; set; }

@@ -9,8 +9,10 @@ using Planner.PresentationLayer.ViewModels;
 using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Planner.Controllers
@@ -41,36 +43,67 @@ namespace Planner.Controllers
 
 
     [HttpPost("[action]")]
+    public async Task<IActionResult> MakeAnEntryLoadPlan(int userId)
+    {
+      var fullTimeEntryLoads = await ServiceFactory.FullTimeEntryLoadService.GetFullTimeEntryLoadsByUserId(userId);
+      var partTimeEntryLoads = await ServiceFactory.PartTimeEntryLoadService.GetPartTimeEntryLoadsByUserId(userId);
+
+      var userName = await ServiceFactory.UserService.GetUserNameById(userId);
+
+      var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "BaseEntryLoadFile", "base.xlsx");
+      var newPath = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", "UsersEntryLoadsFiles", $"{userName + DateTime.Now.GetHashCode()}.xlsx");
+
+      var excel = new ExcelApi.ExcelApi(path, 1);
+
+      var rowIndex = 6;
+      foreach (var fullTimeEntryLoad in fullTimeEntryLoads)
+      {
+        WriteFullTimeData(excel, rowIndex, GenerateListOfData(fullTimeEntryLoad));
+
+        rowIndex++;
+      }
+      excel.ChangeSheet(2);
+
+      rowIndex = 6;
+      foreach (var partTimeEntryLoad in partTimeEntryLoads)
+      {
+        WritePartTimeData(excel, rowIndex, GenerateListOfData(partTimeEntryLoad));
+
+        rowIndex++;
+      }
+
+      excel.SaveCopyAs(newPath);
+
+      excel.Close();
+      ExcelApi.ExcelApi.KillExcelProcesses();
+
+      return Ok();
+    }
+
+    [HttpPost("[action]")]
     public async Task<IActionResult> UpdateEntryLoadFile(int id)
     {
       var entryLoadsProperties = await ServiceFactory.EntryLoadsPropertyService.GetEntryLoadsProperties();
 
-      var entryLoadsProperty = entryLoadsProperties.Single(x => x.Id == id);
-      var entryLoadsPropertyIsActive = entryLoadsProperties.Single(x => x.IsActive);
-
-      entryLoadsPropertyIsActive.IsActive = false;
-      await ServiceFactory.EntryLoadsPropertyService.UpdateEntryLoadsProperty(entryLoadsPropertyIsActive);
-
-      entryLoadsProperty.IsActive = true;
-      await ServiceFactory.EntryLoadsPropertyService.UpdateEntryLoadsProperty(entryLoadsProperty);
+      var entryLoadsProperty = await ChangeIsActiveEntryLoadsProperties(id, entryLoadsProperties);
 
       await GetFacultiesAndDepartmentsData();
       await ServiceFactory.EntryLoadsPropertyService.RecreateTables();
 
       var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", entryLoadsProperty.Name);
 
-      try
-      {
-        await ReadFullTimeData(path);
-        await ReadPartTimeData(path);
-      }
-      catch (Exception e)
-      {
-        BadRequest(e.Message);
-      }
+      var excel = new ExcelApi.ExcelApi(path, 1);
+
+      await ReadFullTimeData(path, excel);
+      excel.ChangeSheet(2);
+      await ReadPartTimeData(path, excel);
+
+      excel.Close();
+      ExcelApi.ExcelApi.KillExcelProcesses();
 
       return Ok(entryLoadsProperty);
     }
+
 
     [HttpPost("[action]")]
     public async Task<IActionResult> DeleteEntryLoadFile(int id)
@@ -79,16 +112,16 @@ namespace Planner.Controllers
 
       var path = Path.Combine(_hostingEnvironment.WebRootPath, "EntryLoadsFiles", entryLoadsProperty.Name);
 
-      if (System.IO.File.Exists(path))
+      if (!System.IO.File.Exists(path))
       {
-        System.IO.File.Delete(path);
-
-        await ServiceFactory.EntryLoadsPropertyService.DeleteEntryLoadsProperty(id);
-
-        return Ok("Файл видалено з серверу");
+        return NotFound("Файл не знайдено");
       }
 
-      return BadRequest("Файл не знайдено");
+      System.IO.File.Delete(path);
+      await ServiceFactory.EntryLoadsPropertyService.DeleteEntryLoadsProperty(id);
+
+      return Ok("Файл видалено з серверу");
+
     }
 
 
@@ -132,54 +165,278 @@ namespace Planner.Controllers
 
     #region private methods
 
-    private async Task ReadFullTimeData(string path)
+    private static IEnumerable<string> GenerateListOfProperties(IEnumerable<PropertyInfo> listOfProperties, object obj)
     {
-      var excel = new ExcelParser.ExcelParser(path, 1);
+      return listOfProperties
+        .Select(prop => new { prop, attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false) })
+        .Where(t => t.attributes.Length <= 0 || (t.attributes[0] as DescriptionAttribute)?.Description != "Ignore")
+        .Select(t => t.prop.GetValue(obj)?.ToString());
+    }
 
+    private static void WriteFullTimeData(ExcelApi.ExcelApi excel, int rowIndex,
+      IReadOnlyCollection<string> listOfProperties)
+    {
+      excel.WriteRange($"A{rowIndex}", $"N{rowIndex}", listOfProperties.TakeWhile((x, y) => y <= 13));
+      excel.WriteRange($"AQ{rowIndex}", $"AS{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 14 && y <= 16));
+      excel.WriteRange($"CG{rowIndex}", $"CH{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 17 && y <= 18));
+      excel.WriteRange($"O{rowIndex}", $"T{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 19 && y <= 24));
+      excel.WriteRange($"U{rowIndex}", $"AC{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 25 && y <= 33));
+      excel.WriteRange($"AD{rowIndex}", $"AL{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 34 && y <= 42));
+      excel.WriteRange($"AU{rowIndex}", $"BJ{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 44 && y <= 59));
+      excel.WriteRange($"BN{rowIndex}", $"CC{rowIndex}", listOfProperties.TakeWhile((x, y) => y >= 61 && y <= 76));
+
+      excel.WriteCell(rowIndex, 39, listOfProperties.TakeWhile((x, y) => y == 43).Single());
+      excel.WriteCell(rowIndex, 64, listOfProperties.TakeWhile((x, y) => y == 60).Single());
+      excel.WriteCell(rowIndex, 84, listOfProperties.TakeWhile((x, y) => y == 77).Single());
+    }
+
+    private static void WritePartTimeData(ExcelApi.ExcelApi excel, int rowIndex,
+      IReadOnlyCollection<string> listOfProperties)
+    {
+      excel.WriteRange($"A{rowIndex}", $"L{rowIndex}", listOfProperties.Where((x, y) => y <= 11));
+      excel.WriteRange($"M{rowIndex}", $"R{rowIndex}", listOfProperties.Where((x, y) => y >= 14 && y <= 19));
+      excel.WriteRange($"S{rowIndex}", $"AB{rowIndex}", listOfProperties.Where((x, y) => y >= 21 && y <= 29));
+      excel.WriteRange($"AC{rowIndex}", $"AM{rowIndex}", listOfProperties.Where((x, y) => y >= 30 && y <= 40));
+      excel.WriteRange($"AP{rowIndex}", $"BE{rowIndex}", listOfProperties.Where((x, y) => y >= 41 && y <= 56));
+      excel.WriteRange($"BI{rowIndex}", $"BX{rowIndex}", listOfProperties.Where((x, y) => y >= 58 && y <= 73));
+      excel.WriteRange($"CB{rowIndex}", $"CC{rowIndex}", listOfProperties.Where((x, y) => y >= 12 && y <= 13));
+
+      excel.WriteCell(rowIndex, 59, listOfProperties.Where((x, y) => y == 57).Single());
+      excel.WriteCell(rowIndex, 74, listOfProperties.Where((x, y) => y == 74).Single());
+    }
+
+    private static List<string> GenerateListOfData(FullTimeEntryLoadDto fullTimeEntryLoad)
+    {
+      var listOfProperties = new List<string> { fullTimeEntryLoad.Faculty.CodeFaculty };
+
+      listOfProperties.AddRange(GenerateListOfProperties(typeof(FullTimeEntryLoadDto).GetProperties(),
+        fullTimeEntryLoad));
+
+      listOfProperties.AddRange(GenerateListOfProperties(typeof(FullTimeDisciplineDto).GetProperties(),
+        fullTimeEntryLoad.FullTimeDiscipline));
+
+      listOfProperties.AddRange(fullTimeEntryLoad.FullTimeDiscipline.FirstSemester != null
+        ? GenerateListOfProperties(typeof(FirstSemesterDto).GetProperties(),
+          fullTimeEntryLoad.FullTimeDiscipline.FirstSemester)
+        : new string[9]);
+
+      listOfProperties.AddRange(fullTimeEntryLoad.FullTimeDiscipline.SecondSemester != null
+        ? GenerateListOfProperties(typeof(SecondSemesterDto).GetProperties(),
+          fullTimeEntryLoad.FullTimeDiscipline.SecondSemester)
+        : new string[9]);
+
+      listOfProperties.Add(fullTimeEntryLoad.FullTimeDiscipline?.Department.CodeDepartment);
+
+      if (!fullTimeEntryLoad.HoursCalculationOfFirstSemester.All.Equals("0"))
+      {
+        listOfProperties.AddRange(GenerateListOfProperties(typeof(HoursCalculationOfFirstSemesterDto).GetProperties(),
+          fullTimeEntryLoad.HoursCalculationOfFirstSemester));
+      }
+      else
+      {
+        listOfProperties.AddRange(new string[17]);
+      }
+
+      if (!fullTimeEntryLoad.HoursCalculationOfSecondSemester.All.Equals("0"))
+      {
+        listOfProperties.AddRange(GenerateListOfProperties(typeof(HoursCalculationOfSecondSemesterDto).GetProperties(),
+          fullTimeEntryLoad.HoursCalculationOfSecondSemester));
+      }
+      else
+      {
+        listOfProperties.AddRange(new string[17]);
+      }
+
+      return listOfProperties;
+    }
+
+    private static List<string> GenerateListOfData(PartTimeEntryLoadDto partTimeEntryLoad)
+    {
+      var listOfProperties = new List<string>();
+
+      listOfProperties.AddRange(GenerateListOfProperties(typeof(PartTimeEntryLoadDto).GetProperties(),
+        partTimeEntryLoad));
+
+      listOfProperties.AddRange(GenerateListOfProperties(typeof(PartTimeDisciplineDto).GetProperties(),
+        partTimeEntryLoad.PartTimeDiscipline));
+
+      listOfProperties.AddRange(partTimeEntryLoad.PartTimeDiscipline.ConstituentSession != null
+        ? GenerateListOfProperties(typeof(ConstituentSessionDto).GetProperties(),
+          partTimeEntryLoad.PartTimeDiscipline.ConstituentSession)
+        : new string[10]);
+
+      listOfProperties.AddRange(partTimeEntryLoad.PartTimeDiscipline.ExaminationSession != null
+        ? GenerateListOfProperties(typeof(ExaminationSessionDto).GetProperties(),
+          partTimeEntryLoad.PartTimeDiscipline.ExaminationSession)
+        : new string[10]);
+
+      listOfProperties.Add(partTimeEntryLoad.PartTimeDiscipline?.Department.CodeDepartment);
+
+      if (!partTimeEntryLoad.HoursCalculationOfFirstSemester.All.Equals("0"))
+      {
+        listOfProperties.AddRange(GenerateListOfProperties(typeof(HoursCalculationOfFirstSemesterDto).GetProperties(),
+          partTimeEntryLoad.HoursCalculationOfFirstSemester));
+      }
+      else
+      {
+        listOfProperties.AddRange(new string[17]);
+      }
+
+      if (!partTimeEntryLoad.HoursCalculationOfSecondSemester.All.Equals("0"))
+      {
+        listOfProperties.AddRange(GenerateListOfProperties(typeof(HoursCalculationOfSecondSemesterDto).GetProperties(),
+          partTimeEntryLoad.HoursCalculationOfSecondSemester));
+      }
+      else
+      {
+        listOfProperties.AddRange(new string[17]);
+      }
+
+      return listOfProperties;
+    }
+
+    private async Task<EntryLoadsPropertyDto> ChangeIsActiveEntryLoadsProperties(int id,
+      IEnumerable<EntryLoadsPropertyDto> entryLoadsProperties)
+    {
+      var entryLoadsProperty = entryLoadsProperties.Single(x => x.Id == id);
+      var entryLoadsPropertyIsActive = entryLoadsProperties.Single(x => x.IsActive);
+
+      entryLoadsPropertyIsActive.IsActive = false;
+      await ServiceFactory.EntryLoadsPropertyService.UpdateEntryLoadsProperty(entryLoadsPropertyIsActive);
+
+      entryLoadsProperty.IsActive = true;
+      await ServiceFactory.EntryLoadsPropertyService.UpdateEntryLoadsProperty(entryLoadsProperty);
+
+      return entryLoadsProperty;
+    }
+
+    private async Task ReadFullTimeData(string path, ExcelApi.ExcelApi excel)
+    {
       for (var i = 6; i <= excel.Count; i++)
       {
         var entryLoadData = excel.ReadRange($"A{i}", $"N{i}");
+        var entryLoadNormsData = excel.ReadRange($"AQ{i}", $"AS{i}");
+        var entryLoadHoursData = excel.ReadRange($"CG{i}", $"CH{i}");
+
         var disciplineData = excel.ReadRange($"O{i}", $"T{i}");
         var firstSemesterData = excel.ReadRange($"U{i}", $"AC{i}");
         var secondSemesterData = excel.ReadRange($"AD{i}", $"AL{i}");
+
         var codeDepartmentData = excel.ReadRange($"AM{i}", $"AN{i}");
+
+        var hoursCalculationOfFirstSemesterData = excel.ReadRange($"AU{i}", $"BL{i}");
+        var hoursCalculationOfSecondSemesterData = excel.ReadRange($"BN{i}", $"CE{i}");
 
         var firstSemester = GetFirstSemesterData(firstSemesterData);
         var secondSemester = GetSecondSemesterData(secondSemesterData);
+
         var discipline = GetFullTimeDisciplineData(disciplineData, firstSemester, secondSemester, codeDepartmentData);
-        var entryLoad = GetFullEntryLoadData(entryLoadData, discipline);
 
-        await InsertData(firstSemester, secondSemester, discipline, entryLoad);
+        var hoursCalculationOfFirstSemester = GetHoursCalculationOfFirstSemesterData(hoursCalculationOfFirstSemesterData);
+        var hoursCalculationOfSecondSemester = GetHoursCalculationOfSecondSemesterData(hoursCalculationOfSecondSemesterData);
+
+        var entryLoad = GetFullEntryLoadData(entryLoadData, entryLoadHoursData, entryLoadNormsData, discipline,
+          hoursCalculationOfFirstSemester, hoursCalculationOfSecondSemester);
+
+        if (entryLoad.Specialization == null)
+        {
+          break;
+        }
+
+        await InsertData(firstSemester, secondSemester, discipline,
+          hoursCalculationOfFirstSemester, hoursCalculationOfSecondSemester, entryLoad);
       }
-
-      excel.Close();
     }
 
-    private async Task ReadPartTimeData(string path)
+    private async Task ReadPartTimeData(string path, ExcelApi.ExcelApi excel)
     {
-      var excel = new ExcelParser.ExcelParser(path, 2);
-
       for (var i = 6; i < excel.Count; i++)
       {
         var entryLoadData = excel.ReadRange($"A{i}", $"L{i}");
+        var entryLoadHoursData = excel.ReadRange($"CB{i}", $"CC{i}");
+
         var disciplineData = excel.ReadRange($"M{i}", $"R{i}");
         var constituentSessionData = excel.ReadRange($"S{i}", $"AB{i}");
         var examinationSessionData = excel.ReadRange($"AC{i}", $"AL{i}");
+
         var codeDepartmentData = excel.ReadRange($"AM{i}", $"AN{i}");
+
+        var hoursCalculationOfFirstSemesterData = excel.ReadRange($"AP{i}", $"BG{i}");
+        var hoursCalculationOfSecondSemesterData = excel.ReadRange($"BI{i}", $"BZ{i}");
 
         var constituentSession = GetConstituentSessionData(constituentSessionData);
         var examinationSession = GetExaminationSessionData(examinationSessionData);
+
         var discipline = GetPartTimeDisciplineData(disciplineData, constituentSession, examinationSession, codeDepartmentData);
-        var entryLoad = GetPartTimeEntryLoadData(entryLoadData, discipline);
 
-        await InsertData(constituentSession, examinationSession, discipline, entryLoad);
+        var hoursCalculationOfFirstSemester = GetHoursCalculationOfFirstSemesterData(hoursCalculationOfFirstSemesterData);
+        var hoursCalculationOfSecondSemester = GetHoursCalculationOfSecondSemesterData(hoursCalculationOfSecondSemesterData);
 
+        var entryLoad = GetPartTimeEntryLoadData(entryLoadData, entryLoadHoursData, discipline,
+          hoursCalculationOfFirstSemester, hoursCalculationOfSecondSemester);
+
+        if (entryLoad.Specialization == null)
+        {
+          break;
+        }
+
+        await InsertData(constituentSession, examinationSession, discipline,
+          hoursCalculationOfFirstSemester, hoursCalculationOfSecondSemester, entryLoad);
       }
-
-      excel.Close();
     }
 
-    private static PartTimeEntryLoadDto GetPartTimeEntryLoadData(object[,] entryLoadData, PartTimeDisciplineDto discipline)
+    private static HoursCalculationOfSecondSemesterDto GetHoursCalculationOfSecondSemesterData(object[,] hoursCalculationOfSecondSemesterData)
+    {
+      return new HoursCalculationOfSecondSemesterDto
+      {
+        Lectures = hoursCalculationOfSecondSemesterData[1, 1]?.ToString(),
+        Laboratories = hoursCalculationOfSecondSemesterData[1, 2]?.ToString(),
+        Practicals = hoursCalculationOfSecondSemesterData[1, 3]?.ToString(),
+        ConsultationsDuringTheSemester = hoursCalculationOfSecondSemesterData[1, 4]?.ToString(),
+        ConsultationsBeforeTheExam = hoursCalculationOfSecondSemesterData[1, 5]?.ToString(),
+        CheckingOfControlWorks = hoursCalculationOfSecondSemesterData[1, 6]?.ToString(),
+        KRKP = hoursCalculationOfSecondSemesterData[1, 7]?.ToString(),
+        ConductionOfCredit = hoursCalculationOfSecondSemesterData[1, 8]?.ToString(),
+        ConductionOfExam = hoursCalculationOfSecondSemesterData[1, 9]?.ToString(),
+        PracticalTrainingGuide = hoursCalculationOfSecondSemesterData[1, 10]?.ToString(),
+        ParticipationInDec = hoursCalculationOfSecondSemesterData[1, 11]?.ToString(),
+        ConductionOfTheStateExam = hoursCalculationOfSecondSemesterData[1, 12]?.ToString(),
+        GuidanceDiplomaWorks = hoursCalculationOfSecondSemesterData[1, 13]?.ToString(),
+        Another = hoursCalculationOfSecondSemesterData[1, 14]?.ToString(),
+        All = hoursCalculationOfSecondSemesterData[1, 15]?.ToString(),
+        Active = hoursCalculationOfSecondSemesterData[1, 16]?.ToString(),
+        Bonus = hoursCalculationOfSecondSemesterData[1, 18]?.ToString(),
+      };
+    }
+
+    private static HoursCalculationOfFirstSemesterDto GetHoursCalculationOfFirstSemesterData(object[,] hoursCalculationOfFirstSemesterData)
+    {
+      return new HoursCalculationOfFirstSemesterDto
+      {
+        Lectures = hoursCalculationOfFirstSemesterData[1, 1]?.ToString(),
+        Laboratories = hoursCalculationOfFirstSemesterData[1, 2]?.ToString(),
+        Practicals = hoursCalculationOfFirstSemesterData[1, 3]?.ToString(),
+        ConsultationsDuringTheSemester = hoursCalculationOfFirstSemesterData[1, 4]?.ToString(),
+        ConsultationsBeforeTheExam = hoursCalculationOfFirstSemesterData[1, 5]?.ToString(),
+        CheckingOfControlWorks = hoursCalculationOfFirstSemesterData[1, 6]?.ToString(),
+        KRKP = hoursCalculationOfFirstSemesterData[1, 7]?.ToString(),
+        ConductionOfCredit = hoursCalculationOfFirstSemesterData[1, 8]?.ToString(),
+        ConductionOfExam = hoursCalculationOfFirstSemesterData[1, 9]?.ToString(),
+        PracticalTrainingGuide = hoursCalculationOfFirstSemesterData[1, 10]?.ToString(),
+        ParticipationInDec = hoursCalculationOfFirstSemesterData[1, 11]?.ToString(),
+        ConductionOfTheStateExam = hoursCalculationOfFirstSemesterData[1, 12]?.ToString(),
+        GuidanceDiplomaWorks = hoursCalculationOfFirstSemesterData[1, 13]?.ToString(),
+        Another = hoursCalculationOfFirstSemesterData[1, 14]?.ToString(),
+        All = hoursCalculationOfFirstSemesterData[1, 15]?.ToString(),
+        Active = hoursCalculationOfFirstSemesterData[1, 16]?.ToString(),
+        Bonus = hoursCalculationOfFirstSemesterData[1, 18]?.ToString(),
+      };
+    }
+
+    private static PartTimeEntryLoadDto GetPartTimeEntryLoadData(object[,] entryLoadData, object[,] entryLoadHoursData,
+      PartTimeDisciplineDto discipline,
+      HoursCalculationOfFirstSemesterDto hoursCalculationOfFirstSemester,
+      HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemester)
     {
       return new PartTimeEntryLoadDto
       {
@@ -195,11 +452,16 @@ namespace Planner.Controllers
         MainSpecial = entryLoadData[1, 10]?.ToString(),
         NumberOfConstituentSession = entryLoadData[1, 11]?.ToString(),
         NumberOfExaminationSession = entryLoadData[1, 12]?.ToString(),
-        PartTimeDiscipline = discipline
+        PartTimeDiscipline = discipline,
+        HoursCalculationOfFirstSemester = hoursCalculationOfFirstSemester.All == null ? null : hoursCalculationOfFirstSemester,
+        HoursCalculationOfSecondSemester = hoursCalculationOfSecondSemester.All == null ? null : hoursCalculationOfSecondSemester,
+        All = entryLoadHoursData[1, 1]?.ToString(),
+        Active = entryLoadHoursData[1, 2]?.ToString()
       };
     }
 
-    private PartTimeDisciplineDto GetPartTimeDisciplineData(object[,] disciplineData, ConstituentSessionDto constituentSession,
+    private PartTimeDisciplineDto GetPartTimeDisciplineData(object[,] disciplineData,
+      ConstituentSessionDto constituentSession,
       ExaminationSessionDto examinationSession, object[,] codeDepartmentData)
     {
       return new PartTimeDisciplineDto
@@ -250,7 +512,10 @@ namespace Planner.Controllers
       };
     }
 
-    private FullTimeEntryLoadDto GetFullEntryLoadData(object[,] entryLoadData, FullTimeDisciplineDto fullTimeDiscipline)
+    private FullTimeEntryLoadDto GetFullEntryLoadData(object[,] entryLoadData, object[,] entryLoadHoursData, object[,] entryLoadNormsData,
+      FullTimeDisciplineDto fullTimeDiscipline,
+      HoursCalculationOfFirstSemesterDto hoursCalculationOfFirstSemester,
+      HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemester)
     {
       return new FullTimeEntryLoadDto
       {
@@ -268,7 +533,14 @@ namespace Planner.Controllers
         AmountOfStudentsStreams = entryLoadData[1, 12]?.ToString(),
         ConnectingOfStudentStreams = entryLoadData[1, 13]?.ToString(),
         Notes = entryLoadData[1, 14]?.ToString(),
-        FullTimeDiscipline = fullTimeDiscipline
+        FullTimeDiscipline = fullTimeDiscipline,
+        HoursCalculationOfFirstSemester = hoursCalculationOfFirstSemester.All == null ? null : hoursCalculationOfFirstSemester,
+        HoursCalculationOfSecondSemester = hoursCalculationOfSecondSemester.All == null ? null : hoursCalculationOfSecondSemester,
+        KRKPDR = entryLoadNormsData[1, 1]?.ToString(),
+        Practical = entryLoadNormsData[1, 2]?.ToString(),
+        AmountOfPeopleDec = entryLoadNormsData[1, 3]?.ToString(),
+        All = entryLoadHoursData[1, 1]?.ToString(),
+        Active = entryLoadHoursData[1, 2]?.ToString()
       };
     }
 
@@ -333,7 +605,9 @@ namespace Planner.Controllers
     }
 
     private async Task InsertData(FirstSemesterDto firstSemester,
-      SecondSemesterDto secondSemester, FullTimeDisciplineDto fullTimeDiscipline, FullTimeEntryLoadDto fullTimeEntryLoad)
+      SecondSemesterDto secondSemester, FullTimeDisciplineDto fullTimeDiscipline,
+      HoursCalculationOfFirstSemesterDto hoursCalculationOfFirstSemester,
+      HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemester, FullTimeEntryLoadDto fullTimeEntryLoad)
     {
 
       if (firstSemester.Hours != null)
@@ -348,11 +622,28 @@ namespace Planner.Controllers
 
       fullTimeDiscipline.Id = await ServiceFactory.FullTimeDisciplineService.InsertFullTimeDiscipline(fullTimeDiscipline);
 
+      if (hoursCalculationOfFirstSemester.All != null)
+      {
+        hoursCalculationOfFirstSemester.Id =
+          await ServiceFactory.HoursCalculationOfFirstSemesterService.InsertHoursCalculationOfFirstSemester(
+            hoursCalculationOfFirstSemester);
+      }
+
+      if (hoursCalculationOfSecondSemester.All != null)
+      {
+        hoursCalculationOfSecondSemester.Id =
+          await ServiceFactory.HoursCalculationOfSecondSemesterService.InsertHoursCalculationOfSecondSemester(
+            hoursCalculationOfSecondSemester);
+      }
+
       await ServiceFactory.FullTimeEntryLoadService.InsertFullTimeEntryLoad(fullTimeEntryLoad);
     }
 
     private async Task InsertData(ConstituentSessionDto constituentSession, ExaminationSessionDto examinationSession,
-      PartTimeDisciplineDto discipline, PartTimeEntryLoadDto entryLoad)
+      PartTimeDisciplineDto discipline,
+      HoursCalculationOfFirstSemesterDto hoursCalculationOfFirstSemester,
+      HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemester,
+      PartTimeEntryLoadDto entryLoad)
     {
       if (constituentSession.Hours != null)
       {
@@ -365,6 +656,20 @@ namespace Planner.Controllers
       }
 
       discipline.Id = await ServiceFactory.PartTimeDisciplineService.InsertPartTimeDiscipline(discipline);
+
+      if (hoursCalculationOfFirstSemester.All != null)
+      {
+        hoursCalculationOfFirstSemester.Id =
+          await ServiceFactory.HoursCalculationOfFirstSemesterService.InsertHoursCalculationOfFirstSemester(
+            hoursCalculationOfFirstSemester);
+      }
+
+      if (hoursCalculationOfSecondSemester.All != null)
+      {
+        hoursCalculationOfSecondSemester.Id =
+          await ServiceFactory.HoursCalculationOfSecondSemesterService.InsertHoursCalculationOfSecondSemester(
+            hoursCalculationOfSecondSemester);
+      }
 
       await ServiceFactory.PartTimeEntryLoadService.InsertPartTimeEntryLoad(entryLoad);
     }

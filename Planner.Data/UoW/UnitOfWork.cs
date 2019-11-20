@@ -31,6 +31,10 @@ namespace Planner.Data.UoW
             ExaminationSessionRepository = new ExaminationSessionRepository(connectionString, "ExaminationSessions");
             PartTimeDisciplineRepository = new PartTimeDisciplineRepository(connectionString, "PartTimeDisciplines");
             PartTimeEntryLoadRepository = new PartTimeEntryLoadRepository(connectionString, "PartTimeEntryLoads");
+            HoursCalculationOfFirstSemesterRepository =
+                new HoursCalculationOfFirstSemesterRepository(connectionString, "HoursCalculationOfFirstSemesters");
+            HoursCalculationOfSecondSemesterRepository =
+                new HoursCalculationOfSecondSemesterRepository(connectionString, "HoursCalculationOfSecondSemesters");
         }
 
         public IUserRepository UserRepository { get; }
@@ -48,5 +52,7 @@ namespace Planner.Data.UoW
         public IExaminationSessionRepository ExaminationSessionRepository { get; }
         public IPartTimeEntryLoadRepository PartTimeEntryLoadRepository { get; }
         public IPartTimeDisciplineRepository PartTimeDisciplineRepository { get; }
+        public IHoursCalculationOfFirstSemesterRepository HoursCalculationOfFirstSemesterRepository { get; }
+        public IHoursCalculationOfSecondSemesterRepository HoursCalculationOfSecondSemesterRepository { get; }
     }
 }

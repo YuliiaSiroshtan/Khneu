@@ -43,5 +43,25 @@ namespace Planner.Entities.Domain.AppEntryLoad.FullTime
         [Description("Ignore")]
         public FullTimeDiscipline FullTimeDiscipline { get; set; }
 
+        public int? HoursCalculationOfFirstSemesterId { get; set; }
+       
+        [Description("Ignore")]
+        public HoursCalculationOfFirstSemester HoursCalculationOfFirstSemester { get; set; }
+
+        public int? HoursCalculationOfSecondSemesterId { get; set; }
+        
+        [Description("Ignore")]
+        public HoursCalculationOfSecondSemester HoursCalculationOfSecondSemester { get; set; }
+
+        public string KRKPDR { get; set; }
+
+        public string Practical { get; set; }
+
+        public string AmountOfPeopleDec { get; set; }
+
+        public string All { get; set; }
+
+        public string Active { get; set; }
+
     }
 }

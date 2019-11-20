@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ysiro.LAPTOP\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\LSK\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ysiro.LAPTOP\\Desktop\\Khneu\\Planner.PresentationLayer\\Planner.PresentationLayer.csproj",
+      "projectUniqueName": "C:\\Users\\LSK\\source\\repos\\Planner\\Planner.PresentationLayer\\Planner.PresentationLayer.csproj",
       "projectName": "Planner.PresentationLayer",
-      "projectPath": "C:\\Users\\ysiro.LAPTOP\\Desktop\\Khneu\\Planner.PresentationLayer\\Planner.PresentationLayer.csproj",
-      "packagesPath": "C:\\Users\\ysiro.LAPTOP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ysiro.LAPTOP\\Desktop\\Khneu\\Planner.PresentationLayer\\obj\\",
+      "projectPath": "C:\\Users\\LSK\\source\\repos\\Planner\\Planner.PresentationLayer\\Planner.PresentationLayer.csproj",
+      "packagesPath": "C:\\Users\\LSK\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LSK\\source\\repos\\Planner\\Planner.PresentationLayer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ysiro.LAPTOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LSK\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

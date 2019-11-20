@@ -18,6 +18,8 @@ namespace Planner.ServiceInterfaces.Interfaces.AppUser
 
         Task<UserDto> GetUserByLoginAndPassword(string login, string password);
 
+        Task<string> GetUserNameById(int id);
+
         Task UpdateUser(UserDto userDto);
 
         Task InsertUser(UserDto userDto);

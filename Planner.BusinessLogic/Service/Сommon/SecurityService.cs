@@ -7,9 +7,9 @@ namespace Planner.BusinessLogic.Service.Сommon
 {
     public class SecurityService : ISecurityService
     {
-        public string GetSha256Hash(string input)
+        public string GetSha512Hash(string input)
         {
-            using var hashAlgorithm = new SHA256CryptoServiceProvider();
+            using var hashAlgorithm = new SHA512CryptoServiceProvider();
             var byteValue = Encoding.UTF8.GetBytes(input);
             var byteHash = hashAlgorithm.ComputeHash(byteValue);
 
