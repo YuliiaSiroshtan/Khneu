@@ -25,42 +25,42 @@ a, .item {
 }
 
 .profile-logo {
-  content: url('../../../images/hneu-user.png');
+  content: url('../../../../images/hneu-user.png');
   width: 90px;
 }
 
 .new-usr-img {
-  content: url('../../../images/hneu-new-user.png');
+  content: url('../../../../images/hneu-new-user.png');
   width: 17px;
   margin-right: 2%;
 }
 
 .students-img {
-  content: url('../../../images/hneu-students.png');
+  content: url('../../../../images/hneu-students.png');
   width: 21px;
   margin-right: 2%;
 }
 
 .teacher-img {
-  content: url('../../../images/hneu-teacher.png');
+  content: url('../../../../images/hneu-teacher.png');
   width: 19px;
   margin-right: 2%;
 }
 
 .teachers-img {
-  content: url('../../../images/hneu-teachers.png');
+  content: url('../../../../images/hneu-teachers.png');
   width: 21px;
   margin-right: 2%;
 }
 
 .users-img {
-  content: url('../../../images/hneu-users.png');
+  content: url('../../../../images/hneu-users.png');
   width: 21px;
   margin-right: 2%;
 }
 
 .file-img {
-  content: url('../../../images/hneu-file.png');
+  content: url('../../../../images/hneu-file.png');
   width: 20px;
   margin-right: 2%;
 }
