@@ -60,6 +60,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ListboxModule } from 'primeng/listbox';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CoreRoutingModule } from './core-routing.module';
+import { AppHeaderComponent } from './components/app-header-component/app-header.component';
+import { AppSidenavComponent } from './components/app-sidenav-component/app-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { CoreRoutingModule } from './core-routing.module';
     UploadDistributionComponent,
     DistributionComponent,
     DayEntryComponent,
-    HomePageComponent
+    HomePageComponent,
+    AppHeaderComponent,
+    AppSidenavComponent
   ],
   imports: [
     CoreRoutingModule,

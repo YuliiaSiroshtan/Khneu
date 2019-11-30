@@ -144,28 +144,28 @@ li {
 
 .youtube-logo {
   height: 35px;
-  content: url('../../../images/hneu-youtube.png');
+  content: url('../../../../images/hneu-youtube.png');
 }
 
 .facebook-logo {
   height: 35px;
-  content: url('../../../images/hneu-facebook.png');
+  content: url('../../../../images/hneu-facebook.png');
 }
 
 .twitter-logo {
   height: 35px;
-  content: url('../../../images/hneu-twitter.png');
+  content: url('../../../../images/hneu-twitter.png');
 }
 
 .scholar-logo {
   height: 30px;
-  content: url('../../../images/hneu-google.png');
+  content: url('../../../../images/hneu-google.png');
   margin: 1px;
 }
 
 .orcid-logo {
   height: 31px;
-  content: url('../../../images/hneu-orcid.png');
+  content: url('../../../../images/hneu-orcid.png');
   margin: 2px;
 }
 

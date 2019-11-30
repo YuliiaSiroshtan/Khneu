@@ -38,34 +38,34 @@
   </div>
   <div>
     <ul>
-      <li><a routerLink="/home">Головна</a></li>
-      <li><a routerLink="/publication">Публікації</a></li>
+      <li><a [routerLink]="[{ outlets: { main: ['home'] } }]">Головна</a></li>
+      <li><a [routerLink]="[{ outlets: { main: ['publication'] } }]">Публікації</a></li>
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn dropdown-toggle">Індивідуальний план</a>
         <span class="caret"></span>
         <div class="dropdown-content">
-          <a routerLink="/training-job">Навчальна робота</a>
-          <a routerLink="/plan-methodical-work">Методична робота</a>
-          <a routerLink="/plan-scientific-work">Наукова робота</a>
-          <a routerLink="/plan-management">Організаційна робота</a>
+          <a [routerLink]="[{ outlets: { main: ['training-job'] } }]">Навчальна робота</a>
+          <a [routerLink]="[{ outlets: { main: ['plan-methodical-work'] } }]">Методична робота</a>
+          <a [routerLink]="[{ outlets: { main: ['plan-scientific-work'] } }]">Наукова робота</a>
+          <a [routerLink]="[{ outlets: { main: ['plan-management'] } }]">Організаційна робота</a>
         </div>
       </li>
-      <li><a routerLink="/reports">Звіти</a></li>
+      <li><a [routerLink]="[{ outlets: { main: ['reports'] } }]">Звіти</a></li>
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn dropdown-toggle">Адміністративний модуль</a>
         <span class="caret"></span>
         <div class="dropdown-content">
-          <a routerLink="/home">Список курсів</a>
-          <a routerLink="/home">Список кафедр</a>
-          <a routerLink="/home">Список факультетів</a>
-          <a routerLink="/home">Список робіт індив-го плану</a>
-          <a routerLink="/home">Список індексів цитувань</a>
-          <a routerLink="/home">Список спеціалізацій</a>
-          <a routerLink="/home">Список спеціальностей</a>
-          <a routerLink="/home">Список предметів</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список курсів</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список кафедр</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список факультетів</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список робіт індив-го плану</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список індексів цитувань</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціалізацій</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціальностей</a>
+          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список предметів</a>
         </div>
       </li>
-      <li><a routerLink="/dashboard">Розклад занять</a></li>
+      <li><a [routerLink]="[{ outlets: { main: ['dashboard'] } }]">Розклад занять</a></li>
       <li><a (click)="logout()">Вийти</a></li>
     </ul>
   </div>
