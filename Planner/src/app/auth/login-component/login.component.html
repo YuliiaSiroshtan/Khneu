@@ -1,13 +1,12 @@
 <p-toast key="error" position="top-center"></p-toast>
 <div class="hold-transition login-page">
+  <div class="wrapper">
   <div class="header-widget">
     <div class="site-logo">
-      <a href="http://www.hneu.edu.ua/" title="Харківский  національний економічний університет імені Семена Кузнеця"
-        rel="home">
-        <img class="background-logo">
+      <a href="http://www.hneu.edu.ua/" class="background-logo" title="Харківский  національний економічний університет імені Семена Кузнеця" rel="home">
       </a>
       <div class="login-logo">
-        <p title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧІВ ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ ІМЕНІ СЕМЕНА КУЗНЕЦЯ">
+        <p class="title_logo" title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧІВ ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ ІМЕНІ СЕМЕНА КУЗНЕЦЯ">
           ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧІВ ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ ІМЕНІ СЕМЕНА КУЗНЕЦЯ
         </p>
       </div>
@@ -18,17 +17,15 @@
     <div class="container body-content">
       <label for="usr" class="form-label">Авторизуйтеся для подальшої роботи</label>
       <div class="form-group">
-        <input type="text" pInputText placeholder="Електронна адреса" class="form-control" formControlName="email"
-          [(ngModel)]="loginModel.email">
+        <input type="text" pInputText placeholder="Електронна адреса" class="form-control" formControlName="email" [(ngModel)]="loginModel.email">
         <p-message severity="error" [text]="getErrorMessage('email')"
-          *ngIf="!this.userform.controls['email'].valid && this.userform.controls['email'].dirty"></p-message>
+                   *ngIf="!this.userform.controls['email'].valid && this.userform.controls['email'].dirty"></p-message>
 
       </div>
       <div class="form-group">
-        <input type="password" pInputText placeholder="Пароль" class="form-control" formControlName="password"
-          [(ngModel)]="loginModel.password">
+        <input type="password" pInputText placeholder="Пароль" class="form-control" formControlName="password" [(ngModel)]="loginModel.password">
         <p-message severity="error" [text]="getErrorMessage('password')"
-          *ngIf="!this.userform.controls['password'].valid && this.userform.controls['password'].dirty"></p-message>
+                   *ngIf="!this.userform.controls['password'].valid && this.userform.controls['password'].dirty"></p-message>
       </div>
       <div class="form-check">
         <label class="form-check-label">
@@ -40,3 +37,5 @@
     </div>
   </form>
 </div>
+</div>
+

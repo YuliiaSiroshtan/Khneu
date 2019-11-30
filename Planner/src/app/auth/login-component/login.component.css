@@ -15,6 +15,13 @@
   background: url('../../../images/hneu-house.png') right bottom no-repeat, url('../../../images/hneu-background.jpg') left top repeat;
 }
 
+.wrapper {
+  display: block;
+  max-width: 1600px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
 .login-logo, .register-logo {
   font-size: 32px;
   text-align: center;
@@ -28,18 +35,26 @@
     color: #444;
   }
 
+  .login-logo .title_logo {
+    padding-top: 25px;
+  }
+
 .background-logo {
-  max-width: 140px;
   float: left;
-  content: url('../../../images/hneu-logo.png');
+  background-image: url('../../../images/hneu-logo.png');
+  width: 140px;
+  height: 140px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .login-form {
+  display: block;
   background-color: rgba(0,0,0,0.5);
   padding: 25px;
   border-radius: 9px;
   width: 600px;
-  margin-left: 35%;
+  margin: 0 auto;
   font-size: 13px;
   font-family: Verdana;
   color: white;
@@ -76,4 +91,50 @@
 .ui-message.ui-message-error {
   width: 100%;
   text-align: center
+}
+
+@media (max-width: 1180px) {
+  .background-logo {
+    display: block;
+    margin: 0 auto;
+    float: none;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 790px) {
+  .wrapper {
+    padding: 0 10px;
+  }
+  .login-logo .title_logo {
+    max-width: 1000px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width:600px) {
+  .login-logo .title_logo {
+    max-width: 604px;
+    font-size: 25px;
+  } 
+  .login-form {
+    width: 472px;
+  }
+
+  .form-label {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 488px) {
+  .login-form {
+    width: 352px;
+  }
+  .login-logo .title_logo {
+    max-width: 100%;
+    font-size: 20px;
+    padding: 0;
+  }
 }
