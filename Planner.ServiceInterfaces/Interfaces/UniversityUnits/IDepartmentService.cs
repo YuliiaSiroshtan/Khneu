@@ -11,7 +11,5 @@ namespace Planner.ServiceInterfaces.Interfaces.UniversityUnits
         Task<DepartmentDto> GetDepartmentById(int id);
 
         Task<DepartmentDto> GetDepartmentByName(string name);
-
     }
 }
-

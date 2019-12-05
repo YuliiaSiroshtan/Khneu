@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.DTO.AppEntryLoadDto;
 using Planner.RepositoryInterfaces.UoW;
@@ -7,25 +8,18 @@ using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service.AppEntryLoad
 {
-    public class HoursCalculationOfSecondSemesterService : IHoursCalculationOfSecondSemesterService
+    public class HoursCalculationOfSecondSemesterService : BaseService, IHoursCalculationOfSecondSemesterService
     {
-        private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
+        public HoursCalculationOfSecondSemesterService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper) { }
 
-        public HoursCalculationOfSecondSemesterService(IUnitOfWork uow, IMapper mapper)
-        {
-            _uow = uow;
-            _mapper = mapper;
-        }
-
-        public async Task<int> InsertHoursCalculationOfSecondSemester(HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemesterDto)
+        public async Task<int> InsertHoursCalculationOfSecondSemester(
+            HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemesterDto)
         {
             var hoursCalculationOfSecondSemester =
-                _mapper.Map<HoursCalculationOfSecondSemester>(hoursCalculationOfSecondSemesterDto);
+                this.Mapper.Map<HoursCalculationOfSecondSemester>(hoursCalculationOfSecondSemesterDto);
 
-            return await _uow.HoursCalculationOfSecondSemesterRepository
+            return await this.Uow.HoursCalculationOfSecondSemesterRepository
                 .InsertHoursCalculationOfSecondSemester(hoursCalculationOfSecondSemester);
         }
     }
 }
-

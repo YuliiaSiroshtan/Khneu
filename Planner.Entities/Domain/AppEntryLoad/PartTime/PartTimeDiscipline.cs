@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Planner.Entities.Domain.UniversityUnits;
+﻿using Planner.Entities.Domain.UniversityUnits;
+using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 {
@@ -21,17 +21,14 @@ namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 
         public int? ConstituentSessionId { get; set; }
 
-        [Description("Ignore")]
-        public ConstituentSession ConstituentSession { get; set; }
+        [Description("Ignore")] public ConstituentSession ConstituentSession { get; set; }
 
         public int? ExaminationSessionId { get; set; }
 
-        [Description("Ignore")]
-        public ExaminationSession ExaminationSession { get; set; }
+        [Description("Ignore")] public ExaminationSession ExaminationSession { get; set; }
 
         public int? DepartmentId { get; set; }
 
-        [Description("Ignore")]
-        public Department Department { get; set; }
+        [Description("Ignore")] public Department Department { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.DTO.AppEntryLoadDto;
 using Planner.RepositoryInterfaces.UoW;
@@ -8,60 +9,48 @@ using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service.AppEntryLoad
 {
-    public class EntryLoadPropertyService : IEntryLoadPropertyService
+    public class EntryLoadPropertyService : BaseService, IEntryLoadPropertyService
     {
-        private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
-
-        public EntryLoadPropertyService(IUnitOfWork uow, IMapper mapper)
-        {
-            _uow = uow;
-            _mapper = mapper;
-        }
+        public EntryLoadPropertyService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper) { }
 
         public async Task<IEnumerable<EntryLoadsPropertyDto>> GetEntryLoadsProperties()
         {
-            var entryLoadsProperties = await _uow.EntryLoadPropertyRepository.GetEntryLoadsProperties();
+            var entryLoadsProperties = await this.Uow.EntryLoadPropertyRepository.GetEntryLoadsProperties();
 
-            return _mapper.Map<IEnumerable<EntryLoadsPropertyDto>>(entryLoadsProperties);
+            return this.Mapper.Map<IEnumerable<EntryLoadsPropertyDto>>(entryLoadsProperties);
         }
 
-        public async Task DeleteEntryLoadsProperty(int id)
-        {
-            await _uow.EntryLoadPropertyRepository.DeleteEntryLoadsProperty(id);
-        }
+        public async Task DeleteEntryLoadsProperty(int id) =>
+            await this.Uow.EntryLoadPropertyRepository.DeleteEntryLoadsProperty(id);
 
         public async Task<EntryLoadsPropertyDto> GetEntryLoadsPropertyById(int id)
         {
-            var entryLoadsProperty = await _uow.EntryLoadPropertyRepository.GetEntryLoadsPropertyById(id);
+            var entryLoadsProperty = await this.Uow.EntryLoadPropertyRepository.GetEntryLoadsPropertyById(id);
 
-            return _mapper.Map<EntryLoadsPropertyDto>(entryLoadsProperty);
+            return this.Mapper.Map<EntryLoadsPropertyDto>(entryLoadsProperty);
         }
 
         public async Task<EntryLoadsPropertyDto> GetEntryLoadsPropertyByName(string name)
         {
-            var entryLoadsProperty = await _uow.EntryLoadPropertyRepository.GetEntryLoadsPropertyByName(name);
+            var entryLoadsProperty = await this.Uow.EntryLoadPropertyRepository.GetEntryLoadsPropertyByName(name);
 
-            return _mapper.Map<EntryLoadsPropertyDto>(entryLoadsProperty);
+            return this.Mapper.Map<EntryLoadsPropertyDto>(entryLoadsProperty);
         }
 
         public async Task UpdateEntryLoadsProperty(EntryLoadsPropertyDto entryLoadsPropertyDto)
         {
-            var entryLoadsProperty = _mapper.Map<EntryLoadsProperty>(entryLoadsPropertyDto);
+            var entryLoadsProperty = this.Mapper.Map<EntryLoadsProperty>(entryLoadsPropertyDto);
 
-            await _uow.EntryLoadPropertyRepository.UpdateEntryLoadsProperty(entryLoadsProperty);
+            await this.Uow.EntryLoadPropertyRepository.UpdateEntryLoadsProperty(entryLoadsProperty);
         }
 
         public async Task InsertEntryLoadsProperty(EntryLoadsPropertyDto entryLoadsPropertyDto)
         {
-            var entryLoadsProperty = _mapper.Map<EntryLoadsProperty>(entryLoadsPropertyDto);
+            var entryLoadsProperty = this.Mapper.Map<EntryLoadsProperty>(entryLoadsPropertyDto);
 
-            await _uow.EntryLoadPropertyRepository.InsertEntryLoadsProperty(entryLoadsProperty);
+            await this.Uow.EntryLoadPropertyRepository.InsertEntryLoadsProperty(entryLoadsProperty);
         }
 
-        public async Task RecreateTables()
-        {
-            await _uow.EntryLoadPropertyRepository.RecreateTables();
-        }
+        public async Task RecreateTables() => await this.Uow.EntryLoadPropertyRepository.RecreateTables();
     }
 }

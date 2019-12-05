@@ -6,36 +6,25 @@ namespace Planner.Entities.Domain.AppUser
 {
     public class Rate
     {
+        public Rate() => this.Users ??= new HashSet<User>();
+
         public int Id { get; }
 
         public float Value { get; set; }
 
         public int? DepartmentId { get; set; }
 
-        [Description("Ignore")]
-        public Department Department { get; set; }
+        [Description("Ignore")] public Department Department { get; set; }
 
-        [Description("Ignore")]
-        public ICollection<User> Users { get; }
-
-        public Rate()
-        {
-            Users ??= new HashSet<User>();
-        }
+        [Description("Ignore")] public ICollection<User> Users { get; }
 
         public override bool Equals(object obj)
         {
-            if (!(obj is Rate item))
-            {
-                return false;
-            }
+            if (!(obj is Rate item)) return false;
 
-            return Id.Equals(item.Id);
+            return this.Id.Equals(item.Id);
         }
 
-        public override int GetHashCode()
-        {
-            return Id.GetHashCode();
-        }
+        public override int GetHashCode() => this.Id.GetHashCode();
     }
 }

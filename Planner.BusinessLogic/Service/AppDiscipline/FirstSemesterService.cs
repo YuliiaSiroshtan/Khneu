@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.Domain.AppEntryLoad.FullTime;
 using Planner.Entities.DTO.AppEntryLoadDto.FullTime;
 using Planner.RepositoryInterfaces.UoW;
@@ -7,22 +8,15 @@ using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service.AppDiscipline
 {
-    public class FirstSemesterService : IFirstSemesterService
+    public class FirstSemesterService : BaseService, IFirstSemesterService
     {
-        private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
-
-        public FirstSemesterService(IUnitOfWork uow, IMapper mapper)
-        {
-            _uow = uow;
-            _mapper = mapper;
-        }
+        public FirstSemesterService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper) { }
 
         public async Task<int> InsertFirstSemester(FirstSemesterDto firstSemesterDto)
         {
-            var firstSemester = _mapper.Map<FirstSemester>(firstSemesterDto);
+            var firstSemester = this.Mapper.Map<FirstSemester>(firstSemesterDto);
 
-            return await _uow.FirstSemesterRepository.InsertFirstSemester(firstSemester);
+            return await this.Uow.FirstSemesterRepository.InsertFirstSemester(firstSemester);
         }
     }
 }

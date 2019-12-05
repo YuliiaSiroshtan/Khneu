@@ -11,6 +11,5 @@ namespace Planner.ServiceInterfaces.Interfaces.UniversityUnits
         Task<FacultyDto> GetFacultyById(int id);
 
         Task<FacultyDto> GetFacultyByName(string name);
-
     }
 }

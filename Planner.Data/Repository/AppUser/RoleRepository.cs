@@ -7,15 +7,10 @@ namespace Planner.Data.Repository.AppUser
 {
     public class RoleRepository : GenericRepository<Role>, IRoleRepository
     {
-        public RoleRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public RoleRepository(string connectionString, string tableName) : base(connectionString, tableName) { }
 
-        public async Task<Role> GetRoleById(int id) 
-            => await GetEntityById(id);
+        public async Task<Role> GetRoleById(int id) => await this.GetEntityById(id);
 
-        public async Task<Role> GetRoleByName(string name)
-            => await GetEntityByName(name);
-
+        public async Task<Role> GetRoleByName(string name) => await this.GetEntityByName(name);
     }
 }

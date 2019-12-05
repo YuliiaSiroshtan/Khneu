@@ -26,5 +26,8 @@ namespace Planner.RepositoryInterfaces.UoW
         IHoursCalculationOfFirstSemesterRepository HoursCalculationOfFirstSemesterRepository { get; }
         IHoursCalculationOfSecondSemesterRepository HoursCalculationOfSecondSemesterRepository { get; }
         IUserEntryLoadPropertyRepository UserEntryLoadPropertyRepository { get; }
+        ILectureRepository LectureRepository { get; }
+        ILaboratoryRepository LaboratoryRepository { get; }
+        IPracticalRepository PracticalRepository { get; }
     }
 }

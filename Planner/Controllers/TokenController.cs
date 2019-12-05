@@ -9,16 +9,14 @@ namespace Planner.Controllers
   [Route("api/[controller]")]
   public class TokenController : GenericController
   {
-    public TokenController(IServiceFactory serviceFactory, IMapper mapper) : base(serviceFactory, mapper)
-    {
-    }
+    public TokenController(IServiceFactory serviceFactory, IMapper mapper) : base(serviceFactory, mapper) { }
 
     [HttpPost("[action]")]
     public async Task<IActionResult> CreateToken([FromBody] LoginViewModel login)
     {
-      var result = await ServiceFactory.TokenService.CreateJwtSecurityToken(login.Login, login.Password);
+      var result = await this.ServiceFactory.TokenService.CreateJwtSecurityToken(login.Login, login.Password);
 
-      return Ok(result);
+      return this.Ok(result);
     }
   }
 }

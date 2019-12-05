@@ -7,11 +7,10 @@ namespace Planner.Data.Repository.AppDiscipline
 {
     public class ConstituentSessionRepository : GenericRepository<ConstituentSession>, IConstituentSessionRepository
     {
-        public ConstituentSessionRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public ConstituentSessionRepository(string connectionString, string tableName) : base(connectionString,
+            tableName) { }
 
-        public async Task<int> InsertConstituentSession(ConstituentSession constituentSession) 
-            => await Insert(constituentSession);
+        public async Task<int> InsertConstituentSession(ConstituentSession constituentSession) =>
+            await this.Insert(constituentSession);
     }
 }

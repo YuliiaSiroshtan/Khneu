@@ -1,9 +1,9 @@
-﻿using Planner.ServiceInterfaces.Interfaces.Сommon;
+﻿using Planner.ServiceInterfaces.Interfaces.Misc;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Planner.BusinessLogic.Service.Сommon
+namespace Planner.BusinessLogic.Service.Mics
 {
     public class SecurityService : ISecurityService
     {

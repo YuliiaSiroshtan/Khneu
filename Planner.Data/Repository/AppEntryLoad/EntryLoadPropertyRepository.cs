@@ -9,30 +9,32 @@ namespace Planner.Data.Repository.AppEntryLoad
 {
     public class EntryLoadPropertyRepository : GenericRepository<EntryLoadsProperty>, IEntryLoadPropertyRepository
     {
-        public EntryLoadPropertyRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
-
-        public async Task<IEnumerable<EntryLoadsProperty>> GetEntryLoadsProperties() => await GetEntities();
-
-        public async Task DeleteEntryLoadsProperty(int id) => await DeleteEntity(id);
+        public EntryLoadPropertyRepository(string connectionString, string tableName) : base(connectionString,
+            tableName) { }
 
 
-        public async Task<EntryLoadsProperty> GetEntryLoadsPropertyById(int id) => await GetEntityById(id);
+        public async Task<IEnumerable<EntryLoadsProperty>> GetEntryLoadsProperties() => await this.GetEntities();
 
 
-        public async Task<EntryLoadsProperty> GetEntryLoadsPropertyByName(string name) => await GetEntityByName(name);
+        public async Task DeleteEntryLoadsProperty(int id) => await this.DeleteEntity(id);
+
+
+        public async Task<EntryLoadsProperty> GetEntryLoadsPropertyById(int id) => await this.GetEntityById(id);
+
+
+        public async Task<EntryLoadsProperty> GetEntryLoadsPropertyByName(string name) =>
+            await this.GetEntityByName(name);
 
 
         public async Task UpdateEntryLoadsProperty(EntryLoadsProperty entryLoadsProperty) =>
-            await Update(entryLoadsProperty);
+            await this.Update(entryLoadsProperty);
 
         public async Task<int> InsertEntryLoadsProperty(EntryLoadsProperty entryLoadsProperty) =>
-            await Insert(entryLoadsProperty);
+            await this.Insert(entryLoadsProperty);
 
         public async Task RecreateTables()
         {
-            var connection = await OpenConnection();
+            var connection = await this.OpenConnection();
 
             const string dropConstantQuery =
                 "ALTER TABLE [dbo].[FullTimeEntryLoads] " +
@@ -77,9 +79,9 @@ namespace Planner.Data.Repository.AppEntryLoad
             const string addConstantQuery = "ALTER TABLE [dbo].[FullTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT [FK_FullTimeDisciplines_Departments_DepartmentId] FOREIGN KEY ([DepartmentId]) REFERENCES [dbo].[Departments] " +
                                             "ALTER TABLE [dbo].[FullTimeEntryLoads] WITH NOCHECK " +
-                                            "ADD CONSTRAINT[FK_FullTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId] FOREIGN KEY([HoursCalculationOfFirstSemesterId]) REFERENCES[dbo].[HoursCalculationOfFirstSemesters]([Id]); "+
+                                            "ADD CONSTRAINT[FK_FullTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId] FOREIGN KEY([HoursCalculationOfFirstSemesterId]) REFERENCES[dbo].[HoursCalculationOfFirstSemesters]([Id]); " +
                                             "ALTER TABLE [dbo].[FullTimeEntryLoads] WITH NOCHECK " +
-                                            "ADD CONSTRAINT[FK_FullTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId] FOREIGN KEY([HoursCalculationOfSecondSemesterId]) REFERENCES[dbo].[HoursCalculationOfSecondSemesters]([Id]); "+
+                                            "ADD CONSTRAINT[FK_FullTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId] FOREIGN KEY([HoursCalculationOfSecondSemesterId]) REFERENCES[dbo].[HoursCalculationOfSecondSemesters]([Id]); " +
                                             "ALTER TABLE [dbo].[FullTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT[FK_FullTimeDisciplines_FirstSemesters_FirstSemesterId] FOREIGN KEY([FirstSemesterId]) REFERENCES[dbo].[FirstSemesters]([Id]);" +
                                             "ALTER TABLE [dbo].[FullTimeDisciplines] WITH NOCHECK " +
@@ -93,9 +95,9 @@ namespace Planner.Data.Repository.AppEntryLoad
                                             "ALTER TABLE [dbo].[PartTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT[FK_PartTimeDisciplines_Departments_DepartmentId] FOREIGN KEY([DepartmentId]) REFERENCES[dbo].[Departments]([Id]); " +
                                             "ALTER TABLE [dbo].[PartTimeEntryLoads] WITH NOCHECK " +
-                                            "ADD CONSTRAINT[FK_PartTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId] FOREIGN KEY([HoursCalculationOfFirstSemesterId]) REFERENCES[dbo].[HoursCalculationOfFirstSemesters]([Id]); "+
+                                            "ADD CONSTRAINT[FK_PartTimeEntryLoads_HoursCalculationOfFirstSemesters_HoursCalculationOfFirstSemesterId] FOREIGN KEY([HoursCalculationOfFirstSemesterId]) REFERENCES[dbo].[HoursCalculationOfFirstSemesters]([Id]); " +
                                             "ALTER TABLE [dbo].[PartTimeEntryLoads] WITH NOCHECK " +
-                                            "ADD CONSTRAINT[FK_PartTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId] FOREIGN KEY([HoursCalculationOfSecondSemesterId]) REFERENCES[dbo].[HoursCalculationOfSecondSemesters]([Id]); "+
+                                            "ADD CONSTRAINT[FK_PartTimeEntryLoads_HoursCalculationOfSecondSemesters_HoursCalculationOfSecondSemesterId] FOREIGN KEY([HoursCalculationOfSecondSemesterId]) REFERENCES[dbo].[HoursCalculationOfSecondSemesters]([Id]); " +
                                             "ALTER TABLE [dbo].[PartTimeDisciplines] WITH NOCHECK " +
                                             "ADD CONSTRAINT[FK_PartTimeDisciplines_ExaminationSessions_ExaminationSessionId] FOREIGN KEY([ExaminationSessionId]) REFERENCES[dbo].[ExaminationSessions]([Id]); " +
                                             "ALTER TABLE [dbo].[PartTimeEntryLoads] WITH NOCHECK " +
@@ -105,6 +107,5 @@ namespace Planner.Data.Repository.AppEntryLoad
             await connection.QueryAsync(truncateQuery);
             await connection.QueryAsync(addConstantQuery);
         }
-
     }
 }

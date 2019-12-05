@@ -10,13 +10,12 @@ namespace Planner.Data.Repository.AppDiscipline
 {
     public class FullTimeDisciplineRepository : GenericRepository<FullTimeDiscipline>, IFullTimeDisciplineRepository
     {
-        public FullTimeDisciplineRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public FullTimeDisciplineRepository(string connectionString, string tableName) : base(connectionString,
+            tableName) { }
 
         public async Task<IEnumerable<FullTimeDiscipline>> GetFullTimeDisciplinesByDepartmentId(int id)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             const string query = "SELECT * FROM FullTimeDisciplines d " +
                                  "FULL JOIN FirstSemesters fs ON fs.Id = d.FirstSemesterId " +
@@ -35,11 +34,10 @@ namespace Planner.Data.Repository.AppDiscipline
                     discipline.Department = department;
 
                     return discipline;
-                }, new { Id = id });
-
+                }, new {Id = id});
         }
 
-        public async Task<int> InsertFullTimeDiscipline(FullTimeDiscipline fullTimeDiscipline)
-            => await Insert(fullTimeDiscipline);
+        public async Task<int> InsertFullTimeDiscipline(FullTimeDiscipline fullTimeDiscipline) =>
+            await this.Insert(fullTimeDiscipline);
     }
 }

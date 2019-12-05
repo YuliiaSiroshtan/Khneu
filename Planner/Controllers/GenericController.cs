@@ -11,31 +11,28 @@ namespace Planner.Controllers
 {
   public class GenericController : Controller
   {
+    protected readonly IMapper Mapper;
     protected readonly IServiceFactory ServiceFactory;
 
-    protected readonly IMapper Mapper;
-
-    public GenericController(IServiceFactory serviceFactory, IMapper mapper)
+    protected GenericController(IServiceFactory serviceFactory, IMapper mapper)
     {
-      ServiceFactory = serviceFactory;
-      Mapper = mapper;
+      this.ServiceFactory = serviceFactory;
+      this.Mapper = mapper;
     }
 
     [NonAction]
-    protected UserClaimsViewModel UserInfo()
-    {
-      return new UserClaimsViewModel
+    protected UserClaimsViewModel UserInfo() =>
+      new UserClaimsViewModel
       {
-        Login = GetClaims().Identity.Name,
-        Role = GetClaims().Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value
+        Login = this.GetClaims().Identity.Name,
+        Role = this.GetClaims().Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value
       };
-    }
 
     [NonAction]
     private ClaimsPrincipal GetClaims()
     {
-      var authenticationHeaderValue = AuthenticationHeaderValue.Parse(Request.Headers[HeaderNames.Authorization]);
-      var claims = ServiceFactory.TokenService.GetClaims(authenticationHeaderValue.Parameter);
+      var authenticationHeaderValue = AuthenticationHeaderValue.Parse(this.Request.Headers[HeaderNames.Authorization]);
+      var claims = this.ServiceFactory.TokenService.GetClaims(authenticationHeaderValue.Parameter);
 
       return claims;
     }

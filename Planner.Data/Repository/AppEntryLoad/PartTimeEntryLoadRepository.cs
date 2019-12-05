@@ -1,26 +1,25 @@
 ﻿using Dapper;
 using Planner.Data.GenericRepository;
+using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.Domain.AppEntryLoad.PartTime;
 using Planner.Entities.Domain.AppSelectedDiscipline;
 using Planner.Entities.Domain.UniversityUnits;
 using Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Planner.Entities.Domain.AppEntryLoad;
 
 namespace Planner.Data.Repository.AppEntryLoad
 {
     public class PartTimeEntryLoadRepository : GenericRepository<PartTimeEntryLoad>, IPartTimeEntryLoadRepository
     {
-        public PartTimeEntryLoadRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public PartTimeEntryLoadRepository(string connectionString, string tableName) : base(connectionString,
+            tableName) { }
 
-        public async Task<IEnumerable<PartTimeEntryLoad>> GetPartTimeEntryLoads() => await GetEntities();
+        public async Task<IEnumerable<PartTimeEntryLoad>> GetPartTimeEntryLoads() => await this.GetEntities();
 
         public async Task<IEnumerable<PartTimeEntryLoad>> GetPartTimeEntryLoadsByUserId(int id)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             const string query = "SELECT * FROM PartTimeEntryLoads ld " +
                                  "JOIN PartTimeDisciplines d ON d.Id = ld.PartTimeDisciplineId " +
@@ -50,15 +49,9 @@ namespace Planner.Data.Repository.AppEntryLoad
                 typeof(HoursCalculationOfSecondSemester)
             }, objects =>
             {
-                if (!(objects[0] is PartTimeEntryLoad partTimeEntryLoad))
-                {
-                    return null;
-                }
+                if (!(objects[0] is PartTimeEntryLoad partTimeEntryLoad)) return null;
 
-                if (!(objects[1] is PartTimeDiscipline partTimeDiscipline))
-                {
-                    return partTimeEntryLoad;
-                }
+                if (!(objects[1] is PartTimeDiscipline partTimeDiscipline)) return partTimeEntryLoad;
 
                 partTimeDiscipline.Department = objects[5] as Department;
                 partTimeDiscipline.ConstituentSession = objects[3] as ConstituentSession;
@@ -67,23 +60,18 @@ namespace Planner.Data.Repository.AppEntryLoad
                 partTimeEntryLoad.PartTimeDiscipline = partTimeDiscipline;
 
                 if (objects[6] is HoursCalculationOfFirstSemester hoursCalculationOfFirstSemester)
-                {
                     partTimeEntryLoad.HoursCalculationOfFirstSemester = hoursCalculationOfFirstSemester;
-                }
 
                 if (objects[7] is HoursCalculationOfSecondSemester hoursCalculationOfSecondSemester)
-                {
                     partTimeEntryLoad.HoursCalculationOfSecondSemester = hoursCalculationOfSecondSemester;
-                }
 
                 return partTimeEntryLoad;
-
-            }, new { Id = id });
+            }, new {Id = id});
         }
 
-        public async Task<PartTimeEntryLoad> GetPartTimeEntryLoadById(int id) => await GetEntityById(id);
+        public async Task<PartTimeEntryLoad> GetPartTimeEntryLoadById(int id) => await this.GetEntityById(id);
 
         public async Task<int> InsertPartTimeEntryLoad(PartTimeEntryLoad partTimeEntryLoad) =>
-            await Insert(partTimeEntryLoad);
+            await this.Insert(partTimeEntryLoad);
     }
 }

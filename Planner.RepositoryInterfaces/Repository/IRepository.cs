@@ -16,6 +16,5 @@ namespace Planner.RepositoryInterfaces.Repository
         Task Update(T entity);
 
         Task<int> Insert(T entity);
-
     }
 }

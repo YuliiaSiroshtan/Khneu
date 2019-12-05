@@ -1,87 +1,48 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
+using System.IO;
 
 namespace Planner.ExcelApi
 {
-    public class ExcelApi
+    public class ExcelApi : IExcelApi
     {
-        private readonly Application _excelApp;
-        private readonly Workbook _workBook;
-        private Worksheet _workSheet;
+        private readonly ExcelPackage _package;
+
+        private ExcelWorksheet _worksheet;
+
+        public ExcelApi(FileInfo fileInfo, int sheet)
+        {
+            this._package = new ExcelPackage(fileInfo);
+            this._worksheet = this._package.Workbook.Worksheets[sheet];
+            this.Count = this._worksheet.Dimension.Rows;
+        }
 
         public int Count { get; }
 
-        public ExcelApi(string path, int sheet)
-        {
-            _excelApp = new Application
-            {
-                Visible = false,
-                DisplayAlerts = false
-            };
+        public object[,] ReadRange(string range) => this._worksheet.Cells[range].Value as object[,];
 
-            _workBook = _excelApp.Workbooks.Open(path,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing,
-                Type.Missing);
-            _workSheet = _workBook.Sheets[sheet];
-            Count = _workSheet.Cells.Find("*", Type.Missing,
-                Type.Missing, Type.Missing,
-                XlSearchOrder.xlByRows, XlSearchDirection.xlPrevious,
-                false, Type.Missing, Type.Missing).Row;
+        public void WriteRange(string range, IEnumerable<string> data) => this._worksheet.Cells[range].Value = data;
+
+        public void WriteCell(string cell, string data) => this._worksheet.Cells[cell].Value = data;
+
+        public void ChangeSheet(int sheet) => this._worksheet = this._package.Workbook.Worksheets[sheet];
+
+        public void SaveAs(string path) => this._package.SaveAs(new FileInfo(path));
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
-        public object[,] ReadRange(string cell1, string cell2)
-            => _workSheet.Range[cell1, cell2].Value[XlRangeValueDataType.xlRangeValueDefault] as object[,];
-
-        public void WriteCell(int row, int column, string data)
-            => _workSheet.Cells[row, column] = data;
-
-        public void WriteRange(string cell1, string cell2, IEnumerable<string> data)
-            => _workSheet.Range[cell1, cell2].Value = data.ToArray();
-
-        public void SaveCopyAs(string path) 
-            => _workBook.SaveCopyAs(path);
-
-        public void Close()
+        private void Dispose(bool disposing)
         {
-            _excelApp.Workbooks.Close();
-            _excelApp.Quit();
+            if (!disposing)
+                return;
 
-            Marshal.ReleaseComObject(_workSheet);
-            Marshal.ReleaseComObject(_workBook);
-            Marshal.ReleaseComObject(_excelApp);
-        }
-
-        public void ChangeSheet(int sheet) 
-            => _workSheet = _workBook.Sheets[sheet];
-
-        public static void KillExcelProcesses()
-        {
-            var processes = Process.GetProcessesByName("EXCEL");
-            foreach (var process in processes)
-            {
-                if (process.MainWindowTitle.Length == 0)
-                {
-                    process.Kill();
-                }
-            }
+            this._package?.Dispose();
+            this._worksheet?.Dispose();
         }
     }
 }
-
-

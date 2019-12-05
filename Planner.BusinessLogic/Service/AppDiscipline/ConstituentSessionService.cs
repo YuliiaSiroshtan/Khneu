@@ -9,21 +9,20 @@ namespace Planner.BusinessLogic.Service.AppDiscipline
 {
     public class ConstituentSessionService : IConstituentSessionService
     {
-        private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _uow;
 
         public ConstituentSessionService(IUnitOfWork uow, IMapper mapper)
         {
-            _uow = uow;
-            _mapper = mapper;
+            this._uow = uow;
+            this._mapper = mapper;
         }
 
         public async Task<int> InsertConstituentSession(ConstituentSessionDto constituentSessionDto)
         {
-            var constituentSession = _mapper.Map<ConstituentSession>(constituentSessionDto);
+            var constituentSession = this._mapper.Map<ConstituentSession>(constituentSessionDto);
 
-            return await _uow.ConstituentSessionRepository.InsertConstituentSession(constituentSession);
+            return await this._uow.ConstituentSessionRepository.InsertConstituentSession(constituentSession);
         }
     }
 }
-

@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace Planner.Data.Repository.AppEntryLoad
 {
-    public class HoursCalculationOfSecondSemesterRepository : GenericRepository<HoursCalculationOfSecondSemester>, IHoursCalculationOfSecondSemesterRepository
+    public class HoursCalculationOfSecondSemesterRepository : GenericRepository<HoursCalculationOfSecondSemester>,
+        IHoursCalculationOfSecondSemesterRepository
     {
-        public HoursCalculationOfSecondSemesterRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public HoursCalculationOfSecondSemesterRepository(string connectionString, string tableName) : base(
+            connectionString, tableName) { }
 
-        public async Task<int> InsertHoursCalculationOfSecondSemester(HoursCalculationOfSecondSemester hoursCalculationOfSecondSemester)
-            => await Insert(hoursCalculationOfSecondSemester);
+        public async Task<int> InsertHoursCalculationOfSecondSemester(
+            HoursCalculationOfSecondSemester hoursCalculationOfSecondSemester) =>
+            await this.Insert(hoursCalculationOfSecondSemester);
     }
 }

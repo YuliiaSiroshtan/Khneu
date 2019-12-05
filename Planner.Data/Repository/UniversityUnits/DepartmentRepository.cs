@@ -8,17 +8,12 @@ namespace Planner.Data.Repository.UniversityUnits
 {
     public class DepartmentRepository : GenericRepository<Department>, IDepartmentRepository
     {
-        public DepartmentRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public DepartmentRepository(string connectionString, string tableName) : base(connectionString, tableName) { }
 
-        public async Task<IEnumerable<Department>> GetDepartments() 
-            => await GetEntities();
+        public async Task<IEnumerable<Department>> GetDepartments() => await this.GetEntities();
 
-        public async Task<Department> GetDepartmentById(int id) 
-            => await GetEntityById(id);
+        public async Task<Department> GetDepartmentById(int id) => await this.GetEntityById(id);
 
-        public async Task<Department> GetDepartmentByName(string name) 
-            => await GetEntityByName(name);
+        public async Task<Department> GetDepartmentByName(string name) => await this.GetEntityByName(name);
     }
 }

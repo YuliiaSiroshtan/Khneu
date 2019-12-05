@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Planner.Entities.Domain.UniversityUnits;
+﻿using Planner.Entities.Domain.UniversityUnits;
+using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 {
@@ -9,8 +9,7 @@ namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 
         public int? FacultyId { get; set; }
 
-        [Description("Ignore")]
-        public Faculty Faculty { get; set; }
+        [Description("Ignore")] public Faculty Faculty { get; set; }
 
         public string Specialty { get; set; }
 
@@ -40,18 +39,15 @@ namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 
         public int? FullTimeDisciplineId { get; set; }
 
-        [Description("Ignore")]
-        public FullTimeDiscipline FullTimeDiscipline { get; set; }
+        [Description("Ignore")] public FullTimeDiscipline FullTimeDiscipline { get; set; }
 
         public int? HoursCalculationOfFirstSemesterId { get; set; }
-       
-        [Description("Ignore")]
-        public HoursCalculationOfFirstSemester HoursCalculationOfFirstSemester { get; set; }
+
+        [Description("Ignore")] public HoursCalculationOfFirstSemester HoursCalculationOfFirstSemester { get; set; }
 
         public int? HoursCalculationOfSecondSemesterId { get; set; }
-        
-        [Description("Ignore")]
-        public HoursCalculationOfSecondSemester HoursCalculationOfSecondSemester { get; set; }
+
+        [Description("Ignore")] public HoursCalculationOfSecondSemester HoursCalculationOfSecondSemester { get; set; }
 
         public string KRKPDR { get; set; }
 
@@ -62,6 +58,5 @@ namespace Planner.Entities.Domain.AppEntryLoad.FullTime
         public string All { get; set; }
 
         public string Active { get; set; }
-
     }
 }

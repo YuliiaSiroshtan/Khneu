@@ -11,6 +11,5 @@ namespace Planner.RepositoryInterfaces.ObjectInterfaces.UniversityUnits
         Task<Faculty> GetFacultyById(int id);
 
         Task<Faculty> GetFacultyByName(string name);
-
     }
 }

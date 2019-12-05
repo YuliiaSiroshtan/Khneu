@@ -18,80 +18,79 @@ namespace Planner.Data.GenericRepository
 
         protected GenericRepository(string connectionString, string tableName)
         {
-            _connectionString = connectionString;
-            _tableName = tableName;
+            this._connectionString = connectionString;
+            this._tableName = tableName;
         }
 
-        protected async Task<IDbConnection> OpenConnection()
-        {
-            var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
-
-            return connection;
-        }
+        private static IEnumerable<PropertyInfo> Properties => typeof(T).GetProperties();
 
         public async Task<IEnumerable<T>> GetEntities()
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             return await connection
-                .QueryAsync<T>($"SELECT * FROM {_tableName}");
+                .QueryAsync<T>($"SELECT * FROM {this._tableName}");
         }
 
         public async Task DeleteEntity(int id)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
-            await connection.ExecuteAsync($"DELETE FROM {_tableName} " +
-                                          $"WHERE Id = @Id", new { Id = id });
+            await connection.ExecuteAsync($"DELETE FROM {this._tableName} " +
+                                          "WHERE Id = @Id", new {Id = id});
         }
 
         public async Task<T> GetEntityById(int id)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             return await connection
-                .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {_tableName} " +
-                                              $"WHERE Id = @Id", new { Id = id });
+                .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {this._tableName} " +
+                                              "WHERE Id = @Id", new {Id = id});
         }
 
         public async Task<T> GetEntityByName(string name)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             return await connection
-                .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {_tableName} " +
-                                              $"WHERE Name = @Name", new { Name = name });
+                .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {this._tableName} " +
+                                              "WHERE Name = @Name", new {Name = name});
         }
 
         public async Task Update(T entity)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
-            var updateQuery = GenerateUpdateQuery();
+            var updateQuery = this.GenerateUpdateQuery();
             await connection.ExecuteAsync(updateQuery, entity);
         }
 
         public async Task<int> Insert(T entity)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
-            var insertQuery = GenerateInsertQuery();
+            var insertQuery = this.GenerateInsertQuery();
 
             return connection.QueryAsync<int>(insertQuery, entity).Result.SingleOrDefault();
         }
 
+        protected async Task<IDbConnection> OpenConnection()
+        {
+            var connection = new SqlConnection(this._connectionString);
+            await connection.OpenAsync();
+
+            return connection;
+        }
+
         private string GenerateUpdateQuery()
         {
-            var updateQuery = new StringBuilder($"UPDATE {_tableName} SET ");
+            var updateQuery = new StringBuilder($"UPDATE {this._tableName} SET ");
             var properties = GenerateListOfProperties(Properties);
 
             properties.ForEach(property =>
             {
-                if (!property.Equals("Id"))
-                {
-                    updateQuery.Append($"{property}=@{property},");
-                }
+                if (!property.Equals("Id")) updateQuery.Append($"{property}=@{property},");
             });
 
             updateQuery.Remove(updateQuery.Length - 1, 1);
@@ -102,17 +101,14 @@ namespace Planner.Data.GenericRepository
 
         private string GenerateInsertQuery()
         {
-            var insertQuery = new StringBuilder($"INSERT INTO {_tableName} ");
+            var insertQuery = new StringBuilder($"INSERT INTO {this._tableName} ");
 
             insertQuery.Append("(");
 
             var properties = GenerateListOfProperties(Properties);
             properties.ForEach(property =>
             {
-                if (!property.Equals("Id"))
-                {
-                    insertQuery.Append($"[{property}],");
-                }
+                if (!property.Equals("Id")) insertQuery.Append($"[{property}],");
             });
 
             insertQuery
@@ -121,10 +117,7 @@ namespace Planner.Data.GenericRepository
 
             properties.ForEach(property =>
             {
-                if (!property.Equals("Id"))
-                {
-                    insertQuery.Append($"@{property},");
-                }
+                if (!property.Equals("Id")) insertQuery.Append($"@{property},");
             });
 
             insertQuery
@@ -134,15 +127,10 @@ namespace Planner.Data.GenericRepository
             return insertQuery.ToString();
         }
 
-        private static IEnumerable<PropertyInfo> Properties => typeof(T).GetProperties();
-
-        private static List<string> GenerateListOfProperties(IEnumerable<PropertyInfo> listOfProperties)
-        {
-            return (from prop in listOfProperties
-                    let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
-                    where attributes.Length <= 0 || (attributes[0] as DescriptionAttribute)?.Description != "Ignore"
-                    select prop.Name).ToList();
-        }
-
+        private static List<string> GenerateListOfProperties(IEnumerable<PropertyInfo> listOfProperties) =>
+            (from prop in listOfProperties
+                let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
+                where attributes.Length <= 0 || (attributes[0] as DescriptionAttribute)?.Description != "Ignore"
+                select prop.Name).ToList();
     }
 }

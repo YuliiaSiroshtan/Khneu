@@ -5,6 +5,7 @@ namespace Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad
 {
     public interface IHoursCalculationOfSecondSemesterRepository
     {
-        Task<int> InsertHoursCalculationOfSecondSemester(HoursCalculationOfSecondSemester hoursCalculationOfSecondSemester);
+        Task<int> InsertHoursCalculationOfSecondSemester(
+            HoursCalculationOfSecondSemester hoursCalculationOfSecondSemester);
     }
 }

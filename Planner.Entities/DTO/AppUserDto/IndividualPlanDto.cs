@@ -1,6 +1,4 @@
 ﻿namespace Planner.Entities.DTO.AppUserDto
 {
-    public class IndividualPlanDto
-    {
-    }
+    public class IndividualPlanDto { }
 }

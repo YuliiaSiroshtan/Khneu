@@ -5,16 +5,12 @@ namespace Planner.Entities.Domain.AppUser
 {
     public class Role
     {
+        public Role() => this.Users ??= new HashSet<User>();
+
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        [Description("Ignore")]
-        public ICollection<User> Users { get; }
-
-        public Role()
-        {
-            Users ??= new HashSet<User>();
-        }
+        [Description("Ignore")] public ICollection<User> Users { get; }
     }
 }

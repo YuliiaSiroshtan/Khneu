@@ -12,16 +12,14 @@ namespace Planner.Data.Repository.AppEntryLoad
 {
     public class FullTimeEntryLoadRepository : GenericRepository<FullTimeEntryLoad>, IFullTimeEntryLoadRepository
     {
-        public FullTimeEntryLoadRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public FullTimeEntryLoadRepository(string connectionString, string tableName) : base(connectionString,
+            tableName) { }
 
-        public async Task<IEnumerable<FullTimeEntryLoad>> GetFullTimeEntryLoads() =>
-            await GetEntities();
+        public async Task<IEnumerable<FullTimeEntryLoad>> GetFullTimeEntryLoads() => await this.GetEntities();
 
         public async Task<IEnumerable<FullTimeEntryLoad>> GetFullTimeEntryLoadsByUserId(int id)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             const string query = "SELECT * FROM FullTimeEntryLoads ld " +
                                  "JOIN FullTimeDisciplines d ON d.Id = ld.FullTimeDisciplineId " +
@@ -53,17 +51,11 @@ namespace Planner.Data.Repository.AppEntryLoad
                 typeof(HoursCalculationOfSecondSemester)
             }, objects =>
             {
-                if (!(objects[0] is FullTimeEntryLoad fullTimeEntryLoad))
-                {
-                    return null;
-                }
+                if (!(objects[0] is FullTimeEntryLoad fullTimeEntryLoad)) return null;
 
                 fullTimeEntryLoad.Faculty = objects[5] as Faculty;
 
-                if (!(objects[1] is FullTimeDiscipline fullTimeDiscipline))
-                {
-                    return fullTimeEntryLoad;
-                }
+                if (!(objects[1] is FullTimeDiscipline fullTimeDiscipline)) return fullTimeEntryLoad;
 
                 fullTimeDiscipline.FirstSemester = objects[3] as FirstSemester;
                 fullTimeDiscipline.SecondSemester = objects[4] as SecondSemester;
@@ -72,25 +64,18 @@ namespace Planner.Data.Repository.AppEntryLoad
                 fullTimeEntryLoad.FullTimeDiscipline = fullTimeDiscipline;
 
                 if (objects[7] is HoursCalculationOfFirstSemester hoursCalculationOfFirstSemester)
-                {
                     fullTimeEntryLoad.HoursCalculationOfFirstSemester = hoursCalculationOfFirstSemester;
-                }
 
                 if (objects[8] is HoursCalculationOfSecondSemester hoursCalculationOfSecondSemester)
-                {
                     fullTimeEntryLoad.HoursCalculationOfSecondSemester = hoursCalculationOfSecondSemester;
-                }
 
                 return fullTimeEntryLoad;
-
-            }, new { Id = id });
-
+            }, new {Id = id});
         }
 
-        public async Task<FullTimeEntryLoad> GetFullTimeEntryLoadById(int id) =>
-            await GetEntityById(id);
+        public async Task<FullTimeEntryLoad> GetFullTimeEntryLoadById(int id) => await this.GetEntityById(id);
 
         public async Task<int> InsertFullTimeEntryLoad(FullTimeEntryLoad fullTimeEntryLoad) =>
-            await Insert(fullTimeEntryLoad);
+            await this.Insert(fullTimeEntryLoad);
     }
 }

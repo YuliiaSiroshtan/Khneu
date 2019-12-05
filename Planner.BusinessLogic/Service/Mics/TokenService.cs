@@ -1,32 +1,30 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.JWT;
 using Planner.RepositoryInterfaces.UoW;
-using Planner.ServiceInterfaces.Interfaces.Сommon;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Planner.BusinessLogic.Service.Сommon
+namespace Planner.BusinessLogic.Service.Mics
 {
-    public class TokenService : ITokenService
+    public class TokenService : BaseService, ITokenService
     {
-        private readonly IUnitOfWork _uow;
         private readonly ISecurityService _securityService;
 
-        public TokenService(IUnitOfWork uow, ISecurityService securityService)
-        {
-            _uow = uow;
-            _securityService = securityService;
-        }
+        public TokenService(IUnitOfWork uow, IMapper mapper, ISecurityService securityService) : base(uow, mapper) =>
+            this._securityService = securityService;
 
         public async Task<JwtResult> CreateJwtSecurityToken(string userName, string password)
         {
             var result = new JwtResult();
 
-            var securityPassword = _securityService.GetSha512Hash(password);
-            var user = await _uow.UserRepository.GetUserByLoginAndPassword(userName, securityPassword);
+            var securityPassword = this._securityService.GetSha512Hash(password);
+            var user = await this.Uow.UserRepository.GetUserByLoginAndPassword(userName, securityPassword);
 
             if (user == null)
             {
@@ -43,12 +41,12 @@ namespace Planner.BusinessLogic.Service.Сommon
             var claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtConst.KEY));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
             var token = new JwtSecurityToken(
-                issuer: JwtConst.ISSUER,
-                audience: JwtConst.AUDIENCE,
-                claims: claims,
+                JwtConst.ISSUER,
+                JwtConst.AUDIENCE,
+                claims,
                 expires: DateTime.Now.AddMinutes(JwtConst.LIFETIME),
                 signingCredentials: credentials);
 

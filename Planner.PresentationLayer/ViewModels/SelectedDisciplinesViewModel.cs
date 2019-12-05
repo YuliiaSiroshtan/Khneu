@@ -26,7 +26,7 @@
 
         public string AmountOfLaboratoriesHours { get; set; }
 
-        public LaboratoryViewModel[] Laboratories{ get; set; }
+        public LaboratoryViewModel[] Laboratories { get; set; }
 
         public string AmountOfPracticalsHours { get; set; }
 

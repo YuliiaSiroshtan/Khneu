@@ -1,12 +1,23 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using Planner.Entities.Domain.AppUser;
+﻿using Planner.Entities.Domain.AppUser;
 using Planner.Entities.Domain.UniversityUnits;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppSelectedDiscipline
 {
     public class SelectedDiscipline
     {
+        public SelectedDiscipline()
+        {
+            this.Lectures ??= new HashSet<Lecture>();
+
+            this.Laboratories ??= new HashSet<Laboratory>();
+
+            this.Practicals ??= new HashSet<Practical>();
+
+            this.Users ??= new HashSet<User>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; }
@@ -27,38 +38,22 @@ namespace Planner.Entities.Domain.AppSelectedDiscipline
 
         public string AmountOfLecturesHours { get; set; }
 
-        [Description("Ignore")]
-        public ICollection<Lecture> Lectures { get; set; }
+        [Description("Ignore")] public ICollection<Lecture> Lectures { get; set; }
 
         public string AmountOfLaboratoriesHours { get; set; }
 
-        [Description("Ignore")]
-        public ICollection<Laboratory> Laboratories { get; set; }
+        [Description("Ignore")] public ICollection<Laboratory> Laboratories { get; set; }
 
         public string AmountOfPracticalsHours { get; set; }
 
-        [Description("Ignore")]
-        public ICollection<Practical> Practicals { get; set; }
+        [Description("Ignore")] public ICollection<Practical> Practicals { get; set; }
 
-        [Description("Ignore")]
-        public ICollection<User> Users { get; set; }
+        [Description("Ignore")] public ICollection<User> Users { get; set; }
 
         public string FormControl { get; set; }
 
         public int? DepartmentId { get; set; }
 
-        [Description("Ignore")]
-        public Department Department { get; set; }
-
-        public SelectedDiscipline()
-        {
-            Lectures ??= new HashSet<Lecture>();
-
-            Laboratories ??= new HashSet<Laboratory>();
-
-            Practicals ??= new HashSet<Practical>();
-
-            Users ??= new HashSet<User>();
-        }
+        [Description("Ignore")] public Department Department { get; set; }
     }
 }

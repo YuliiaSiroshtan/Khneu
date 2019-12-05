@@ -1,6 +1,6 @@
 ﻿using Planner.Entities.Domain.AppUser;
-using System.Collections.Generic;
 using Planner.Entities.DTO.UniversityUnits;
+using System.Collections.Generic;
 
 namespace Planner.Entities.DTO.AppUserDto
 {
@@ -13,6 +13,5 @@ namespace Planner.Entities.DTO.AppUserDto
         public DepartmentDto Department { get; set; }
 
         public ICollection<User> Users { get; }
-
     }
 }

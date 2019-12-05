@@ -32,18 +32,15 @@ namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 
         public int? PartTimeDisciplineId { get; set; }
 
-        [Description("Ignore")]
-        public PartTimeDiscipline PartTimeDiscipline { get; set; }
+        [Description("Ignore")] public PartTimeDiscipline PartTimeDiscipline { get; set; }
 
         public int? HoursCalculationOfFirstSemesterId { get; set; }
-       
-        [Description("Ignore")]
-        public HoursCalculationOfFirstSemester HoursCalculationOfFirstSemester { get; set; }
+
+        [Description("Ignore")] public HoursCalculationOfFirstSemester HoursCalculationOfFirstSemester { get; set; }
 
         public int? HoursCalculationOfSecondSemesterId { get; set; }
-       
-        [Description("Ignore")]
-        public HoursCalculationOfSecondSemester HoursCalculationOfSecondSemester { get; set; }
+
+        [Description("Ignore")] public HoursCalculationOfSecondSemester HoursCalculationOfSecondSemester { get; set; }
 
         public string All { get; set; }
 

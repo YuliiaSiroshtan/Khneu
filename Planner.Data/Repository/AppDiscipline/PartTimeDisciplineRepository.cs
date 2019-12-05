@@ -10,13 +10,12 @@ namespace Planner.Data.Repository.AppDiscipline
 {
     public class PartTimeDisciplineRepository : GenericRepository<PartTimeDiscipline>, IPartTimeDisciplineRepository
     {
-        public PartTimeDisciplineRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public PartTimeDisciplineRepository(string connectionString, string tableName) : base(connectionString,
+            tableName) { }
 
         public async Task<IEnumerable<PartTimeDiscipline>> GetPartTimeDisciplinesByDepartmentId(int id)
         {
-            using var connection = await OpenConnection();
+            using var connection = await this.OpenConnection();
 
             const string query = "SELECT * FROM PartTimeDisciplines d " +
                                  "FULL JOIN ConstituentSessions cs ON cs.Id = d.ConstituentSessionId " +
@@ -26,7 +25,8 @@ namespace Planner.Data.Repository.AppDiscipline
                                  "WHERE d.DepartmentId = @id";
 
             return await connection
-                .QueryAsync<PartTimeDiscipline, ConstituentSession, ExaminationSession, Department, Faculty, PartTimeDiscipline>
+                .QueryAsync<PartTimeDiscipline, ConstituentSession, ExaminationSession, Department, Faculty,
+                    PartTimeDiscipline>
                 (query, (discipline, constituentSession, examinationSession, department, faculty) =>
                 {
                     discipline.ConstituentSession = constituentSession;
@@ -35,10 +35,10 @@ namespace Planner.Data.Repository.AppDiscipline
                     discipline.Department = department;
 
                     return discipline;
-                }, new { Id = id });
+                }, new {Id = id});
         }
 
         public async Task<int> InsertPartTimeDiscipline(PartTimeDiscipline partTimeDiscipline) =>
-            await Insert(partTimeDiscipline);
+            await this.Insert(partTimeDiscipline);
     }
 }

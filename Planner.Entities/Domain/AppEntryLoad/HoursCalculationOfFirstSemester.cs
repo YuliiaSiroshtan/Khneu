@@ -1,8 +1,4 @@
-﻿using Planner.Entities.Domain.AppEntryLoad.FullTime;
-using Planner.Entities.Domain.AppEntryLoad.PartTime;
-using System.ComponentModel;
-
-namespace Planner.Entities.Domain.AppEntryLoad
+﻿namespace Planner.Entities.Domain.AppEntryLoad
 {
     public class HoursCalculationOfFirstSemester
     {

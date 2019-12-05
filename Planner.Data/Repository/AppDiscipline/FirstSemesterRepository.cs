@@ -7,11 +7,9 @@ namespace Planner.Data.Repository.AppDiscipline
 {
     public class FirstSemesterRepository : GenericRepository<FirstSemester>, IFirstSemesterRepository
     {
-        public FirstSemesterRepository(string connectionString, string tableName) : base(connectionString, tableName)
-        {
-        }
+        public FirstSemesterRepository(string connectionString, string tableName) :
+            base(connectionString, tableName) { }
 
-        public async Task<int> InsertFirstSemester(FirstSemester firstSemester)
-            => await Insert(firstSemester);
+        public async Task<int> InsertFirstSemester(FirstSemester firstSemester) => await this.Insert(firstSemester);
     }
 }

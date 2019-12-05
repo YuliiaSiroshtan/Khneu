@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Planner.Entities.DTO.AppSelectedDisciplineDto;
+﻿using Planner.Entities.DTO.AppSelectedDisciplineDto;
 using Planner.Entities.DTO.UniversityUnits;
+using System.Collections.Generic;
 
 namespace Planner.Entities.DTO.AppUserDto
 {
@@ -11,14 +11,6 @@ namespace Planner.Entities.DTO.AppUserDto
         public int LdapId { get; set; }
 
         public string Name { get; set; }
-
-        #region TempData
-
-        public string Login { get; set; }
-
-        public string Password { get; set; }
-
-        #endregion
 
         public string ImageSource { get; set; }
 
@@ -31,5 +23,13 @@ namespace Planner.Entities.DTO.AppUserDto
         public ICollection<DepartmentDto> Departments { get; set; }
 
         public ICollection<SelectedDisciplineDto> SelectedDisciplines { get; set; }
+
+        #region TempData
+
+        public string Login { get; set; }
+
+        public string Password { get; set; }
+
+        #endregion
     }
 }

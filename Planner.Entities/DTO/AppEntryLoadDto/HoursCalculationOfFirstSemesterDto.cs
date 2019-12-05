@@ -4,8 +4,8 @@ namespace Planner.Entities.DTO.AppEntryLoadDto
 {
     public class HoursCalculationOfFirstSemesterDto
     {
-        [Description("Ignore")]
-        public int Id { get; set; }
+        [Description("Ignore")] public int Id { get; set; }
+
         public string Lectures { get; set; }
         public string Laboratories { get; set; }
         public string Practicals { get; set; }

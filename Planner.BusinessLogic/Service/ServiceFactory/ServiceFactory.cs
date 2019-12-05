@@ -1,10 +1,11 @@
 ﻿using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
+using Planner.ServiceInterfaces.Interfaces.AppExcel;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppUser;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
 using Planner.ServiceInterfaces.Interfaces.UniversityUnits;
-using Planner.ServiceInterfaces.Interfaces.Сommon;
 
 namespace Planner.BusinessLogic.Service.ServiceFactory
 {
@@ -29,29 +30,36 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
             IPartTimeEntryLoadService partTimeEntryLoadService,
             IHoursCalculationOfFirstSemesterService hoursCalculationOfFirstSemesterService,
             IHoursCalculationOfSecondSemesterService hoursCalculationOfSecondSemesterService,
-            IUserEntryLoadPropertyService userEntryLoadPropertyService
-        )
+            IUserEntryLoadPropertyService userEntryLoadPropertyService,
+            ILectureService lectureService,
+            ILaboratoryService laboratoryService,
+            IPracticalService practicalService,
+            IExcelService excelService)
         {
-            UserService = userService;
-            TokenService = tokenService;
-            SecurityService = securityService;
-            EntryLoadPropertyService = entryLoadPropertyService;
-            FullTimeEntryLoadService = fullTimeEntryLoadService;
-            FirstSemester = firstSemesterService;
-            SecondSemester = secondSemesterService;
-            FacultyService = facultyService;
-            DepartmentService = departmentService;
-            FullTimeDisciplineService = fullTimeDisciplineService;
-            SelectedDisciplineService = selectedDisciplineService;
-            RateService = rateService;
-            RoleService = roleService;
-            ConstituentSessionService = constituentSessionService;
-            ExaminationSessionService = examinationSessionService;
-            PartTimeDisciplineService = partTimeDisciplineService;
-            PartTimeEntryLoadService = partTimeEntryLoadService;
-            HoursCalculationOfFirstSemesterService = hoursCalculationOfFirstSemesterService;
-            HoursCalculationOfSecondSemesterService = hoursCalculationOfSecondSemesterService;
-            UserEntryLoadPropertyService = userEntryLoadPropertyService;
+            this.UserService = userService;
+            this.TokenService = tokenService;
+            this.SecurityService = securityService;
+            this.EntryLoadPropertyService = entryLoadPropertyService;
+            this.FullTimeEntryLoadService = fullTimeEntryLoadService;
+            this.FirstSemester = firstSemesterService;
+            this.SecondSemester = secondSemesterService;
+            this.FacultyService = facultyService;
+            this.DepartmentService = departmentService;
+            this.FullTimeDisciplineService = fullTimeDisciplineService;
+            this.SelectedDisciplineService = selectedDisciplineService;
+            this.RateService = rateService;
+            this.RoleService = roleService;
+            this.ConstituentSessionService = constituentSessionService;
+            this.ExaminationSessionService = examinationSessionService;
+            this.PartTimeDisciplineService = partTimeDisciplineService;
+            this.PartTimeEntryLoadService = partTimeEntryLoadService;
+            this.HoursCalculationOfFirstSemesterService = hoursCalculationOfFirstSemesterService;
+            this.HoursCalculationOfSecondSemesterService = hoursCalculationOfSecondSemesterService;
+            this.UserEntryLoadPropertyService = userEntryLoadPropertyService;
+            this.LectureService = lectureService;
+            this.LaboratoryService = laboratoryService;
+            this.PracticalService = practicalService;
+            this.ExcelService = excelService;
         }
 
         public IUserService UserService { get; }
@@ -74,5 +82,9 @@ namespace Planner.BusinessLogic.Service.ServiceFactory
         public IHoursCalculationOfFirstSemesterService HoursCalculationOfFirstSemesterService { get; }
         public IHoursCalculationOfSecondSemesterService HoursCalculationOfSecondSemesterService { get; }
         public IUserEntryLoadPropertyService UserEntryLoadPropertyService { get; }
+        public ILectureService LectureService { get; }
+        public ILaboratoryService LaboratoryService { get; }
+        public IPracticalService PracticalService { get; }
+        public IExcelService ExcelService { get; }
     }
 }

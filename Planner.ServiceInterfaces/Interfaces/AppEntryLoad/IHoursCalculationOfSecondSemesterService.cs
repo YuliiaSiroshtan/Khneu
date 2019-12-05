@@ -5,6 +5,7 @@ namespace Planner.ServiceInterfaces.Interfaces.AppEntryLoad
 {
     public interface IHoursCalculationOfSecondSemesterService
     {
-        Task<int> InsertHoursCalculationOfSecondSemester(HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemester);
+        Task<int> InsertHoursCalculationOfSecondSemester(
+            HoursCalculationOfSecondSemesterDto hoursCalculationOfSecondSemester);
     }
 }

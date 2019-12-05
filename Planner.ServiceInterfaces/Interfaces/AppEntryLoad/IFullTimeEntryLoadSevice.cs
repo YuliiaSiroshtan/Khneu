@@ -9,7 +9,7 @@ namespace Planner.ServiceInterfaces.Interfaces.AppEntryLoad
         Task<IEnumerable<FullTimeEntryLoadDto>> GetFullTimeEntryLoads();
 
         Task<IEnumerable<FullTimeEntryLoadDto>> GetFullTimeEntryLoadsByUserId(int id);
-        
+
         Task<FullTimeEntryLoadDto> GetFullTimeEntryLoadById(int id);
 
         Task InsertFullTimeEntryLoad(FullTimeEntryLoadDto fullTimeEntryLoadDto);

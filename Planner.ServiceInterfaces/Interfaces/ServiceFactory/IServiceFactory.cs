@@ -1,9 +1,10 @@
 ﻿using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
+using Planner.ServiceInterfaces.Interfaces.AppExcel;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppUser;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using Planner.ServiceInterfaces.Interfaces.UniversityUnits;
-using Planner.ServiceInterfaces.Interfaces.Сommon;
 
 namespace Planner.ServiceInterfaces.Interfaces.ServiceFactory
 {
@@ -29,5 +30,9 @@ namespace Planner.ServiceInterfaces.Interfaces.ServiceFactory
         IHoursCalculationOfFirstSemesterService HoursCalculationOfFirstSemesterService { get; }
         IHoursCalculationOfSecondSemesterService HoursCalculationOfSecondSemesterService { get; }
         IUserEntryLoadPropertyService UserEntryLoadPropertyService { get; }
+        ILectureService LectureService { get; }
+        ILaboratoryService LaboratoryService { get; }
+        IPracticalService PracticalService { get; }
+        IExcelService ExcelService { get; }
     }
 }

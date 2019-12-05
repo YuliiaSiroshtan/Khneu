@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.Domain.AppEntryLoad.PartTime;
 using Planner.Entities.DTO.AppEntryLoadDto.PartTime;
 using Planner.RepositoryInterfaces.UoW;
@@ -8,29 +9,23 @@ using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service.AppDiscipline
 {
-    public class PartTimeDisciplineService : IPartTimeDisciplineService
+    public class PartTimeDisciplineService : BaseService, IPartTimeDisciplineService
     {
-        private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
-
-        public PartTimeDisciplineService(IUnitOfWork uow, IMapper mapper)
-        {
-            _uow = uow;
-            _mapper = mapper;
-        }
+        public PartTimeDisciplineService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper) { }
 
         public async Task<IEnumerable<PartTimeDisciplineDto>> GetPartTimeDisciplinesByDepartmentId(int id)
         {
-            var partTimeDisciplines = await _uow.PartTimeDisciplineRepository.GetPartTimeDisciplinesByDepartmentId(id);
+            var partTimeDisciplines =
+                await this.Uow.PartTimeDisciplineRepository.GetPartTimeDisciplinesByDepartmentId(id);
 
-            return _mapper.Map<IEnumerable<PartTimeDisciplineDto>>(partTimeDisciplines);
+            return this.Mapper.Map<IEnumerable<PartTimeDisciplineDto>>(partTimeDisciplines);
         }
 
         public async Task<int> InsertPartTimeDiscipline(PartTimeDisciplineDto partTimeDisciplineDto)
         {
-            var partTimeDiscipline = _mapper.Map<PartTimeDiscipline>(partTimeDisciplineDto);
+            var partTimeDiscipline = this.Mapper.Map<PartTimeDiscipline>(partTimeDisciplineDto);
 
-            return await _uow.PartTimeDisciplineRepository.InsertPartTimeDiscipline(partTimeDiscipline);
+            return await this.Uow.PartTimeDisciplineRepository.InsertPartTimeDiscipline(partTimeDiscipline);
         }
     }
 }

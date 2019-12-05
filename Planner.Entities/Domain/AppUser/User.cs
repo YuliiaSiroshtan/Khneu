@@ -7,12 +7,42 @@ namespace Planner.Entities.Domain.AppUser
 {
     public class User
     {
+        public User()
+        {
+            this.Departments ??= new HashSet<Department>();
+
+            this.IndividualPlans ??= new HashSet<IndividualPlan>();
+
+            this.Rates ??= new HashSet<Rate>();
+
+            this.SelectedDisciplines ??= new HashSet<SelectedDiscipline>();
+        }
+
         public int Id { get; set; }
 
         public string LdapId { get; set; }
 
         public string Name { get; set; }
-        
+
+        public string ImageSource { get; set; }
+
+        public int? RoleId { get; set; }
+
+
+        [Description("Ignore")] public Role Role { get; set; }
+
+
+        [Description("Ignore")] public ICollection<Rate> Rates { get; set; }
+
+
+        [Description("Ignore")] public ICollection<IndividualPlan> IndividualPlans { get; set; }
+
+
+        [Description("Ignore")] public ICollection<Department> Departments { get; set; }
+
+
+        [Description("Ignore")] public ICollection<SelectedDiscipline> SelectedDisciplines { get; set; }
+
         #region TempData
 
         public string Login { get; set; }
@@ -20,40 +50,5 @@ namespace Planner.Entities.Domain.AppUser
         public string Password { get; set; }
 
         #endregion
-
-        public string ImageSource { get; set; }
-
-        public int? RoleId { get; set; }
-
-
-        [Description("Ignore")]
-        public Role Role { get; set; }
-
-
-        [Description("Ignore")]
-        public ICollection<Rate> Rates { get; set; }
-
-
-        [Description("Ignore")]
-        public ICollection<IndividualPlan> IndividualPlans { get; set; }
-
-
-        [Description("Ignore")]
-        public ICollection<Department> Departments { get; set; }
-
-
-        [Description("Ignore")]
-        public ICollection<SelectedDiscipline> SelectedDisciplines { get; set; }
-
-        public User()
-        {
-            Departments ??= new HashSet<Department>();
-
-            IndividualPlans ??= new HashSet<IndividualPlan>();
-
-            Rates ??= new HashSet<Rate>();
-
-            SelectedDisciplines ??= new HashSet<SelectedDiscipline>();
-        }
     }
 }

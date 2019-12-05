@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Planner.Entities.Domain.UniversityUnits;
+﻿using Planner.Entities.Domain.UniversityUnits;
+using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 {
@@ -21,17 +21,14 @@ namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 
         public int? FirstSemesterId { get; set; }
 
-        [Description("Ignore")] 
-        public FirstSemester FirstSemester { get; set; }
+        [Description("Ignore")] public FirstSemester FirstSemester { get; set; }
 
         public int? SecondSemesterId { get; set; }
 
-        [Description("Ignore")] 
-        public SecondSemester SecondSemester { get; set; }
+        [Description("Ignore")] public SecondSemester SecondSemester { get; set; }
 
         public int? DepartmentId { get; set; }
 
-        [Description("Ignore")] 
-        public Department Department { get; set; }
+        [Description("Ignore")] public Department Department { get; set; }
     }
 }

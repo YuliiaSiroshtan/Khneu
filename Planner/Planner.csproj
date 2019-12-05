@@ -74,7 +74,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Planner.DependencyInjection\Planner.DependencyInjection.csproj" />
-    <ProjectReference Include="..\Planner.ExcelApi\Planner.ExcelApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

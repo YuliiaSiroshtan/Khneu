@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.Domain.AppUser;
 using Planner.Entities.DTO.AppUserDto;
 using Planner.RepositoryInterfaces.UoW;
@@ -8,39 +9,34 @@ using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service.AppUser
 {
-    public class UserEntryLoadPropertyService : IUserEntryLoadPropertyService
+    public class UserEntryLoadPropertyService : BaseService, IUserEntryLoadPropertyService
     {
-        private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
-
-        public UserEntryLoadPropertyService(IUnitOfWork uow, IMapper mapper)
-        {
-            _uow = uow;
-            _mapper = mapper;
-        }
+        public UserEntryLoadPropertyService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper) { }
 
         public async Task<IEnumerable<UserEntryLoadPropertyDto>> GetUserEntryLoadPropertiesByUserId(int id)
         {
-            var userEntryLoadsProperties = await _uow.UserEntryLoadPropertyRepository.GetUserEntryLoadPropertiesByUserId(id);
+            var userEntryLoadsProperties =
+                await this.Uow.UserEntryLoadPropertyRepository.GetUserEntryLoadPropertiesByUserId(id);
 
-            return _mapper.Map<IEnumerable<UserEntryLoadPropertyDto>>(userEntryLoadsProperties);
+            return this.Mapper.Map<IEnumerable<UserEntryLoadPropertyDto>>(userEntryLoadsProperties);
         }
 
         public async Task<UserEntryLoadPropertyDto> GetUserEntryLoadPropertyById(int id)
         {
-            var userEntryLoadsProperties = await _uow.UserEntryLoadPropertyRepository.GetUserEntryLoadPropertyById(id);
+            var userEntryLoadsProperties =
+                await this.Uow.UserEntryLoadPropertyRepository.GetUserEntryLoadPropertyById(id);
 
-            return _mapper.Map<UserEntryLoadPropertyDto>(userEntryLoadsProperties);
+            return this.Mapper.Map<UserEntryLoadPropertyDto>(userEntryLoadsProperties);
         }
 
         public async Task<int> InsertUserEntryLoadProperty(UserEntryLoadPropertyDto userEntryLoadPropertyDto)
         {
-            var userEntryLoadsProperty = _mapper.Map<UserEntryLoadProperty>(userEntryLoadPropertyDto);
+            var userEntryLoadsProperty = this.Mapper.Map<UserEntryLoadProperty>(userEntryLoadPropertyDto);
 
-            return await _uow.UserEntryLoadPropertyRepository.InsertUserEntryLoadProperty(userEntryLoadsProperty);
+            return await this.Uow.UserEntryLoadPropertyRepository.InsertUserEntryLoadProperty(userEntryLoadsProperty);
         }
 
         public async Task DeleteUserEntryLoadProperty(int id) =>
-            await _uow.UserEntryLoadPropertyRepository.DeleteUserEntryLoadProperty(id);
+            await this.Uow.UserEntryLoadPropertyRepository.DeleteUserEntryLoadProperty(id);
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Planner.Entities.Domain.AppUser;
+﻿using Planner.Entities.Domain.AppUser;
+using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppSelectedDiscipline
 {
@@ -11,12 +11,10 @@ namespace Planner.Entities.Domain.AppSelectedDiscipline
 
         public int? SelectedDisciplineId { get; set; }
 
-        [Description("Ignore")]
-        public SelectedDiscipline SelectedDiscipline { get; set; }
+        [Description("Ignore")] public SelectedDiscipline SelectedDiscipline { get; set; }
 
         public int? UserId { get; set; }
 
-        [Description("Ignore")]
-        public User User { get; set; }
+        [Description("Ignore")] public User User { get; set; }
     }
 }

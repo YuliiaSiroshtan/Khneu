@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
 
@@ -13,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
+    <ProjectReference Include="..\Planner.ExcelApi\Planner.ExcelApi.csproj" />
     <ProjectReference Include="..\Planner.RepositoryInterfaces\Planner.RepositoryInterfaces.csproj" />
     <ProjectReference Include="..\Planner.ServiceInterfaces\Planner.ServiceInterfaces.csproj" />
   </ItemGroup>

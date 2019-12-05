@@ -15,6 +15,5 @@
         public DepartmentViewModel[] Departments { get; set; }
 
         public SelectedDisciplinesViewModel[] SelectedDisciplines { get; set; }
-
     }
 }

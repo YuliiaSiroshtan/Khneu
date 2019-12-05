@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Planner.BusinessLogic.Service.Base;
 using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.DTO.AppEntryLoadDto;
 using Planner.RepositoryInterfaces.UoW;
@@ -7,23 +8,17 @@ using System.Threading.Tasks;
 
 namespace Planner.BusinessLogic.Service.AppEntryLoad
 {
-    public class HoursCalculationOfFirstSemesterService : IHoursCalculationOfFirstSemesterService
+    public class HoursCalculationOfFirstSemesterService : BaseService, IHoursCalculationOfFirstSemesterService
     {
-        private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
+        public HoursCalculationOfFirstSemesterService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper) { }
 
-        public HoursCalculationOfFirstSemesterService(IUnitOfWork uow, IMapper mapper)
-        {
-            _uow = uow;
-            _mapper = mapper;
-        }
-
-        public async Task<int> InsertHoursCalculationOfFirstSemester(HoursCalculationOfFirstSemesterDto hoursCalculationOfFirstSemesterDto)
+        public async Task<int> InsertHoursCalculationOfFirstSemester(
+            HoursCalculationOfFirstSemesterDto hoursCalculationOfFirstSemesterDto)
         {
             var hoursCalculationOfFirstSemester =
-                _mapper.Map<HoursCalculationOfFirstSemester>(hoursCalculationOfFirstSemesterDto);
+                this.Mapper.Map<HoursCalculationOfFirstSemester>(hoursCalculationOfFirstSemesterDto);
 
-            return await _uow.HoursCalculationOfFirstSemesterRepository
+            return await this.Uow.HoursCalculationOfFirstSemesterRepository
                 .InsertHoursCalculationOfFirstSemester(hoursCalculationOfFirstSemester);
         }
     }

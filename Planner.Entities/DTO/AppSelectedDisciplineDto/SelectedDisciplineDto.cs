@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Planner.Entities.DTO.AppUserDto;
+﻿using Planner.Entities.DTO.AppUserDto;
 using Planner.Entities.DTO.UniversityUnits;
+using System.Collections.Generic;
 
 namespace Planner.Entities.DTO.AppSelectedDisciplineDto
 {
@@ -41,6 +41,5 @@ namespace Planner.Entities.DTO.AppSelectedDisciplineDto
         public string FormControl { get; set; }
 
         public DepartmentDto Department { get; set; }
-
     }
 }
