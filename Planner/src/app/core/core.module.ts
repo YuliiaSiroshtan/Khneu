@@ -60,6 +60,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ListboxModule } from 'primeng/listbox';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CoreRoutingModule } from './core-routing.module';
+import { EntryLoadService } from './services/entry-load.service';
+import { DesciplineService } from './services/descipline.service';
 
 @NgModule({
   declarations: [
@@ -131,7 +133,9 @@ import { CoreRoutingModule } from './core-routing.module';
       { provide: PublicationDataService, useClass: PublicationDataService },
       { provide: ReportDataService, useClass: ReportDataService },
       { provide: IndivPlanDataService, useClass: IndivPlanDataService },
-      { provide: DistributionDataService, useClass: DistributionDataService }
+      { provide: DistributionDataService, useClass: DistributionDataService },
+      EntryLoadService,
+      DesciplineService
     ]
 })
 export class CoreModule { }
