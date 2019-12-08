@@ -62,6 +62,8 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { CoreRoutingModule } from './core-routing.module';
 import { AppHeaderComponent } from './components/app-header-component/app-header.component';
 import { AppSidenavComponent } from './components/app-sidenav-component/app-sidenav.component';
+import { EntryLoadService } from './services/entry-load.service';
+import { DesciplineService } from './services/descipline.service';
 
 @NgModule({
   declarations: [
@@ -135,7 +137,9 @@ import { AppSidenavComponent } from './components/app-sidenav-component/app-side
       { provide: PublicationDataService, useClass: PublicationDataService },
       { provide: ReportDataService, useClass: ReportDataService },
       { provide: IndivPlanDataService, useClass: IndivPlanDataService },
-      { provide: DistributionDataService, useClass: DistributionDataService }
+      { provide: DistributionDataService, useClass: DistributionDataService },
+      EntryLoadService,
+      DesciplineService
     ]
 })
 export class CoreModule { }
