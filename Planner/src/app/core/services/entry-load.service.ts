@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "src/environments/environment";
-import { take, map, catchError } from "rxjs/operators";
-import { BehaviorSubject, of } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { take, map, catchError } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
 import {
   EntryLoadsPropertyViewModel,
   UserEntryLoadsPropertyViewModel
-} from "../models/entry-load.models";
+} from '../models/entry-load.models';
 
 @Injectable()
 export class EntryLoadService {
