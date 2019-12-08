@@ -64,6 +64,7 @@ import { AppHeaderComponent } from './components/app-header-component/app-header
 import { AppSidenavComponent } from './components/app-sidenav-component/app-sidenav.component';
 import { EntryLoadService } from './services/entry-load.service';
 import { DesciplineService } from './services/descipline.service';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import { DesciplineService } from './services/descipline.service';
       { provide: IndivPlanDataService, useClass: IndivPlanDataService },
       { provide: DistributionDataService, useClass: DistributionDataService },
       EntryLoadService,
-      DesciplineService
+      DesciplineService,
+      AccountService
     ]
 })
 export class CoreModule { }
