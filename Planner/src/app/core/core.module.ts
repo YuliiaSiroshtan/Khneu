@@ -30,7 +30,7 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from "@angular/material/core";
+import { MatRippleModule, MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from "src/app/app-routing.module";
@@ -60,8 +60,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ListboxModule } from 'primeng/listbox';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { CoreRoutingModule } from './core-routing.module';
+import { AppHeaderComponent } from './components/app-header-component/app-header.component';
+import { AppSidenavComponent } from './components/app-sidenav-component/app-sidenav.component';
 import { EntryLoadService } from './services/entry-load.service';
 import { DesciplineService } from './services/descipline.service';
+import { AccountService } from './services/account.service';
+import { TeacherEntryLoadComponent } from './conteiners/teacher-entry-load/teacher-entry-load.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -81,7 +86,10 @@ import { DesciplineService } from './services/descipline.service';
     UploadDistributionComponent,
     DistributionComponent,
     DayEntryComponent,
-    HomePageComponent
+    HomePageComponent,
+    AppHeaderComponent,
+    AppSidenavComponent,
+    TeacherEntryLoadComponent
   ],
   imports: [
     CoreRoutingModule,
@@ -118,7 +126,9 @@ import { DesciplineService } from './services/descipline.service';
     MessageModule,
     ProgressSpinnerModule,
     MatSidenavModule,
-    ListboxModule
+    ListboxModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     SharedModule,
@@ -135,7 +145,8 @@ import { DesciplineService } from './services/descipline.service';
       { provide: IndivPlanDataService, useClass: IndivPlanDataService },
       { provide: DistributionDataService, useClass: DistributionDataService },
       EntryLoadService,
-      DesciplineService
+      DesciplineService,
+      AccountService
     ]
 })
 export class CoreModule { }
