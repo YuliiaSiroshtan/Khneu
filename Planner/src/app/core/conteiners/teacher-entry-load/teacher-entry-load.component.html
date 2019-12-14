@@ -1,0 +1,11 @@
+<p>
+  teacher-entry-load works!
+</p>
+<mat-form-field>
+  <mat-label>Преподователи</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let item of (users$|async)" [value]="item">
+      {{item}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

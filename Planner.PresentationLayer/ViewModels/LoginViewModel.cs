@@ -2,8 +2,8 @@
 {
     public class LoginViewModel
     {
-        public string Login { get; }
+        public string Login { get; set; }
 
-        public string Password { get; }
+        public string Password { get; set; }
     }
 }
