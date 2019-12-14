@@ -16,6 +16,7 @@ import { PlanScientificWorkComponent } from "./core/components/plan-scientific-w
 import { DistributionComponent } from "./core/components/distribution-component/distribution.component";
 import { AuthGuard } from "./shared/guard/auth-guard";
 import { HomePageComponent } from "./core/conteiners/home-page/home-page.component";
+import { TeacherEntryLoadComponent } from './core/conteiners/teacher-entry-load/teacher-entry-load.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -107,6 +108,12 @@ const routes: Routes = [
         path: "distribution",
         component: DistributionComponent,
         outlet: "main",
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'entry-load',
+        component: TeacherEntryLoadComponent,
+        outlet: 'main',
         canActivate: [AuthGuard]
       }
     ]

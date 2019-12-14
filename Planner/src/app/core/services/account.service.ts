@@ -7,15 +7,15 @@ import { UserViewModel } from '../models/user.models';
 
 @Injectable()
 export class AccountService {
-  user: BehaviorSubject<UserViewModel> = new BehaviorSubject<UserViewModel>(
+  user$: BehaviorSubject<UserViewModel> = new BehaviorSubject<UserViewModel>(
     null
   );
 
-  usersByDepartment: BehaviorSubject<UserViewModel[]> = new BehaviorSubject<
+  usersByDepartment$: BehaviorSubject<UserViewModel[]> = new BehaviorSubject<
     UserViewModel[]
   >([]);
 
-  users: BehaviorSubject<UserViewModel[]> = new BehaviorSubject<
+  users$: BehaviorSubject<UserViewModel[]> = new BehaviorSubject<
     UserViewModel[]
   >([]);
 
@@ -23,11 +23,11 @@ export class AccountService {
 
   uploadUsers() {
     this._http
-      .get(environment.apiBaseUrl + '/Account/GetUsers')
+      .get(environment.apiBaseUrl + 'api/Account/GetUsers')
       .pipe(
         take(1),
         map((response: UserViewModel[]) => {
-          this.users.next(response);
+          this.users$.next(response);
         })
       )
       .subscribe();
@@ -35,11 +35,11 @@ export class AccountService {
 
   uploadUsersByDepartmentId(id: number) {
     this._http
-      .get(environment.apiBaseUrl + '/Account/GetUsersByDepartmentId?id=' + id)
+      .get(environment.apiBaseUrl + 'api/Account/GetUsersByDepartmentId?id=' + id)
       .pipe(
         take(1),
         map((response: UserViewModel[]) => {
-          this.users.next(response);
+          this.users$.next(response);
         })
       )
       .subscribe();
@@ -47,11 +47,11 @@ export class AccountService {
 
   uploadUserInfo() {
     this._http
-      .get(environment.apiBaseUrl + '/Account/GetUserInfo')
+      .get(environment.apiBaseUrl + 'api/Account/GetUserInfo')
       .pipe(
         take(1),
         map((response: UserViewModel) => {
-          this.user.next(response);
+          this.user$.next(response);
         })
       )
       .subscribe();
@@ -59,11 +59,11 @@ export class AccountService {
 
   uploadUser(id: number) {
     this._http
-      .get(environment.apiBaseUrl + '/Account/GetUser' + id)
+      .get(environment.apiBaseUrl + 'api/Account/GetUser' + id)
       .pipe(
         take(1),
         map((response: UserViewModel) => {
-          this.user.next(response);
+          this.user$.next(response);
         })
       )
       .subscribe();
@@ -71,11 +71,11 @@ export class AccountService {
 
   updateUser(user: UserViewModel) {
     this._http
-      .post(environment.apiBaseUrl + '/Account/UpdateUser', user)
+      .post(environment.apiBaseUrl + 'api/Account/UpdateUser', user)
       .pipe(
         take(1),
         map((response: UserViewModel) => {
-          this.user.next(response);
+          this.user$.next(response);
         }),
         catchError(err => of(console.log(err)))
       )

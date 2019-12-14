@@ -18,12 +18,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userProfile = new UserInfo();
-    this.getUser();
   }
 
-  getUser() {
-    this.userProfile = this.authenticationService.getUserInfo();
-  }
 
   toggleEditUser() {
     this.isEdit = !this.isEdit;

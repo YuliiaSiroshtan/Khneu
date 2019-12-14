@@ -6,8 +6,8 @@
         <img class="profile-logo img-responsive" alt="">
       </div>
       <div class="profile-usertitle">
-        <div class="profile-usertitle-name" *ngIf="userProfile">
-          {{userProfile.firstName}} {{userProfile.lastName}}
+        <div class="profile-usertitle-name">
+          user
         </div>
       </div>
     </a>
@@ -15,7 +15,7 @@
     <a [routerLink]="[{ outlets: { main: ['user-list'] } }]" class="item list-group-item list-group-item-action"><i class="users-img"></i>Користувачі</a>
     <a [routerLink]="[{ outlets: { main: ['ndr'] } }]" class="item list-group-item list-group-item-action"><i class="students-img"></i>Результати НДР студентів</a>
     <a [routerLink]="[{ outlets: { main: ['distribution'] } }]" class="item list-group-item list-group-item-action"><i class="teachers-img"></i>Розподілення навантаження по кафедрі</a>
-    <a [routerLink]="[{ outlets: { main: ['home'] } }]" class="item list-group-item list-group-item-action"><i class="teacher-img"></i>Навантаження на викладача</a>
+    <a [routerLink]="[{ outlets: { main: ['entry-load'] } }]" class="item list-group-item list-group-item-action"><i class="teacher-img"></i>Навантаження на викладача</a>
     <a [routerLink]="[{ outlets: { main: ['upload-distribution'] } }]" class="item list-group-item list-group-item-action"><i class="file-img"></i>Файл навантаження</a>
   </div>
 </div>

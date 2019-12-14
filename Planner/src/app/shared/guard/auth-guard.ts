@@ -4,15 +4,14 @@ import { UserInfo } from "src/app/shared/models/user-info.model";
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
+    isLogin: boolean;
 
     constructor(private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        this.isLogin = !!localStorage.getItem('tokenInfo');
 
-        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        let info = <UserInfo>userInfo
-
-        if (info) {
+        if (this.isLogin) {
             return true;
         }
 

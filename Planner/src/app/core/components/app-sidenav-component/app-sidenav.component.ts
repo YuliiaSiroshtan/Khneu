@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInfo } from "src/app/shared/models/user-info.model";
-import { AuthenticationService } from 'src/app/auth/services/authentication.service';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,19 +8,10 @@ import { AuthenticationService } from 'src/app/auth/services/authentication.serv
 })
 export class AppSidenavComponent implements OnInit {
   display: boolean = true;
-  userProfile: UserInfo;
 
-  constructor(
-    private _authenticationService: AuthenticationService) { }
+  constructor(private  _accountService:  AccountService) { }
 
   ngOnInit() {
-    this.userProfile = new UserInfo();
-
-    this.getUser();
+    this._accountService.uploadUserInfo();
   }
-
-  getUser() {
-    this.userProfile = this._authenticationService.getUserInfo();
-  }
-
 }
