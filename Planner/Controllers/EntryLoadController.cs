@@ -136,6 +136,7 @@ namespace Planner.Controllers
 
 
     [HttpPost]
+    [Route("[action]")]
     [DisableRequestSizeLimit]
     public async Task<IActionResult> UploadFile([FromForm] FileInfoModel fileInfo)
     {
@@ -149,7 +150,7 @@ namespace Planner.Controllers
 
         if (fileInfo.File.Length > 0)
         {
-          fileName += fileInfo.File.ContentType;
+          fileName += fileInfo.File.FileName;
 
           var fullPath = Path.Combine(path, fileName);
 

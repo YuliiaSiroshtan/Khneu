@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { take, map, catchError } from 'rxjs/operators';
+import { take, map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, of } from 'rxjs';
 import {
   EntryLoadsPropertyViewModel,
@@ -10,11 +10,11 @@ import {
 
 @Injectable()
 export class EntryLoadService {
-  entryLoadsProperty: BehaviorSubject<
+  entryLoadsProperty$: BehaviorSubject<
     EntryLoadsPropertyViewModel[]
   > = new BehaviorSubject<EntryLoadsPropertyViewModel[]>([]);
 
-  userEntryLoadsProperty: BehaviorSubject<
+  userEntryLoadsProperty$: BehaviorSubject<
     UserEntryLoadsPropertyViewModel[]
   > = new BehaviorSubject<UserEntryLoadsPropertyViewModel[]>([]);
 
@@ -22,11 +22,11 @@ export class EntryLoadService {
 
   uploadEntryLoadProperties() {
     this._http
-      .get(environment.apiBaseUrl + '/EntryLoad/GetEntryLoadProperties')
+      .get(environment.apiBaseUrl + 'api/EntryLoad/GetEntryLoadProperties')
       .pipe(
         take(1),
         map((response: EntryLoadsPropertyViewModel[]) => {
-          this.entryLoadsProperty.next(response);
+          this.entryLoadsProperty$.next(response);
         })
       )
       .subscribe();
@@ -36,13 +36,13 @@ export class EntryLoadService {
     this._http
       .get(
         environment.apiBaseUrl +
-          '/EntryLoad/GetUserEntryLoadPropertiesByUserId?userId=' +
+          'api/EntryLoad/GetUserEntryLoadPropertiesByUserId?userId=' +
           userId
       )
       .pipe(
         take(1),
         map((response: UserEntryLoadsPropertyViewModel[]) => {
-          this.userEntryLoadsProperty.next(response);
+          this.userEntryLoadsProperty$.next(response);
         })
       )
       .subscribe();
@@ -50,21 +50,21 @@ export class EntryLoadService {
 
   makeAnEntryLoadPlan(userId: number) {
     this._http
-      .post(environment.apiBaseUrl + '/EntryLoad/MakeAnEntryLoadPlan', userId)
+      .post(environment.apiBaseUrl + 'api/EntryLoad/MakeAnEntryLoadPlan', userId)
       .pipe(take(1))
       .subscribe();
   }
 
   updateEntryLoadFile(id: number) {
     this._http
-      .post(environment.apiBaseUrl + '/EntryLoad/UpdateEntryLoadFile', id)
+      .post(environment.apiBaseUrl + 'api/EntryLoad/UpdateEntryLoadFile', id)
       .pipe(take(1))
       .subscribe();
   }
 
   deleteEntryLoadFile(id: number) {
     this._http
-      .post(environment.apiBaseUrl + '/EntryLoad/DeleteEntryLoadFile', id)
+      .post(environment.apiBaseUrl + 'api/EntryLoad/DeleteEntryLoadFile', id)
       .pipe(take(1))
       .subscribe(
         () => {},
@@ -74,7 +74,7 @@ export class EntryLoadService {
 
   deleteUserEntryLoadFile(id: number) {
     this._http
-      .post(environment.apiBaseUrl + '/EntryLoad/DeleteUserEntryLoadFile', id)
+      .post(environment.apiBaseUrl + 'api/EntryLoad/DeleteUserEntryLoadFile', id)
       .pipe(
         take(1),
         catchError(err => of(console.log(err)))
@@ -84,7 +84,7 @@ export class EntryLoadService {
 
   downloadFile(id: number) {
     this._http
-      .get(environment.apiBaseUrl + '/EntryLoad/DownloadFile?id=' + id)
+      .get(environment.apiBaseUrl + 'api/EntryLoad/DownloadFile?id=' + id)
       .pipe(
         take(1),
         map(response => {
@@ -97,13 +97,16 @@ export class EntryLoadService {
 
   uploadFile(file: File, hoursPerRate: number) {
     let formData: FormData = new FormData();
-    formData.append(file.name, file);
+    formData.append('file', file);
     formData.append('hoursPerRate', hoursPerRate.toString());
-
+    console.log(file);
     this._http
-      .post(environment.apiBaseUrl + '/EntryLoad/UploadFile', formData)
+      .post(environment.apiBaseUrl + 'api/EntryLoad/UploadFile', formData)
       .pipe(
         take(1),
+        tap(()=>{
+          this.uploadEntryLoadProperties();
+        }),
         catchError(err => of(console.log(err)))
       )
       .subscribe();
