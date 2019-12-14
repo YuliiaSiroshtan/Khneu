@@ -57,7 +57,7 @@ namespace Planner.Controllers
     }
 
 
-    [HttpPost("[action]")]
+    [HttpGet("[action]")]
     public async Task<IActionResult> UpdateEntryLoadFile(int id)
     {
       var entryLoadsProperty = await this.ChangeIsActiveEntryLoadsProperties(id);
