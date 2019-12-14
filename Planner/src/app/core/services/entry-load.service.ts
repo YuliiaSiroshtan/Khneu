@@ -56,10 +56,13 @@ export class EntryLoadService {
   }
 
   updateEntryLoadFile(id: number) {
+    console.log('service '  + id);
     this._http
-      .post(environment.apiBaseUrl + 'api/EntryLoad/UpdateEntryLoadFile', id)
+      .get(environment.apiBaseUrl + 'api/EntryLoad/UpdateEntryLoadFile?id=' + id)
       .pipe(take(1))
-      .subscribe();
+      .subscribe(()=>{
+        this.uploadEntryLoadProperties();
+      });
   }
 
   deleteEntryLoadFile(id: number) {
