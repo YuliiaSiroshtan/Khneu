@@ -1,4 +1,38 @@
-<h3>Оберіть файл, що містить вхідне навантаження кафедри. Test</h3>
+<form [formGroup]="hoursEntryLoad" (ngSubmit)="onSubmit()" class="login-form">
+    <input type="hourPerRate" pInputText placeholder="Пароль" class="form-control" formControlName="password">
+</form>
+
+<h3>Оберіть файл, що містить вхідне навантаження кафедри</h3>
 <div>
   <p-fileUpload name="filePath" customUpload="true" (uploadHandler)="uploadFile($event)"  placeholder="Завантажити файл навантаження"></p-fileUpload>
 </div>
+
+<table mat-table [dataSource]="entryLoadsProperty$|async" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Им'я файла </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dateTime">
+      <th mat-header-cell *matHeaderCellDef> Дата  завантаження </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateTimeUpload}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="hoursPerRate">
+      <th mat-header-cell *matHeaderCellDef> Години навантаження </th>
+      <td mat-cell *matCellDef="let element"> {{element.HoursPerRate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Дія </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button>
+            Вибрати
+          </button>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
