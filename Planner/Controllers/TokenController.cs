@@ -1,7 +1,6 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Planner.PresentationLayer.ViewModels;
-using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
+using Planner.Entities.DTO.AppUserDto;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using System.Threading.Tasks;
 
 namespace Planner.Controllers
@@ -9,12 +8,12 @@ namespace Planner.Controllers
   [Route("api/[controller]")]
   public class TokenController : GenericController
   {
-    public TokenController(IServiceFactory serviceFactory, IMapper mapper) : base(serviceFactory, mapper) { }
+    public TokenController(IServiceScope serviceScope) : base(serviceScope) { }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> CreateToken([FromBody] LoginViewModel login)
+    public async Task<IActionResult> CreateToken([FromBody] UserLoginDto userLogin)
     {
-      var result = await this.ServiceFactory.TokenService.CreateJwtSecurityToken(login.Login, login.Password);
+      var result = await this.ServiceScope.TokenService.CreateJwtSecurityToken(userLogin.Login, userLogin.Password);
 
       return this.Ok(result);
     }

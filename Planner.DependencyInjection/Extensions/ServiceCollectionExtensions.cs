@@ -1,35 +1,34 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Planner.BusinessLogic.Service.AppDiscipline;
-using Planner.BusinessLogic.Service.AppEntryLoad;
-using Planner.BusinessLogic.Service.AppExcel;
-using Planner.BusinessLogic.Service.AppSelectedDiscipline;
-using Planner.BusinessLogic.Service.AppUniversityUnits;
-using Planner.BusinessLogic.Service.AppUser;
-using Planner.BusinessLogic.Service.Mics;
-using Planner.BusinessLogic.Service.ServiceFactory;
-using Planner.Data.Repository.AppDiscipline;
-using Planner.Data.Repository.AppEntryLoad;
-using Planner.Data.Repository.AppSelectedDiscipline;
-using Planner.Data.Repository.AppUser;
-using Planner.Data.Repository.UniversityUnits;
-using Planner.Data.UoW;
-using Planner.RepositoryInterfaces.ObjectInterfaces.AppDiscipline;
-using Planner.RepositoryInterfaces.ObjectInterfaces.AppEntryLoad;
-using Planner.RepositoryInterfaces.ObjectInterfaces.AppSelectedDiscipline;
-using Planner.RepositoryInterfaces.ObjectInterfaces.AppUser;
-using Planner.RepositoryInterfaces.ObjectInterfaces.UniversityUnits;
-using Planner.RepositoryInterfaces.UoW;
+using Planner.BusinessLogic.Services.AppDiscipline;
+using Planner.BusinessLogic.Services.AppEntryLoad;
+using Planner.BusinessLogic.Services.AppExcel;
+using Planner.BusinessLogic.Services.AppSelectedDiscipline;
+using Planner.BusinessLogic.Services.AppUniversityUnits;
+using Planner.BusinessLogic.Services.AppUser;
+using Planner.BusinessLogic.Services.Misc;
+using Planner.Data.Repositories.AppDiscipline;
+using Planner.Data.Repositories.AppEntryLoad;
+using Planner.Data.Repositories.AppSelectedDiscipline;
+using Planner.Data.Repositories.AppUser;
+using Planner.Data.Repositories.Misc;
+using Planner.Data.Repositories.UniversityUnits;
+using Planner.RepositoryInterfaces.Interfaces.AppDiscipline;
+using Planner.RepositoryInterfaces.Interfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.Interfaces.AppSelectedDiscipline;
+using Planner.RepositoryInterfaces.Interfaces.AppUser;
+using Planner.RepositoryInterfaces.Interfaces.Misc;
+using Planner.RepositoryInterfaces.Interfaces.UniversityUnits;
 using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
 using Planner.ServiceInterfaces.Interfaces.AppExcel;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppUser;
 using Planner.ServiceInterfaces.Interfaces.Misc;
-using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
 using Planner.ServiceInterfaces.Interfaces.UniversityUnits;
 using System;
+using IServiceScope = Planner.ServiceInterfaces.Interfaces.Misc.IServiceScope;
 
 namespace Planner.DependencyInjection.Extensions
 {
@@ -37,7 +36,9 @@ namespace Planner.DependencyInjection.Extensions
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IUnitOfWork, UnitOfWork>(provider => new UnitOfWork(configuration
+            services.AddTransient<IRepositoryScope, RepositoryScope>(provider => new RepositoryScope(configuration
+                .GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IRecreateTables, RecreateTables>(provider => new RecreateTables(configuration
                 .GetConnectionString("DefaultConnection")));
 
             services.AddSingleton<IUserRepository, UserRepository>();
@@ -65,7 +66,7 @@ namespace Planner.DependencyInjection.Extensions
             services.AddSingleton<ILaboratoryRepository, LaboratoryRepository>();
             services.AddSingleton<IPracticalRepository, PracticalRepository>();
 
-            services.AddTransient<IServiceFactory, ServiceFactory>();
+            services.AddTransient<IServiceScope, ServiceScope>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<ISecurityService, SecurityService>();

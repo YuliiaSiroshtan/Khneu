@@ -1,4 +1,5 @@
-﻿using Planner.Entities.DTO.AppEntryLoadDto;
+﻿using Planner.Entities.Domain.AppEntryLoad;
+using Planner.Entities.DTO.AppEntryLoadDto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace Planner.ServiceInterfaces.Interfaces.AppEntryLoad
 {
     public interface IEntryLoadPropertyService
     {
-        Task<IEnumerable<EntryLoadsPropertyDto>> GetEntryLoadsProperties();
+        Task<IEnumerable<EntryLoadsProperty>> GetEntryLoadsProperties();
 
         Task DeleteEntryLoadsProperty(int id);
 
@@ -14,10 +15,8 @@ namespace Planner.ServiceInterfaces.Interfaces.AppEntryLoad
 
         Task<EntryLoadsPropertyDto> GetEntryLoadsPropertyByName(string name);
 
-        Task UpdateEntryLoadsProperty(EntryLoadsPropertyDto entryLoadsPropertyDto);
+        Task UpdateEntryLoadsProperty(EntryLoadsProperty entryLoadsPropertyDto);
 
-        Task InsertEntryLoadsProperty(EntryLoadsPropertyDto entryLoadsPropertyDto);
-
-        Task RecreateTables();
+        Task InsertEntryLoadsProperty(EntryLoadsProperty entryLoadsProperty);
     }
 }

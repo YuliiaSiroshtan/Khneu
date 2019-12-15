@@ -4,7 +4,7 @@ namespace Planner.Entities.DTO.AppEntryLoadDto.FullTime
 {
     public class SecondSemesterDto
     {
-        [Description("Ignore")] public int Id { get; set; }
+        [Description("Ignore")] public string Id { get; set; }
 
         public string Hours { get; set; }
         public string HoursAll { get; set; }

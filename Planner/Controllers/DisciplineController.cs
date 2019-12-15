@@ -1,8 +1,5 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Planner.PresentationLayer.ViewModels;
-using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
-using System.Collections.Generic;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using System.Threading.Tasks;
 
 namespace Planner.Controllers
@@ -10,26 +7,14 @@ namespace Planner.Controllers
   [Route("api/[controller]")]
   public class DisciplineController : GenericController
   {
-    public DisciplineController(IServiceFactory serviceFactory, IMapper mapper) : base(serviceFactory, mapper) { }
+    public DisciplineController(IServiceScope serviceScope) : base(serviceScope) { }
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetFullTimeDisciplines(int departmentId)
-    {
-      var disciplines =
-        await this.ServiceFactory.FullTimeDisciplineService.GetFullTimeDisciplinesByDepartmentId(departmentId);
-      var disciplinesViewModel = this.Mapper.Map<IEnumerable<FullTimeDisciplinesViewModel>>(disciplines);
-
-      return this.Ok(disciplinesViewModel);
-    }
+      => this.Ok(await this.ServiceScope.FullTimeDisciplineService.GetFullTimeDisciplinesByDepartmentId(departmentId));
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetPartTimeDisciplines(int departmentId)
-    {
-      var disciplines =
-        await this.ServiceFactory.PartTimeDisciplineService.GetPartTimeDisciplinesByDepartmentId(departmentId);
-      var disciplinesViewModel = this.Mapper.Map<IEnumerable<PartTimeDisciplineViewModel>>(disciplines);
-
-      return this.Ok(disciplinesViewModel);
-    }
+      => this.Ok(await this.ServiceScope.PartTimeDisciplineService.GetPartTimeDisciplinesByDepartmentId(departmentId));
   }
 }

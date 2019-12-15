@@ -21,7 +21,5 @@ namespace Planner.ServiceInterfaces.Interfaces.AppUser
         Task<string> GetUserNameById(int id);
 
         Task UpdateUser(UserDto userDto);
-
-        Task InsertUser(UserDto userDto);
     }
 }

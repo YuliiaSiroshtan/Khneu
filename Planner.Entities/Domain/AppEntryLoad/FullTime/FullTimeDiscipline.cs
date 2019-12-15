@@ -1,12 +1,11 @@
-﻿using Planner.Entities.Domain.UniversityUnits;
+﻿using Planner.Entities.Domain.Base;
+using Planner.Entities.Domain.UniversityUnits;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 {
-    public class FullTimeDiscipline
+    public class FullTimeDiscipline : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string ECTS { get; set; }

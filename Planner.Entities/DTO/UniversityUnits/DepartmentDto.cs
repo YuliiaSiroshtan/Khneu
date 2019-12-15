@@ -10,6 +10,6 @@
 
         public string Classification { get; set; }
 
-        public FacultyDto Faculty { get; set; }
+        public string FacultyName { get; set; }
     }
 }

@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Planner.Entities.Domain.Base;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.UniversityUnits
 {
-    public class Faculty
+    public class Faculty : BaseEntity
     {
         public Faculty() => this.Departments ??= new HashSet<Department>();
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 
