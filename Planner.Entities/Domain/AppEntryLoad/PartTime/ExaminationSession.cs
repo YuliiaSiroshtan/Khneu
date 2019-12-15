@@ -1,8 +1,9 @@
-﻿namespace Planner.Entities.Domain.AppEntryLoad.PartTime
+﻿using Planner.Entities.Domain.Base;
+
+namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 {
-    public class ExaminationSession
+    public class ExaminationSession : BaseEntity
     {
-        public int Id { get; set; }
         public string Hours { get; set; }
         public string HoursAll { get; set; }
         public string Lectures { get; set; }

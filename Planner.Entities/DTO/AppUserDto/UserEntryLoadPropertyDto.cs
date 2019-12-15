@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace Planner.Entities.DTO.AppUserDto
+﻿namespace Planner.Entities.DTO.AppUserDto
 {
     public class UserEntryLoadPropertyDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public string UserName { get; set; }
 
-        public DateTime DateTimeUpload { get; set; }
+        public string DateTimeUpload { get; set; }
     }
 }

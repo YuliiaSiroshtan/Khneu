@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Planner.Entities.Domain.Base;
+using System;
 
 namespace Planner.Entities.Domain.AppEntryLoad
 {
-    public class EntryLoadsProperty
+    public class EntryLoadsProperty : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public DateTime DateTimeUpload { get; set; }

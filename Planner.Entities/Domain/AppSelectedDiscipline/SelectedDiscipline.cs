@@ -1,11 +1,12 @@
 ﻿using Planner.Entities.Domain.AppUser;
+using Planner.Entities.Domain.Base;
 using Planner.Entities.Domain.UniversityUnits;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppSelectedDiscipline
 {
-    public class SelectedDiscipline
+    public class SelectedDiscipline : BaseEntity
     {
         public SelectedDiscipline()
         {
@@ -17,8 +18,6 @@ namespace Planner.Entities.Domain.AppSelectedDiscipline
 
             this.Users ??= new HashSet<User>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; }
 

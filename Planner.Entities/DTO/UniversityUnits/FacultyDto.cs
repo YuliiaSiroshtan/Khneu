@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Planner.Entities.DTO.UniversityUnits
+﻿namespace Planner.Entities.DTO.UniversityUnits
 {
     public class FacultyDto
     {
@@ -10,6 +8,6 @@ namespace Planner.Entities.DTO.UniversityUnits
 
         public string CodeFaculty { get; set; }
 
-        public ICollection<DepartmentDto> Departments { get; set; }
+        public DepartmentDto[] Departments { get; set; }
     }
 }

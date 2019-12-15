@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Planner.Entities.Domain.Base;
+using System;
 
 namespace Planner.Entities.Domain.AppUser
 {
-    public class UserEntryLoadProperty
+    public class UserEntryLoadProperty : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int UserId { get; set; }

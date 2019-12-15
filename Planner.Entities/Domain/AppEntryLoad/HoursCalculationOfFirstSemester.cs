@@ -1,8 +1,9 @@
-﻿namespace Planner.Entities.Domain.AppEntryLoad
+﻿using Planner.Entities.Domain.Base;
+
+namespace Planner.Entities.Domain.AppEntryLoad
 {
-    public class HoursCalculationOfFirstSemester
+    public class HoursCalculationOfFirstSemester : BaseEntity
     {
-        public int Id { get; set; }
         public string Lectures { get; set; }
         public string Laboratories { get; set; }
         public string Practicals { get; set; }

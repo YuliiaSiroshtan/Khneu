@@ -1,12 +1,11 @@
-﻿using Planner.Entities.Domain.UniversityUnits;
+﻿using Planner.Entities.Domain.Base;
+using Planner.Entities.Domain.UniversityUnits;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.FullTime
 {
-    public class FullTimeEntryLoad
+    public class FullTimeEntryLoad : BaseEntity
     {
-        public int Id { get; set; }
-
         public int? FacultyId { get; set; }
 
         [Description("Ignore")] public Faculty Faculty { get; set; }

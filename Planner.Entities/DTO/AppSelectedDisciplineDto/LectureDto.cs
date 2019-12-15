@@ -1,15 +1,13 @@
-﻿using Planner.Entities.DTO.AppUserDto;
-
-namespace Planner.Entities.DTO.AppSelectedDisciplineDto
+﻿namespace Planner.Entities.DTO.AppSelectedDisciplineDto
 {
     public class LectureDto
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string AmountOfHours { get; set; }
 
-        public SelectedDisciplineDto SelectedDiscipline { get; set; }
+        public string SelectedDisciplineId { get; set; }
 
-        public UserDto User { get; set; }
+        public string UserId { get; set; }
     }
 }

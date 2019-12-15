@@ -1,9 +1,6 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Planner.Entities.DTO.AppUserDto;
-using Planner.PresentationLayer.ViewModels;
-using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
-using System.Collections.Generic;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using System.Threading.Tasks;
 
 namespace Planner.Controllers
@@ -11,51 +8,30 @@ namespace Planner.Controllers
   [Route("api/[controller]")]
   public class AccountController : GenericController
   {
-    public AccountController(IServiceFactory serviceFactory, IMapper mapper) : base(serviceFactory, mapper) { }
+    public AccountController(IServiceScope serviceScope) : base(serviceScope) { }
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetUsers()
-    {
-      var users = await this.ServiceFactory.UserService.GetUsers();
-      var usersViewModel = this.Mapper.Map<IEnumerable<UserViewModel>>(users);
-
-      return this.Ok(usersViewModel);
-    }
+      => this.Ok(await this.ServiceScope.UserService.GetUsers());
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetUsersByDepartmentId(int id)
-    {
-      var users = await this.ServiceFactory.UserService.GetUsersByDepartmentId(id);
-      var usersViewModel = this.Mapper.Map<IEnumerable<UserViewModel>>(users);
-
-      return this.Ok(usersViewModel);
-    }
+      => this.Ok(await this.ServiceScope.UserService.GetUsersByDepartmentId(id));
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetUserInfo()
-    {
-      var user = await this.ServiceFactory.UserService.GetUserByLogin(this.UserInfo().Login);
-      var userInfo = this.Mapper.Map<UserViewModel>(user);
-
-      return this.Ok(userInfo);
-    }
+      => this.Ok(await this.ServiceScope.UserService.GetUserByLogin(this.UserInfo().Login));
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetUser(int id)
-    {
-      var user = await this.ServiceFactory.UserService.GetUserById(id);
-      var userViewModel = this.Mapper.Map<UserViewModel>(user);
-
-      return this.Ok(userViewModel);
-    }
+      => this.Ok(await this.ServiceScope.UserService.GetUserById(id));
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> UpdateUser([FromBody] UserViewModel userViewModel)
+    public async Task<IActionResult> UpdateUser([FromBody] UserDto userDto)
     {
-      var user = this.Mapper.Map<UserDto>(userViewModel);
-      await this.ServiceFactory.UserService.UpdateUser(user);
+      await this.ServiceScope.UserService.UpdateUser(userDto);
 
-      return this.Ok(userViewModel);
+      return this.Ok(userDto);
     }
   }
 }

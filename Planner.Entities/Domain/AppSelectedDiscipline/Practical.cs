@@ -1,12 +1,11 @@
 ﻿using Planner.Entities.Domain.AppUser;
+using Planner.Entities.Domain.Base;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppSelectedDiscipline
 {
-    public class Practical
+    public class Practical : BaseEntity
     {
-        public int Id { get; set; }
-
         public string AmountOfHours { get; set; }
 
         public int? SelectedDisciplineId { get; set; }

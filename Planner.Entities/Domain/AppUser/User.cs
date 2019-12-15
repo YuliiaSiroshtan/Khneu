@@ -1,11 +1,12 @@
 ﻿using Planner.Entities.Domain.AppSelectedDiscipline;
+using Planner.Entities.Domain.Base;
 using Planner.Entities.Domain.UniversityUnits;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppUser
 {
-    public class User
+    public class User : BaseEntity
     {
         public User()
         {
@@ -17,8 +18,6 @@ namespace Planner.Entities.Domain.AppUser
 
             this.SelectedDisciplines ??= new HashSet<SelectedDiscipline>();
         }
-
-        public int Id { get; set; }
 
         public string LdapId { get; set; }
 
@@ -36,6 +35,10 @@ namespace Planner.Entities.Domain.AppUser
 
 
         [Description("Ignore")] public ICollection<IndividualPlan> IndividualPlans { get; set; }
+        
+        public int? DepartmentId { get; set; }
+
+        [Description("Ignore")] public Department Department { get; set; }
 
 
         [Description("Ignore")] public ICollection<Department> Departments { get; set; }

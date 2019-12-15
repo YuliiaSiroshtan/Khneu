@@ -1,12 +1,11 @@
-﻿using Planner.Entities.Domain.UniversityUnits;
+﻿using Planner.Entities.Domain.Base;
+using Planner.Entities.Domain.UniversityUnits;
 using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 {
-    public class PartTimeDiscipline
+    public class PartTimeDiscipline : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string ECTS { get; set; }

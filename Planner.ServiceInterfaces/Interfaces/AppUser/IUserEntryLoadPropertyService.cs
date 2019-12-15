@@ -1,4 +1,5 @@
-﻿using Planner.Entities.DTO.AppUserDto;
+﻿using Planner.Entities.Domain.AppUser;
+using Planner.Entities.DTO.AppUserDto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,9 +9,9 @@ namespace Planner.ServiceInterfaces.Interfaces.AppUser
     {
         Task<IEnumerable<UserEntryLoadPropertyDto>> GetUserEntryLoadPropertiesByUserId(int id);
 
-        Task<UserEntryLoadPropertyDto> GetUserEntryLoadPropertyById(int id);
+        Task<UserEntryLoadProperty> GetUserEntryLoadPropertyById(int id);
 
-        Task<int> InsertUserEntryLoadProperty(UserEntryLoadPropertyDto userEntryLoadPropertyDto);
+        Task<int> InsertUserEntryLoadProperty(UserEntryLoadProperty userEntryLoadProperty);
 
         Task DeleteUserEntryLoadProperty(int id);
     }

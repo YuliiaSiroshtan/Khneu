@@ -1,8 +1,8 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using Planner.PresentationLayer.ViewModels;
-using Planner.ServiceInterfaces.Interfaces.ServiceFactory;
+using Planner.Entities;
+using Planner.Entities.DTO.AppUserDto;
+using Planner.ServiceInterfaces.Interfaces.Misc;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -11,18 +11,14 @@ namespace Planner.Controllers
 {
   public class GenericController : Controller
   {
-    protected readonly IMapper Mapper;
-    protected readonly IServiceFactory ServiceFactory;
+    protected readonly IServiceScope ServiceScope;
 
-    protected GenericController(IServiceFactory serviceFactory, IMapper mapper)
-    {
-      this.ServiceFactory = serviceFactory;
-      this.Mapper = mapper;
-    }
+    protected GenericController(IServiceScope serviceScope)
+      => this.ServiceScope = serviceScope;
 
     [NonAction]
-    protected UserClaimsViewModel UserInfo() =>
-      new UserClaimsViewModel
+    protected UserClaimsDto UserInfo() =>
+      new UserClaimsDto
       {
         Login = this.GetClaims().Identity.Name,
         Role = this.GetClaims().Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value
@@ -32,7 +28,7 @@ namespace Planner.Controllers
     private ClaimsPrincipal GetClaims()
     {
       var authenticationHeaderValue = AuthenticationHeaderValue.Parse(this.Request.Headers[HeaderNames.Authorization]);
-      var claims = this.ServiceFactory.TokenService.GetClaims(authenticationHeaderValue.Parameter);
+      var claims = this.ServiceScope.TokenService.GetClaims(authenticationHeaderValue.Parameter);
 
       return claims;
     }

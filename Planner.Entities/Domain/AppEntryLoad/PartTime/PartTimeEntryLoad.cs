@@ -1,11 +1,10 @@
-﻿using System.ComponentModel;
+﻿using Planner.Entities.Domain.Base;
+using System.ComponentModel;
 
 namespace Planner.Entities.Domain.AppEntryLoad.PartTime
 {
-    public class PartTimeEntryLoad
+    public class PartTimeEntryLoad : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Unit { get; set; }
 
         public string Specialty { get; set; }
