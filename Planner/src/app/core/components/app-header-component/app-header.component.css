@@ -1,5 +1,5 @@
 body {
-  margin: 0px;
+  margin: 0;
   background-color: #CCCCCC;
 }
 
@@ -23,16 +23,9 @@ a {
 }
 
 #wrapper {
-  background-color: #FFFFFF;
-  width: 100%;
-  min-height: 100%;
-  position: relative;
-  height: auto;
-  min-height: 100%;
-  margin-top: 0;
-  margin-right: auto;
-  margin-bottom: 0;
-  margin-left: auto;
+  display: block;
+  margin: 0 auto;
+
 }
 
 #content-spacer-top {
@@ -121,24 +114,22 @@ li {
 }
 
 .header-widget {
-  padding: 20px;
+  padding: 45px 0;
   text-align: center;
 }
 
 .serchheder {
   background: url(~/hneu-background.jpg);
-  height: 160px;
   width: 100%;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .main-title {
   color: white !important;
-  font-size: 40px;
+  font-size: 42px;
   font-family: Verdana;
-  margin-top: 3%;
+  margin-top: 20px;
   line-height: 30px;
-  margin-bottom: -10px;
   text-shadow: 1px 1px 1px #1f1f1f;
 }
 
@@ -172,4 +163,12 @@ li {
 .footer-top {
   float: right;
   height: 20px;
+}
+
+@media (max-width: 1035px) {
+  .main-title {
+    line-height: 45px;
+    text-shadow: 1px 1px 5px #1f1f1f;
+    font-size: 35px;
+  }
 }

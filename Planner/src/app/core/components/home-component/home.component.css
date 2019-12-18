@@ -5,7 +5,9 @@
 }
 
 .button-margin {
-  margin-left: 84%;
+  display: block;
+  max-width: 150px;
+  margin: 0 auto;
 }
 
 .login-box-msg {

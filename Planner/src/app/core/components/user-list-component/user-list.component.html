@@ -9,15 +9,15 @@
             <ng-template pTemplate="caption">
               <div class="table-header-content">
                 <i class="fa fa-search header-i"></i>
-                <input type="text" pInputText size="50" placeholder="Введiть ПIБ або поштову скриньку" (input)="dt.filterGlobal($event.target.value, 'contains')">
+                <input type="text" pInputText size="50" class="editing" placeholder="Введiть ПIБ або поштову скриньку" (input)="dt.filterGlobal($event.target.value, 'contains')">
               </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                  <th>ПIБ</th>
-                  <th>Електронна адреса</th>
-                  <th></th>
-                  <th></th>
+                  <th class="column">ПIБ</th>
+                  <th class="column">Електронна адреса</th>
+                  <th class="column"></th>
+                  <th class="column"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-userListItem>
