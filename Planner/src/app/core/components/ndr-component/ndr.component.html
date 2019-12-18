@@ -1,13 +1,13 @@
 <p-toast key="success" position="top-center"></p-toast>
 <p-toast key="error" position="top-center"></p-toast>
-<div class="col">
+<div class="col col-info">
   <div class="profile-content">
     <div class="content-wrapper">
       <div class="form-group">
-        <p class="login-box-msg">Результаты НДР студентів</p>
-        <hr />
+        <p class="login-box-msg result-student">Результаты НДР студентів</p>
+        
         <form [formGroup]="NDRForm" (ngSubmit)="addNDR(NDRForm.value)">
-          <div class="col">
+          <div class="col col-info">
 
 
             <div class="form-group">
@@ -74,18 +74,18 @@
           </div>
         </form>
 
-        <div class="col table-margin-top">
+        <div class="col table-margin-top ">
           <p-table #dt [value]="NDR" [paginator]="true" [rows]="10">
             <ng-template pTemplate="header">
               <tr>
-                <th>ПIБ викладача</th>
-                <th>Тип</th>
-                <th>Рiвень</th>
-                <th>Назва/Напрям</th>
-                <th>Етап</th>
-                <th>Мiсце та дата проведення</th>
-                <th>ПIБ студента</th>
-                <th>Нагороди</th>
+                <th class="column">ПIБ викладача</th>
+                <th class="column">Тип</th>
+                <th class="column">Рiвень</th>
+                <th class="column">Назва/Напрям</th>
+                <th class="column">Етап</th>
+                <th class="column">Мiсце та дата проведення</th>
+                <th class="column">ПIБ студента</th>
+                <th class="column">Нагороди</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-ndrListItem>

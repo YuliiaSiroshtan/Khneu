@@ -4,14 +4,11 @@
 }
 
 a, .item {
-  display: inline-block;
+  display: block;
   background-color: #424a5d;
   color: #FFFFFF;
   font-family: Verdana;
   font-size: 16px;
-  width: 109%;
-  height: 100%;
-  margin-left: -5%;
 }
 
 .profile-userpic {

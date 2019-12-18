@@ -6,6 +6,7 @@
 
 .login-box-msg {
   text-align: center;
+  font-size: 25px;
 }
 
 .table-height {
@@ -23,4 +24,22 @@
 .header-input {
   width: auto;
 }
+
+.column {
+  text-align: center;
+  padding: 20px 2px;
+}
+
+@media (max-width: 600px) {
+  .editing {
+    display: block;
+    max-width: 382px;
+    margin: 0 auto;
+    }
+
+    .column {
+      font-size: 10px;
+    }
+}
+
 
