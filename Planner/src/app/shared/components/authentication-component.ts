@@ -4,7 +4,7 @@ import { HttpHeaders, HttpResponse } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { Observable, of, Subject, forkJoin } from 'rxjs';
 import { UserInfo } from "src/app/shared/models/user-info.model";
-import { LoginModel } from "src/app/account-component/shared/models/login.model";
+import { LoginModel } from 'src/app/auth/models/login.model';
 
 @Injectable()
 export class AuthenticationService {

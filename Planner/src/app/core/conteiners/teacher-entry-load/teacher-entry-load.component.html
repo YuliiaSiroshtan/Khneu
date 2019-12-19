@@ -1,29 +1,33 @@
+<div class="main">
 <p>
   Розподілення навантаження на викладача
 </p>
 <form>
-<div>
-<mat-form-field>
-  <mat-label>Виберіть викладача</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let item of (users$|async)" [value]="item">
-      {{item}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
-<div>
-<mat-form-field>
-  <mat-label>Виберіть дисципліну</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let item of (users$|async)" [value]="item">
-      {{item}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
-<div>
-<label>Введіть години навантаження</label>
-<input matInput name="">
-</div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Виберіть викладача</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of users$ | async" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Виберіть дисципліну</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of users$ | async" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Введіть години навантаження" />
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="submit">Зберегти</button>
 </form>
+</div>

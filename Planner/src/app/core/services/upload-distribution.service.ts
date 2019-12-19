@@ -13,6 +13,6 @@ export class UploadDistributionService {
                 reportProgress: true,
             });
 
-        return this.http.request(uploadReq);
+        return this._http.request(uploadReq);
     }
 }
