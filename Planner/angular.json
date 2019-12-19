@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "wwwroot/src",
             //"baseHref": "/src/",
-            "deployUrl": "/src/",
+            "deployUrl": "/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
