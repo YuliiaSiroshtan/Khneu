@@ -14,7 +14,6 @@ export class TeacherEntryLoadComponent implements OnInit {
 
   get users$(){
     this._accountService.users$.subscribe((res)=>{
-      console.log(res);
     })
     return this._accountService.users$;
   }
