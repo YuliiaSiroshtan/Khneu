@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { EntryLoadService } from '../../services/entry-load.service';
+import { DesciplineService } from '../../services/descipline.service';
+import { FullTimeDisciplinesViewModel } from '../../models/disciplines.models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'pl-teacher-entry-load',
@@ -11,17 +14,22 @@ export class TeacherEntryLoadComponent implements OnInit {
 
   constructor(
     private _accountService: AccountService,
-    private _entryLoadService: EntryLoadService
+    private _entryLoadService: EntryLoadService,
+    private _desciplinesService: DesciplineService
   ) { }
 
+
   get users$(){
-    this._accountService.users$.subscribe((res)=>{
-    })
     return this._accountService.users$;
+  }
+
+  get fullTimeDisciplines$() : BehaviorSubject<FullTimeDisciplinesViewModel[]>{
+    return  this._desciplinesService.fullTimeDisciplines$;
   }
 
   ngOnInit() {
     this._accountService.uploadUsersByDepartmentId(11);
+    this._desciplinesService.uploadFullTimeDiscipline(9);
   }
 
   makeAnEntryLoadPlan(){
