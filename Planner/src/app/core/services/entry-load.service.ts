@@ -50,7 +50,7 @@ export class EntryLoadService {
 
   makeAnEntryLoadPlan(userId: number) {
     this._http
-      .post(environment.apiBaseUrl + 'api/EntryLoad/MakeAnEntryLoadPlan', userId)
+      .post(environment.apiBaseUrl + 'api/EntryLoad/MakeAnEntryLoadPlan', {userId: userId})
       .pipe(take(1))
       .subscribe();
   }
@@ -99,7 +99,6 @@ export class EntryLoadService {
     let formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('hoursPerRate', hoursPerRate.toString());
-    console.log(file);
     this._http
       .post(environment.apiBaseUrl + 'api/EntryLoad/UploadFile', formData)
       .pipe(
