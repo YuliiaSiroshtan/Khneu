@@ -10,7 +10,7 @@ import {
 
 @Injectable()
 export class DesciplineService {
-  fullTimeDisciplines: BehaviorSubject<
+  fullTimeDisciplines$: BehaviorSubject<
     FullTimeDisciplinesViewModel[]
   > = new BehaviorSubject<FullTimeDisciplinesViewModel[]>([]);
 
@@ -23,12 +23,12 @@ export class DesciplineService {
   uploadFullTimeDiscipline(id: number) {
     this._http
       .get(
-        environment.apiBaseUrl + '/Descipline/GetFullTimeDisciplines?id=' + id
+        environment.apiBaseUrl + 'api/Discipline/GetFullTimeDisciplines?id=' + id
       )
       .pipe(
         take(1),
         map((response: FullTimeDisciplinesViewModel[]) => {
-          this.fullTimeDisciplines.next(response);
+          this.fullTimeDisciplines$.next(response);
         })
       )
       .subscribe();

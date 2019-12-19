@@ -21,8 +21,8 @@
       <mat-form-field class="example-full-width">
         <mat-label>Виберіть дисципліну</mat-label>
         <mat-select>
-          <mat-option *ngFor="let item of users$ | async" [value]="item">
-            {{ item }}
+          <mat-option *ngFor="let item of fullTimeDisciplines$ | async" [value]="item">
+            {{ item.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
