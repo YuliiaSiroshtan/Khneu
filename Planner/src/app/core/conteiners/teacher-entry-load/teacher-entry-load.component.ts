@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
+import { EntryLoadService } from '../../services/entry-load.service';
 
 @Component({
   selector: 'pl-teacher-entry-load',
@@ -9,7 +10,8 @@ import { AccountService } from '../../services/account.service';
 export class TeacherEntryLoadComponent implements OnInit {
 
   constructor(
-    private _accountService: AccountService
+    private _accountService: AccountService,
+    private _entryLoadService: EntryLoadService
   ) { }
 
   get users$(){
@@ -20,6 +22,10 @@ export class TeacherEntryLoadComponent implements OnInit {
 
   ngOnInit() {
     this._accountService.uploadUsersByDepartmentId(11);
+  }
+
+  makeAnEntryLoadPlan(){
+    this._entryLoadService.makeAnEntryLoadPlan(1);
   }
 
 }
