@@ -10,6 +10,24 @@
   margin: 0 auto;
 }
 
-.login-box-msg {
-  text-align: center;
+.table td {
+  border: none;
 }
+
+.data_table {
+  border: 5px solid #424a5d !important;
+  margin-top: 15px;
+}
+
+.edit {
+  margin-top: 5px;
+}
+
+.col .ng-star-insterted {
+padding-left: 0 !important;
+}
+
+.home_title {
+  font-size: 25px;
+}
+
