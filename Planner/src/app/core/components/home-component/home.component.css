@@ -28,6 +28,8 @@ padding-left: 0 !important;
 }
 
 .home_title {
+  display: block;
   font-size: 25px;
+  
 }
 
