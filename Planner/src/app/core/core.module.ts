@@ -68,6 +68,8 @@ import { AccountService } from './services/account.service';
 import { TeacherEntryLoadComponent } from './conteiners/teacher-entry-load/teacher-entry-load.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -130,7 +132,10 @@ import {MatTableModule} from '@angular/material/table';
     ListboxModule,
     MatOptionModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule,
+    MatButtonModule,
+    
   ],
   exports: [
     SharedModule,

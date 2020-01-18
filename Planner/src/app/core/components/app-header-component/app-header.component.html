@@ -1,68 +1,98 @@
 <div id="wrapper">
-  <div id="header">
-    <header>
-      <div class="footer-top">
-        <a class="social-link" href="https://www.youtube.com/user/MrBAlexN" title="Харківский  національний економічний університет імені Семена Кузнеця">
-          <img class="youtube-logo">
-        </a>
-        <a class="social-link" href="https://www.facebook.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
-          <img class="facebook-logo">
-        </a>
-        <a class="social-link" href="https://twitter.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
-          <img class="twitter-logo">
-        </a>
-        <a class="social-link" href="https://scholar.google.com.ua/" title="Google Scholar">
-          <img class="scholar-logo">
-        </a>
-        <a class="social-link" href="https://orcid.org" title="ORCID">
-          <img class="orcid-logo">
-        </a>
-      </div>
-    </header>
-  </div>
-  <div class="serchheder">
-    <div class="inside-header grid-container grid-parent">
-      <div class="header-widget">
-       
-        <div class="site-branding">
-          <p class="main-title" title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧА">
-            ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧА
-          </p>
-        </div>
+  <header id="header">
+    <div class="footer-top">
+      <a class="social-link" href="https://www.youtube.com/user/MrBAlexN" title="Харківский  національний економічний університет імені Семена Кузнеця">
+        <img class="youtube-logo">
+      </a>
+      <a class="social-link" href="https://www.facebook.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
+        <img class="facebook-logo">
+      </a>
+      <a class="social-link" href="https://twitter.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
+        <img class="twitter-logo">
+      </a>
+      <a class="social-link" href="https://scholar.google.com.ua/" title="Google Scholar">
+        <img class="scholar-logo">
+      </a>
+      <a class="social-link" href="https://orcid.org" title="ORCID">
+        <img class="orcid-logo">
+      </a>
+    </div>
+  </header>
+<div class="serchheder">
+  <div class="inside-header grid-container grid-parent">
+    <div class="header-widget">
+     
+      <div class="site-branding">
+        <span class="main-title" title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧА">
+          Планувальник навантаження викладача
+        </span>
       </div>
     </div>
   </div>
-  <div>
-    <ul>
-      <li><a [routerLink]="[{ outlets: { main: ['home'] } }]">Головна</a></li>
-      <li><a [routerLink]="[{ outlets: { main: ['publication'] } }]">Публікації</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn dropdown-toggle">Індивідуальний план</a>
-        <span class="caret"></span>
-        <div class="dropdown-content">
-          <a [routerLink]="[{ outlets: { main: ['training-job'] } }]">Навчальна робота</a>
-          <a [routerLink]="[{ outlets: { main: ['plan-methodical-work'] } }]">Методична робота</a>
-          <a [routerLink]="[{ outlets: { main: ['plan-scientific-work'] } }]">Наукова робота</a>
-          <a [routerLink]="[{ outlets: { main: ['plan-management'] } }]">Організаційна робота</a>
-        </div>
-      </li>
-      <li><a [routerLink]="[{ outlets: { main: ['reports'] } }]">Звіти</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn dropdown-toggle">Адміністративний модуль</a>
-        <span class="caret"></span>
-        <div class="dropdown-content">
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список курсів</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список кафедр</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список факультетів</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список робіт індив-го плану</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список індексів цитувань</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціалізацій</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціальностей</a>
-          <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список предметів</a>
-        </div>
-      </li>
-      <li><a [routerLink]="[{ outlets: { main: ['dashboard'] } }]">Розклад занять</a></li>
-      <li><a (click)="logout()">Вийти</a></li>
-    </ul>
-  </div>
+</div>
+<div class="menu">
+  <ul>
+    <li><a class="menu_hover" [routerLink]="[{ outlets: { main: ['home'] } }]">Головна</a></li>
+    <li><a class="menu_hover" [routerLink]="[{ outlets: { main: ['publication'] } }]">Публікації</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn dropdown-toggle menu_hover">Індивідуальний план</a>
+      <span class="caret"></span>
+      <div class="dropdown-content">
+        <a [routerLink]="[{ outlets: { main: ['training-job'] } }]">Навчальна робота</a>
+        <a [routerLink]="[{ outlets: { main: ['plan-methodical-work'] } }]">Методична робота</a>
+        <a [routerLink]="[{ outlets: { main: ['plan-scientific-work'] } }]">Наукова робота</a>
+        <a [routerLink]="[{ outlets: { main: ['plan-management'] } }]">Організаційна робота</a>
+      </div>
+    </li>
+    <li><a class="menu_hover" [routerLink]="[{ outlets: { main: ['reports'] } }]">Звіти</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn dropdown-toggle menu_hover">Адміністративний модуль</a>
+      <span class="caret"></span>
+      <div class="dropdown-content">
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список курсів</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список кафедр</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список факультетів</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список робіт індив-го плану</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список індексів цитувань</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціалізацій</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціальностей</a>
+        <a [routerLink]="[{ outlets: { main: ['home'] } }]">Список предметів</a>
+      </div>
+    </li>
+    <li><a class="menu_hover" [routerLink]="[{ outlets: { main: ['dashboard'] } }]">Розклад занять</a></li>
+    <li><a (click)="logout()">Вийти</a></li>
+  </ul>
+  <div class="adapt_menu">
+    <button mat-button [matMenuTriggerFor]="dropmenu" class="burger">Меню</button>
+    
+
+<mat-menu class="matmenu" #dropmenu="matMenu">
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Головна</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['publication'] } }]">Публікації</a></button>
+<button class="menu_second" mat-menu-item [matMenuTriggerFor]="individual"><a href="javascript:void(0)" class= "menu_second--item">Індивідуальний план</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['reports'] } }]">Звіти</a></button>
+<button class="menu_second" mat-menu-item [matMenuTriggerFor]="adm_module"><a href="javascript:void(0)" class="menu_second--item">Адміністративний модуль</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['dashboard'] } }]">Розклад занять</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" (click)="logout()">Вийти</a></button>
+</mat-menu>
+
+<mat-menu #individual="matMenu">
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['training-job'] } }]">Навчальна робота</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['plan-methodical-work'] } }]">Методична робота</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['plan-scientific-work'] } }]">Наукова робота</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['plan-management'] } }]">Організаційна робота</a></button>
+</mat-menu>
+
+<mat-menu #adm_module="matMenu">
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список курсів</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список кафедр</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список факультетів</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список робіт індив-го плану</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список індексів цитувань</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціалізацій</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список спеціальностей</a></button>
+<button class="menu_second" mat-menu-item><a class="menu_second--item" [routerLink]="[{ outlets: { main: ['home'] } }]">Список предметів</a></button>
+</mat-menu>
+</div>
+</div>
 </div>

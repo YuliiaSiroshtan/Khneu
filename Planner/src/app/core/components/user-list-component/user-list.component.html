@@ -3,7 +3,6 @@
     <div class="content-wrapper">
       <div class="form-group">
         <p class="login-box-msg">Користувачі</p>
-        <hr />
         <div class="col table-height">
           <p-table #dt [value]="userList" [paginator]="true" [rows]="10" [globalFilterFields]="['fullName','email']">
             <ng-template pTemplate="caption">

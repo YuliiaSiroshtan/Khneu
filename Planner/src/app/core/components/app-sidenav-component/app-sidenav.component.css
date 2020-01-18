@@ -1,3 +1,7 @@
+body {
+  background-color: #424a5d;
+}
+
 .profile-content {
   padding: 20px;
   background: #ffffff;
@@ -9,6 +13,12 @@ a, .item {
   color: #FFFFFF;
   font-family: Verdana;
   font-size: 16px;
+  transition: .3s;
+}
+
+a, .item:hover {
+  background-color: #212327;
+  transition: .3s;
 }
 
 .profile-userpic {
@@ -66,13 +76,15 @@ a, .item {
   pointer-events: none;
 }
 
+.container {
+ padding: 0 !important;
+}
+
 .container-margin {
   margin-top: -1%;
 }
 
-body {
-  background-color: #424a5d;
-}
+
 
 .profile-usertitle {
   text-align: center;
@@ -81,3 +93,12 @@ body {
   background-color: #424a5d;
   color: #FFFFFF;
 }
+
+@media (max-width: 600px) {
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+}
+
+
