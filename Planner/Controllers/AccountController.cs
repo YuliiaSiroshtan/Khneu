@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Planner.Entities.DTO.AppUserDto;
 using Planner.ServiceInterfaces.Interfaces.Misc;
@@ -11,6 +12,7 @@ namespace Planner.Controllers
     public AccountController(IServiceScope serviceScope) : base(serviceScope) { }
 
     [HttpGet("[action]")]
+    [Authorize]
     public async Task<IActionResult> GetUsers()
       => this.Ok(await this.ServiceScope.UserService.GetUsers());
 
@@ -19,6 +21,7 @@ namespace Planner.Controllers
       => this.Ok(await this.ServiceScope.UserService.GetUsersByDepartmentId(id));
 
     [HttpGet("[action]")]
+    [Authorize]
     public async Task<IActionResult> GetUserInfo()
       => this.Ok(await this.ServiceScope.UserService.GetUserByLogin(this.UserInfo().Login));
 

@@ -56,7 +56,8 @@ namespace Planner.BusinessLogic.Services.Misc
             result.JwtToken = new JwtToken
             {
                 Token = finalToken,
-                Login = claimsIdentity.Name
+                Login = claimsIdentity.Name,
+                Role = user.Role.Name
             };
 
             return result;

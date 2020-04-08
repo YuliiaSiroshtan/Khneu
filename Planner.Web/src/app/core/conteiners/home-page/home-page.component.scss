@@ -1,0 +1,36 @@
+:host{
+    .profile-content {
+        margin-top: 2%;
+        font-family: verdana;
+        font-size: 16px;
+      }
+      
+      .button-margin {
+        display: block;
+        max-width: 150px;
+        margin: 0 auto;
+      }
+      
+      .table td {
+        border: none;
+      }
+      
+      .data_table {
+        border: 5px solid #424a5d !important;
+        margin-top: 15px;
+      }
+      
+      .edit {
+        margin-top: 5px;
+      }
+      
+      .col .ng-star-insterted {
+      padding-left: 0 !important;
+      }
+      
+      .home_title {
+        display: block;
+        font-size: 25px;
+        
+      }      
+}

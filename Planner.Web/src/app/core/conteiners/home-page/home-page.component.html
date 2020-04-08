@@ -1,0 +1,85 @@
+<div class="col" >
+    <!-- *ngIf="!isEdit" -->
+    <div class="profile-content">
+      <div class="content-wrapper">
+        <div class="form-group">
+          <div class="login-box-body" 
+          data-ng-controller="registerController as registerCtrl" 
+          ng-cloak data-ng-init="registerCtrl.init()">
+            <span class="login-box-msg home_title">Головна сторінка</span>
+            
+            <div class="col data_table">
+              <div class="form-group">
+                <table class="table">
+                  <tr>
+                    <td>
+                      E-mail:
+                    </td>
+                    <td>
+                      {{userProfile.email}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      П.I.Б.
+                    </td>
+                    <td>
+                      {{userProfile.lastName}} {{userProfile.firstName}} {{userProfile.thirdName}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Google Scholar
+                    </td>
+                    <td>
+                      {{userProfile.scholarLink}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Orcid Scholar
+                    </td>
+                    <td>
+                      {{userProfile.orcidLink}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Ступiнь
+                    </td>
+                    <td>
+                      {{userProfile.academicTitleViewMode}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Звання
+                    </td>
+                    <td>
+                      {{userProfile.degreeViewMode}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Посада
+                    </td>
+                    <td>
+                      {{userProfile.positionViewMode}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <hr />
+            </div>
+            <div class="col edit">
+              <div class="button-margin">
+                <button class="btn btn-primary btn-block btn-flat" (click)="toggleEditUser()">Редагувати</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <add-update-user *ngIf="isEdit" [applicationUserId]="userProfile.applicationUserId"></add-update-user> -->
+  

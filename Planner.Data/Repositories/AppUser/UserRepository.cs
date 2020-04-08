@@ -4,6 +4,7 @@ using Planner.Entities.Domain.AppSelectedDiscipline;
 using Planner.Entities.Domain.AppUser;
 using Planner.Entities.Domain.UniversityUnits;
 using Planner.RepositoryInterfaces.Interfaces.AppUser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,7 +69,7 @@ namespace Planner.Data.Repositories.AppUser
                     user.SelectedDisciplines.Add(selectedDiscipline);
 
                     return user;
-                }, new {Id = id});
+                }, new { Id = id });
 
             return users.GroupBy(u => u.Id).Select(groupingUser =>
             {
@@ -147,7 +148,7 @@ namespace Planner.Data.Repositories.AppUser
                 user.Departments.Add(department);
 
                 return user;
-            }, new {Id = id});
+            }, new { Id = id });
 
             return users.GroupBy(u => u.Id).Select(groupingUser =>
             {
@@ -166,20 +167,20 @@ namespace Planner.Data.Repositories.AppUser
             const string query = "";
 
             var users = await connection
-                .QueryAsync<User, Role, Department, Faculty, Rate, SelectedDiscipline, User>
-                (query, (user, role, department, faculty, rate, selectedDiscipline) =>
-                {
-                    user.Role = role;
-                    department.Faculty = faculty;
-                    selectedDiscipline.Department = department;
-                    rate.Department = department;
+            .QueryAsync<User, Role, Department, Faculty, Rate, SelectedDiscipline, User>
+            (query, (user, role, department, faculty, rate, selectedDiscipline) =>
+            {
+                user.Role = role;
+                department.Faculty = faculty;
+                selectedDiscipline.Department = department;
+                rate.Department = department;
 
-                    user.Rates.Add(rate);
-                    user.Departments.Add(department);
-                    user.SelectedDisciplines.Add(selectedDiscipline);
+                user.Rates.Add(rate);
+                user.Departments.Add(department);
+                user.SelectedDisciplines.Add(selectedDiscipline);
 
-                    return user;
-                }, new {Login = login}, splitOn: "RoleId, UserId, FacultyId, RateId, SelectedDisciplineId");
+                return user;
+            }, new { Login = login }, splitOn: "RoleId, UserId, FacultyId, RateId, SelectedDisciplineId");
 
 
             return users.GroupBy(u => u.Id).Select(groupingUser =>
@@ -191,6 +192,7 @@ namespace Planner.Data.Repositories.AppUser
 
                 return user;
             }).SingleOrDefault();
+
         }
 
         public async Task<User> GetUserByLoginAndPassword(string login, string password)
@@ -207,7 +209,7 @@ namespace Planner.Data.Repositories.AppUser
                     user.Role = role;
 
                     return user;
-                }, new {Login = login, Password = password}, splitOn: "RoleId");
+                }, new { Login = login, Password = password }, splitOn: "RoleId");
 
             return users.SingleOrDefault();
         }
@@ -219,7 +221,7 @@ namespace Planner.Data.Repositories.AppUser
             const string query = "SELECT u.Name FROM Users u " +
                                  "WHERE u.Id = @id;";
 
-            return await connection.QuerySingleOrDefaultAsync<string>(query, new {Id = id});
+            return await connection.QuerySingleOrDefaultAsync<string>(query, new { Id = id });
         }
 
         public async Task UpdateUser(User user)
@@ -295,7 +297,7 @@ namespace Planner.Data.Repositories.AppUser
             const string query = "DELETE FROM UserSelectedDiscipline " +
                                  "WHERE UserId = @UserId";
 
-            await connection.ExecuteAsync(query, new {UserId = id});
+            await connection.ExecuteAsync(query, new { UserId = id });
         }
 
         private async Task DeleteUserDepartment(int id)
@@ -305,7 +307,7 @@ namespace Planner.Data.Repositories.AppUser
             const string query = "DELETE FROM UserDepartment " +
                                  "WHERE UserId = @UserId";
 
-            await connection.ExecuteAsync(query, new {UserId = id});
+            await connection.ExecuteAsync(query, new { UserId = id });
         }
 
         private async Task DeleteRateUser(int id)
@@ -315,7 +317,7 @@ namespace Planner.Data.Repositories.AppUser
             const string query = "DELETE FROM RateUser " +
                                  "WHERE UserId = @UserId";
 
-            await connection.ExecuteAsync(query, new {UserId = id});
+            await connection.ExecuteAsync(query, new { UserId = id });
         }
 
         #endregion
