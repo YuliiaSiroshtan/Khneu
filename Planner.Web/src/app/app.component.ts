@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './auth/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Web';
+
+  get isLoggin(){
+    return this._authService.isLoggin;
+  }
+
+  constructor(private _authService: AuthenticationService){ }
 }

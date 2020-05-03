@@ -15,37 +15,40 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UtilsService } from './services/utils.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './components/footer/footer.component';
+import { MenuComponent } from './components/menu/menu.component';
+
+const MaterialModules = [
+  MatSidenavModule,
+  MatSelectModule,
+  MatTableModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+];
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent, FooterComponent, MenuComponent],
   imports: [
     CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatTableModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModules
   ],
   exports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatTableModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HeaderComponent,
+    FooterComponent, 
+    MenuComponent,
+    MaterialModules
   ],
   providers: [
     UtilsService
