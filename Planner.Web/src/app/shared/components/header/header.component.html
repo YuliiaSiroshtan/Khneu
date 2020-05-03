@@ -1,54 +1,33 @@
-<div id="wrapper">
-    <header id="header">
-      <div class="footer-top">
-        <a class="social-link" href="https://www.youtube.com/user/MrBAlexN" title="Харківский  національний економічний університет імені Семена Кузнеця">
-          <img class="youtube-logo">
-        </a>
-        <a class="social-link" href="https://www.facebook.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
-          <img class="facebook-logo">
-        </a>
-        <a class="social-link" href="https://twitter.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
-          <img class="twitter-logo">
-        </a>
-        <a class="social-link" href="https://scholar.google.com.ua/" title="Google Scholar">
-          <img class="scholar-logo">
-        </a>
-        <a class="social-link" href="https://orcid.org" title="ORCID">
-          <img class="orcid-logo">
-        </a>
-      </div>
-    </header>
-  <div class="serchheder">
-    <div class="inside-header grid-container grid-parent">
-      <div class="header-widget">
-       
-        <div class="site-branding">
-          <span class="main-title" title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧА">
-            Планувальник навантаження викладача
-          </span>
+<header id="header">
+  <div class="footer-top">
+    <a class="social-link" href="https://www.youtube.com/user/MrBAlexN" title="Харківский  національний економічний університет імені Семена Кузнеця">
+      <img class="youtube-logo">
+    </a>
+    <a class="social-link" href="https://www.facebook.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
+      <img class="facebook-logo">
+    </a>
+    <a class="social-link" href="https://twitter.com/eihneu" title="Харківский  національний економічний університет імені Семена Кузнеця">
+      <img class="twitter-logo">
+    </a>
+    <a class="social-link" href="https://scholar.google.com.ua/" title="Google Scholar">
+      <img class="scholar-logo">
+    </a>
+    <a class="social-link" href="https://orcid.org" title="ORCID">
+      <img class="orcid-logo">
+    </a>
+  </div>
+  <div id="wrapper">
+    <div class="serchheder">
+      <div class="inside-header grid-container grid-parent">
+        <div class="header-widget">
+         
+          <div class="site-branding">
+            <span class="main-title" title="ПЛАНУВАЛЬНИК НАВАНТАЖЕННЯ ВИКЛАДАЧА">
+              Планувальник навантаження викладача
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="menu">
-    <ul>
-      <li><a class="menu_hover" [routerLink]="['home']">Головна</a></li>
-      <li><a class="menu_hover" *ngIf="isTeacher || isHeadOfDepartmen" [routerLink]="['']">Публікації</a></li>
-      <li><a class="menu_hover" *ngIf="isTeacher || isHeadOfDepartmen" [routerLink]="['']">Індивідуальний план</a></li>
-      <li><a class="menu_hover" *ngIf="isTeacher || isHeadOfDepartmen" [routerLink]="['']">Розклад занять</a></li>
-      <li><a class="menu_hover" *ngIf="isTeacher || isHeadOfDepartmen" [routerLink]="['']">Керевні документи</a></li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen" [routerLink]="['']">Нові користувачі</a></li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen" mat-button [matMenuTriggerFor]="distribution">Розподіл навантаження</a>
-        <mat-menu #distribution="matMenu" xPosition="before" backdropClass="submenu">
-          <button class="menu_second" mat-menu-item [routerLink]="['']">Файл навантаження</button>
-          <button class="menu_second" mat-menu-item [routerLink]="['']">По кафедрі</button>
-          <button class="menu_second" mat-menu-item [routerLink]="['']">Розподіл</button>
-        </mat-menu>
-      </li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen" [routerLink]="['']">Результати НДР</a></li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen" [routerLink]="['']">План по науки</a></li>
-      <li><a class="menu_hover" *ngIf="isTrainingDivision" [routerLink]="['']">Файл навантаження</a></li>
-      <li><a (click)="logout()">Вийти</a></li>
-    </ul>
-  </div>
-</div>
+</header>

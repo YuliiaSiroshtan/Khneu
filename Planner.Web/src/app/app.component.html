@@ -1,3 +1,5 @@
-<pl-header></pl-header>
-
+<pl-header *ngIf="isLoggin"></pl-header>
+<pl-menu *ngIf="isLoggin"></pl-menu>
 <router-outlet></router-outlet>
+
+<pl-footer *ngIf="isLoggin"></pl-footer>
