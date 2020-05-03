@@ -54,7 +54,7 @@
 
     .background-logo {
         display: flex;
-        // background-image: url('../../../../assets/images/hneu.png');
+        background-image: url('../../../../assets/images/hneu.png');
         width: 288px;
         height: 68px;
         padding: 36px 0 0 9px;
@@ -80,7 +80,7 @@
     .back-img {
         display: block;
         position: absolute;
-        // background-image: url(../../../../assets/images/lines.png);
+        background-image: url(../../../../assets/images/lines.png);
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -117,7 +117,7 @@
     }
 
     input[type="text"] {
-        // background-image: url(../../../../assets/images/login.png);
+        background-image: url(../../../../assets/images/login.png);
         background-repeat: no-repeat;
         background-position: 2px 5px;
         background-size: 28px;
@@ -125,7 +125,7 @@
     }
 
     input[type="password"] {
-        // background-image: url(../../../../assets/images/pass.png);
+        background-image: url(../../../../assets/images/pass.png);
         background-position: 5px 0px;
         background-repeat: no-repeat;
         background-size: 23px;
