@@ -7,31 +7,42 @@
     transition: none;
     }
 
-    .login-page, .register-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    background: url('../../../../assets/images/hneu-house.png') right bottom no-repeat, 
-    url('../../../../assets/images/hneu-background.jpg') left top repeat;
+    $font: Verdana;
+    
+    .wrapper {
+        display: flex;
+        position: relative;
+        flex-flow: column;
+        max-width: 1600px;
+        padding: 0 20px;
+        margin: 0 auto;
     }
 
-    .wrapper {
-    display: block;
-    max-width: 1600px;
-    padding: 0 20px;
-    margin: 0 auto;
-    }
 
     .login-logo, .register-logo {
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 300;
-    color: white;
-    padding-top: 15px;
-    font-family: Verdana;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        max-width: 442px;
+        margin: 0 auto 25px auto;
+        text-align: center;
+        color: #0979d9;
+        padding-top: 15px;
+        font-weight: 700;
+        font-family: $font;
+        
+    }
+
+    .text-line {
+        display: flex;
+        border-bottom: 3px solid #4595d6;
+        max-width: 200px;
+        margin: 0 auto 35px auto;
+    }
+
+    .loging-logo:not(.register-logo) {
+      border-bottom: 1px solid 50px #0979d9;  
     }
     .login-logo a, .register-logo a {
         color: #444;
@@ -42,57 +53,136 @@
     }
 
     .background-logo {
-    float: left;
-    background-image: url('../../../../assets/images/hneu-logo.png');
-    width: 140px;
-    height: 140px;
-    background-repeat: no-repeat;
-    background-size: contain;
+        display: flex;
+        background-image: url('../../../../assets/images/hneu.png');
+        width: 288px;
+        height: 68px;
+        padding: 36px 0 0 9px;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
 
     .login-form {
-    display: block;
-    background-color: rgba(0,0,0,0.5);
-    padding: 25px;
-    border-radius: 9px;
-    width: 600px;
-    margin: 0 auto;
-    font-size: 13px;
-    font-family: Verdana;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 100px 25px;
+        border-radius: 9px;
+        width: 415px;
+        margin: 0 auto;
+        font-size: 13px;
+        font-family: $font;
+        background-color: #ffffff;
+        color: white;
+        box-shadow: 5px 5px 6px 5px rgba(0, 0, 0, 0.23);
     }
 
-    .form-label {
-    font-weight: bold;
-    font-size: 15px;
-    font-family: Verdana;
-    margin-left: 18%;
+    .back-img {
+        display: block;
+        position: absolute;
+        background-image: url(../../../../assets/images/lines.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 85%;
+        top: 32%;
+        left: 2%;
+        z-index: -1;
+    }
+
+    .form-group {
+        display: flex;
+        margin-top: 50px;
+        
+    }
+
+    .form-group:nth-child(1) {
+        margin: 0;
+    }
+    
+    
+    .login {
+       display: inline-block;
+       position: relative;
+       width: 220px;
+       font-family: $font; 
+       font-weight: bold;
+       padding: 14px 50px 5px 50px;
+       background-color: inherit;
+       border: none;
+       border-bottom: 1px solid #060606;
+       outline: none;
+       vertical-align: middle;
+    }
+
+    input[type="text"] {
+        background-image: url(../../../../assets/images/login.png);
+        background-repeat: no-repeat;
+        background-position: 2px 5px;
+        background-size: 28px;
+        vertical-align: middle;
+    }
+
+    input[type="password"] {
+        background-image: url(../../../../assets/images/pass.png);
+        background-position: 5px 0px;
+        background-repeat: no-repeat;
+        background-size: 23px;
+        vertical-align: middle;
+    }
+
+    input::-webkit-input-placeholder { color: rgba(9, 121, 217, 1); }
+    input::-moz-placeholder { color: rgba(9, 121, 217, 1); }
+
+    .form-check-input {
+        display: inline-block;
+        margin: 0 3px;
+        vertical-align: middle;
+    }
+
+    .form-check-label {
+        display: block;
+        margin-top: 15px;
+    }
+    
+    .checkbox-label {
+        display: inline-block;
+        color: rgba(9, 121, 217, 1);
+        font-family: $font;
+        font-weight: bold;
+        cursor: pointer;
+        vertical-align: middle;
     }
 
     .form-btn {
-    margin-left: 60%;
-    background-color: #3c8dbc;
-    border-color: #367fa9;
+        display: block;  
+        margin: 0 auto;
+        background-color: #3c8dbc;
+        border: none;
+        padding: 10px 60px;
+        margin-top: 50px;
+        box-shadow: 4px 2px 5px rgba(0, 0, 0, 0.43);
+        transition: .3s;
+        cursor: pointer;
     }
 
-    .checkbox-label {
-    display: inline;
-    margin-bottom: 0;
-    font-weight: normal;
-    cursor: pointer;
+    .form-btn:hover {
+        background-color: #01659f;
+        transition: .3s;
     }
 
-    .icheck > label {
-    padding-left: 0;
-    color: white;
+    .form-btn__input {
+        display: block;
+        color: #fbfcfd;
+        font-family: $font;
+        font-size: 20px;
+        text-transform: uppercase;
     }
 
     .ui-message.ui-message-error {
-    width: 100%;
-    text-align: center
+        width: 100%;
+        text-align: center
     }
 
     @media (max-width: 1180px) {
