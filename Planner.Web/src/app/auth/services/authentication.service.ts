@@ -8,6 +8,10 @@ import { LoginModel } from '../models/auth.models';
 export class AuthenticationService {
   private tokenResult: any;
 
+  get isLoggin(){
+    return !!this.getToken();
+  }
+  
   constructor(private _http: HttpClient) { }
 
   isAuthenticated(login: LoginModel) {
