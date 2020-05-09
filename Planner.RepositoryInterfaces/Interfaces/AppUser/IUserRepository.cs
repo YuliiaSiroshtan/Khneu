@@ -20,6 +20,8 @@ namespace Planner.RepositoryInterfaces.Interfaces.AppUser
 
         Task<string> GetUserNameById(int id);
 
+        Task<int> GetLdapIdByLogin(string login);
+
         Task UpdateUser(User user);
     }
 }

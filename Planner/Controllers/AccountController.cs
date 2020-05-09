@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Planner.Entities.DTO.AppUserDto;
+using Planner.ldap;
 using Planner.ServiceInterfaces.Interfaces.Misc;
 using System.Threading.Tasks;
 
@@ -24,6 +25,15 @@ namespace Planner.Controllers
     [Authorize]
     public async Task<IActionResult> GetUserInfo()
       => this.Ok(await this.ServiceScope.UserService.GetUserByLogin(this.UserInfo().Login));
+
+    [HttpGet("[action]")]
+    [Authorize]
+    public async Task<IActionResult> GetUserInfoLDAP()
+    {
+      var ldapId = await ServiceScope.UserService.GetLdapIdByLogin(this.UserInfo().Login);
+
+      return ldapId == null ? NotFound() : (IActionResult)Ok(LdapRepository.GetUserById(ldapId));
+    }
 
     [HttpGet("[action]")]
     public async Task<IActionResult> GetUser(int id)
