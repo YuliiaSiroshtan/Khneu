@@ -20,7 +20,13 @@ namespace Planner.Data.Repositories.AppUser
         {
             using var connection = await this.OpenConnection();
 
-            const string query = "";
+            const string query = "SELECT * FROM Users u " +
+                                 "FULL JOIN Roles r ON r.Id = u.RoleId " +
+                                 "FULL JOIN UserDepartment ud ON ud.UserId = u.Id " +
+                                 "JOIN Departments dp ON dp.Id = ud.DepartmentId " +
+                                 "JOIN Faculties f ON f.Id = dp.FacultyId " +
+                                 "FULL JOIN Rates rt ON rt.DepartmentId = dp.Id " +
+                                 "FULL JOIN SelectedDisciplines sd ON sd.DepartmentId = dp.Id";
 
             var users = await connection
                 .QueryAsync<User, Role, Department, Faculty, Rate, SelectedDiscipline, User>
@@ -53,7 +59,14 @@ namespace Planner.Data.Repositories.AppUser
         {
             using var connection = await this.OpenConnection();
 
-            const string query = "";
+            const string query = "SELECT * FROM Users u " +
+                                 "FULL JOIN Roles r ON r.Id = u.RoleId " +
+                                 "FULL JOIN UserDepartment ud ON ud.UserId = u.Id " +
+                                 "JOIN Departments dp ON dp.Id = ud.DepartmentId " +
+                                 "JOIN Faculties f ON f.Id = dp.FacultyId " +
+                                 "FULL JOIN Rates rt ON rt.DepartmentId = dp.Id " +
+                                 "FULL JOIN SelectedDisciplines sd ON sd.DepartmentId = dp.Id " +
+                                 "WHERE dp.Id = @id;";
 
             var users = await connection
                 .QueryAsync<User, Role, Department, Faculty, Rate, SelectedDiscipline, User>
@@ -88,7 +101,17 @@ namespace Planner.Data.Repositories.AppUser
         {
             using var connection = await this.OpenConnection();
 
-            const string query = "";
+            const string query =    "SELECT * FROM Users u " +
+                                    "FULL JOIN Roles r ON r.Id = u.RoleId " +
+                                    "FULL JOIN UserDepartment ud ON ud.UserId = u.Id " +
+                                    "JOIN Departments dp ON dp.Id = ud.DepartmentId " +
+                                    "JOIN Faculties f ON f.Id = dp.FacultyId " +
+                                    "FULL JOIN Rates rt ON rt.DepartmentId = dp.Id " +
+                                    "FULL JOIN SelectedDisciplines sd ON sd.DepartmentId = dp.Id " +
+                                    "JOIN Lectures le ON le.UserId = u.Id " +
+                                    "JOIN Laboratories la ON la.UserId = u.Id " +
+                                    "JOIN Practicals pr ON pr.UserId = u.Id " +
+                                    "WHERE u.Id = @id";
 
             var users = await connection.QueryAsync(query, new[]
             {
@@ -162,9 +185,19 @@ namespace Planner.Data.Repositories.AppUser
 
         public async Task<User> GetUserByLogin(string login)
         {
+
             using var connection = await this.OpenConnection();
 
-            const string query = "";
+            const string query = "SELECT * FROM Users u " +
+                                 "FULL JOIN Roles r ON r.Id = u.RoleId " +
+                                 "FULL JOIN UserDepartment ud ON ud.UserId = u.Id " +
+                                 "JOIN Departments dp ON dp.Id = ud.DepartmentId " +
+                                 "JOIN Faculties f ON f.Id = dp.FacultyId " +
+                                 "FULL JOIN Rates rt ON rt.DepartmentId = dp.Id " +
+                                 "JOIN RateUser ru ON ru.RateId = rt.Id " +
+                                 "FULL JOIN SelectedDisciplines sd ON sd.DepartmentId = dp.Id " +
+                                 "JOIN UserSelectedDiscipline usd ON usd.SelectedDisciplineId = sd.Id " +
+                                 "WHERE u.Login = @login";
 
             var users = await connection
             .QueryAsync<User, Role, Department, Faculty, Rate, SelectedDiscipline, User>
@@ -222,6 +255,16 @@ namespace Planner.Data.Repositories.AppUser
                                  "WHERE u.Id = @id;";
 
             return await connection.QuerySingleOrDefaultAsync<string>(query, new { Id = id });
+        }
+
+        public async Task<int> GetLdapIdByLogin(string login)
+        {
+            using var connection = await this.OpenConnection();
+
+            const string query = "SELECT u.LdapId FROM Users u " +
+                                 "WHERE u.Login = @login;";
+
+            return await connection.QuerySingleOrDefaultAsync<int>(query, new { Login = login });
         }
 
         public async Task UpdateUser(User user)

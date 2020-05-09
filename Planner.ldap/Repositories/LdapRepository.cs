@@ -39,6 +39,16 @@ namespace Planner.ldap
             return GetResponseModel(search);
         }
 
+        public static List<ResponseModel> GetUserById(int id)
+        {
+            var ldapConn = GetConnection();
+
+            var searchBase = _baseSearch;
+            var filter = $"(uidNumber={id})";
+            var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+            return GetResponseModel(search);
+        }
+
         public static List<ResponseModel> GetFak()
         {
             var ldapConn = GetConnection();
