@@ -8,7 +8,7 @@ import { Publication } from '../../models/models-publication-component/publicati
 @Component({
   selector: 'publication',
   templateUrl: './publication.component.html',
-  styleUrls: ['./publication.component.css']
+  styleUrls: ['./publication.component.scss']
 })
 export class PublicationComponent implements OnInit {
   @Input() PublicationInfo: Publication;
