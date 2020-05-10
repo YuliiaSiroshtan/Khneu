@@ -1,21 +1,41 @@
-<!-- <form [formGroup]="publicationForm" (ngSubmit)="addPublication(publicationForm.value)">
+<form
+  [formGroup]="publicationForm"
+  (ngSubmit)="addPublication()"
+>
   <div class="content-wrapper">
     <div class="form-group">
       <p class="login-box-msg">Створення публікації</p>
       <hr />
       <div class="col">
-
         <div class="form-group">
-          <input type="text" pInputText placeholder="Назва" class="form-control" formControlName="name">
+          <input
+            type="text"
+            pInputText
+            placeholder="Назва"
+            class="form-control"
+            formControlName="name"
+          />
         </div>
 
         <div class="form-group">
-          <input type="text" pInputText placeholder="Об'єм" class="form-control" formControlName="pages">
+          <input
+            type="text"
+            pInputText
+            placeholder="Об'єм"
+            class="form-control"
+            formControlName="pages"
+          />
         </div>
 
         <div class="form-group">
-          <input type="text" pInputText placeholder="Вихідні дані" class="form-control" formControlName="output">
-        </div> -->
+          <input
+            type="text"
+            pInputText
+            placeholder="Вихідні дані"
+            class="form-control"
+            formControlName="output"
+          />
+        </div>
 
         <!--<div class="form-group">
           <p-listbox [options]="users" formControlName="newCollaboratorsIds" multiple="multiple" checkbox="checkbox" filter="filter" [style]="{'width':'100%'}" [listStyle]="{'max-height': '250px'}">
@@ -27,67 +47,122 @@
           </p-listbox>
         </div>-->
 
-        <!-- <div class="form-group">
-          <p-listbox [options]="users" formControlName="collaboratorsIds" multiple="multiple" checkbox="checkbox" filter="filter" [style]="{'width':'100%'}" [listStyle]="{'max-height': '250px'}">
-            <p-header> -->
+        <div class="form-group">
+          <p-listbox
+            [options]="users"
+            formControlName="collaboratorsIds"
+            multiple="multiple"
+            checkbox="checkbox"
+            filter="filter"
+            [style]="{ width: '100%' }"
+            [listStyle]="{ 'max-height': '250px' }"
+          >
+            <p-header>
               <!--<i class="fa"></i>-->
-              <!-- Співавтор -->
-            <!-- </p-header>
-            <p-footer> -->
+              Співавтор
+            </p-header>
+            <p-footer>
               <!--(change)="collaboratorsName()"
               {{selectedCar||'none'}}-->
-              <!-- <span>{{collaboratorsNames}}</span>
+              <span>{{ collaboratorsNames }}</span>
             </p-footer>
           </p-listbox>
-        </div> -->
-
-        <!-- <div class="form-group">
-          <input type="text" pInputText placeholder="Кількість цитувань у виданнях, що входять до НМБД" class="form-control" formControlName="citationNumberNMBD">
         </div>
 
         <div class="form-group">
-          <input type="text" pInputText placeholder="Імпакт-фактор видання, тільки з НМБД" class="form-control" formControlName="impactFactorNMBD">
+          <input
+            type="text"
+            pInputText
+            placeholder="Кількість цитувань у виданнях, що входять до НМБД"
+            class="form-control"
+            formControlName="citationNumberNMBD"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            pInputText
+            placeholder="Імпакт-фактор видання, тільки з НМБД"
+            class="form-control"
+            formControlName="impactFactorNMBD"
+          />
         </div>
 
         <div class="datepicker-margin-bottom">
           <h5 class="h5-style">Дата публікації</h5>
-          <p-calendar id="publishedAt" formControlName="publishedAt" locate="ua" [showIcon]="true"></p-calendar>
+          <p-calendar
+            id="publishedAt"
+            formControlName="publishedAt"
+            locate="ua"
+            [showIcon]="true"
+          ></p-calendar>
         </div>
 
         <div class="form-group">
-          <p-dropdown [options]="nmbds" placeholder="НМБД" formControlName="nmbdId"></p-dropdown>
+          <p-dropdown
+            [options]="nmbds"
+            placeholder="НМБД"
+            formControlName="nmbdId"
+          ></p-dropdown>
         </div>
 
         <div class="form-group">
-          <p-dropdown [options]="storingTypes" placeholder="Тип" formControlName="storingType"></p-dropdown>
+          <p-dropdown
+            [options]="storingTypes"
+            placeholder="Тип"
+            formControlName="storingType"
+          ></p-dropdown>
         </div>
 
         <div class="form-group">
-          <p-dropdown [options]="publicationTypes" placeholder="Тип видання" formControlName="publicationType"></p-dropdown>
+          <p-dropdown
+            [options]="publicationTypes"
+            placeholder="Тип видання"
+            formControlName="publicationType"
+          ></p-dropdown>
         </div>
 
         <div class="form-group">
-          <p-dropdown [options]="researchDoneTypes" placeholder="За якою НДР виконано" formControlName="researchDoneType"></p-dropdown>
+          <p-dropdown
+            [options]="researchDoneTypes"
+            placeholder="За якою НДР виконано"
+            formControlName="researchDoneType"
+          ></p-dropdown>
         </div>
 
         <h5 class="h5-style">Закордонне видання</h5>
-        <p-inputSwitch id="IsOverseas" formControlName="isOverseas" title="Закордонне видання"></p-inputSwitch>
+        <p-inputSwitch
+          id="IsOverseas"
+          formControlName="isOverseas"
+          title="Закордонне видання"
+        ></p-inputSwitch>
 
         <div>
-          <p-fileUpload name="filePath" customUpload="true" (uploadHandler)="uploadFile($event)" placeholder="Завантажити файл публикації"></p-fileUpload>
+          <p-fileUpload
+            name="filePath"
+            customUpload="true"
+            (uploadHandler)="uploadFile($event)"
+            placeholder="Завантажити файл публикації"
+          ></p-fileUpload>
         </div>
-
       </div>
       <div class="row row-margin">
         <div class="col">
           <div class="btn-float">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Підтвердити</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat">
+              Підтвердити
+            </button>
           </div>
           <div class="btn-float btn-margin-right">
-            <a class="btn btn-primary btn-block btn-flat a-font-color" (click)="sendMessage()">Відправити до DSpace</a>
+            <a
+              class="btn btn-primary btn-block btn-flat a-font-color"
+              (click)="sendMessage()"
+              >Відправити до DSpace</a
+            >
           </div>
         </div>
       </div>
     </div>
   </div>
-</form> -->
+</form>
