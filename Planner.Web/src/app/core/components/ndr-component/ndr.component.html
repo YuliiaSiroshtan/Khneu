@@ -1,0 +1,108 @@
+<!-- <p-toast key="success" position="top-center"></p-toast>
+<p-toast key="error" position="top-center"></p-toast>
+<div class="col col-info">
+  <div class="profile-content">
+    <div class="content-wrapper">
+      <div class="form-group">
+        <p class="login-box-msg result-student">Результаты НДР студентів</p>
+        
+        <form [formGroup]="NDRForm" (ngSubmit)="addNDR()">
+          <div class="col col-info">
+
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="ПІБ" class="form-control" formControlName="fullName">
+              <p-message severity="error" [text]="getErrorMessage('fullName')"
+                         *ngIf="!this.NDRForm.controls['fullName'].valid && this.NDRForm.controls['fullName'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Тип" class="form-control" formControlName="type">
+              <p-message severity="error" [text]="getErrorMessage('type')"
+                         *ngIf="!this.NDRForm.controls['type'].valid && this.NDRForm.controls['type'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Рiвень" class="form-control" formControlName="level">
+              <p-message severity="error" [text]="getErrorMessage('level')"
+                         *ngIf="!this.NDRForm.controls['level'].valid && this.NDRForm.controls['level'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Назва/Напрям" class="form-control" formControlName="name">
+              <p-message severity="error" [text]="getErrorMessage('name')"
+                         *ngIf="!this.NDRForm.controls['name'].valid && this.NDRForm.controls['name'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Етап" class="form-control" formControlName="step">
+              <p-message severity="error" [text]="getErrorMessage('step')"
+                         *ngIf="!this.NDRForm.controls['step'].valid && this.NDRForm.controls['step'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Мiсце та дата проведення" class="form-control" formControlName="place">
+              <p-message severity="error" [text]="getErrorMessage('place')"
+                         *ngIf="!this.NDRForm.controls['place'].valid && this.NDRForm.controls['place'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="ПIБ студента" class="form-control" formControlName="studentName">
+              <p-message severity="error" [text]="getErrorMessage('studentName')"
+                         *ngIf="!this.NDRForm.controls['studentName'].valid && this.NDRForm.controls['studentName'].dirty"></p-message>
+
+            </div>
+
+            <div class="form-group">
+              <input type="text" pInputText placeholder="Нагороди" class="form-control" formControlName="awards">
+              <p-message severity="error" [text]="getErrorMessage('awards')"
+                         *ngIf="!this.NDRForm.controls['awards'].valid && this.NDRForm.controls['awards'].dirty"></p-message>
+
+            </div>
+
+          </div>
+          <div class="col">
+            <div class="button-margin">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Підтвердити</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="col table-margin-top ">
+          <p-table #dt [value]="NDR" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="column">ПIБ викладача</th>
+                <th class="column">Тип</th>
+                <th class="column">Рiвень</th>
+                <th class="column">Назва/Напрям</th>
+                <th class="column">Етап</th>
+                <th class="column">Мiсце та дата проведення</th>
+                <th class="column">ПIБ студента</th>
+                <th class="column">Нагороди</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-ndrListItem>
+              <tr>
+                <td>{{ndrListItem.fullName}}</td>
+                <td>{{ndrListItem.type}}</td>
+                <td>{{ndrListItem.level}}</td>
+                <td>{{ndrListItem.name}}</td>
+                <td>{{ndrListItem.step}}</td>
+                <td>{{ndrListItem.place}}</td>
+                <td>{{ndrListItem.studentName}}</td>
+                <td>{{ndrListItem.awards}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
