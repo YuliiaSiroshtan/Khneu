@@ -1,0 +1,545 @@
+<!-- <div class="col" *ngIf="!isEdit">
+  <div class="profile-content">
+    <div class="content-wrapper">
+      <div class="form-group">
+        <p class="login-box-msg">Навчальна робота</p>
+        <div class="col table-margin-top">
+          <p-table #dt [value]="trainingJob" [paginator]="true" [rows]="1">
+            <ng-template pTemplate="header">
+              <colgroup span="2"></colgroup>
+              <colgroup span="2"></colgroup>
+              <tr class="table-head">
+                <th class="verticalTableHeader" colspan="2" rowspan="3">Форма навчання</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="3">№ п/п</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="3">Назва навчальних дисциплін і видів навчальної роботи</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="3">Напрям, спеціальність, факультет</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="3">Курс навчання</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="3">Кількість студентів</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="3">Шифр груп (потоків)</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Читання лекцій</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення практичних (семінарських) занять</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення лабораторних занять</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення консультацій протягом семестру</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення екзаменаційних консультацій</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Перевірка контрольних робіт</th>
+                <th colspan="6" scope="colgroup">Керівництво і прийняття індивідуальних завдань</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення заліку</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення семестрових екзаменів</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Керівництво навчальною і виробничою практикою</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Участь в ДЕК</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Проведення державних екзаменів</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Керівництво, консультування, рецензування та проведення захисту дипломних проектів (робіт)</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">Керівництво аспірантами, здобувачами та стажуванням викладачів</th>
+                <th class="verticalTableHeader" colspan="2" rowspan="2" scope="colgroup">УСЬОГО</th>
+              </tr>
+              <tr class="table-head">
+                <th class="verticalTableHeader" colspan="2" scope="colgroup">рефератів, аналітичних оглядів, перекладів</th>
+                <th class="verticalTableHeader" colspan="2" scope="colgroup">розрахункових, графічних, розрахунково-графічних робіт</th>
+                <th class="verticalTableHeader" colspan="2" scope="colgroup">курсових проектів, робіт</th>
+              </tr>
+              <tr class="table-head">
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+                <th scope="col">пл.</th>
+                <th scope="col">вик.</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-trainingJob>
+              <tr class="table-head">
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.educationForm">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.educationForm}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.orderNumber">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.orderNumber}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.subject">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.subject}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.dsd">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.dsd}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.course">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.course}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.countStudent">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.countStudent}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.groupCode">
+                    </ng-template><ng-template pTemplate="output">
+                      {{trainingJob.groupCode}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedLectures">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedLectures}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneLectures">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneLectures}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedPract">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedPract}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.donePract">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.donePract}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedLaboratory">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedLaboratory}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneLaboratory">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneLaboratory}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedSeminar">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedSeminar}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneSeminar">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneSeminar}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedIndividual">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedIndividual}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneIndividual">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneIndividual}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedConsultation">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedConsultation}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneConsultation">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneConsultation}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedExamConsultation">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedExamConsultation}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneExamConsultation">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneExamConsultation}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedCheckControl">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedCheckControl}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneCheckControl">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneCheckControl}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedCheckLectureControl">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedCheckLectureControl}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneCheckLectureControl">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneCheckLectureControl}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedEAT">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedEAT}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneEAT">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneEAT}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedCGS">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedCGS}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneCGS">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneCGS}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedCoursework">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedCoursework}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneCoursework">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneCoursework}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedOffsetting">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedOffsetting}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneOffsetting">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneOffsetting}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedSemestrExam">
+                    </ng-template><ng-template pTemplate="output">
+                      {{trainingJob.plannedSemestrExam}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneSemestrExam">
+                    </ng-template><ng-template pTemplate="output">
+                      {{trainingJob.doneSemestrExam}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedTrainingPract">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedTrainingPract}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneTrainingPract">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneTrainingPract}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedDEK">
+                    </ng-template><ng-template pTemplate="output">
+                      {{trainingJob.plannedDEK}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneDEK">
+                    </ng-template>
+                    <ng-template pTemplate="output">{{trainingJob.doneDEK}}</ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedStateExam">
+                    </ng-template>
+                    <ng-template pTemplate="output">{{trainingJob.plannedStateExam}}</ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneStateExam">
+                    </ng-template>
+                    <ng-template pTemplate="output">{{trainingJob.doneStateExam}}</ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedDiploma">
+                    </ng-template>
+                    <ng-template pTemplate="output">{{trainingJob.plannedDiploma}}</ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.doneDiploma">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneDiploma}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.plannedPostgraduates">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedPostgraduates}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="trainingJob.donePostgraduates">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.donePostgraduates}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.plannedLectures + trainingJob.plannedPract + trainingJob.plannedLaboratory + trainingJob.plannedSeminar + trainingJob.plannedIndividual + trainingJob.plannedConsultation + trainingJob.plannedExamConsultation + trainingJob.plannedCheckControl + trainingJob.plannedCheckLectureControl + trainingJob.plannedEAT + trainingJob.plannedCGS + trainingJob.plannedCoursework + trainingJob.plannedOffsetting + trainingJob.plannedSemestrExam + trainingJob.plannedTrainingPract + trainingJob.plannedDEK + trainingJob.plannedStateExam + trainingJob.plannedDiploma + trainingJob.plannedPostgraduates}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <th pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{trainingJob.doneLectures + trainingJob.donePract + trainingJob.doneLaboratory + trainingJob.doneSeminar + trainingJob.doneIndividual + trainingJob.doneConsultation + trainingJob.doneExamConsultation + trainingJob.doneCheckControl + trainingJob.doneCheckLectureControl + trainingJob.doneEAT + trainingJob.doneCGS + trainingJob.doneCoursework + trainingJob.doneOffsetting + trainingJob.doneSemestrExam + trainingJob.doneTrainingPract + trainingJob.doneDEK + trainingJob.doneStateExam + trainingJob.doneDiploma + trainingJob.donePostgraduates}}
+                    </ng-template>
+                  </p-cellEditor>
+                </th>
+                <td><button class="btn btn-primary btn-block btn-flat" (click)="updateTrainingJob()">Зберегти</button></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

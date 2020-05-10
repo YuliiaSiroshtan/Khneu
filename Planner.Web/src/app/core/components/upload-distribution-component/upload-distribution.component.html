@@ -1,0 +1,58 @@
+<form [formGroup]="hoursEntryLoad" class="login-form">
+  <label class="times">Години навантаження</label>
+  <input
+    type="text"
+    pInputText
+    placeholder="Години"
+    class="form-control"
+    formControlName="hourPerRate"
+  />
+</form>
+
+<h3 class="files">Оберіть файл, що містить вхідне навантаження кафедри</h3>
+<div>
+  <p-fileUpload
+    name="filePath"
+    customUpload="true"
+    (uploadHandler)="uploadFile($event)"
+    placeholder="Завантажити файл навантаження"
+  ></p-fileUpload>
+</div>
+
+<table
+  mat-table
+  [dataSource]="entryLoadsProperty$ | async"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Им'я файла</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateTime">
+    <th mat-header-cell *matHeaderCellDef>Дата завантаження</th>
+    <td mat-cell *matCellDef="let element">{{ element.dateTimeUpload }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="hoursPerRate">
+    <th mat-header-cell *matHeaderCellDef>Години навантаження</th>
+    <td mat-cell *matCellDef="let element">{{ element.hoursPerRate }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef>Вибраний файл</th>
+      <td mat-cell *matCellDef="let element">{{ element.isActive }}</td>
+    </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Дія</th>
+    <td mat-cell *matCellDef="let element">
+      <button [disabled]="!element.isActive" (click)="choseFile(element.id)" mat-raised-button color="primary">
+        Вибрати
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

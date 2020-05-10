@@ -1,0 +1,45 @@
+.profile-content {
+  margin-top: 2%;
+  font-family: verdana;
+  font-size: 16px;
+}
+
+.login-box-msg {
+  text-align: center;
+  font-size: 25px;
+}
+
+.table-height {
+  min-height: 340px;
+}
+
+.table-header-content {
+  text-align: right;
+}
+
+.header-i {
+  margin: 4px 4px 0 0;
+}
+
+.header-input {
+  width: auto;
+}
+
+.column {
+  text-align: center;
+  padding: 20px 2px;
+}
+
+@media (max-width: 600px) {
+  .editing {
+    display: block;
+    max-width: 382px;
+    margin: 0 auto;
+    }
+
+    .column {
+      font-size: 10px;
+    }
+}
+
+

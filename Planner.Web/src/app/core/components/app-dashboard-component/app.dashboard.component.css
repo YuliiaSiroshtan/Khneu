@@ -1,0 +1,18 @@
+.profile-content {
+  margin-top: 2%;
+  font-family: verdana;
+  font-size: 16px;
+}
+
+.button-margin {
+  margin-left: 84%;
+}
+
+.login-box-msg {
+  text-align: center;
+  font-size: 25px;
+}
+
+.dashboard-height {
+  height: 100%;
+}
