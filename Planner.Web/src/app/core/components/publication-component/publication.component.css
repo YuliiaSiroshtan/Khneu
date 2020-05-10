@@ -1,0 +1,41 @@
+.profile-content {
+  margin-top: 2%;
+  font-family: verdana;
+  font-size: 16px;
+}
+
+.btn-float {
+  float: right;
+}
+
+.btn-margin-right {
+  margin-right: 1%;
+}
+
+.login-box-msg {
+  text-align: center;
+}
+
+.table-margin-top {
+  margin-top: 1%;
+  min-height: 290px;
+}
+
+.h5-style {
+  font-family: Verdana !important;
+  font-size: 14px !important;
+}
+
+.datepicker-margin-bottom {
+  margin-bottom: 1%;
+}
+
+.a-font-color {
+  font-family: verdana;
+  color: #ffffff !important;
+}
+
+.row-margin {
+  margin-top: 1%;
+  margin-right: 0.1%;
+}
