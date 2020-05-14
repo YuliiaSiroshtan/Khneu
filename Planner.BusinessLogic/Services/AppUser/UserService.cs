@@ -53,6 +53,9 @@ namespace Planner.BusinessLogic.Services.AppUser
         public async Task<string> GetUserNameById(int id) =>
             await this.RepositoryScope.UserRepository.GetUserNameById(id);
 
+        public async Task<int> GetLdapIdByLogin(string login) =>
+            await this.RepositoryScope.UserRepository.GetLdapIdByLogin(login);
+
         public async Task UpdateUser(UserDto userDto)
         {
             var user = this.Mapper.Map<User>(userDto);
