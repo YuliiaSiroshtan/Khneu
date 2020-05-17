@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DistributionFilterModel, DayEntryModel } from "../../models/distributions.models";
 import { DistributionDataService } from "../../services/distribution-data.service";
-import { SelectItem } from 'primeng/api/selectitem';
+import { SelectItem } from "primeng/components/common/selectitem";
 
 
 @Component({
