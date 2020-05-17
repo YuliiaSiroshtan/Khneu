@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'ndr',
   templateUrl: './ndr.component.html',
-  styleUrls: ['./ndr.component.css']
+  styleUrls: ['./ndr.component.scss']
 })
 export class NDRComponent implements OnInit {
   NDRInfo: NDR;

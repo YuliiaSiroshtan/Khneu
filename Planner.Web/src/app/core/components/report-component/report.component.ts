@@ -7,7 +7,7 @@ import { Report } from "src/app/core/models/report.model";
 @Component({
   selector: 'report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
   @Input() ReportInfo: Report;

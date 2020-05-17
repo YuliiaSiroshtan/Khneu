@@ -73,6 +73,7 @@ import { ListboxModule } from 'primeng/listbox';
 
 import { SharedModule } from '../shared/shared.module';
 import { UserService } from './services/user.service';
+import { LoadDistributionComponent } from './components/load-distribution/load-distribution.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { UserService } from './services/user.service';
     DistributionComponent,
     DayEntryComponent,
     HomePageComponent,
-    TeacherEntryLoadComponent
+    TeacherEntryLoadComponent,
+    LoadDistributionComponent
   ],
   imports: [
     CoreRoutingModule,

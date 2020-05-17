@@ -40,7 +40,6 @@ import { MessageService, ConfirmationService } from 'primeng/api';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UtilsService } from './services/utils.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -54,6 +53,10 @@ import { DistributionDataService } from '../core/services/distribution-data.serv
 import { EntryLoadService } from '../core/services/entry-load.service';
 import { DesciplineService } from '../core/services/descipline.service';
 import { AccountService } from '../core/services/account.service';
+import { UserDataService } from '../core/services/user-data.service';
+import { SafePipe } from './pipe/safe-pipe ';
+
+import { UtilsService } from './services/utils.service';
 
 const MaterialModules = [
   MatSidenavModule,
@@ -64,92 +67,94 @@ const MaterialModules = [
   MatInputModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatRippleModule,
+  MatRippleModule
 ];
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, MenuComponent],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MaterialModules,
-
-    InputTextModule,
-    CalendarModule,
-    CheckboxModule,
-    DropdownModule,
-    RadioButtonModule,
-    InputSwitchModule,
-    InputTextareaModule,
-    InputMaskModule,
-    ButtonModule,
-    SplitButtonModule,
-    PaginatorModule,
-    TableModule,
-    TabViewModule,
-    ConfirmDialogModule,
-    DialogModule,
-    SidebarModule,
-    FileUploadModule,
-    MegaMenuModule,
-    ToastModule,
-    MessagesModule,
-    MessageModule,
-    ProgressSpinnerModule,
-    ListboxModule,
-  ],
-  exports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
+  declarations: [
+    FooterComponent,
     HeaderComponent,
-    FooterComponent, 
     MenuComponent,
-    MaterialModules,
-
-    InputTextModule,
-    CalendarModule,
-    CheckboxModule,
-    DropdownModule,
-    RadioButtonModule,
-    InputSwitchModule,
-    InputTextareaModule,
-    InputMaskModule,
-    ButtonModule,
-    SplitButtonModule,
-    PaginatorModule,
-    TableModule,
-    TabViewModule,
-    ConfirmDialogModule,
-    DialogModule,
-    SidebarModule,
-    FileUploadModule,
-    MegaMenuModule,
-    ToastModule,
-    MessagesModule,
-    MessageModule,
-    ProgressSpinnerModule,
-    ListboxModule,
+    SafePipe
   ],
-  providers: [
-    UtilsService,
-    { provide: MessageService, useClass: MessageService },
-    { provide: UserListDataService, useClass: UserListDataService },
-    { provide: NDRDataService, useClass: NDRDataService },
-    { provide: ConfirmationService, useClass: ConfirmationService },
-    { provide: PublicationDataService, useClass: PublicationDataService },
-    { provide: ReportDataService, useClass: ReportDataService },
-    { provide: IndivPlanDataService, useClass: IndivPlanDataService },
-    { provide: DistributionDataService, useClass: DistributionDataService },
-    EntryLoadService,
-    DesciplineService,
-    AccountService
+  imports:
+  [
+      FormsModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatRippleModule,
+      HttpClientModule,
+      BrowserModule,
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
+      InputTextModule,
+      CalendarModule,
+      CheckboxModule,
+      DropdownModule,
+      RadioButtonModule,
+      InputSwitchModule,
+      InputTextareaModule,
+      InputMaskModule,
+      ButtonModule,
+      SplitButtonModule,
+      PaginatorModule,
+      TableModule,
+      TabViewModule,
+      ConfirmDialogModule,
+      DialogModule,
+      SidebarModule,
+      FileUploadModule,
+      MegaMenuModule,
+      ToastModule,
+      MessagesModule,
+      MessageModule,
+      ProgressSpinnerModule,
+      MatSidenavModule,
+      ListboxModule,
+      MatMenuModule
+  ],
+  exports:
+  [
+      FormsModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatRippleModule,
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
+      InputTextModule,
+      CalendarModule,
+      CheckboxModule,
+      DropdownModule,
+      RadioButtonModule,
+      InputSwitchModule,
+      InputTextareaModule,
+      InputMaskModule,
+      ButtonModule,
+      SplitButtonModule,
+      PaginatorModule,
+      TableModule,
+      TabViewModule,
+      ConfirmDialogModule,
+      DialogModule,
+      SidebarModule,
+      FileUploadModule,
+      MegaMenuModule,
+      ToastModule,
+      MessagesModule,
+      MessageModule,
+      ProgressSpinnerModule,
+      MatSidenavModule,
+      ListboxModule,
+      FooterComponent,
+      HeaderComponent,
+      MenuComponent,
+      MatMenuModule
+  ],
+  providers:
+  [
+      { provide: UserDataService, useClass: UserDataService },
+      //{ provide: HomeService, useClass: HomeService }
+      UtilsService
   ]
 })
 export class SharedModule { }

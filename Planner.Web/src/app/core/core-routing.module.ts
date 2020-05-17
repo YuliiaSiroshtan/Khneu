@@ -15,6 +15,7 @@ import { PlanScientificWorkComponent } from './components/plan-scientific-work-c
 import { UploadDistributionComponent } from './components/upload-distribution-component/upload-distribution.component';
 import { DistributionComponent } from './components/distribution-component/distribution.component';
 import { TeacherEntryLoadComponent } from './conteiners/teacher-entry-load/teacher-entry-load.component';
+import { LoadDistributionComponent } from './components/load-distribution/load-distribution.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -87,6 +88,11 @@ const routes: Routes = [
     component: TeacherEntryLoadComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'load-distribution',
+    component: LoadDistributionComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

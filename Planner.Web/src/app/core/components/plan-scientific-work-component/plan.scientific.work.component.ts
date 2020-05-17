@@ -6,7 +6,8 @@ import { IndivPlanFieldModel, IndivPlanFieldsValueModel } from '../../models/ind
 
 @Component({
   selector: 'plan-scientific-work',
-  templateUrl: './plan.scientific.work.component.html'
+  templateUrl: './plan.scientific.work.component.html',
+  styleUrls: ['./plan.scientific.work.component.scss']
 })
 export class PlanScientificWorkComponent implements OnInit {
   planScientificWorkField: IndivPlanFieldModel[] = [];
