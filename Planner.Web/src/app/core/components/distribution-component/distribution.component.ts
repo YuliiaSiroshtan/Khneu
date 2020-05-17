@@ -7,6 +7,7 @@ import { SelectItem } from "primeng/components/common/selectitem";
 @Component({
   selector: 'distribution',
   templateUrl: './distribution.component.html',
+  styleUrls: ['./distribution.component.scss']
 })
 export class DistributionComponent implements OnInit {
   index: number;

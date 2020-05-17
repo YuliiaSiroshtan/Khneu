@@ -5,15 +5,15 @@
       <li><a class="menu_hover" *ngIf="isTeacher || isHeadOfDepartmen">Індивідуальний план</a></li>
       <li><a class="menu_hover" routerLink="dashboard" *ngIf="isTeacher || isHeadOfDepartmen">Розклад занять</a></li>
       <li><a class="menu_hover" *ngIf="isTeacher || isHeadOfDepartmen">Керевні документи</a></li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen">Нові користувачі</a></li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen" mat-button [matMenuTriggerFor]="distribution">Розподіл навантаження</a>
+      <li><a class="menu_hover" routerLink="user" *ngIf="isHeadOfDepartmen">Нові користувачі</a></li>
+      <li><a type="button" class="menu_hover" *ngIf="isHeadOfDepartmen" mat-button [matMenuTriggerFor]="distribution">Розподіл навантаження</a>
         <mat-menu #distribution="matMenu" xPosition="before" backdropClass="submenu">
           <button class="menu_second" mat-menu-item>Файл навантаження</button>
           <button class="menu_second" mat-menu-item>По кафедрі</button>
-          <button class="menu_second" mat-menu-item>Розподіл</button>
+          <button class="menu_second" routerLink="load-distribution" mat-menu-item>Розподіл</button>
         </mat-menu>
       </li>
-      <li><a class="menu_hover" *ngIf="isHeadOfDepartmen">Результати НДР</a></li>
+      <li><a class="menu_hover" routerLink="ndr" *ngIf="isHeadOfDepartmen">Результати НДР</a></li>
       <li><a class="menu_hover" *ngIf="isHeadOfDepartmen">План по науки</a></li>
       <li><a class="menu_hover" routerLink="upload-distribution" *ngIf="isTrainingDivision">Файл навантаження</a></li>
       <li><a (click)="logout()">Вийти</a></li>
