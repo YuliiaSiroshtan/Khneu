@@ -16,6 +16,11 @@
         margin: 0;
         text-align: center;
       }
+
+      a {
+        color: #FFFFFF;
+        text-decoration: none;
+      }
       
         .menu:after {
           display: block;
@@ -25,7 +30,6 @@
       
       li {
         display: inline-block;
-        height: 38px;
         vertical-align: middle;
         color: #FFFFFF;
         font-family: Verdana;

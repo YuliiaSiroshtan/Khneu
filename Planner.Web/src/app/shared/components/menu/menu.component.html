@@ -7,14 +7,14 @@
       <li *ngIf="isHeadOfDepartmen"><a class="menu_hover" >Нові<br>користувачі</a></li>
       <li *ngIf="isHeadOfDepartmen"><a class="menu_hover menu_scroll"  mat-button [matMenuTriggerFor]="distribution">Розподіл<br>навантаження</a>
         <mat-menu #distribution="matMenu" xPosition="before" backdropClass="submenu">
-          <button class="menu_second" mat-menu-item>Файл<br>навантаження</button>
+          <button class="menu_second" mat-menu-item>Файл навантаження</button>
           <button class="menu_second" mat-menu-item>По кафедрі</button>
           <button class="menu_second" mat-menu-item>Розподіл</button>
         </mat-menu>
       </li>
       <li *ngIf="isHeadOfDepartmen"><a class="menu_hover" >Результати<br>НДР</a></li>
       <li *ngIf="isHeadOfDepartmen"><a class="menu_hover" >План<br>по науки</a></li>
-      <li *ngIf="isTrainingDivision"><a class="menu_hover" routerLink="upload-distribution" >Файл<br>навантаження</a></li>
+      <li *ngIf="isTrainingDivision"><a class="menu_hover" routerLink="upload-distribution" >Файл навантаження</a></li>
       <li><a (click)="logout()">Вийти</a></li>
     </ul>
 
