@@ -9,10 +9,11 @@
   />
 </form>
 
-<h3 class="files">Оберіть файл, що містить вхідне навантаження кафедри</h3>
-<div>
+<span class="files">Оберіть файл, що містить вхідне навантаження кафедри</span>
+<div class="download-file">
   <p-fileUpload
     name="filePath"
+    class="file"
     customUpload="true"
     (uploadHandler)="uploadFile($event)"
     placeholder="Завантажити файл навантаження"
