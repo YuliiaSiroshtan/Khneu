@@ -17,7 +17,9 @@ export class PublicationListComponent implements OnInit {
         this.getUserPublication();
     }
 
-
+    addPublication(){
+        
+    }
 
     getUserPublication() {
         this._publicationDataService.getUserPublication().subscribe((result: Publication[]) => {

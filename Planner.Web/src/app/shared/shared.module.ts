@@ -12,7 +12,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 //
-// import { SharedModule } from 'primeng';
 import { TabViewModule } from 'primeng/tabview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
@@ -39,9 +38,7 @@ import { ListboxModule } from 'primeng/listbox';
 
 import { MessageService, ConfirmationService } from 'primeng/api';
 
-// import { MatOptionModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
-// import { MatRippleModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UtilsService } from './services/utils.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -93,13 +90,13 @@ const MaterialModules = [
     SplitButtonModule,
     PaginatorModule,
     TableModule,
-    // TabViewModule,
+    TabViewModule,
     ConfirmDialogModule,
     DialogModule,
     SidebarModule,
     FileUploadModule,
     MegaMenuModule,
-    // ToastModule,
+    ToastModule,
     MessagesModule,
     MessageModule,
     ProgressSpinnerModule,
@@ -128,13 +125,13 @@ const MaterialModules = [
     SplitButtonModule,
     PaginatorModule,
     TableModule,
-    // TabViewModule,
+    TabViewModule,
     ConfirmDialogModule,
     DialogModule,
     SidebarModule,
     FileUploadModule,
     MegaMenuModule,
-    // ToastModule,
+    ToastModule,
     MessagesModule,
     MessageModule,
     ProgressSpinnerModule,

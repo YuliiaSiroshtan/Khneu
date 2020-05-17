@@ -46,7 +46,6 @@ import { TeacherEntryLoadComponent } from './conteiners/teacher-entry-load/teach
 
 //
 import { MessageService, ConfirmationService } from 'primeng/api';
-// import { SharedModule } from 'primeng';
 import { TabViewModule } from 'primeng/tabview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
@@ -97,14 +96,13 @@ import { UserService } from './services/user.service';
     TeacherEntryLoadComponent
   ],
   imports: [
-    // CommonModule,
-    // CoreRoutingModule,
-    // SharedModule,
-
     CoreRoutingModule,
     CommonModule,
     SharedModule,
     FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatRippleModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -131,31 +129,33 @@ import { UserService } from './services/user.service';
     MessagesModule,
     MessageModule,
     ProgressSpinnerModule,
-    ListboxModule,
     MatSidenavModule,
+    ListboxModule,
     MatOptionModule,
     MatSelectModule,
     MatTableModule,
     MatMenuModule,
     MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatRippleModule,
+    
   ],
-  providers: [
-    UtilsService,
-    UserService,
-    { provide: MessageService, useClass: MessageService },
-    { provide: UserListDataService, useClass: UserListDataService },
-    { provide: NDRDataService, useClass: NDRDataService },
-    { provide: ConfirmationService, useClass: ConfirmationService },
-    { provide: PublicationDataService, useClass: PublicationDataService },
-    { provide: ReportDataService, useClass: ReportDataService },
-    { provide: IndivPlanDataService, useClass: IndivPlanDataService },
-    { provide: DistributionDataService, useClass: DistributionDataService },
-    EntryLoadService,
-    DesciplineService,
-    AccountService
-  ]
+  exports: [
+    SharedModule,
+    ToastModule
+  ],
+  providers:
+    [
+      { provide: MessageService, useClass: MessageService },
+      { provide: UserListDataService, useClass: UserListDataService },
+      { provide: NDRDataService, useClass: NDRDataService },
+      { provide: ConfirmationService, useClass: ConfirmationService },
+      { provide: PublicationDataService, useClass: PublicationDataService },
+      { provide: ReportDataService, useClass: ReportDataService },
+      { provide: IndivPlanDataService, useClass: IndivPlanDataService },
+      { provide: DistributionDataService, useClass: DistributionDataService },
+      EntryLoadService,
+      DesciplineService,
+      AccountService,
+      UserService
+    ]
 })
 export class CoreModule { }
