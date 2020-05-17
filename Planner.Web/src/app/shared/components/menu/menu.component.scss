@@ -51,6 +51,11 @@
         list-style-type: none;
         margin: 0;
       }
+
+      a {
+        color: #FFFFFF;
+        text-decoration: none;
+      }
       
         ul:after {
           display: block;
@@ -59,6 +64,8 @@
         }
       
       li {
+        display: inline-block;
+        vertical-align: middle;
         color: #FFFFFF;
         font-family: Verdana;
         font-size: 16px;

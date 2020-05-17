@@ -1,36 +1,37 @@
-:host{
-    .profile-content {
-        margin-top: 2%;
-        font-family: verdana;
-        font-size: 16px;
-      }
+  $font:Verdana;
+
+  .wrapper {
+    display: flex;
+        position: relative;
+        flex-flow: column;
+        max-width: 1600px;
+        padding: 0 20px;
+        margin: 0 auto;
+  }
+
+  .personal-info {
+    display: block;
+    font-family: $font;
+    padding: 5px 0px 5px 15px;
+  }
       
-      .button-margin {
+  .button-margin {
         display: block;
         max-width: 150px;
         margin: 0 auto;
-      }
+  }
+
+  .personal-info {
+        display: block;
+
+  }
       
-      .table td {
-        border: none;
-      }
+  .edit {
+    display: block;
+    text-align: center;
+  }
       
-      .data_table {
-        border: 5px solid #424a5d !important;
-        margin-top: 15px;
-      }
-      
-      .edit {
-        margin-top: 5px;
-      }
-      
-      .col .ng-star-insterted {
-      padding-left: 0 !important;
-      }
-      
-      .home_title {
+  .home_title {
         display: block;
         font-size: 25px;
-        
       }      
-}
