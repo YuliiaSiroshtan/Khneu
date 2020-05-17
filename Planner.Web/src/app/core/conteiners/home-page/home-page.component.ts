@@ -19,11 +19,9 @@ export class HomePageComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.userProfile = new UserInfo();
-
-    console.log('init');
     this._userService.getUserInfo().subscribe(data =>{
       console.log(data);
+      this.userProfile = data[0].data;
     });
   }
 

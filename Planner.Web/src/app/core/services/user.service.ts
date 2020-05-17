@@ -17,7 +17,7 @@ export class UserService {
   }
 
   getUserInfo() {
-    return this.http.get(environment.apiBaseUrl + 'api/Account/GetUserInfo');
+    return this.http.get(environment.apiBaseUrl + 'api/Account/GetUserInfoLDAP');
   }
 
   uploadFiles(data: File) {
