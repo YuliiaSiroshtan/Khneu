@@ -1,4 +1,4 @@
-<!-- <p-toast key="success" position="top-center"></p-toast>
+<p-toast key="success" position="top-center"></p-toast>
 <p-toast key="error" position="top-center"></p-toast>
 <div class="col" *ngIf="!this.isLoaded">
   <div class="profile-content">
@@ -84,7 +84,7 @@
 
             </div>
 
-            <p-fileUpload name="myfile[]" customUpload="true"></p-fileUpload>
+            <p-fileUpload name="myfile[]" customUpload="true" (uploadHandler)="myUploader($event)"></p-fileUpload>
 
           </div>
         </div>
@@ -96,4 +96,4 @@
       </div>
     </form>
   </div>
-</div> -->
+</div>

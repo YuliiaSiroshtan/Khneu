@@ -1,0 +1,29 @@
+<div class="main">
+  <p>
+    Розподілення навантаження на викладача
+  </p>
+  <form>
+      <div class="example-full-width">
+        <select>
+          <option disabled>Виберіть викладача</option>
+          <option *ngFor="let item of users$ | async" [value]="item">
+            {{ item }}
+          </option>     
+        </select>
+      </div>
+    <div>
+      <div class="example-full-width">
+        <select>
+          <option disabled>Виберіть дисципліну</option>
+          <option *ngFor="let item of fullTimeDisciplines$ | async" [value]="item">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="example-full-width">
+        <input matInput placeholder="Введіть години навантаження" />
+    </div>
+    <button type="submit">Зберегти</button>
+  </form>
+</div>

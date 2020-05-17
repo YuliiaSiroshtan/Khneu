@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { MessageService } from "primeng/components/common/messageservice";
 import { Input } from "@angular/core";
 import { UserDataService } from "src/app/core/services/user-data.service";
 import { ValidateLetter } from "src/app/shared/validators/letter-validator";
@@ -9,12 +10,12 @@ import { ApplicationConstants } from "src/app/shared/constants/constants";
 import { HttpEventType } from "@angular/common/http";
 import { AuthenticationService } from 'src/app/auth/services/authentication.service';
 import { UserProfileModel } from '../../models/ind-plan.models';
-import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'add-update-user',
   templateUrl: './add-update-user.component.html',
+  styleUrls: ['./add-update-user.component.scss']
 })
 export class AddUpdateUserComponent implements OnInit {
   @Input() applicationUserId: string;
@@ -267,6 +268,10 @@ export class AddUpdateUserComponent implements OnInit {
         this.profileImage = event.body.toString();
       }
     });
+  }
+
+  myUploader(test){
+    console.log(test);
   }
 
 }

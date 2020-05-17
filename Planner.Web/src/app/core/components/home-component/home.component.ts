@@ -6,7 +6,7 @@ import { AuthenticationService } from 'src/app/auth/services/authentication.serv
 @Component({
   selector: 'home-component',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   userProfile: UserInfo;

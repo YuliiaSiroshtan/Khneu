@@ -32,7 +32,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule, MatOptionModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';

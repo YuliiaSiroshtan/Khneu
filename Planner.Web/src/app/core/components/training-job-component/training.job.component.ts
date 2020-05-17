@@ -7,7 +7,7 @@ import { TrainingJobModel } from '../../models/ind-plan.models';
 @Component({
   selector: 'training-job',
   templateUrl: './training.job.component.html',
-  styleUrls: ['./training.job.component.css']
+  styleUrls: ['./training.job.component.scss']
 })
 export class TrainingJobComponent implements OnInit {
   trainingJob: TrainingJobModel[] = [];

@@ -4,7 +4,8 @@ import { Publication } from '../../models/models-publication-component/publicati
 
 @Component({
     selector: 'publication-list',
-    templateUrl: './publication-list.component.html'
+    templateUrl: './publication-list.component.html',
+    styleUrls: ['./publication-list.component.scss']
 })
 export class PublicationListComponent implements OnInit {
     publications: Publication[] = [];
@@ -17,7 +18,9 @@ export class PublicationListComponent implements OnInit {
         this.getUserPublication();
     }
 
-
+    addPublication(){
+        
+    }
 
     getUserPublication() {
         this._publicationDataService.getUserPublication().subscribe((result: Publication[]) => {

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from "@angular/forms";
 import { Input } from "@angular/core";
 import { PublicationDataService } from "src/app/core/services/publication-data.service";
-import { SelectItem } from "primeng/api/selectitem";
+import { SelectItem } from "primeng/components/common/selectitem";
 import { Publication } from '../../models/models-publication-component/publication.model';
 
 @Component({
   selector: 'publication',
   templateUrl: './publication.component.html',
-  styleUrls: ['./publication.component.css']
+  styleUrls: ['./publication.component.scss']
 })
 export class PublicationComponent implements OnInit {
   @Input() PublicationInfo: Publication;

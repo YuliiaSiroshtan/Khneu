@@ -1,18 +1,18 @@
 <ul class="menu">
       <li><a class="menu_hover" routerLink="/home">Головна</a></li>
-      <li *ngIf="isTeacher || isHeadOfDepartmen"><a class="menu_hover" >Публікації</a></li>
+      <li *ngIf="isTeacher || isHeadOfDepartmen"><a routerLink="publication" class="menu_hover" >Публікації</a></li>
       <li *ngIf="isTeacher || isHeadOfDepartmen"><a class="menu_hover" >Індивідуальний<br>план</a></li>
-      <li *ngIf="isTeacher || isHeadOfDepartmen"><a class="menu_hover" >Розклад<br>занять</a></li>
+      <li *ngIf="isTeacher || isHeadOfDepartmen"><a routerLink="dashboard" class="menu_hover" >Розклад<br>занять</a></li>
       <li *ngIf="isTeacher || isHeadOfDepartmen"><a class="menu_hover" >Керевні<br>документи</a></li>
-      <li *ngIf="isHeadOfDepartmen"><a class="menu_hover" >Нові<br>користувачі</a></li>
+      <li *ngIf="isHeadOfDepartmen"><a routerLink="user" class="menu_hover" >Нові<br>користувачі</a></li>
       <li *ngIf="isHeadOfDepartmen"><a class="menu_hover menu_scroll"  mat-button [matMenuTriggerFor]="distribution">Розподіл<br>навантаження</a>
         <mat-menu #distribution="matMenu" xPosition="before" backdropClass="submenu">
           <button class="menu_second" mat-menu-item>Файл навантаження</button>
           <button class="menu_second" mat-menu-item>По кафедрі</button>
-          <button class="menu_second" mat-menu-item>Розподіл</button>
+          <button class="menu_second" routerLink="load-distribution" mat-menu-item>Розподіл</button>
         </mat-menu>
       </li>
-      <li *ngIf="isHeadOfDepartmen"><a class="menu_hover" >Результати<br>НДР</a></li>
+      <li *ngIf="isHeadOfDepartmen"><a routerLink="ndr" class="menu_hover" >Результати<br>НДР</a></li>
       <li *ngIf="isHeadOfDepartmen"><a class="menu_hover" >План<br>по науки</a></li>
       <li *ngIf="isTrainingDivision"><a class="menu_hover" routerLink="upload-distribution" >Файл навантаження</a></li>
       <li><a (click)="logout()">Вийти</a></li>
