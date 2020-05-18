@@ -107,3 +107,5 @@ Thumbs.db
 /Planner.PresentationLayer/bin
 /Planner.PresentationLayer/obj
 /Planner.PresentationLayer/obj
+/Planner/aspnet-PlanerDb_log.ldf
+/Planner/aspnet-PlanerDb.mdf

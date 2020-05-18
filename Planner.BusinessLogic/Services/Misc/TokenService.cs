@@ -53,14 +53,30 @@ namespace Planner.BusinessLogic.Services.Misc
 
             var finalToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-            result.JwtToken = new JwtToken
+            switch (user.Role.Id)
             {
-                Token = finalToken,
-                Login = claimsIdentity.Name,
-                Role = user.Role.Name
-            };
+                case 2:
+                    var departmentId = await this.RepositoryScope.UserRepository.GetDepartmentIdByLogin(userName);
 
-            return result;
+                    result.JwtToken = new JwtToken
+                    {
+                        Token = finalToken,
+                        Login = claimsIdentity.Name,
+                        Role = user.Role.Name,
+                        DepartmentId = departmentId.ToString()
+                    };
+
+                    return result;
+                default:
+                    result.JwtToken = new JwtToken
+                    {
+                        Token = finalToken,
+                        Login = claimsIdentity.Name,
+                        Role = user.Role.Name
+                    };
+
+                    return result;
+            }
         }
 
         public ClaimsPrincipal GetClaims(string token)
