@@ -10,20 +10,18 @@
             
             <div class="col data_table">
               <div class="form-group table">
-                <span class="personal-info">E-mail: {{userProfile.email}}</span>
-                <span class="personal-info">П.I.Б.: {{userProfile.lastName}} {{userProfile.firstName}} {{userProfile.thirdName}}</span>
-                <span class="personal-info">Google Scholar: {{userProfile.scholarLink}}</span>
-                <span class="personal-info">Orcid Scholar: {{userProfile.orcidLink}}</span>
-                <span class="personal-info">Ступiнь: {{userProfile.academicTitleViewMode}}</span>
-                <span class="personal-info">Звання: {{userProfile.degreeViewMode}}</span>
-                <span class="personal-info">Посада: {{userProfile.positionViewMode}}</span>
+                <span class="personal-info">E-mail: {{userProfile.mail}}</span>
+                <span class="personal-info">П.I.Б.: {{userProfile.givenName}}</span>
+                <span class="personal-info">Ступiнь: {{userProfile.sn}}</span>
+                <span class="personal-info">Звання: {{userProfile.sn}}</span>
+                <span class="personal-info">Посада: {{userProfile.sn}}</span>
               </div>
             </div>
-            <div class="col edit">
+            <!-- <div class="col edit">
               <div class="button-margin">
                 <button class="btn btn-primary btn-block btn-flat" (click)="toggleEditUser()">Редагувати</button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
