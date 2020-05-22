@@ -1,14 +1,4 @@
-:host{  
-    body {
-        margin: 0;
-        background-color: #CCCCCC;
-      }
-
-      ul {
-        padding-inline-start: 0;
-      }
-    
-      .menu {
+        .menu {
         display: block;
         background-color: #0979d9;
         background-size: cover;
@@ -28,35 +18,18 @@
           content: '';
         }
       
-      li {
-        display: inline-block;
-        vertical-align: middle;
-        color: #FFFFFF;
-        font-family: Verdana;
-        line-height: 20px;
-        font-size: 18px;
-        padding: 20px;
-        transition: .3s;
-        cursor: pointer;
-      }
+     li {
+       display: inline-block;
+       vertical-align: top;
+     }
 
-      li:hover {
-        background-color: #256297;
-        transition: .3s;
-      }
-
-      li:hover:nth-child(10) {
-        background-color: #0979d9;
-        cursor: default;
-      }
-
-      li:nth-child(11) {
-        border-left: 2px solid rgb(136, 136, 136);
-      }
+     .menu__hover {
+       
+     }
 
       .mat-button {
         line-height: 20px;
       }
 
 
-}
+
