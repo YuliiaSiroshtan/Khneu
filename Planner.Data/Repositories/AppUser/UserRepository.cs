@@ -267,6 +267,18 @@ namespace Planner.Data.Repositories.AppUser
             return await connection.QuerySingleOrDefaultAsync<int>(query, new { Login = login });
         }
 
+        public async Task<int> GetDepartmentIdByLogin(string login)
+        {
+            using var connection = await this.OpenConnection();
+
+            const string query =    "SELECT ud.DepartmentId " +
+                                    "FROM Users u, UserDepartment ud " +
+                                    "WHERE u.Id = ud.UserId " +
+                                    "AND u.Login = @login;";
+
+            return await connection.QuerySingleOrDefaultAsync<int>(query, new { Login = login });
+        }
+
         public async Task UpdateUser(User user)
         {
             await this.Update(user);
