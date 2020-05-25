@@ -27,7 +27,7 @@
         max-width: 442px;
         margin: 0 auto 25px auto;
         text-align: center;
-        color: #0979d9;
+        color: #141880;
         padding-top: 15px;
         font-weight: 700;
         font-family: $font;
@@ -36,13 +36,13 @@
 
     .text-line {
         display: flex;
-        border-bottom: 3px solid #4595d6;
+        border-bottom: 3px solid #141880;
         max-width: 200px;
         margin: 0 auto 35px auto;
     }
 
     .loging-logo:not(.register-logo) {
-      border-bottom: 1px solid 50px #0979d9;  
+      border-bottom: 1px solid 50px #141880;  
     }
     .login-logo a, .register-logo a {
         color: #444;
@@ -54,7 +54,7 @@
 
     .background-logo {
         display: flex;
-        background-image: url('../../../../assets/images/hneu.png');
+        background-image: url('../../../../assets/images/logot.png');
         width: 288px;
         height: 68px;
         padding: 36px 0 0 9px;
@@ -131,8 +131,8 @@
         background-size: 20px;
     }
 
-    input::-webkit-input-placeholder { color: rgba(9, 121, 217, 1); }
-    input::-moz-placeholder { color: rgba(9, 121, 217, 1); }
+    input::-webkit-input-placeholder { color: rgba(20, 24, 128, 1); }
+    input::-moz-placeholder { color: rgba(20, 24, 128, 1); }
 
     .form-check {
         display: block;
@@ -152,7 +152,7 @@
     
     .checkbox-label {
         display: inline-block;
-        color: rgba(9, 121, 217, 1);
+        color: rgba(20, 24, 128, 1);
         font-family: $font;
         font-weight: bold;
 
@@ -164,7 +164,7 @@
     .form-btn {
         display: block;  
         margin: 0 auto;
-        background-color: #3c8dbc;
+        background-color: #141880;
         border: none;
         padding: 10px 60px;
         margin-top: 50px;
@@ -174,7 +174,7 @@
     }
 
     .form-btn:hover {
-        background-color: #01659f;
+        background-color: #2026b5;
         transition: .3s;
     }
 
