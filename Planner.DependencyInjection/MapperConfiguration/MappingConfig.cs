@@ -30,7 +30,7 @@ namespace Planner.DependencyInjection.MapperConfiguration
                 .ForPath(x => x.ExaminationSessionId, y => y.MapFrom(z => z.ExaminationSession.Id))
                 .ForPath(x => x.DepartmentId, y => y.MapFrom(z => z.Department.Id));
             this.CreateMap<SelectedDisciplineDto, SelectedDiscipline>()
-                .ForMember(x => x.Department, y => y.MapFrom(z => z.DepartmentName));
+                .ForMember(x => x.Department, y => y.Ignore());
             this.CreateMap<LectureDto, Lecture>()
                 .ForMember(x => x.SelectedDisciplineId, y => y.MapFrom(z => z.SelectedDisciplineId))
                 .ForMember(x => x.UserId, y => y.MapFrom(z => z.UserId));

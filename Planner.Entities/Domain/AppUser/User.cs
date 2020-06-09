@@ -35,8 +35,8 @@ namespace Planner.Entities.Domain.AppUser
 
 
         [Description("Ignore")] public ICollection<IndividualPlan> IndividualPlans { get; set; }
-        
-        public int? DepartmentId { get; set; }
+
+        [Description("Ignore")] public int? DepartmentId { get; set; }
 
         [Description("Ignore")] public Department Department { get; set; }
 
