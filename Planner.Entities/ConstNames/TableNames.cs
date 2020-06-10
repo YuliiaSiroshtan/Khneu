@@ -54,5 +54,14 @@
             public const string Laboratories = "Laboratories";
             public const string Practicals = "Practicals";
         }
+
+        public static class Publication
+        {
+            public const string Publications = "Publications";
+            public const string PublicationUsers = "PublicationUsers";
+            public const string ExternalCollaborators = "ExternalCollaborators";
+
+            public const string NMBDs = "NMBDs";
+        }
     }
 }

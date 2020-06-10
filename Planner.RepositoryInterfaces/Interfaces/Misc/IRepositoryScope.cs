@@ -1,5 +1,6 @@
 ﻿using Planner.RepositoryInterfaces.Interfaces.AppDiscipline;
 using Planner.RepositoryInterfaces.Interfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.Interfaces.AppPublication;
 using Planner.RepositoryInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.RepositoryInterfaces.Interfaces.AppUser;
 using Planner.RepositoryInterfaces.Interfaces.UniversityUnits;
@@ -29,5 +30,7 @@ namespace Planner.RepositoryInterfaces.Interfaces.Misc
         ILectureRepository LectureRepository { get; }
         ILaboratoryRepository LaboratoryRepository { get; }
         IPracticalRepository PracticalRepository { get; }
+        IPublicationRepository PublicationRepository { get; }
+        INMBDRepository NMBDRepository { get; }
     }
 }

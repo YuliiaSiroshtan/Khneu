@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Planner.ServiceInterfaces\Planner.ServiceInterfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\AppNdr\" />
+  </ItemGroup>
+
 </Project>

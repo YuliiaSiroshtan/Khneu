@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Planner.Entities\Planner.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\AppNdr\" />
+  </ItemGroup>
+
 </Project>

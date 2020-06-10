@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Planner.BusinessLogic.Services.AppDiscipline;
 using Planner.BusinessLogic.Services.AppEntryLoad;
 using Planner.BusinessLogic.Services.AppExcel;
+using Planner.BusinessLogic.Services.AppPublication;
 using Planner.BusinessLogic.Services.AppSelectedDiscipline;
 using Planner.BusinessLogic.Services.AppUniversityUnits;
 using Planner.BusinessLogic.Services.AppUser;
@@ -23,6 +24,7 @@ using Planner.RepositoryInterfaces.Interfaces.UniversityUnits;
 using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
 using Planner.ServiceInterfaces.Interfaces.AppExcel;
+using Planner.ServiceInterfaces.Interfaces.AppPublication;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppUser;
 using Planner.ServiceInterfaces.Interfaces.Misc;
@@ -91,6 +93,7 @@ namespace Planner.DependencyInjection.Extensions
             services.AddTransient<ILaboratoryService, LaboratoryService>();
             services.AddTransient<IPracticalService, PracticalService>();
             services.AddSingleton<IExcelService, ExcelService>();
+            services.AddSingleton<IPublicationService, PublicationService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
