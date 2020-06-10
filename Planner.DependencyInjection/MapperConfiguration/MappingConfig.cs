@@ -2,6 +2,7 @@
 using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.Domain.AppEntryLoad.FullTime;
 using Planner.Entities.Domain.AppEntryLoad.PartTime;
+using Planner.Entities.Domain.AppNdr;
 using Planner.Entities.Domain.AppPublication;
 using Planner.Entities.Domain.AppSelectedDiscipline;
 using Planner.Entities.Domain.AppUser;
@@ -9,6 +10,7 @@ using Planner.Entities.Domain.UniversityUnits;
 using Planner.Entities.DTO.AppEntryLoadDto;
 using Planner.Entities.DTO.AppEntryLoadDto.FullTime;
 using Planner.Entities.DTO.AppEntryLoadDto.PartTime;
+using Planner.Entities.DTO.AppNdrDto;
 using Planner.Entities.DTO.AppPublicationDto;
 using Planner.Entities.DTO.AppSelectedDisciplineDto;
 using Planner.Entities.DTO.AppUserDto;
@@ -73,6 +75,9 @@ namespace Planner.DependencyInjection.MapperConfiguration
                             x => x.MapFrom(z => string.Join(',', z.PublicationUsers.Select(a => string.Format("{0}", a.User.Name)))));
 
             this.CreateMap<NMBD, NmbdDTO>();
+            this.CreateMap<NDR, NdrListDTO>();
+            this.CreateMap<NDR, NdrDTO>();
+            this.CreateMap<NdrDTO, NDR>();
 
 
         }

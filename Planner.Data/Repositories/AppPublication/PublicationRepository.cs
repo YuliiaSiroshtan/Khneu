@@ -13,8 +13,6 @@ namespace Planner.Data.Repositories.AppPublication
 {
     public class PublicationRepository : GenericRepository<Publication>, IPublicationRepository
     {
-        
-
         //public void AddUpdate(Publication publication)
         //{
         //    InsertOrUpdateGraph(publication);

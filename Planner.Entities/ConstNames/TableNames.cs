@@ -63,5 +63,10 @@
 
             public const string NMBDs = "NMBDs";
         }
+
+        public static class Ndr
+        {
+            public const string Ndrs = "Ndrs";
+        }
     }
 }

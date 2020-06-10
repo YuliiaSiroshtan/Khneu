@@ -1,6 +1,7 @@
 ﻿using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
 using Planner.ServiceInterfaces.Interfaces.AppExcel;
+using Planner.ServiceInterfaces.Interfaces.AppNdr;
 using Planner.ServiceInterfaces.Interfaces.AppPublication;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppUser;
@@ -35,5 +36,6 @@ namespace Planner.ServiceInterfaces.Interfaces.Misc
         IPracticalService PracticalService { get; }
         IExcelService ExcelService { get; }
         IPublicationService PublicationService { get; }
+        INdrService NdrService { get; }
     }
 }

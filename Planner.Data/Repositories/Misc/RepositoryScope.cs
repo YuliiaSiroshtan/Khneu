@@ -1,5 +1,6 @@
 ﻿using Planner.Data.Repositories.AppDiscipline;
 using Planner.Data.Repositories.AppEntryLoad;
+using Planner.Data.Repositories.AppNdr;
 using Planner.Data.Repositories.AppPublication;
 using Planner.Data.Repositories.AppSelectedDiscipline;
 using Planner.Data.Repositories.AppUser;
@@ -7,6 +8,7 @@ using Planner.Data.Repositories.UniversityUnits;
 using Planner.Entities.ConstNames;
 using Planner.RepositoryInterfaces.Interfaces.AppDiscipline;
 using Planner.RepositoryInterfaces.Interfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.Interfaces.AppNdr;
 using Planner.RepositoryInterfaces.Interfaces.AppPublication;
 using Planner.RepositoryInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.RepositoryInterfaces.Interfaces.AppUser;
@@ -59,6 +61,7 @@ namespace Planner.Data.Repositories.Misc
             this.PracticalRepository = new PracticalRepository(connectionString, TableNames.FormEducation.Practicals);
             this.PublicationRepository = new PublicationRepository(connectionString, TableNames.Publication.Publications);
             this.NMBDRepository = new NMBDRepository(connectionString, TableNames.Publication.NMBDs);
+            this.NdrRepository = new NdrRepository(connectionString, TableNames.Ndr.Ndrs);
         }
 
         public IUserRepository UserRepository { get; }
@@ -84,5 +87,6 @@ namespace Planner.Data.Repositories.Misc
         public IPracticalRepository PracticalRepository { get; }
         public IPublicationRepository PublicationRepository { get; }
         public INMBDRepository NMBDRepository { get; }
+        public INdrRepository NdrRepository { get; }
     }
 }

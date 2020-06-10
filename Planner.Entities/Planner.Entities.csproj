@@ -14,9 +14,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Domain\Nmbd\" />
-    <Folder Include="DTO\AppNdrDto\" />
-  </ItemGroup>
-
 </Project>
