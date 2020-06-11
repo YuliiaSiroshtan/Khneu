@@ -2,6 +2,7 @@
 using Planner.Entities.Domain.AppEntryLoad;
 using Planner.Entities.Domain.AppEntryLoad.FullTime;
 using Planner.Entities.Domain.AppEntryLoad.PartTime;
+using Planner.Entities.Domain.AppIndividualPlan;
 using Planner.Entities.Domain.AppNdr;
 using Planner.Entities.Domain.AppPublication;
 using Planner.Entities.Domain.AppSelectedDiscipline;
@@ -10,6 +11,7 @@ using Planner.Entities.Domain.UniversityUnits;
 using Planner.Entities.DTO.AppEntryLoadDto;
 using Planner.Entities.DTO.AppEntryLoadDto.FullTime;
 using Planner.Entities.DTO.AppEntryLoadDto.PartTime;
+using Planner.Entities.DTO.AppIndividualPlanDto;
 using Planner.Entities.DTO.AppNdrDto;
 using Planner.Entities.DTO.AppPublicationDto;
 using Planner.Entities.DTO.AppSelectedDisciplineDto;
@@ -79,6 +81,13 @@ namespace Planner.DependencyInjection.MapperConfiguration
             this.CreateMap<NDR, NdrDTO>();
             this.CreateMap<NdrDTO, NDR>();
 
+            this.CreateMap<PlanTrainingJob, TrainingJobDTO>();
+            this.CreateMap<TrainingJobDTO, PlanTrainingJob>();
+
+            this.CreateMap<IndivPlanFieldsValue, IndivPlanFieldValueDTO>();
+            this.CreateMap<IndivPlanFieldValueDTO, IndivPlanFieldsValue>();
+
+            this.CreateMap<IndivPlanFields, IndivPlanFieldDTO>();
 
         }
     }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Planner.BusinessLogic.Services.AppDiscipline;
 using Planner.BusinessLogic.Services.AppEntryLoad;
 using Planner.BusinessLogic.Services.AppExcel;
+using Planner.BusinessLogic.Services.AppIndividualPlan;
 using Planner.BusinessLogic.Services.AppNdr;
 using Planner.BusinessLogic.Services.AppPublication;
 using Planner.BusinessLogic.Services.AppSelectedDiscipline;
@@ -25,6 +26,7 @@ using Planner.RepositoryInterfaces.Interfaces.UniversityUnits;
 using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
 using Planner.ServiceInterfaces.Interfaces.AppExcel;
+using Planner.ServiceInterfaces.Interfaces.AppIndividualPlan;
 using Planner.ServiceInterfaces.Interfaces.AppNdr;
 using Planner.ServiceInterfaces.Interfaces.AppPublication;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
@@ -97,6 +99,7 @@ namespace Planner.DependencyInjection.Extensions
             services.AddSingleton<IExcelService, ExcelService>();
             services.AddSingleton<IPublicationService, PublicationService>();
             services.AddSingleton<INdrService, NdrService>();
+            services.AddSingleton<IIndividualPlanService, IndividualPlanService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }

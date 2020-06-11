@@ -1,5 +1,6 @@
 ﻿using Planner.Data.Repositories.AppDiscipline;
 using Planner.Data.Repositories.AppEntryLoad;
+using Planner.Data.Repositories.AppIndividualPlan;
 using Planner.Data.Repositories.AppNdr;
 using Planner.Data.Repositories.AppPublication;
 using Planner.Data.Repositories.AppSelectedDiscipline;
@@ -8,6 +9,7 @@ using Planner.Data.Repositories.UniversityUnits;
 using Planner.Entities.ConstNames;
 using Planner.RepositoryInterfaces.Interfaces.AppDiscipline;
 using Planner.RepositoryInterfaces.Interfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.Interfaces.AppIndividualPlan;
 using Planner.RepositoryInterfaces.Interfaces.AppNdr;
 using Planner.RepositoryInterfaces.Interfaces.AppPublication;
 using Planner.RepositoryInterfaces.Interfaces.AppSelectedDiscipline;
@@ -62,6 +64,9 @@ namespace Planner.Data.Repositories.Misc
             this.PublicationRepository = new PublicationRepository(connectionString, TableNames.Publication.Publications);
             this.NMBDRepository = new NMBDRepository(connectionString, TableNames.Publication.NMBDs);
             this.NdrRepository = new NdrRepository(connectionString, TableNames.Ndr.Ndrs);
+            this.PlanTrainingRepository = new PlanTrainingJobRepository(connectionString, TableNames.IndividualPlan.PlanTrainingJobs);
+            this.IndivPlanFieldsValueRepository = new IndivPlanFieldsValueRepository(connectionString, TableNames.IndividualPlan.IndivPlanFieldsValues);
+            this.IndivPlanFieldsRepository = new IndivPlanFieldRepository(connectionString, TableNames.IndividualPlan.IndivPlanFields);
         }
 
         public IUserRepository UserRepository { get; }
@@ -88,5 +93,8 @@ namespace Planner.Data.Repositories.Misc
         public IPublicationRepository PublicationRepository { get; }
         public INMBDRepository NMBDRepository { get; }
         public INdrRepository NdrRepository { get; }
+        public IPlanTrainingRepository PlanTrainingRepository { get; }
+        public IIndivPlanFieldsValueRepository IndivPlanFieldsValueRepository { get; }
+        public IIndivPlanFieldsRepository IndivPlanFieldsRepository { get; }
     }
 }

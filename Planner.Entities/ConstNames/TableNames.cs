@@ -68,5 +68,13 @@
         {
             public const string Ndrs = "Ndrs";
         }
+
+        public static class IndividualPlan
+        {
+            public const string PlanTrainingJobs = "PlanTrainingJobs";
+            public const string IndivPlanFieldsValues = "IndivPlanFieldsValues";
+            public const string IndivPlanFields = "IndivPlanFields";
+
+        }
     }
 }

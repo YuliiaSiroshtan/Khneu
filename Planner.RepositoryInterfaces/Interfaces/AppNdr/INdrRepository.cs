@@ -8,6 +8,6 @@ namespace Planner.RepositoryInterfaces.Interfaces.AppNdr
     public interface INdrRepository
     {
         Task<IEnumerable<NDR>> GetUserNdr(string userName);
-        Task<int> AddNdr(NDR ndr);
+        //Task<int> AddNdr(NDR ndr);
     }
 }

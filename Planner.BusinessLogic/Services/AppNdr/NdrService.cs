@@ -22,12 +22,12 @@ namespace Planner.BusinessLogic.Services.AppNdr
             return Mapper.Map<IEnumerable<NdrListDTO>>(ndrs);
         }
 
-        public Task<int> AddNdr(NdrDTO ndrDTO)
-        {
-            var ndr = Mapper.Map<NDR>(ndrDTO);
-            return RepositoryScope.NdrRepository.AddNdr(ndr);
+        //public Task<int> AddNdr(NdrDTO ndrDTO)
+        //{
+        //    var ndr = Mapper.Map<NDR>(ndrDTO);
+        //    return RepositoryScope.NdrRepository.AddNdr(ndr);
 
-            //return _uow.SaveChanges() >= 0;
-        }
+        //    //return _uow.SaveChanges() >= 0;
+        //}
     }
 }

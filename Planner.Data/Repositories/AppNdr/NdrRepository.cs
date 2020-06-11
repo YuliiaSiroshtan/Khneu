@@ -21,6 +21,6 @@ namespace Planner.Data.Repositories.AppNdr
             return await connection.QueryAsync<NDR>(query);
         }
 
-        public async Task<int> AddNdr(NDR ndr) => await this.Insert(ndr);
+        //public async Task<int> AddNdr(NDR ndr) => await this.Insert(ndr);
     }
 }

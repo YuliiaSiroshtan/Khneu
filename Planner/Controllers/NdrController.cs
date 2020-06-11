@@ -34,7 +34,6 @@ namespace Planner.Controllers
     public async Task<IActionResult> GetUserNdr()
     {
       IEnumerable<NdrListDTO> ndrs = await ServiceScope.NdrService.GetUserNdr(this.UserInfo().Login);
-
       IEnumerable<NdrListDTO> ndrModel = _mapper.Map<IEnumerable<NdrListDTO>>(ndrs);
       return Ok(ndrModel);
     }
