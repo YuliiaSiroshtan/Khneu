@@ -38,7 +38,7 @@ namespace Planner.Data.Repositories.GenericRepository
             using var connection = await this.OpenConnection();
 
             await connection.ExecuteAsync($"DELETE FROM {this._tableName} " +
-                                          "WHERE Id = @Id", new {Id = id});
+                                          "WHERE Id = @Id", new { Id = id });
         }
 
         public async Task<T> GetEntityById(int id)
@@ -47,7 +47,7 @@ namespace Planner.Data.Repositories.GenericRepository
 
             return await connection
                 .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {this._tableName} " +
-                                              "WHERE Id = @Id", new {Id = id});
+                                              "WHERE Id = @Id", new { Id = id });
         }
 
         public async Task<T> GetEntityByName(string name)
@@ -56,7 +56,7 @@ namespace Planner.Data.Repositories.GenericRepository
 
             return await connection
                 .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {this._tableName} " +
-                                              "WHERE Name = @Name", new {Name = name});
+                                              "WHERE Name = @Name", new { Name = name });
         }
 
         public async Task Update(T entity)
@@ -91,7 +91,10 @@ namespace Planner.Data.Repositories.GenericRepository
 
             properties.ForEach(property =>
             {
-                if (!property.Equals("Id")) updateQuery.Append($"{property}=@{property},");
+                if (!property.Equals("Id") && !property.Equals("Password"))
+                {
+                    updateQuery.Append($"{property}=@{property},");
+                }
             });
 
             updateQuery.Remove(updateQuery.Length - 1, 1);
@@ -102,7 +105,7 @@ namespace Planner.Data.Repositories.GenericRepository
 
         private string GenerateInsertQuery()
         {
-            var insertQuery = new StringBuilder($"INSERT INTO {this._tableName} ");
+            var insertQuery = new StringBuilder($"SET IDENTITY_INSERT {this._tableName} ON INSERT INTO {this._tableName} ");
 
             insertQuery.Append("(");
 
@@ -130,8 +133,8 @@ namespace Planner.Data.Repositories.GenericRepository
 
         private static List<string> GenerateListOfProperties(IEnumerable<PropertyInfo> listOfProperties) =>
             (from prop in listOfProperties
-                let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
-                where attributes.Length <= 0 || (attributes[0] as DescriptionAttribute)?.Description != "Ignore"
-                select prop.Name).ToList();
+             let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
+             where attributes.Length <= 0 || (attributes[0] as DescriptionAttribute)?.Description != "Ignore"
+             select prop.Name).ToList();
     }
 }

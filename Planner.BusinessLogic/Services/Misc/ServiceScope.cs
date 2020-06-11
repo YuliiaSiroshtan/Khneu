@@ -1,6 +1,8 @@
 ﻿using Planner.ServiceInterfaces.Interfaces.AppDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppEntryLoad;
 using Planner.ServiceInterfaces.Interfaces.AppExcel;
+using Planner.ServiceInterfaces.Interfaces.AppNdr;
+using Planner.ServiceInterfaces.Interfaces.AppPublication;
 using Planner.ServiceInterfaces.Interfaces.AppSelectedDiscipline;
 using Planner.ServiceInterfaces.Interfaces.AppUser;
 using Planner.ServiceInterfaces.Interfaces.Misc;
@@ -33,7 +35,9 @@ namespace Planner.BusinessLogic.Services.Misc
             ILectureService lectureService,
             ILaboratoryService laboratoryService,
             IPracticalService practicalService,
-            IExcelService excelService)
+            IExcelService excelService,
+            IPublicationService publicationService,
+            INdrService ndrService)
         {
             this.UserService = userService;
             this.TokenService = tokenService;
@@ -59,6 +63,8 @@ namespace Planner.BusinessLogic.Services.Misc
             this.LaboratoryService = laboratoryService;
             this.PracticalService = practicalService;
             this.ExcelService = excelService;
+            this.PublicationService = publicationService;
+            this.NdrService = ndrService;
         }
 
         public IUserService UserService { get; }
@@ -85,5 +91,7 @@ namespace Planner.BusinessLogic.Services.Misc
         public ILaboratoryService LaboratoryService { get; }
         public IPracticalService PracticalService { get; }
         public IExcelService ExcelService { get; }
+        public IPublicationService PublicationService { get; }
+        public INdrService NdrService { get; }
     }
 }

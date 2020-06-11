@@ -11,6 +11,8 @@ namespace Planner.Entities.DTO.AppUserDto
 
         public string Name { get; set; }
 
+        public string Login { get; set; }
+
         public string ImageSource { get; set; }
 
         public string RoleName { get; set; }
