@@ -14,5 +14,6 @@ namespace Planner.ServiceInterfaces.Interfaces.AppPublication
 
         Task<IEnumerable<PublicationDTO>> GetPublications(string userLogin);
         Task<PublicationDTO> GetPublicationById(string id);
+        Task UpdatePublication(PublicationDTO publicationDTO);
     }
 }

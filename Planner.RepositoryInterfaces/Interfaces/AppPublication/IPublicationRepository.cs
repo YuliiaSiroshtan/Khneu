@@ -12,5 +12,6 @@ namespace Planner.RepositoryInterfaces.Interfaces.AppPublication
         Task<IEnumerable<Publication>> GetAllPublications(string userLogin);
         //void AddUpdate(Publication publication);
         Task<Publication> GetById(string publicationId);
+        Task UpdatePublication(Publication publication);
     }
 }

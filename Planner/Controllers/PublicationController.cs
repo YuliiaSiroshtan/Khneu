@@ -33,13 +33,13 @@ namespace Planner.Controllers
       return Ok(result);
     }
 
-    //[HttpPost]
-    //[Route("[action]")]
-    //public async Task<IActionResult> UpdatePublication([FromBody] PublicationAddEditViewModel publication)
-    //{
-    //  Boolean result = serviceFactory.PublicationService.UpdatePublication(_mapper.Map<PublicationAddEditDTO>(publication), UserInfo().UserName);
-    //  return Ok(result);
-    //}
+    [HttpPost]
+    [Route("[action]")]
+    public async Task<IActionResult> UpdatePublication([FromBody] PublicationDTO publication)
+    {
+      await ServiceScope.PublicationService.UpdatePublication(publication);
+      return Ok(publication);
+    }
 
     [HttpGet]
     [Route("[action]")]

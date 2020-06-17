@@ -13,11 +13,6 @@ namespace Planner.Data.Repositories.AppPublication
 {
     public class PublicationRepository : GenericRepository<Publication>, IPublicationRepository
     {
-        //public void AddUpdate(Publication publication)
-        //{
-        //    InsertOrUpdateGraph(publication);
-        //}
-
         public PublicationRepository(string connectionString, string tableName) : base(connectionString, tableName) { }
 
 
@@ -25,10 +20,10 @@ namespace Planner.Data.Repositories.AppPublication
         {
             using var connection = await this.OpenConnection();
 
-            string query =  "SELECT p.publicationId, p.Name, p.FilePath, p.Pages, p.Output, p.CreatedAt, p.PublishedAt, " +
+            string query =  "SELECT p.Id, p.Name, p.FilePath, p.Pages, p.Output, p.CreatedAt, p.PublishedAt, " +
                                     "p.IsPublished, p.IsOverseas, p.OwnerId, p.CitationNumberNMBD, p.ImpactFactorNMBD, p.NMBDId " +
                                     "FROM Publications p, PublicationUsers pu, Users u " + 
-                                    "WHERE p.PublicationId = pu.PublicationId " +
+                                    "WHERE p.Id = pu.PublicationId " +
                                     "AND pu.ApplicationUserId = u.Id " +
                                     $"AND u.Login = '{userLogin}'";
 
@@ -40,9 +35,14 @@ namespace Planner.Data.Repositories.AppPublication
             using var connection = await this.OpenConnection();
 
             const string query =    "SELECT * FROM Publications p" +
-                                    "WHERE p.PublicationId == @publicationId";
+                                    "WHERE p.Id == @publicationId";
 
             return await connection.QueryFirstOrDefaultAsync<Publication>(query);
+        }
+
+        public async Task UpdatePublication(Publication publication)
+        {
+            await Update(publication);
         }
     }
 }

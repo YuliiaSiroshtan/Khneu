@@ -71,10 +71,12 @@ namespace Planner.DependencyInjection.MapperConfiguration
             this.CreateMap<Laboratory, LaboratoryDto>();
             this.CreateMap<Practical, PracticalDto>();
 
-
+            this.CreateMap<Publication, PublicationDTO>();
             this.CreateMap<Publication, PublicationDTO>()
                 .ForMember(s => s.CollaboratorsName, 
                             x => x.MapFrom(z => string.Join(',', z.PublicationUsers.Select(a => string.Format("{0}", a.User.Name)))));
+            this.CreateMap<PublicationDTO, Publication>();
+
 
             this.CreateMap<NMBD, NmbdDTO>();
             this.CreateMap<NDR, NdrListDTO>();
