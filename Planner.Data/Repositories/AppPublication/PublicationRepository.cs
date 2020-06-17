@@ -21,17 +21,18 @@ namespace Planner.Data.Repositories.AppPublication
         public PublicationRepository(string connectionString, string tableName) : base(connectionString, tableName) { }
 
 
-        public async Task<IEnumerable<Publication>> GetAllPublications()
+        public async Task<IEnumerable<Publication>> GetAllPublications(string userLogin)
         {
             using var connection = await this.OpenConnection();
 
-            const string query = "SELECT * FROM Publications p";
+            string query =  "SELECT p.publicationId, p.Name, p.FilePath, p.Pages, p.Output, p.CreatedAt, p.PublishedAt, " +
+                                    "p.IsPublished, p.IsOverseas, p.OwnerId, p.CitationNumberNMBD, p.ImpactFactorNMBD, p.NMBDId " +
+                                    "FROM Publications p, PublicationUsers pu, Users u " + 
+                                    "WHERE p.PublicationId = pu.PublicationId " +
+                                    "AND pu.ApplicationUserId = u.Id " +
+                                    $"AND u.Login = '{userLogin}'";
 
             return await connection.QueryAsync<Publication>(query);
-
-
-            //return await Query.Include(s => s.PublicationUsers)
-            //                    .ThenInclude(c => c.User).ToList();
         }
 
         public async Task<Publication> GetById(string publicationId)

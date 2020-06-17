@@ -64,16 +64,16 @@ namespace Planner.BusinessLogic.Services.AppPublication
         //    return uow.SaveChanges() >= 0;
         //}
 
-        public async Task<IEnumerable<PublicationDTO>> GetPublications()
+        public async Task<IEnumerable<PublicationDTO>> GetPublications(string userLogin)
         {
-            var publications = await RepositoryScope.PublicationRepository.GetAllPublications();
+            var publications = await RepositoryScope.PublicationRepository.GetAllPublications(userLogin);
 
             return Mapper.Map<IEnumerable<PublicationDTO>>(publications);
         }
 
         public async Task<PublicationDTO> GetPublicationById(string id)
         {
-            var publication = await RepositoryScope.PublicationRepository.GetById(id); // uow.PublicationRepositpry.GetById(id);
+            var publication = await RepositoryScope.PublicationRepository.GetById(id);
 
             return Mapper.Map<PublicationDTO>(publication);
         }

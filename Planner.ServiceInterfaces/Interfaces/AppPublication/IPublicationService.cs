@@ -12,7 +12,7 @@ namespace Planner.ServiceInterfaces.Interfaces.AppPublication
         //Boolean UpdatePublication(PublicationAddEditDTO publicationDTO, String userName);
         //void UodatePublication(Publication);
 
-        Task<IEnumerable<PublicationDTO>> GetPublications();
+        Task<IEnumerable<PublicationDTO>> GetPublications(string userLogin);
         Task<PublicationDTO> GetPublicationById(string id);
     }
 }

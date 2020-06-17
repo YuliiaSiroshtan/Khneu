@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Planner.Controllers
 {
-  //[Authorize]
+  [Authorize]
   [Route("api/[controller]")]
   public class PublicationController : GenericController
   {
@@ -33,11 +33,19 @@ namespace Planner.Controllers
       return Ok(result);
     }
 
+    //[HttpPost]
+    //[Route("[action]")]
+    //public async Task<IActionResult> UpdatePublication([FromBody] PublicationAddEditViewModel publication)
+    //{
+    //  Boolean result = serviceFactory.PublicationService.UpdatePublication(_mapper.Map<PublicationAddEditDTO>(publication), UserInfo().UserName);
+    //  return Ok(result);
+    //}
+
     [HttpGet]
     [Route("[action]")]
     public async Task<IActionResult> GetUserPublications()
     {
-      IEnumerable<PublicationDTO> result = await ServiceScope.PublicationService.GetPublications();
+      IEnumerable<PublicationDTO> result = await ServiceScope.PublicationService.GetPublications(this.UserInfo().Login);
       return Ok(result);
     }
 
