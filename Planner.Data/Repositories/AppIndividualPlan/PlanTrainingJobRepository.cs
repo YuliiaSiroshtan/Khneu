@@ -11,12 +11,6 @@ namespace Planner.Data.Repositories.AppIndividualPlan
 {
     public class PlanTrainingJobRepository : GenericRepository<PlanTrainingJob>, IPlanTrainingRepository
     {
-        //public void UpdateTrainingJob(PlanTrainingJob trainingJob)
-        //{
-        //    InsertOrUpdateGraph(trainingJob);
-        //}
-
-
         public PlanTrainingJobRepository(string connectionString, string tableName) : base(connectionString, tableName) { }
 
         public async Task<IEnumerable<PlanTrainingJob>> GetTrainingJob(string userName)
@@ -26,6 +20,11 @@ namespace Planner.Data.Repositories.AppIndividualPlan
             string query = $"SELECT * FROM PlanTrainingJobs p, Users u WHERE p.ApplicationUserId = u.Id AND u.Login = '{userName}';";
 
             return await connection.QueryAsync<PlanTrainingJob>(query);
+        }
+
+        public async Task UpdateTrainingJob(PlanTrainingJob trainingJob)
+        {
+            await Update(trainingJob);
         }
     }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Planner.Entities.DTO.AppIndividualPlanDto;
 using Planner.ServiceInterfaces.Interfaces.Misc;
@@ -21,15 +22,17 @@ namespace Planner.Controllers
 
     [HttpGet]
     [Route("[action]")]
+    [Authorize]
     public async Task<IActionResult> GetTrainingJob()
     {
-      IEnumerable<TrainingJobDTO> trainingJob = await ServiceScope.IndividualPlanService.GetTrainingJob(UserInfo().Login); //.IndividualPlanService.GetTrainingJob(UserInfo().UserName);
-      IEnumerable < TrainingJobDTO > trainingJobModel = _mapper.Map<IEnumerable<TrainingJobDTO>>(trainingJob);
+      IEnumerable<TrainingJobDTO> trainingJob = await ServiceScope.IndividualPlanService.GetTrainingJob(UserInfo().Login);
+      IEnumerable<TrainingJobDTO> trainingJobModel = _mapper.Map<IEnumerable<TrainingJobDTO>>(trainingJob);
       return Ok(trainingJobModel);
     }
 
     [HttpGet]
     [Route("[action]")]
+    [Authorize]
     public async Task<IActionResult> GetIndivPlanFieldValue()
     {
       IEnumerable<IndivPlanFieldValueDTO> indivPlanFieldValue = await ServiceScope.IndividualPlanService.GetIndivPlanFieldValue(UserInfo().Login);
@@ -45,6 +48,23 @@ namespace Planner.Controllers
       IEnumerable<IndivPlanFieldDTO> indivPlanFieldModel = _mapper.Map<IEnumerable<IndivPlanFieldDTO>>(indivPlanField);
       return Ok(indivPlanFieldModel);
     }
+
+    [HttpPost]
+    [Route("[action]")]
+    public async Task<IActionResult> UpdateTrainingJob([FromBody] TrainingJobDTO trainingJobDTO)
+    {
+      await ServiceScope.IndividualPlanService.UpdateTrainingJob(_mapper.Map<TrainingJobDTO>(trainingJobDTO));
+      return Ok(trainingJobDTO);
+    }
+
+
+    //[HttpPost]
+    //[Route("UpdateIndivPlanFieldValue")]
+    //public IActionResult UpdateIndivPlanFieldValue([FromBody] IndivPlanFieldValueViewModel indivPlanFieldValueDTO)
+    //{
+    //  bool result = serviceFactory.IndividualPlanService.UpdateIndivPlanFieldValue(_mapper.Map<IndivPlanFieldValueDTO>(indivPlanFieldValueDTO));
+    //  return Ok(result);
+    //}
 
   }
 }

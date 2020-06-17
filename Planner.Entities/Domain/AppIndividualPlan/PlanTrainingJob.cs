@@ -2,13 +2,13 @@
 using Planner.Entities.Domain.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Planner.Entities.Domain.AppIndividualPlan
 {
     public class PlanTrainingJob : BaseEntity
     {
-        public string PlanTrainingJobId { get; set; }
         public string EducationForm { get; set; }
         public int OrderNumber { get; set; }
         public string Subject { get; set; }
@@ -56,6 +56,6 @@ namespace Planner.Entities.Domain.AppIndividualPlan
         public int DoneDEK { get; set; }
         public string ApplicationUserId { get; set; }
 
-        public virtual User ApplicationUser { get; set; }
+        [Description("Ignore")] public virtual User ApplicationUser { get; set; }
     }
 }

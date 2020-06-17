@@ -7,8 +7,7 @@ namespace Planner.RepositoryInterfaces.Interfaces.AppIndividualPlan
 {
     public interface IPlanTrainingRepository
     {
-        //void UpdateTrainingJob(PlanTrainingJob trainingJob);
-        
+        Task UpdateTrainingJob(PlanTrainingJob trainingJob);
         Task<IEnumerable<PlanTrainingJob>> GetTrainingJob(string userName);
     }
 }

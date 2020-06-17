@@ -1,4 +1,6 @@
-﻿namespace Planner.Entities.DTO.AppIndividualPlanDto
+﻿using System.ComponentModel;
+
+namespace Planner.Entities.DTO.AppIndividualPlanDto
 {
     public class TrainingJobDTO
     {

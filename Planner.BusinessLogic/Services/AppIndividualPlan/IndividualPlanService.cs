@@ -10,27 +10,7 @@ using System.Threading.Tasks;
 namespace Planner.BusinessLogic.Services.AppIndividualPlan
 {
     public class IndividualPlanService : BaseService, IIndividualPlanService
-    {
-        //public bool UpdateTrainingJob(TrainingJobDTO trainingJobDTO)
-        //{
-        //    PlanTrainingJob trainingJob = _mapper.Map<PlanTrainingJob>(trainingJobDTO);
-        //    _uow.PlanTrainingRepository.UpdateTrainingJob(trainingJob);
-
-        //    return _uow.SaveChanges() >= 0;
-        //}
-
-        
-
-        //public bool UpdateIndivPlanFieldValue(IndivPlanFieldValueDTO indivPlanFieldValueDTO)
-        //{
-        //    IndivPlanFieldsValue indivPlanFieldsValue = _mapper.Map<IndivPlanFieldsValue>(indivPlanFieldValueDTO);
-        //    _uow.IndivPlanFieldsValueRepository.UpdateIndivPlanFieldValue(indivPlanFieldsValue);
-
-        //    return _uow.SaveChanges() >= 0;
-        //}
-
-        
-        
+    {      
         public IndividualPlanService(IRepositoryScope repositoryScope, IMapper mapper) : base(repositoryScope, mapper) { }
 
         public async Task<IEnumerable<TrainingJobDTO>> GetTrainingJob(string userName)
@@ -50,5 +30,20 @@ namespace Planner.BusinessLogic.Services.AppIndividualPlan
             IEnumerable<IndivPlanFields> indivPlanFields = await RepositoryScope.IndivPlanFieldsRepository.GetIndivPlanField(indPlanTypeId);
             return Mapper.Map<IEnumerable<IndivPlanFieldDTO>>(indivPlanFields);
         }
+
+        public async Task UpdateTrainingJob(TrainingJobDTO trainingJobDTO)
+        {
+            PlanTrainingJob trainingJob = Mapper.Map<PlanTrainingJob>(trainingJobDTO);
+
+            await RepositoryScope.PlanTrainingRepository.UpdateTrainingJob(trainingJob);
+        }
+
+        //public bool UpdateIndivPlanFieldValue(IndivPlanFieldValueDTO indivPlanFieldValueDTO)
+        //{
+        //    IndivPlanFieldsValue indivPlanFieldsValue = _mapper.Map<IndivPlanFieldsValue>(indivPlanFieldValueDTO);
+        //    _uow.IndivPlanFieldsValueRepository.UpdateIndivPlanFieldValue(indivPlanFieldsValue);
+
+        //    return _uow.SaveChanges() >= 0;
+        //}
     }
 }

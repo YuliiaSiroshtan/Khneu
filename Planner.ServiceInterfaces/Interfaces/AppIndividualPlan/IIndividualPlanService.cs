@@ -6,7 +6,7 @@ namespace Planner.ServiceInterfaces.Interfaces.AppIndividualPlan
 {
     public interface IIndividualPlanService
     {
-        //bool UpdateTrainingJob(TrainingJobDTO trainingJobDTO);
+        Task UpdateTrainingJob(TrainingJobDTO trainingJobDTO);
 
         Task<IEnumerable<TrainingJobDTO>> GetTrainingJob(string userName);
 
