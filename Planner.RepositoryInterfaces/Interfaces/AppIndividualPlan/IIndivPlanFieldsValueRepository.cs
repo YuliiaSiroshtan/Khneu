@@ -7,8 +7,7 @@ namespace Planner.RepositoryInterfaces.Interfaces.AppIndividualPlan
 {
     public interface IIndivPlanFieldsValueRepository
     {
-        //void UpdateIndivPlanFieldValue(IndivPlanFieldsValue indivPlanFieldValue);
-
         Task<IEnumerable<IndivPlanFieldsValue>> GetIndivPlanFieldValue(string userName);
+        Task UpdateIndivPlanFieldValue(IndivPlanFieldsValue indivPlanFieldValue);
     }
 }

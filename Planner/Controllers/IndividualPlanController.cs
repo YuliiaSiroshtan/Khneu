@@ -57,14 +57,12 @@ namespace Planner.Controllers
       return Ok(trainingJobDTO);
     }
 
-
-    //[HttpPost]
-    //[Route("UpdateIndivPlanFieldValue")]
-    //public IActionResult UpdateIndivPlanFieldValue([FromBody] IndivPlanFieldValueViewModel indivPlanFieldValueDTO)
-    //{
-    //  bool result = serviceFactory.IndividualPlanService.UpdateIndivPlanFieldValue(_mapper.Map<IndivPlanFieldValueDTO>(indivPlanFieldValueDTO));
-    //  return Ok(result);
-    //}
-
+    [HttpPost]
+    [Route("[action]")]
+    public async Task<IActionResult> UpdateIndivPlanFieldValue([FromBody] IndivPlanFieldValueDTO indivPlanFieldValueDTO)
+    {
+      await ServiceScope.IndividualPlanService.UpdateIndivPlanFieldValue(_mapper.Map<IndivPlanFieldValueDTO>(indivPlanFieldValueDTO));
+      return Ok(indivPlanFieldValueDTO);
+    }
   }
 }

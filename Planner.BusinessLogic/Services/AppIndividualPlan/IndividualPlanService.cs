@@ -38,12 +38,11 @@ namespace Planner.BusinessLogic.Services.AppIndividualPlan
             await RepositoryScope.PlanTrainingRepository.UpdateTrainingJob(trainingJob);
         }
 
-        //public bool UpdateIndivPlanFieldValue(IndivPlanFieldValueDTO indivPlanFieldValueDTO)
-        //{
-        //    IndivPlanFieldsValue indivPlanFieldsValue = _mapper.Map<IndivPlanFieldsValue>(indivPlanFieldValueDTO);
-        //    _uow.IndivPlanFieldsValueRepository.UpdateIndivPlanFieldValue(indivPlanFieldsValue);
-
-        //    return _uow.SaveChanges() >= 0;
-        //}
+        public async Task UpdateIndivPlanFieldValue(IndivPlanFieldValueDTO indivPlanFieldValueDTO)
+        {
+            IndivPlanFieldsValue indivPlanFieldsValue = Mapper.Map<IndivPlanFieldsValue>(indivPlanFieldValueDTO);
+            
+            await RepositoryScope.IndivPlanFieldsValueRepository.UpdateIndivPlanFieldValue(indivPlanFieldsValue);
+        }
     }
 }

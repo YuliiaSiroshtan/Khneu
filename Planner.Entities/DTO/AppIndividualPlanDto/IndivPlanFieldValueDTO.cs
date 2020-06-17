@@ -2,7 +2,7 @@
 {
     public class IndivPlanFieldValueDTO
     {
-        public string IndivPlanFieldsValueId { get; set; }
+        public string Id { get; set; }
 
         public string SchemaName { get; set; }
 

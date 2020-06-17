@@ -11,14 +11,7 @@ namespace Planner.Data.Repositories.AppIndividualPlan
 {
     public class IndivPlanFieldsValueRepository : GenericRepository<IndivPlanFieldsValue>, IIndivPlanFieldsValueRepository
     {
-
-        //public void UpdateIndivPlanFieldValue(IndivPlanFieldsValue indivPlanFieldValue)
-        //{
-        //    InsertOrUpdateGraph(indivPlanFieldValue);
-        //}
-
         public IndivPlanFieldsValueRepository(string connectionString, string tableName) : base(connectionString, tableName) { }
-
 
         public async Task<IEnumerable<IndivPlanFieldsValue>> GetIndivPlanFieldValue(string userName)
         {
@@ -27,6 +20,12 @@ namespace Planner.Data.Repositories.AppIndividualPlan
             string query = $"SELECT * FROM IndivPlanFieldsValues i, Users u WHERE i.ApplicationUserId = u.Id AND u.Login = '{userName}';";
 
             return await connection.QueryAsync<IndivPlanFieldsValue>(query);
+        }
+
+        public async Task UpdateIndivPlanFieldValue(IndivPlanFieldsValue indivPlanFieldValue)
+        {
+            await Update(indivPlanFieldValue);
+             //InsertOrUpdateGraph(indivPlanFieldValue);
         }
     }
 }
