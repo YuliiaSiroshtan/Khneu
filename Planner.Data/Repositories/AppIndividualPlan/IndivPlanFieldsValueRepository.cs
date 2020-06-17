@@ -25,7 +25,6 @@ namespace Planner.Data.Repositories.AppIndividualPlan
         public async Task UpdateIndivPlanFieldValue(IndivPlanFieldsValue indivPlanFieldValue)
         {
             await Update(indivPlanFieldValue);
-             //InsertOrUpdateGraph(indivPlanFieldValue);
         }
     }
 }

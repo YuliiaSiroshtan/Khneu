@@ -9,7 +9,6 @@ namespace Planner.Entities.Domain.AppIndividualPlan
 {
     public class IndivPlanFieldsValue : BaseEntity
     {
-        //public string IndivPlanFieldsValueId { get; set; }
         public string SchemaName { get; set; }
         /// <summary>
         /// Фактический обьем
@@ -22,8 +21,5 @@ namespace Planner.Entities.Domain.AppIndividualPlan
         public string ApplicationUserId { get; set; }
 
         [Description("Ignore")] public virtual User ApplicationUser { get; set; }
-
-
-        //public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

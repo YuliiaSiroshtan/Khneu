@@ -10,7 +10,7 @@
         public string Place { get; set; }
         public string StudentName { get; set; }
         public string Awards { get; set; }
-        public string ApplicationUserId { get; set; }
+        public int ApplicationUserId { get; set; }
 
     }
 }

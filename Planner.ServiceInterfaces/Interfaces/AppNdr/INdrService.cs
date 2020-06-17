@@ -6,7 +6,7 @@ namespace Planner.ServiceInterfaces.Interfaces.AppNdr
 {
     public interface INdrService
     {
-        //Task<int> AddNdr(NdrDTO userDTO);
         Task<IEnumerable<NdrListDTO>> GetUserNdr(string userName);
+        Task<int> AddNdr(NdrDTO userDTO);
     }
 }

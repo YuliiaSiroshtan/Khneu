@@ -19,13 +19,16 @@ namespace Planner.Controllers
       _mapper = mapper;
     }
 
-    //[HttpPost]
-    //[Route("[action]")]
-    //public async Task<IActionResult> AddNdr([FromBody] NdrDTO registerNdrDTO)
-    //{
-    //  int result = await ServiceScope.NdrService.AddNdr(_mapper.Map<NdrDTO>(registerNdrDTO));
-    //  return Ok(result);
-    //}
+    [HttpPost]
+    [Route("[action]")]
+    public async Task<IActionResult> AddNdr([FromBody] NdrDTO registerNdrDTO)
+    {
+      if (registerNdrDTO == null) return BadRequest();
+
+      var res = await ServiceScope.NdrService.AddNdr(registerNdrDTO);
+
+      return res == 0 ? BadRequest() : (IActionResult)Ok("Ndr added!");
+    }
 
 
     [HttpGet]
