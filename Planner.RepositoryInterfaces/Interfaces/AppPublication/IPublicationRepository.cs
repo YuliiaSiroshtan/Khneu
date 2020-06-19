@@ -9,8 +9,9 @@ namespace Planner.RepositoryInterfaces.Interfaces.AppPublication
 {
     public interface IPublicationRepository
     {
-        Task<IEnumerable<Publication>> GetAllPublications();
+        Task<IEnumerable<Publication>> GetAllPublications(string userLogin);
         //void AddUpdate(Publication publication);
         Task<Publication> GetById(string publicationId);
+        Task UpdatePublication(Publication publication);
     }
 }

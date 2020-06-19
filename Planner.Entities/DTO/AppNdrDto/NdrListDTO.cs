@@ -2,7 +2,7 @@
 {
     public class NdrListDTO
     {
-        public string NDRId { get; set; }
+        public string Id { get; set; }
         public string FullName { get; set; }
         public string Type { get; set; }
         public string Level { get; set; }

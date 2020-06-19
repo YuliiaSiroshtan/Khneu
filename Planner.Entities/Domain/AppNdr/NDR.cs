@@ -9,8 +9,6 @@ namespace Planner.Entities.Domain.AppNdr
 {
     public class NDR : BaseEntity
     {
-        public string NDRId { get; set; }
-
         public string FullName { get; set; }
 
         public string Type { get; set; }
@@ -25,7 +23,7 @@ namespace Planner.Entities.Domain.AppNdr
 
         public string StudentName { get; set; }
         public string Awards { get; set; }
-        public string ApplicationUserId { get; set; }
+        public int ApplicationUserId { get; set; }
 
         [Description("Ignore")]  public virtual User User { get; set; }
     }

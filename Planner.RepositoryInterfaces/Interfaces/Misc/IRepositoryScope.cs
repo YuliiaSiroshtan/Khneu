@@ -1,5 +1,6 @@
 ﻿using Planner.RepositoryInterfaces.Interfaces.AppDiscipline;
 using Planner.RepositoryInterfaces.Interfaces.AppEntryLoad;
+using Planner.RepositoryInterfaces.Interfaces.AppIndividualPlan;
 using Planner.RepositoryInterfaces.Interfaces.AppNdr;
 using Planner.RepositoryInterfaces.Interfaces.AppPublication;
 using Planner.RepositoryInterfaces.Interfaces.AppSelectedDiscipline;
@@ -34,5 +35,8 @@ namespace Planner.RepositoryInterfaces.Interfaces.Misc
         IPublicationRepository PublicationRepository { get; }
         INMBDRepository NMBDRepository { get; }
         INdrRepository NdrRepository { get; }
+        IPlanTrainingRepository PlanTrainingRepository { get; }
+        IIndivPlanFieldsValueRepository IndivPlanFieldsValueRepository { get; }
+        IIndivPlanFieldsRepository IndivPlanFieldsRepository { get; }
     }
 }

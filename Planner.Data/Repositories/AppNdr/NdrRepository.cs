@@ -15,7 +15,6 @@ namespace Planner.Data.Repositories.AppNdr
         public async Task<IEnumerable<NDR>> GetUserNdr(string userName)
         {
             using var connection = await this.OpenConnection();
-
             string query =  $"SELECT * FROM Ndrs n, Users u WHERE n.ApplicationUserId = u.Id AND u.Login = '{userName}';";
 
             return await connection.QueryAsync<NDR>(query);

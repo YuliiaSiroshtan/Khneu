@@ -105,7 +105,7 @@ namespace Planner.Data.Repositories.GenericRepository
 
         private string GenerateInsertQuery()
         {
-            var insertQuery = new StringBuilder($"SET IDENTITY_INSERT {this._tableName} ON INSERT INTO {this._tableName} ");
+            var insertQuery = new StringBuilder($"SET IDENTITY_INSERT {this._tableName} OFF INSERT INTO {this._tableName} ");
 
             insertQuery.Append("(");
 
