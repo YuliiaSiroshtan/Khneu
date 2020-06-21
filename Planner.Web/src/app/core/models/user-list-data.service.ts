@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { HttpHeaders, HttpResponse } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -11,11 +12,11 @@ export class UserListDataService {
   constructor(private http: HttpClient) { }
 
   getAllUsers() {
-    return this.http.get('/api/Account/GetAllUsers');
+    return this.http.get(environment.apiBaseUrl + '/api/Account/GetAllUsers');
   }
 
   changeUserStatus(userId: string) {
-      return this.http.post('/api/Account/ChangeUserStatus', userId);
+      return this.http.post(environment.apiBaseUrl + '/api/Account/ChangeUserStatus', userId);
   }
 
   
