@@ -1,37 +1,64 @@
-  $font:Verdana;
+  $font: 'Segoe UI';
 
   .wrapper {
-    display: flex;
-        position: relative;
-        flex-flow: column;
-        max-width: 1600px;
-        padding: 0 20px;
-        margin: 0 auto;
-  }
-
-  .personal-info {
     display: block;
-    font-family: $font;
-    padding: 5px 0px 5px 15px;
-  }
-      
-  .button-margin {
-        display: block;
-        max-width: 150px;
-        margin: 0 auto;
+    max-width: 1820px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 175px;
   }
 
-  .personal-info {
-        display: block;
-
-  }
-      
-  .edit {
+  .home_title {
     display: block;
     text-align: center;
+    color: #707070;
+    font-family: $font;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 87px;
   }
-      
-  .home_title {
-        display: block;
-        font-size: 25px;
-      }      
+
+  .table {
+    display: block;
+    border-left: 13px solid #141880;
+    padding-left: 250px;
+    margin-top: 40px;
+  }
+
+  .personal__info--container {
+    display: block;
+    max-width: 730px;
+    margin-top: 50px;
+  }
+
+  .personal__info--container:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .personal__info {
+    display: inline-block;
+    font-family: $font;
+    color: #707070;
+    font-size: 25px;
+    font-weight: 700;
+    padding-right: 50px;
+    vertical-align: middle;
+  }
+
+
+  .personal__info--data {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: $font;
+    font-weight: 700;
+    color: #2b2b2b;
+    float: right;
+    width: 500px;
+    height: 40px;
+    padding: 10px 0 5px 25px;
+    background-color: #eceeff;
+  }
+
+
+
+ 
