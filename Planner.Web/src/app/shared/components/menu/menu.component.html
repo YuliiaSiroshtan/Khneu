@@ -1,38 +1,44 @@
-    <nav>
-      <ul class="menu">
+    <nav class="menu">
+      <ul class="menu__list">
         <li class="menu__item">
-          <a href="#" routerLink="/home" class="menu__item--link">Головна</a>
+          <a class="menu__link" href="#" routerLink="/home">Головна</a>
         </li>
         <li *ngIf="isTeacher || isHeadOfDepartmen" class="menu__item">
-          <a href="#" routerLink="publication" class="menu__item--link">Публікації</a>
+          <a class="menu__link" href="#" routerLink="publication">Публікації</a>
         </li>
-        <li *ngIf="isTeacher || isHeadOfDepartmen" class="menu__item">
-          <a href="#" class="menu__item--link">Індивідуальний план</a>
+        <li class="menu__item" *ngIf="isTeacher || isHeadOfDepartmen">
+          <a class="menu__link" href="#">Індивідуальний план</a>
         </li>
-        <li *ngIf="isTeacher || isHeadOfDepartmen" class="menu__item">
-          <a href="#" routerLink="dashboard" class="menu__item--link">Розклад занять</a>
+        <li class="menu__item" *ngIf="isTeacher || isHeadOfDepartmen">
+          <a class="menu__link" href="#" routerLink="dashboard">Розклад занять</a>
         </li>
-        <li *ngIf="isTeacher || isHeadOfDepartmen" class="menu__item">
-          <a href="#" class="menu__item--link">Керівні документи</a>
+        <li class="menu__item" *ngIf="isTeacher || isHeadOfDepartmen">
+          <a class="menu__link" href="#" >Керівні документи</a>
         </li>
 
-        <li *ngIf="isHeadOfDepartmen" class="menu__item">
-          <a href="#" class="menu__item--link">Результати НДР</a>
-          <ul class="submenu">
-            <li><a href="#">Файл навантаження</a></li>
-            <li><a href="#">По кафедрі</a></li>
-            <li><a href="#">Розподіл</a></li>
-          </ul>
+        <li class="menu__item" *ngIf="isHeadOfDepartmen">
+          <a class="menu__link" href="#">Результати НДР</a>
+          <!-- <ul class="submenu">
+            <li>
+              <a href="#">Файл навантаження</a>
+            </li>
+            <li>
+              <a href="#">По кафедрі</a>
+            </li>
+            <li>
+              <a href="#">Розподіл</a>
+            </li>
+          </ul> -->
         </li>
-        <li *ngIf="isHeadOfDepartmen" class="menu__item">
-          <a href="#" class="menu__item--link">План науки</a>
+        <li class="menu__item" *ngIf="isHeadOfDepartmen">
+          <a class="menu__link" href="#">План науки</a>
         </li>
-        <li *ngIf="isTrainingDivision" class="menu__item">
-          <a href="#" routerLink="upload-distribution" class="menu__item--link down">Файл навантаження</a>
+        <li class="menu__item" *ngIf="isTrainingDivision">
+          <a class="menu__link down" href="#" routerLink="upload-distribution">Файл навантаження</a>
           
         </li>
         <li class="menu__item">
-          <a href="#" (click)="logout()" class="menu__item--link">Вихід</a>
+          <a class="menu__link" href="#" (click)="logout()">Вихід</a>
         </li>
       </ul>
     </nav>

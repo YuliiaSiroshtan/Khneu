@@ -1,100 +1,74 @@
-$font: 'Segoe UI';
-.menu {
-  display: block;
-  background-color: #141880;
+@mixin r($width) {
+  @media only screen and (max-width: $width+ "px") {
+    @content;
+  }
+}
+
+@mixin rmin($width) {
+  @media only screen and (min-width: $width+ "px") {
+    @content;
+  }
+}
+
+@mixin segoe-semi {
+  font-family: "Segoe UI";
+  font-weight: 600;
+}
+
+@mixin segoe-bold {
+  font-family: "Segoe UI";
+  font-weight: bold;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin background-center {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+*,
+html {
+  @include segoe-semi;
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
-nav ul {
-  list-style: none;
+.menu {
+  @include flex-center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   padding: 20px 0;
+  background-color: #141880;
+
+  &__list {
+    @include flex-center;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  &__item {
+    list-style-type: none;
+    padding: 0 5px 5px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    transition-property: border-color;
+    transition-duration: .3s;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &__link {
+    @include segoe-semi;
+    font-size: 20px;
+    color: #fff;
+  }
 }
 
-.menu__item {
- display: inline-block;
- position: relative;
- vertical-align: top;
- padding: 0 20px;
- text-align: center;
- cursor: pointer;
-}
 
-.menu__item--link {
-  display: inline-block;
-  position: relative;
-  font-family: $font;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 19px;
-  font-weight: 400;
-  border-top: 2px solid transparent;
-  transition: .3s;
-  padding-top: 10px;
-}
-
-.menu__item--link::before {
-  display: block;
-  position: absolute;
-  content:"";
-  height: 2px;
-  width: 0;
-  background-image: linear-gradient(to right, #3554bb 0%, #82e5fe 100%);
-  transition: width .3s ease-in-out, left .3s ease-in-out;
-  top: 0;
-}
-
-.menu__item--link::after {
-  display: block;
-  position: absolute;
-  content: "";
-  height: 2px;
-  width: 0;
-  background-image: linear-gradient(to right, #3554bb 0%, #82e5fe 100%);
-  transition: width .3s ease-in-out;
-  top: 0;
-}
-
-.menu__item--link:hover::before {
- width: 100%;
-}
-
-.menu__item--link:hover::after {
-width: 100%;
-}
-
-.menu__item:first-child {
-padding-left: 203px;
-}
-
-.menu__item:last-child {
-  padding: 0 50px 0 0;
-  float: right;
-}
-
-.submenu {
-  position: absolute;
-  left: 0;
-  top: 158%;
-  width: 210px; 
-  background: rgba(20, 24, 128, 1);
-  border: 1px solid #ededed;
-  border-top: none;
-  z-index: 5;
-  visibility: hidden;
-  opacity: 0;
-  transform: scale(.8);
-  transition: .4s ease-in-out;
-}
-.submenu li a {
-  display: block;
-  padding: 10px 0;
-  font-size: 19px;
-  color: rgba(255, 255, 255, 0.8);
-  font-family: $font;
-}
-
-.menu > li:hover .submenu {
-  visibility: visible;
-  opacity: 1;
-  transform: scale(1);
-}

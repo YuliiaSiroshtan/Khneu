@@ -1,41 +1,47 @@
 <!-- <p-toast key="error" position="top-center"></p-toast> -->
-<div class="hold-transition login-page">
-    <div class="wrapper">
-    <div class="header-widget">
-      <div class="site-logo">
-        <a href="http://www.hneu.edu.ua/" class="background-logo" title="Харківский  національний економічний університет імені Семена Кузнеця" rel="home"></a>
-          <span class="login-logo" title="Вхід в персональний кабінет викладача">
-            Вхід в персональний кабінет викладача
-          </span>
-          <div class="text-line"></div>
-      </div>
-    </div>
-  
-    <form [formGroup]="userform" (ngSubmit)="onSubmit()" class="login-form">
-      <div class="back-img"></div>
-      <div class="container body-content">
-        <div class="form-group">
-          <div class="img"></div>
-          <input type="text" pInputText placeholder="ЛОГІН" class="login" formControlName="email">
+
+<header class="header">
+  <div class="wrapper">
+    <a class="header__logo" href="http://www.hneu.edu.ua/"
+      title="Харківский  національний економічний університет імені Семена Кузнеця" rel="home">
+    </a>
+  </div>
+</header>
+<section class="authorization">
+  <div class="wrapper">
+    <div class="authorization__inner">
+      <span class="authorization__title" title="Вхід в персональний кабінет викладача">Вхід в персональний кабінет
+        викладача</span>
+
+      <div class="authorization__background-image"></div>
+      <form class="authorization__form" [formGroup]="userform" (ngSubmit)="onSubmit()">
+
+        <div class="authorization__container">
+          <div class="authorization__input-content">
+            <label class="authorization__input-image authorization__input-image--login" for="auto-login"></label>
+            <input class="authorization__input" type="email" pInputText placeholder="ЛОГІН" formControlName="email"
+              id="auto-login" required>
+          </div>
           <!-- <p-message severity="error" [text]="getErrorMessage('email')"
                      *ngIf="!this.userform.controls['email'].valid && this.userform.controls['email'].dirty"></p-message> -->
-  
-        </div>
-        <div class="form-group">
-          <input type="password" pInputText placeholder="ПАРОЛЬ" class="login" formControlName="password">
+
+          <div class="authorization__input-content">
+            <label class="authorization__input-image authorization__input-image--password" for="auto-pass"></label>
+            <input class="authorization__input" type="password" pInputText placeholder="ПАРОЛЬ"
+              formControlName="password" id="auto-pass" required>
+          </div>
           <!-- <p-message severity="error" [text]="getErrorMessage('password')"
                      *ngIf="!this.userform.controls['password'].valid && this.userform.controls['password'].dirty"></p-message> -->
+
+          <div class="authorization__form-check">
+            <input class="authorization__check" type="checkbox" id="auto-check" requiredx>
+            <label class="authorization__check-label" for="auto-check">Запам'ятати мене</label>
+          </div>
+          <button class="authorization__btn" type="submit">
+            <span class="authorization__btn-title">Вхід</span>
+          </button>
         </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" id="cdRememberMe">
-            <label for="cdRememberMe" class="checkbox-label">Запам'ятати мене</label>
-          </label>
-          <button type="submit" class="btn btn-primary form-btn"><span class="form-btn__input">Вхід</span></button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-  </div>
-  
-  
+</section>

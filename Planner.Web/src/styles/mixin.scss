@@ -1,0 +1,31 @@
+@mixin r($width) {
+    @media only screen and (max-width: $width+ "px") {
+      @content;
+    }
+  }
+  
+  @mixin rmin($width) {
+    @media only screen and (min-width: $width+ "px") {
+      @content;
+    }
+  }
+  
+  @mixin segoe-semi {
+    font-family: "Segoe UI";
+    font-weight: 600;
+  }
+  
+  @mixin segoe-bold {
+    font-family: "Segoe UI";
+    font-weight: bold;
+  }
+  
+  @mixin flex-center {
+    display: flex;
+    align-items: center;
+  }
+  
+  @mixin background-center {
+    background-position: center;
+    background-repeat: no-repeat;
+  }
