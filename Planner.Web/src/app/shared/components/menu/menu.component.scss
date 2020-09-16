@@ -1,34 +1,6 @@
-@mixin r($width) {
-  @media only screen and (max-width: $width+ "px") {
-    @content;
-  }
-}
+@import '../../../../styles/mixin.scss';
 
-@mixin rmin($width) {
-  @media only screen and (min-width: $width+ "px") {
-    @content;
-  }
-}
-
-@mixin segoe-semi {
-  font-family: "Segoe UI";
-  font-weight: 600;
-}
-
-@mixin segoe-bold {
-  font-family: "Segoe UI";
-  font-weight: bold;
-}
-
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-}
-
-@mixin background-center {
-  background-position: center;
-  background-repeat: no-repeat;
-}
+$blue-background: #141880;
 
 *,
 html {
@@ -44,10 +16,11 @@ html {
   justify-content: center;
   text-align: center;
   padding: 20px 0;
-  background-color: #141880;
+  background-color: $blue-background;
 
   &__list {
-    @include flex-center;
+    display: flex;
+    align-items: flex-start;
     justify-content: space-around;
     width: 100%;
   }

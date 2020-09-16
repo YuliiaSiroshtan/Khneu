@@ -1,37 +1,7 @@
+@import "../../../../styles/mixin.scss";
+
 $color-blue: #282778;
 $color-blue-dark: #05042c;
-
-@mixin r($width) {
-    @media only screen and (max-width: $width+ "px") {
-        @content;
-    }
-}
-
-@mixin rmin($width) {
-    @media only screen and (min-width: $width+ "px") {
-        @content;
-    }
-}
-
-@mixin segoe-semi {
-    font-family: "Segoe UI";
-    font-weight: 600;
-}
-
-@mixin segoe-bold {
-    font-family: "Segoe UI";
-    font-weight: bold;
-}
-
-@mixin flex-center {
-    display: flex;
-    align-items: center;
-}
-
-@mixin background-center {
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 *,
 html {
@@ -42,10 +12,7 @@ html {
 }
 
 .wrapper {
-    max-width: 1600px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
+    @include wrapper;
 
     @include r(480) {
         max-width: 470px;
@@ -71,8 +38,6 @@ html {
 }
 
 .authorization {
-    
-
     &__inner {
         @include flex-center;
         flex-direction: column;
@@ -121,7 +86,6 @@ html {
     }
 
     &__background-image {
-        display: block;
         @include background-center;
         background-image: url(../../../../assets/images/lines.png);
         background-size: contain;

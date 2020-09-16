@@ -1,31 +1,38 @@
 @mixin r($width) {
-    @media only screen and (max-width: $width+ "px") {
-      @content;
-    }
+  @media only screen and (max-width: $width+ "px") {
+    @content;
   }
-  
-  @mixin rmin($width) {
-    @media only screen and (min-width: $width+ "px") {
-      @content;
-    }
+}
+
+@mixin rmin($width) {
+  @media only screen and (min-width: $width+ "px") {
+    @content;
   }
-  
-  @mixin segoe-semi {
-    font-family: "Segoe UI";
-    font-weight: 600;
-  }
-  
-  @mixin segoe-bold {
-    font-family: "Segoe UI";
-    font-weight: bold;
-  }
-  
-  @mixin flex-center {
-    display: flex;
-    align-items: center;
-  }
-  
-  @mixin background-center {
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+}
+
+@mixin segoe-semi {
+  font-family: "Segoe UI";
+  font-weight: 600;
+}
+
+@mixin segoe-bold {
+  font-family: "Segoe UI";
+  font-weight: bold;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin background-center {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin wrapper {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1600px;
+  width: 100%;
+}

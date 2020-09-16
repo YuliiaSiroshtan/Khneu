@@ -1,59 +1,53 @@
-<section class="main">
-  <div class="wrapper">
-    <div class="main__content">
-      <div class="content-wrapper">
-        <div class="form-group">
-          <div class="login-box-body" 
-          data-ng-controller="registerController as registerCtrl" 
-          ng-cloak data-ng-init="registerCtrl.init()">
-            <span class="login-box-msg home_title">Ваш особистий кабінет</span>
-              <div class="form-group table">
-                <div class="personal__info--container">
-                  <span class="personal__info">П. I .Б.</span>
-                  <span class="personal__info--data">{{userProfile.givenName}}</span>
-                </div>
-                <div class="personal__info--container">
-                  <span class="personal__info">Посада</span>
-                  <span class="personal__info--data">{{userProfile.sn}}</span>
-                </div>
-                <div class="personal__info--container">
-                  <span class="personal__info">Звання</span>
-                  <span class="personal__info--data">{{userProfile.sn}}</span>
-                </div>
-                <div class="personal__info--container">
-                  <span class="personal__info">Ступiнь</span>
-                  <span class="personal__info--data">{{userProfile.sn}}</span>
-                </div>
-                <div class="personal__info--container">
-                  <span class="personal__info">e-mail</span>
-                  <span class="personal__info--data">{{userProfile.mail}}</span>
-                </div>
-                <div class="personal__info--container">
-                  <span class="personal__info">Google Scholar</span>
-                  <span class="personal__info--data">...</span>
-                </div> 
-                <div class="personal__info--container">
-                  <span class="personal__info">Orcid Scholar</span>
-                  <span class="personal__info--data">...</span>
-                </div> 
-                <div class="personal__info--container">
-                  <span class="personal__info">Scopus</span>
-                  <span class="personal__info--data">...</span>
-                </div>  
-                
-                
-                
-              </div>
-            <!-- <div class="col edit">
+<main class="main">
+  <section class="intro">
+    <div class="wrapper">
+      <div class="intro__inner" data-ng-controller="registerController as registerCtrl" ng-cloak
+      data-ng-init="registerCtrl.init()">
+          <span class="intro__title">Ваш особистий кабінет</span>
+          <div class="intro__container">
+            <div class="intro__item">
+              <div class="intro__suptitle">П. I .Б.</div>
+              <div class="intro__data">{{userProfile.givenName}}</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">Посада</div>
+              <div class="intro__data">{{userProfile.sn}}</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">Звання</div>
+              <div class="intro__data">{{userProfile.sn}}</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">Ступiнь</div>
+              <div class="intro__data">{{userProfile.sn}}</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">e-mail</div>
+              <div class="intro__data">{{userProfile.mail}}</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">Google Scholar</div>
+              <div class="intro__data">...</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">Orcid Scholar</div>
+              <div class="intro__data">...</div>
+            </div>
+            <div class="intro__item">
+              <div class="intro__suptitle">Scopus</div>
+              <div class="intro__data">...</div>
+            </div>
+
+
+
+          </div>
+          <!-- <div class="col edit">
               <div class="button-margin">
                 <button class="btn btn-primary btn-block btn-flat" (click)="toggleEditUser()">Редагувати</button>
               </div>
             </div> -->
-          </div>
-        </div>
       </div>
     </div>
-  </div>
   </section>
-  <!-- <add-update-user *ngIf="isEdit" [applicationUserId]="userProfile.applicationUserId"></add-update-user> -->
-  
+</main>
+<!-- <add-update-user *ngIf="isEdit" [applicationUserId]="userProfile.applicationUserId"></add-update-user> -->

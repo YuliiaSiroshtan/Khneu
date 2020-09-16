@@ -1,64 +1,62 @@
-  $font: 'Segoe UI';
+@import "../../../../styles/mixin.scss";
 
-  .wrapper {
-    display: block;
-    max-width: 1820px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 175px;
+$blue-background: #141880;
+
+*,
+html {
+  @include segoe-semi;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  @include wrapper;
+}
+
+.intro {
+  &__inner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 62px 0;
   }
 
-  .home_title {
-    display: block;
+  &__title {
+    @include segoe-bold;
     text-align: center;
-    color: #707070;
-    font-family: $font;
     font-size: 30px;
-    font-weight: 700;
-    margin-top: 87px;
+    color: #2c2b2b;
   }
 
-  .table {
-    display: block;
-    border-left: 13px solid #141880;
-    padding-left: 250px;
-    margin-top: 40px;
-  }
-
-  .personal__info--container {
-    display: block;
-    max-width: 730px;
+  &__container {
     margin-top: 50px;
+    width: 60%;
+    border-left: 15px solid $blue-background;
   }
 
-  .personal__info--container:nth-child(1) {
-    margin-top: 0;
+  &__item {
+    display: flex;
+    text-align: right;
+
+    & + & {
+      margin-top: 35px;
+    } 
   }
 
-  .personal__info {
-    display: inline-block;
-    font-family: $font;
-    color: #707070;
+  &__suptitle {
+    margin-right: 5%;
+    width: 50%;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  &__data {
+    padding: 5px 10px;
+    width: 45%;
+    text-align: justify;
     font-size: 25px;
-    font-weight: 700;
-    padding-right: 50px;
-    vertical-align: middle;
+    color: #000;
+    background-color: rgba(128, 128, 128, 0.5);
   }
-
-
-  .personal__info--data {
-    display: inline-block;
-    vertical-align: middle;
-    font-family: $font;
-    font-weight: 700;
-    color: #2b2b2b;
-    float: right;
-    width: 500px;
-    height: 40px;
-    padding: 10px 0 5px 25px;
-    background-color: #eceeff;
-  }
-
-
-
- 
+}

@@ -1,181 +1,133 @@
-$font: 'Segoe UI';
+@import "../../../../styles/mixin.scss";
 
-.footer {
-    display: block;
-    background-color: #141880;
-    background-size: cover;
-    margin: 279px auto 0 auto;
-    padding: 30px 0 21px 0;
+$blue-background: #141880;
+
+*,
+html {
+    @include segoe-semi;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .wrapper {
-    display: block;
-        max-width: 1820px;
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 20px;
+    @include wrapper;
 }
 
-.our-social__links {
-    display: block;
-}
+.footer {
+    background-color: $blue-background;
+    width: 100%;
 
-.our-social__links--title {
-    display: inline-block;
-    vertical-align: middle;
-    text-transform: uppercase;
-    font-family: $font;
-    color: rgba(252, 252, 252, 0.7);
-    font-size: 30px;
-    font-weight: 700;
-}
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        padding: 50px 0 5px;
+    }
 
-.our-social__links--item {
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 20px;
-}
+    &__socials {
+        @include flex-center;
+    }
 
-.link__social {
-    display: inline-block;
-    padding: 0 8px;
-    opacity: 0.75;
-    transition: .3s;
-}
+    &__title {
+        display: block;
+        font-size: 25px;
+        line-height: 20px;
+        color: #fff;
+        margin-right: 20px;
+    }
 
-.link__social:hover {
-    opacity: 1;
-    transition: .3s;
-}
+    &__socials-list {
+        display: flex;
+    }
 
-.footer__content--contacts {
-    display: block;
-    margin-top: 20px;
-    padding: 28px 0 11px 0;
-    border: 1px solid rgba(196, 197, 223, 0.75);
-    border-left: none;
-    border-right: none;
-}
+    &__item {
+        list-style-type: none;
 
-.menu {
-    display: inline-block;
-    vertical-align: top;
-    padding-left: 8px;
-    list-style-type: none;
-}
+        & + & {
+            margin-left: 5px;
+        }
+    }
 
-.menu__item {
-    display: block;
-    margin-top: 28px;
-}
+    &__container {
+        display: flex;
+        margin-top: 20px;
+        padding: 15px 0;
+        border: 1px solid gray;
+        border-left: none;
+        border-right: none;
+        color: #fff;
+    }
 
-.menu__item:nth-child(1) {
-    margin-top: 0;
-}
+    &__menu {
+        margin-right: 150px;
+    }
 
-.menu__item--link {
-    font-family: $font;
-    color: rgba(252, 252, 252, 0.75);
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 16px;
-    padding-bottom: 1px;
-    border-bottom: 1px solid transparent;
-    transition: .3s;
-}
+    &__menu-item {
+        list-style-type: none;
 
-.menu__item--link:hover {
-    border-color: #ffffff;
-    transition: .3s;
-}
+        & + & {
+            margin-top: 15px;
+        }
+    }
 
-.contacts__data {
-    display: inline-block;
-    vertical-align: top;
-    padding: 0 0 0 90px;
-}
+    &__menu-link {
+        font-size: 20px;
+        color: #fff;
+        transition-property: color;
+        transition-duration: 0.3s;
 
-.contacts__data--info {
-    display: block;
-    font-family: $font;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 16px;
-    color: rgba(252, 252, 252, 0.75);
-}
+        &:hover {
+            color: #7f7f7f;
+        }
+    }
 
-.contacts__data--info:nth-child(2) {
-    margin-top: 30px    ;
-}
+    &__data {
+        font-style: normal;
+        margin-right: 150px;
+    }
 
-.contacts__data--info:nth-child(3) {
-    margin-top: 30px;
-}
+    &__data-list {
+        max-width: 292px;
+    }
 
-.contacts__data--info:nth-child(4) {
-    margin-top: 9px;
-}
-.contacts__data--info:nth-child(5) {
-    margin-top: 9px;
-}
-.contacts__data--info:nth-child(6) {
-    margin-top: 9px;
-}
-.contacts__data--info:nth-child(7) {
-    margin-top: 9px;
-}
-.contacts__data--info:nth-child(8) {
-    margin-top: 9px;
-}
-.contacts__data--info:nth-child(9) {
-    margin-top: 9px;
-}
+    &__data-item {
+        list-style-type: none;
+        font-size: 20px;
 
-.contacts__data--info:nth-child(10) {
-    margin-top: 34px;
+        & + & {
+            margin-top: 15px;
+            font-size: 15px;
+        }
+    }
+
+    &__data-link {
+        display: block;
+        color: #fff;
+        transition-property: color;
+        transition-duration: 0.3s;
+
+        &:hover {
+            color: #7f7f7f;
+        }
+    }
+
+    &__logo {
+        display: block;
+        margin: 4% 0;
+    }
+
+    &__copyright {
+        display: flex;
+        align-items: flex-end;
+        padding: 10px 20px;
+        color: #fff;
+    }
+
+    &__copyright-logo {
+        margin-right: 25px;
+    }
+
+    &__copyright-data {
+        line-height: 20px;
+    }
 }
-
-.contacts__data--info:nth-child(11) {
-    margin-top: 7px;
-}
-.contacts__data--info:nth-child(12) {
-    margin-top: 9px;
-}
-.contacts__data--info:nth-child(13) {
-    margin-top: 8px;
-}
-
-.footer__content--logo-khneu {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 71px 0 0 210px;
-}
-
-.footer__content--copyright {
-    display: block;
-    margin-top: 22px;
-}
-
-.footer__content--logo-min-osv {
-    display: inline-block;
-}
-
-.footer__content--logo-ukr-gov {
-    display: inline-block;
-    padding-left: 20px;
-}
-
-.footer__content--copyright-info {
-    display: inline-block;
-    padding-left: 36px;
-    font-family: $font;
-    color: rgba(252, 252, 252, 0.75);
-    font-size: 20px;
-    font-weight: 400;
-}
-
-
-
-
-
-
