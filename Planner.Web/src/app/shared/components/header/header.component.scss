@@ -1,5 +1,6 @@
 @import '../../../../styles/mixin.scss';
 
+
 *,
 html {
   @include segoe-semi;
@@ -10,16 +11,32 @@ html {
 
 .wrapper {
   @include wrapper;
-}
+
+  @include r(992) {
+    max-width: 960px;
+  }
+
+  @include r(768) {
+    max-width: 720px;
+  }
+
+  @include r(576) {
+    max-width: 540px;
+  }
+} 
 
 .header {
   @include background-center;
   background-image: url(../../../../assets/images/background_main.jpg);
   background-size: cover;
   width: 100%;
-  height: 700px;
+  min-height: 80vh;
   position: relative;
   z-index: 1;
+
+  @include r(768) {
+    min-height: 50vh;
+  }
 
   &__opacity {
     position: absolute;
@@ -30,11 +47,17 @@ html {
   }
 
   &__inner {
-    margin-top: 30px;
     display: flex;
     justify-content: space-between;
+    padding-top: 30px;
     position: relative;
     z-index: 10;
+
+    @include r(768) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &__logo {
@@ -46,6 +69,10 @@ html {
   &__socials {
     display: flex;
     align-items: flex-start;
+    
+    @include r(768) {
+      margin-top: 50px;
+    }
   }
 
   &__item {
@@ -53,6 +80,10 @@ html {
 
     & + & {
       padding-left: 20px;
+
+      @include r(768) {
+        padding-left: 10px;
+      }
     }
   }
 }

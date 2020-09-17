@@ -1,14 +1,16 @@
-<p-toast key="success" position="top-center"></p-toast>
-<p-toast key="error" position="top-center"></p-toast>
-<div class="col">
-  <div class="profile-content">
-    <p-tabView>
-      <p-tabPanel header="Створення публікації">
-        <add-edit-publication></add-edit-publication>
-      </p-tabPanel>
-      <p-tabPanel header="Мої публікації">
-        <publication-list></publication-list>
-      </p-tabPanel>
-    </p-tabView>
-  </div>
+<section class="publication">
+  <div class="wrapper">
+  <p-toast key="success" position="top-center"></p-toast>
+  <p-toast key="error" position="top-center"></p-toast>
+    <div class="publication__inner">
+      <p-tabView>
+        <p-tabPanel header="Створення публікації">
+          <add-edit-publication></add-edit-publication>
+        </p-tabPanel>
+        <p-tabPanel header="Мої публікації">
+          <publication-list></publication-list>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
 </div>
+</section>

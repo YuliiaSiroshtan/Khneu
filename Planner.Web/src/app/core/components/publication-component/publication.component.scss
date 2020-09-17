@@ -1,41 +1,22 @@
-.profile-content {
-  margin-top: 2%;
-  font-family: verdana;
-  font-size: 16px;
+@import "../../../../styles/mixin.scss";
+
+$blue-background: #141880;
+
+*,
+html {
+  @include segoe-semi;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.btn-float {
-  float: right;
+.wrapper {
+  @include wrapper;
 }
 
-.btn-margin-right {
-  margin-right: 1%;
-}
+.publication {
+  &__inner {
+    padding: 25px 0;
+  }
 
-.login-box-msg {
-  text-align: center;
-}
-
-.table-margin-top {
-  margin-top: 1%;
-  min-height: 290px;
-}
-
-.h5-style {
-  font-family: Verdana !important;
-  font-size: 14px !important;
-}
-
-.datepicker-margin-bottom {
-  margin-bottom: 1%;
-}
-
-.a-font-color {
-  font-family: verdana;
-  color: #ffffff !important;
-}
-
-.row-margin {
-  margin-top: 1%;
-  margin-right: 0.1%;
 }
