@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
-import random
+from PythonAPI.LoggingAPI.LDAP_API import LDAP
 
 APP = Flask(__name__)
 API = Api(APP)
+
+LDAP_PROCESSOR = LDAP()
 
 
 class Quote(Resource):
@@ -17,7 +19,7 @@ class Quote(Resource):
         """
         GET method
         """
-        pass
+        LDAP_PROCESSOR.get_data()
 
     @staticmethod
     def post(login, password):
@@ -28,7 +30,8 @@ class Quote(Resource):
         """
         parser = reqparse.RequestParser()
         parser.add_argument("name")
-        params = parser.parse_args()
+        # params = parser.parse_args()
+        LDAP_PROCESSOR.login(login, password)
 
 
 API.add_resource(Quote, "/login", "/login/", "/login/<str:login>/<str:password>")
