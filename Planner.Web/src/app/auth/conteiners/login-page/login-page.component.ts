@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
 
     this._authenticationService
       .isAuthenticated({
-        login: this.userform.controls.email.value,
+        email: this.userform.controls.email.value,
         password: this.userform.controls.password.value
       } as LoginModel)
       .subscribe(res => {

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:52706/'
+  apiBaseUrl: 'http://localhost:52706/',
+  apiPythonBaseUrl: 'http://teachers.hneu.edu.ua:8000/'
 };
 
 /*

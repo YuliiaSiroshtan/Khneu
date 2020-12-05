@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: ""
+  apiBaseUrl: "",
+  apiPythonBaseUrl: 'http://teachers.hneu.edu.ua:8000/'
 };

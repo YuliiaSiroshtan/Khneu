@@ -15,13 +15,16 @@ export class AuthenticationService {
   constructor(private _http: HttpClient) { }
 
   isAuthenticated(login: LoginModel) {
-    return this._http.post(environment.apiBaseUrl + 'api/Token/CreateToken', login)
+    return this._http.post(environment.apiPythonBaseUrl, login)
     .pipe(map(result => {
       this.tokenResult = result;
+      if(this.tokenResult.accessToken){
+        localStorage.setItem('tokenInfo', this.tokenResult.accessToken);
+      }
       if (this.tokenResult && this.tokenResult.jwtToken && this.tokenResult.jwtToken.token) {
         console.log(result);
         localStorage.setItem('tokenInfo', this.tokenResult.jwtToken.token);
-        localStorage.setItem('role', this.tokenResult.jwtToken.role);
+        // localStorage.setItem('role', this.tokenResult.jwtToken.role);
       }
       return this.tokenResult;
     }));
